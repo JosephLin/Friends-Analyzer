@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>title</key>
+		<string>Last Name</string>
+		<key>property</key>
+		<string>last_name</string>
+		<key>viewController</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Birthday</string>
+		<key>property</key>
+		<string>birthday</string>
+		<key>viewController</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Hometown</string>
+		<key>property</key>
+		<string>hometown</string>
+		<key>viewController</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Current Location</string>
+		<key>property</key>
+		<string>location</string>
+		<key>viewController</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Work</string>
+		<key>property</key>
+		<string>work</string>
+		<key>viewController</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Education</string>
+		<key>property</key>
+		<string>education</string>
+		<key>viewController</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Gender</string>
+		<key>property</key>
+		<string>gender</string>
+		<key>viewController</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Relationship Status</string>
+		<key>property</key>
+		<string>relationship_status</string>
+		<key>viewController</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Time Zone</string>
+		<key>property</key>
+		<string>timezone</string>
+		<key>viewController</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Locale</string>
+		<key>property</key>
+		<string>locale</string>
+		<key>viewController</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Last Updated Time</string>
+		<key>property</key>
+		<string>updated_time</string>
+		<key>viewController</key>
+		<string></string>
+	</dict>
+</array>
+</plist>

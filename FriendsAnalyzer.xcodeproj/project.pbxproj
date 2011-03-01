@@ -1,0 +1,532 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		28860BE50F44EE6400985440 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28860BE40F44EE6400985440 /* CoreData.framework */; };
+		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
+		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
+		28D3F202112F7DC200FD0661 /* FriendsAnalyzer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28D3F201112F7DC200FD0661 /* FriendsAnalyzer.xcdatamodeld */; };
+		7C4DD511131D8081006C69CF /* MenuStructure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C4DD510131D8081006C69CF /* MenuStructure.plist */; };
+		7C4DD51B131D852A006C69CF /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4DD519131D852A006C69CF /* MainMenuViewController.m */; };
+		7C4DD51C131D852A006C69CF /* MainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C4DD51A131D852A006C69CF /* MainMenuViewController.xib */; };
+		7CC5B0E9131D6F6200FEA4DE /* CategorizedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0B1131D6F6200FEA4DE /* CategorizedTableViewController.m */; };
+		7CC5B0EA131D6F6200FEA4DE /* CategorizedTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CC5B0B2131D6F6200FEA4DE /* CategorizedTableViewController.xib */; };
+		7CC5B0EC131D6F6200FEA4DE /* FacebookClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0B6131D6F6200FEA4DE /* FacebookClient.m */; };
+		7CC5B0EF131D6F6200FEA4DE /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0BD131D6F6200FEA4DE /* Facebook.m */; };
+		7CC5B0F0131D6F6200FEA4DE /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7CC5B0BF131D6F6200FEA4DE /* FBDialog.bundle */; };
+		7CC5B0F1131D6F6200FEA4DE /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0C1131D6F6200FEA4DE /* FBDialog.m */; };
+		7CC5B0F2131D6F6200FEA4DE /* FBLoginDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0C3131D6F6200FEA4DE /* FBLoginDialog.m */; };
+		7CC5B0F3131D6F6200FEA4DE /* FBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0C5131D6F6200FEA4DE /* FBRequest.m */; };
+		7CC5B0F4131D6F6200FEA4DE /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0C9131D6F6200FEA4DE /* NSObject+SBJSON.m */; };
+		7CC5B0F5131D6F6200FEA4DE /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0CB131D6F6200FEA4DE /* NSString+SBJSON.m */; };
+		7CC5B0F6131D6F6200FEA4DE /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0CD131D6F6200FEA4DE /* SBJSON.m */; };
+		7CC5B0F7131D6F6200FEA4DE /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0CF131D6F6200FEA4DE /* SBJsonBase.m */; };
+		7CC5B0F8131D6F6200FEA4DE /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0D1131D6F6200FEA4DE /* SBJsonParser.m */; };
+		7CC5B0F9131D6F6200FEA4DE /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0D3131D6F6200FEA4DE /* SBJsonWriter.m */; };
+		7CC5B0FA131D6F6200FEA4DE /* FriendsAnalyzerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0D5131D6F6200FEA4DE /* FriendsAnalyzerAppDelegate.m */; };
+		7CC5B0FB131D6F6200FEA4DE /* GenericTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0D7131D6F6200FEA4DE /* GenericTableViewController.m */; };
+		7CC5B0FC131D6F6200FEA4DE /* GenericTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CC5B0D8131D6F6200FEA4DE /* GenericTableViewController.xib */; };
+		7CC5B0FD131D6F6200FEA4DE /* PieChartColorScheme.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7CC5B0D9131D6F6200FEA4DE /* PieChartColorScheme.plist */; };
+		7CC5B0FE131D6F6200FEA4DE /* PieChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0DB131D6F6200FEA4DE /* PieChartView.m */; };
+		7CC5B0FF131D6F6200FEA4DE /* PieChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0DD131D6F6200FEA4DE /* PieChartViewController.m */; };
+		7CC5B100131D6F6200FEA4DE /* PieChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CC5B0DE131D6F6200FEA4DE /* PieChartViewController.xib */; };
+		7CC5B101131D6F6200FEA4DE /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0E0131D6F6200FEA4DE /* RootViewController.m */; };
+		7CC5B102131D6F6200FEA4DE /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CC5B0E1131D6F6200FEA4DE /* RootViewController.xib */; };
+		7CC5B103131D6F6200FEA4DE /* SearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0E3131D6F6200FEA4DE /* SearchResultViewController.m */; };
+		7CC5B104131D6F6200FEA4DE /* SearchResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CC5B0E4131D6F6200FEA4DE /* SearchResultViewController.xib */; };
+		7CC5B105131D6F6200FEA4DE /* UIColor-Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0E6131D6F6200FEA4DE /* UIColor-Expanded.m */; };
+		7CC5B145131D739B00FEA4DE /* Concentration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B13E131D739B00FEA4DE /* Concentration.m */; };
+		7CC5B146131D739B00FEA4DE /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B140131D739B00FEA4DE /* User.m */; };
+		7CC5B147131D739B00FEA4DE /* Education.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B142131D739B00FEA4DE /* Education.m */; };
+		7CC5B148131D739B00FEA4DE /* Work.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B144131D739B00FEA4DE /* Work.m */; };
+		7CC5B187131D764700FEA4DE /* EnhancedManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B186131D764700FEA4DE /* EnhancedManagedObject.m */; };
+		7CC5B1B1131D797D00FEA4DE /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B1B0131D797D00FEA4DE /* NSDate+Utilities.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D6058910D05DD3D006BFB54 /* FriendsAnalyzer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FriendsAnalyzer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		28860B760F44E54D00985440 /* FriendsAnalyzer.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = FriendsAnalyzer.xcdatamodel; sourceTree = "<group>"; };
+		28860BE40F44EE6400985440 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		28A0AAE50D9B0CCF005BE974 /* FriendsAnalyzer_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsAnalyzer_Prefix.pch; sourceTree = "<group>"; };
+		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7C4DD510131D8081006C69CF /* MenuStructure.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MenuStructure.plist; sourceTree = "<group>"; };
+		7C4DD518131D852A006C69CF /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
+		7C4DD519131D852A006C69CF /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
+		7C4DD51A131D852A006C69CF /* MainMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenuViewController.xib; sourceTree = "<group>"; };
+		7CC5B0B0131D6F6200FEA4DE /* CategorizedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategorizedTableViewController.h; sourceTree = "<group>"; };
+		7CC5B0B1131D6F6200FEA4DE /* CategorizedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategorizedTableViewController.m; sourceTree = "<group>"; };
+		7CC5B0B2131D6F6200FEA4DE /* CategorizedTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategorizedTableViewController.xib; sourceTree = "<group>"; };
+		7CC5B0B5131D6F6200FEA4DE /* FacebookClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookClient.h; sourceTree = "<group>"; };
+		7CC5B0B6131D6F6200FEA4DE /* FacebookClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookClient.m; sourceTree = "<group>"; };
+		7CC5B0BC131D6F6200FEA4DE /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
+		7CC5B0BD131D6F6200FEA4DE /* Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Facebook.m; sourceTree = "<group>"; };
+		7CC5B0BE131D6F6200FEA4DE /* FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBConnect.h; sourceTree = "<group>"; };
+		7CC5B0BF131D6F6200FEA4DE /* FBDialog.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBDialog.bundle; sourceTree = "<group>"; };
+		7CC5B0C0131D6F6200FEA4DE /* FBDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBDialog.h; sourceTree = "<group>"; };
+		7CC5B0C1131D6F6200FEA4DE /* FBDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBDialog.m; sourceTree = "<group>"; };
+		7CC5B0C2131D6F6200FEA4DE /* FBLoginDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLoginDialog.h; sourceTree = "<group>"; };
+		7CC5B0C3131D6F6200FEA4DE /* FBLoginDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLoginDialog.m; sourceTree = "<group>"; };
+		7CC5B0C4131D6F6200FEA4DE /* FBRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBRequest.h; sourceTree = "<group>"; };
+		7CC5B0C5131D6F6200FEA4DE /* FBRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBRequest.m; sourceTree = "<group>"; };
+		7CC5B0C7131D6F6200FEA4DE /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		7CC5B0C8131D6F6200FEA4DE /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
+		7CC5B0C9131D6F6200FEA4DE /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
+		7CC5B0CA131D6F6200FEA4DE /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
+		7CC5B0CB131D6F6200FEA4DE /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
+		7CC5B0CC131D6F6200FEA4DE /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJSON.h; sourceTree = "<group>"; };
+		7CC5B0CD131D6F6200FEA4DE /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJSON.m; sourceTree = "<group>"; };
+		7CC5B0CE131D6F6200FEA4DE /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
+		7CC5B0CF131D6F6200FEA4DE /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
+		7CC5B0D0131D6F6200FEA4DE /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		7CC5B0D1131D6F6200FEA4DE /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		7CC5B0D2131D6F6200FEA4DE /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		7CC5B0D3131D6F6200FEA4DE /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		7CC5B0D4131D6F6200FEA4DE /* FriendsAnalyzerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsAnalyzerAppDelegate.h; sourceTree = "<group>"; };
+		7CC5B0D5131D6F6200FEA4DE /* FriendsAnalyzerAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsAnalyzerAppDelegate.m; sourceTree = "<group>"; };
+		7CC5B0D6131D6F6200FEA4DE /* GenericTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericTableViewController.h; sourceTree = "<group>"; };
+		7CC5B0D7131D6F6200FEA4DE /* GenericTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericTableViewController.m; sourceTree = "<group>"; };
+		7CC5B0D8131D6F6200FEA4DE /* GenericTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenericTableViewController.xib; sourceTree = "<group>"; };
+		7CC5B0D9131D6F6200FEA4DE /* PieChartColorScheme.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PieChartColorScheme.plist; sourceTree = "<group>"; };
+		7CC5B0DA131D6F6200FEA4DE /* PieChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieChartView.h; sourceTree = "<group>"; };
+		7CC5B0DB131D6F6200FEA4DE /* PieChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieChartView.m; sourceTree = "<group>"; };
+		7CC5B0DC131D6F6200FEA4DE /* PieChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieChartViewController.h; sourceTree = "<group>"; };
+		7CC5B0DD131D6F6200FEA4DE /* PieChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieChartViewController.m; sourceTree = "<group>"; };
+		7CC5B0DE131D6F6200FEA4DE /* PieChartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PieChartViewController.xib; sourceTree = "<group>"; };
+		7CC5B0DF131D6F6200FEA4DE /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		7CC5B0E0131D6F6200FEA4DE /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		7CC5B0E1131D6F6200FEA4DE /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
+		7CC5B0E2131D6F6200FEA4DE /* SearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultViewController.h; sourceTree = "<group>"; };
+		7CC5B0E3131D6F6200FEA4DE /* SearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultViewController.m; sourceTree = "<group>"; };
+		7CC5B0E4131D6F6200FEA4DE /* SearchResultViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultViewController.xib; sourceTree = "<group>"; };
+		7CC5B0E5131D6F6200FEA4DE /* UIColor-Expanded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor-Expanded.h"; sourceTree = "<group>"; };
+		7CC5B0E6131D6F6200FEA4DE /* UIColor-Expanded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor-Expanded.m"; sourceTree = "<group>"; };
+		7CC5B13D131D739B00FEA4DE /* Concentration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Concentration.h; sourceTree = "<group>"; };
+		7CC5B13E131D739B00FEA4DE /* Concentration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Concentration.m; sourceTree = "<group>"; };
+		7CC5B13F131D739B00FEA4DE /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		7CC5B140131D739B00FEA4DE /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		7CC5B141131D739B00FEA4DE /* Education.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Education.h; sourceTree = "<group>"; };
+		7CC5B142131D739B00FEA4DE /* Education.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Education.m; sourceTree = "<group>"; };
+		7CC5B143131D739B00FEA4DE /* Work.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Work.h; sourceTree = "<group>"; };
+		7CC5B144131D739B00FEA4DE /* Work.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Work.m; sourceTree = "<group>"; };
+		7CC5B185131D764700FEA4DE /* EnhancedManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnhancedManagedObject.h; sourceTree = "<group>"; };
+		7CC5B186131D764700FEA4DE /* EnhancedManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnhancedManagedObject.m; sourceTree = "<group>"; };
+		7CC5B1AF131D797D00FEA4DE /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
+		7CC5B1B0131D797D00FEA4DE /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* FriendsAnalyzer-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "FriendsAnalyzer-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
+				28860BE50F44EE6400985440 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				7CC5B10A131D6F6B00FEA4DE /* Root View */,
+				7C4DD517131D8514006C69CF /* Main Menu View */,
+				7CC5B10F131D6FB100FEA4DE /* Table View */,
+				7CC5B10E131D6FAB00FEA4DE /* Pie Chart */,
+				7CC5B10C131D6F8500FEA4DE /* Facebook */,
+				7CC5B10D131D6F8D00FEA4DE /* Categories */,
+				7CC5B10B131D6F7700FEA4DE /* Data Models */,
+				7CC5B0D4131D6F6200FEA4DE /* FriendsAnalyzerAppDelegate.h */,
+				7CC5B0D5131D6F6200FEA4DE /* FriendsAnalyzerAppDelegate.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* FriendsAnalyzer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				28A0AAE50D9B0CCF005BE974 /* FriendsAnalyzer_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				28D3F201112F7DC200FD0661 /* FriendsAnalyzer.xcdatamodeld */,
+				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
+				8D1107310486CEB800E47090 /* FriendsAnalyzer-Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
+				28860BE40F44EE6400985440 /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7C4DD517131D8514006C69CF /* Main Menu View */ = {
+			isa = PBXGroup;
+			children = (
+				7C4DD518131D852A006C69CF /* MainMenuViewController.h */,
+				7C4DD519131D852A006C69CF /* MainMenuViewController.m */,
+				7C4DD51A131D852A006C69CF /* MainMenuViewController.xib */,
+				7C4DD510131D8081006C69CF /* MenuStructure.plist */,
+			);
+			name = "Main Menu View";
+			sourceTree = "<group>";
+		};
+		7CC5B0BB131D6F6200FEA4DE /* FBConnect */ = {
+			isa = PBXGroup;
+			children = (
+				7CC5B0BC131D6F6200FEA4DE /* Facebook.h */,
+				7CC5B0BD131D6F6200FEA4DE /* Facebook.m */,
+				7CC5B0BE131D6F6200FEA4DE /* FBConnect.h */,
+				7CC5B0BF131D6F6200FEA4DE /* FBDialog.bundle */,
+				7CC5B0C0131D6F6200FEA4DE /* FBDialog.h */,
+				7CC5B0C1131D6F6200FEA4DE /* FBDialog.m */,
+				7CC5B0C2131D6F6200FEA4DE /* FBLoginDialog.h */,
+				7CC5B0C3131D6F6200FEA4DE /* FBLoginDialog.m */,
+				7CC5B0C4131D6F6200FEA4DE /* FBRequest.h */,
+				7CC5B0C5131D6F6200FEA4DE /* FBRequest.m */,
+				7CC5B0C6131D6F6200FEA4DE /* JSON */,
+			);
+			path = FBConnect;
+			sourceTree = "<group>";
+		};
+		7CC5B0C6131D6F6200FEA4DE /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				7CC5B0C7131D6F6200FEA4DE /* JSON.h */,
+				7CC5B0C8131D6F6200FEA4DE /* NSObject+SBJSON.h */,
+				7CC5B0C9131D6F6200FEA4DE /* NSObject+SBJSON.m */,
+				7CC5B0CA131D6F6200FEA4DE /* NSString+SBJSON.h */,
+				7CC5B0CB131D6F6200FEA4DE /* NSString+SBJSON.m */,
+				7CC5B0CC131D6F6200FEA4DE /* SBJSON.h */,
+				7CC5B0CD131D6F6200FEA4DE /* SBJSON.m */,
+				7CC5B0CE131D6F6200FEA4DE /* SBJsonBase.h */,
+				7CC5B0CF131D6F6200FEA4DE /* SBJsonBase.m */,
+				7CC5B0D0131D6F6200FEA4DE /* SBJsonParser.h */,
+				7CC5B0D1131D6F6200FEA4DE /* SBJsonParser.m */,
+				7CC5B0D2131D6F6200FEA4DE /* SBJsonWriter.h */,
+				7CC5B0D3131D6F6200FEA4DE /* SBJsonWriter.m */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
+		7CC5B10A131D6F6B00FEA4DE /* Root View */ = {
+			isa = PBXGroup;
+			children = (
+				7CC5B0DF131D6F6200FEA4DE /* RootViewController.h */,
+				7CC5B0E0131D6F6200FEA4DE /* RootViewController.m */,
+				7CC5B0E1131D6F6200FEA4DE /* RootViewController.xib */,
+			);
+			name = "Root View";
+			sourceTree = "<group>";
+		};
+		7CC5B10B131D6F7700FEA4DE /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				7CC5B185131D764700FEA4DE /* EnhancedManagedObject.h */,
+				7CC5B186131D764700FEA4DE /* EnhancedManagedObject.m */,
+				7CC5B13F131D739B00FEA4DE /* User.h */,
+				7CC5B140131D739B00FEA4DE /* User.m */,
+				7CC5B141131D739B00FEA4DE /* Education.h */,
+				7CC5B142131D739B00FEA4DE /* Education.m */,
+				7CC5B13D131D739B00FEA4DE /* Concentration.h */,
+				7CC5B13E131D739B00FEA4DE /* Concentration.m */,
+				7CC5B143131D739B00FEA4DE /* Work.h */,
+				7CC5B144131D739B00FEA4DE /* Work.m */,
+			);
+			name = "Data Models";
+			sourceTree = "<group>";
+		};
+		7CC5B10C131D6F8500FEA4DE /* Facebook */ = {
+			isa = PBXGroup;
+			children = (
+				7CC5B0BB131D6F6200FEA4DE /* FBConnect */,
+				7CC5B0B5131D6F6200FEA4DE /* FacebookClient.h */,
+				7CC5B0B6131D6F6200FEA4DE /* FacebookClient.m */,
+			);
+			name = Facebook;
+			sourceTree = "<group>";
+		};
+		7CC5B10D131D6F8D00FEA4DE /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				7CC5B0E5131D6F6200FEA4DE /* UIColor-Expanded.h */,
+				7CC5B0E6131D6F6200FEA4DE /* UIColor-Expanded.m */,
+				7CC5B1AF131D797D00FEA4DE /* NSDate+Utilities.h */,
+				7CC5B1B0131D797D00FEA4DE /* NSDate+Utilities.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		7CC5B10E131D6FAB00FEA4DE /* Pie Chart */ = {
+			isa = PBXGroup;
+			children = (
+				7CC5B0D9131D6F6200FEA4DE /* PieChartColorScheme.plist */,
+				7CC5B0DA131D6F6200FEA4DE /* PieChartView.h */,
+				7CC5B0DB131D6F6200FEA4DE /* PieChartView.m */,
+				7CC5B0DC131D6F6200FEA4DE /* PieChartViewController.h */,
+				7CC5B0DD131D6F6200FEA4DE /* PieChartViewController.m */,
+				7CC5B0DE131D6F6200FEA4DE /* PieChartViewController.xib */,
+			);
+			name = "Pie Chart";
+			sourceTree = "<group>";
+		};
+		7CC5B10F131D6FB100FEA4DE /* Table View */ = {
+			isa = PBXGroup;
+			children = (
+				7CC5B0E2131D6F6200FEA4DE /* SearchResultViewController.h */,
+				7CC5B0E3131D6F6200FEA4DE /* SearchResultViewController.m */,
+				7CC5B0E4131D6F6200FEA4DE /* SearchResultViewController.xib */,
+				7CC5B0B0131D6F6200FEA4DE /* CategorizedTableViewController.h */,
+				7CC5B0B1131D6F6200FEA4DE /* CategorizedTableViewController.m */,
+				7CC5B0B2131D6F6200FEA4DE /* CategorizedTableViewController.xib */,
+				7CC5B0D6131D6F6200FEA4DE /* GenericTableViewController.h */,
+				7CC5B0D7131D6F6200FEA4DE /* GenericTableViewController.m */,
+				7CC5B0D8131D6F6200FEA4DE /* GenericTableViewController.xib */,
+			);
+			name = "Table View";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* FriendsAnalyzer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "FriendsAnalyzer" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FriendsAnalyzer;
+			productName = FriendsAnalyzer;
+			productReference = 1D6058910D05DD3D006BFB54 /* FriendsAnalyzer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "FriendsAnalyzer" */;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+				en,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* FriendsAnalyzer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
+				7CC5B0EA131D6F6200FEA4DE /* CategorizedTableViewController.xib in Resources */,
+				7CC5B0F0131D6F6200FEA4DE /* FBDialog.bundle in Resources */,
+				7CC5B0FC131D6F6200FEA4DE /* GenericTableViewController.xib in Resources */,
+				7CC5B0FD131D6F6200FEA4DE /* PieChartColorScheme.plist in Resources */,
+				7CC5B100131D6F6200FEA4DE /* PieChartViewController.xib in Resources */,
+				7CC5B102131D6F6200FEA4DE /* RootViewController.xib in Resources */,
+				7CC5B104131D6F6200FEA4DE /* SearchResultViewController.xib in Resources */,
+				7C4DD511131D8081006C69CF /* MenuStructure.plist in Resources */,
+				7C4DD51C131D852A006C69CF /* MainMenuViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				28D3F202112F7DC200FD0661 /* FriendsAnalyzer.xcdatamodeld in Sources */,
+				7CC5B0E9131D6F6200FEA4DE /* CategorizedTableViewController.m in Sources */,
+				7CC5B0EC131D6F6200FEA4DE /* FacebookClient.m in Sources */,
+				7CC5B0EF131D6F6200FEA4DE /* Facebook.m in Sources */,
+				7CC5B0F1131D6F6200FEA4DE /* FBDialog.m in Sources */,
+				7CC5B0F2131D6F6200FEA4DE /* FBLoginDialog.m in Sources */,
+				7CC5B0F3131D6F6200FEA4DE /* FBRequest.m in Sources */,
+				7CC5B0F4131D6F6200FEA4DE /* NSObject+SBJSON.m in Sources */,
+				7CC5B0F5131D6F6200FEA4DE /* NSString+SBJSON.m in Sources */,
+				7CC5B0F6131D6F6200FEA4DE /* SBJSON.m in Sources */,
+				7CC5B0F7131D6F6200FEA4DE /* SBJsonBase.m in Sources */,
+				7CC5B0F8131D6F6200FEA4DE /* SBJsonParser.m in Sources */,
+				7CC5B0F9131D6F6200FEA4DE /* SBJsonWriter.m in Sources */,
+				7CC5B0FA131D6F6200FEA4DE /* FriendsAnalyzerAppDelegate.m in Sources */,
+				7CC5B0FB131D6F6200FEA4DE /* GenericTableViewController.m in Sources */,
+				7CC5B0FE131D6F6200FEA4DE /* PieChartView.m in Sources */,
+				7CC5B0FF131D6F6200FEA4DE /* PieChartViewController.m in Sources */,
+				7CC5B101131D6F6200FEA4DE /* RootViewController.m in Sources */,
+				7CC5B103131D6F6200FEA4DE /* SearchResultViewController.m in Sources */,
+				7CC5B105131D6F6200FEA4DE /* UIColor-Expanded.m in Sources */,
+				7CC5B145131D739B00FEA4DE /* Concentration.m in Sources */,
+				7CC5B146131D739B00FEA4DE /* User.m in Sources */,
+				7CC5B147131D739B00FEA4DE /* Education.m in Sources */,
+				7CC5B148131D739B00FEA4DE /* Work.m in Sources */,
+				7CC5B187131D764700FEA4DE /* EnhancedManagedObject.m in Sources */,
+				7CC5B1B1131D797D00FEA4DE /* NSDate+Utilities.m in Sources */,
+				7C4DD51B131D852A006C69CF /* MainMenuViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = FriendsAnalyzer_Prefix.pch;
+				INFOPLIST_FILE = "FriendsAnalyzer-Info.plist";
+				PRODUCT_NAME = FriendsAnalyzer;
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = FriendsAnalyzer_Prefix.pch;
+				INFOPLIST_FILE = "FriendsAnalyzer-Info.plist";
+				PRODUCT_NAME = FriendsAnalyzer;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PREBINDING = NO;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "FriendsAnalyzer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "FriendsAnalyzer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		28D3F201112F7DC200FD0661 /* FriendsAnalyzer.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				28860B760F44E54D00985440 /* FriendsAnalyzer.xcdatamodel */,
+			);
+			currentVersion = 28860B760F44E54D00985440 /* FriendsAnalyzer.xcdatamodel */;
+			path = FriendsAnalyzer.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

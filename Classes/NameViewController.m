@@ -1,16 +1,16 @@
 //
-//  CategorizedTableViewController.m
-//  FacebookSearch
+//  NameViewController.m
+//  FriendsAnalyzer
 //
-//  Created by Joseph Lin on 2/28/11.
+//  Created by Joseph Lin on 3/2/11.
 //  Copyright 2011 R/GA. All rights reserved.
 //
 
-#import "CategorizedTableViewController.h"
+#import "NameViewController.h"
 #import "User.h"
 #import "GenericTableViewController.h"
 
-@implementation CategorizedTableViewController
+@implementation NameViewController
 
 @synthesize property;
 @synthesize sortedKeys, userDict;
@@ -24,25 +24,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+	
 	NSArray* unsortedKeys = [[User allUsers] valueForKeyPath:[NSString stringWithFormat:@"@distinctUnionOfObjects.%@", property]];
 	self.sortedKeys = [unsortedKeys sortedArrayUsingComparator:(NSComparator)^(id obj1, id obj2){
 		return [obj1 caseInsensitiveCompare:obj2];
 	}];
 	
-	NSLog(@"speed test1");
-	self.sortedKeys = [[User possibleValuesForCategory:property] 
-					   valueForKeyPath:[NSString stringWithFormat:@"@unionOfObjects.%@", property]];
-	NSLog(@"speed test2");
 	
 	self.userDict = [NSMutableDictionary dictionaryWithCapacity:[sortedKeys count]];
-//	
-//	for ( id key in sortedKeys)
-//	{
-//		NSUInteger count = [User userCountsForKey:property value:key];
-//		[userDict setObject:[NSNumber numberWithInt:count] forKey:key];
-//	}
-
+	//	
+	//	for ( id key in sortedKeys)
+	//	{
+	//		NSUInteger count = [User userCountsForKey:property value:key];
+	//		[userDict setObject:[NSNumber numberWithInt:count] forKey:key];
+	//	}
+	
 	[self.tableView reloadData];
 }
 
@@ -76,16 +72,16 @@
     
 	NSString* key = [sortedKeys objectAtIndex:indexPath.row];
     cell.textLabel.text = key;
-
+	
 	NSNumber* count = [userDict objectForKey:key];
 	if ( !count )
 	{
 		count = [NSNumber numberWithInteger:[User userCountsForKey:property value:key]];
 		[userDict setObject:count forKey:key];
 	}
-
+	
 	cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [count intValue]];
-
+	
     return cell;
 }
 
@@ -106,8 +102,4 @@
 }
 
 
-
-
-
 @end
-

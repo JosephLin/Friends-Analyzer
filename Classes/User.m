@@ -47,7 +47,7 @@
 	
 	NSError* error;
 	NSArray* results = [[self managedObjectContext] executeFetchRequest:request error:&error];
-	
+
 	User* user = ( [results count] ) ? [results objectAtIndex:0] : nil;
 	
 	return user;
@@ -169,6 +169,20 @@
 
 + (NSArray*)possibleValuesForCategory:(NSString*)category
 {
+	NSFetchRequest* request = [[[NSFetchRequest alloc] init] autorelease];
+	[request setEntity:[self entity]];
+	
+	[request setResultType:NSDictionaryResultType];
+	[request setReturnsDistinctResults:YES];
+	[request setPropertiesToFetch:[NSArray arrayWithObject:@"last_name"]];
+	
+	// Execute the fetch
+	NSError* error;
+	NSArray* results = [[self managedObjectContext] executeFetchRequest:request error:&error];
+
+	return results;
+	
+/*	
 	NSArray* results = nil;
 	
 	if ( [category isEqualToString:@"degree"] )
@@ -184,7 +198,9 @@
 	NSArray* sorted = [results sortedArrayUsingComparator:(NSComparator)^(id obj1, id obj2){
 		return [obj1 caseInsensitiveCompare:obj2]; }];
 	return sorted;
+ */
 }
+
 
 
 @end

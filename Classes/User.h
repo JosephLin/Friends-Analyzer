@@ -35,8 +35,10 @@
 
 + (User*)userWithID:(NSString*)theID;
 + (User*)existingOrNewUserWithDictionary:(NSDictionary*)dict;
-+ (NSArray*)allUsers;
 + (User*)currentUser;
++ (NSArray*)allUsers;
++ (NSArray*)usersForKey:(NSString*)key value:(NSString*)value;
++ (NSUInteger)userCountsForKey:(NSString*)key value:(NSString*)value;
 
 - (void)updateEducations:(NSArray*)newEducations;
 - (void)updateWorks:(NSArray*)newWorks;

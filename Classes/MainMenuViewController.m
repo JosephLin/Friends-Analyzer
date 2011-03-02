@@ -9,6 +9,7 @@
 #import "MainMenuViewController.h"
 #import "FriendsAnalyzerAppDelegate.h"
 #import "NSDate+Utilities.h"
+#import "CategorizedTableViewController.h"
 
 @implementation MainMenuViewController
 
@@ -112,8 +113,19 @@
 {
 	[[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
 	
+	NSDictionary* menuDictionary = [menuStructureArray objectAtIndex:indexPath.row];
+	NSString* viewControllerName = [menuDictionary objectForKey:@"viewController"];
+	
+	Class aClass = [[NSBundle mainBundle] classNamed:viewControllerName];
+	UIViewController* childVC = [[[aClass alloc] init] autorelease];
+	if ( [childVC isMemberOfClass:[CategorizedTableViewController class]] )
+	{
+		((CategorizedTableViewController*)childVC).property = [[menuStructureArray objectAtIndex:indexPath.row] objectForKey:@"property"];
+		[self.navigationController pushViewController:childVC animated:YES];
+	}
+
 //	CategorizedTableViewController* childVC = [[CategorizedTableViewController alloc] init];
-//	childVC.category = [tableItemArray objectAtIndex:indexPath.row];
+//	childVC.property = [[menuStructureArray objectAtIndex:indexPath.row] objectForKey:@"property"];
 //	[self.navigationController pushViewController:childVC animated:YES];
 //	[childVC release];
 }

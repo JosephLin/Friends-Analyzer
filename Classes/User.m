@@ -69,12 +69,17 @@
 	user.last_name = [dict objectForKey:@"last_name"];
 	user.link = [dict objectForKey:@"link"];
 	user.birthday = [NSDate dateFromFacebookFormat:[dict objectForKey:@"birthday"]];
-	user.hometown = [dict objectForKey:@"link"];
-	user.location = [dict objectForKey:@"link"];
+	
+	id hometown = [[dict objectForKey:@"hometown"] objectForKey:@"name"];
+	user.hometown = ( hometown != [NSNull null] ) ? hometown : nil;
+
+	id location = [[dict objectForKey:@"location"] objectForKey:@"name"];
+	user.location = ( location != [NSNull null] ) ? location : nil;
+
 	user.gender = [dict objectForKey:@"gender"];
 	user.relationship_status = [dict objectForKey:@"relationship_status"];
-	user.timezone = [NSNumber numberWithInteger:[[dict objectForKey:@"link"] integerValue]];
-	user.locale = [dict objectForKey:@"link"];
+	user.timezone = [NSNumber numberWithInteger:[[dict objectForKey:@"timezone"] integerValue]];
+	user.locale = [dict objectForKey:@"locale"];
 	user.updated_time = [NSDate dateFromFacebookFormat:[dict objectForKey:@"updated_time"]];
 	
 	[user updateEducations:[dict objectForKey:@"education"]];
@@ -129,6 +134,20 @@
 	NSArray* results = [[self managedObjectContext] executeFetchRequest:request error:&error];
 	
 	return results;
+}
+
++ (NSUInteger)userCountsForKey:(NSString*)key value:(NSString*)value
+{
+	NSFetchRequest* request = [[[NSFetchRequest alloc] init] autorelease];
+	[request setEntity:[self entity]];
+	
+	NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%K like %@", key, value];
+	[request setPredicate:predicate];
+	
+	NSError* error = nil;
+	NSUInteger count = [[self managedObjectContext] countForFetchRequest:request error:&error];
+	
+	return count;
 }
 
 + (NSArray*)allUsers

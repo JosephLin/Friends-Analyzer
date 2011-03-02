@@ -11,13 +11,13 @@
 
 @interface CategorizedTableViewController : UITableViewController
 {
-	NSString* category;
-	NSArray* possibleKeys;
-	NSMutableDictionary* valueDict;
+	NSString* property;
+	NSArray* sortedKeys;
+	NSMutableDictionary* userDict;
 }
 
-@property (nonatomic, retain) NSString* category;
-@property (nonatomic, retain) NSArray* possibleKeys;
-@property (nonatomic, retain) NSMutableDictionary* valueDict;
+@property (nonatomic, retain) NSString* property;
+@property (nonatomic, retain) NSArray* sortedKeys;
+@property (nonatomic, retain) NSMutableDictionary* userDict;
 
 @end

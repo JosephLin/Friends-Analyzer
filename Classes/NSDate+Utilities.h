@@ -13,6 +13,6 @@
 
 + (NSDate*)dateFromFacebookFormat:(NSString*)dateString;
 + (NSDate*)startDateFromString:(NSString*)dateString;
-- (NSDate*)stringFromDate;
+- (NSString*)stringFromDate;
 
 @end

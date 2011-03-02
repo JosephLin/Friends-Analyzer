@@ -8,17 +8,20 @@
 
 #import "RootViewController.h"
 #import "MainMenuViewController.h"
+#import "FBRequestOperation.h"
+
 
 @implementation RootViewController
 
 @synthesize loginButton, loadingLabel, activityIndicator, progressView;
 @synthesize currentUser;
-@synthesize userInfoRequest, userFriendsRequest, friendsInfoRequestArray;
+@synthesize userInfoRequest, userFriendsRequest;
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	
 	
 	if ( [[FacebookClient sharedFacebook] isSessionValid] )
 	{
@@ -56,8 +59,7 @@
 	[currentUser release];
 	[userInfoRequest release];
 	[userFriendsRequest release];
-	[friendsInfoRequestArray release];
-
+	[queue release];
     [super dealloc];
 }
 
@@ -98,6 +100,14 @@
 	}
 }
 
+- (void)updateViewForProgress
+{
+	loadingLabel.text = [NSString stringWithFormat:@"Loading %d of %d Friends...", total - pending, total];
+	progressView.progress = (float)(total - pending) / total;
+	
+	NSLog(@"pending = %d", pending);
+}
+
 
 #pragma mark -
 #pragma mark IBAction
@@ -113,8 +123,16 @@
 
 - (void)facebookLogin
 {
-	NSArray* permissions = [NSArray arrayWithObjects:@"read_stream", @"user_about_me", @"friends_about_me", @"friends_relationships", 
-							@"user_education_history", @"friends_education_history", nil];
+	NSArray* permissions = [NSArray arrayWithObjects:
+							@"user_about_me", @"friends_about_me", 
+							@"user_birthday", @"friends_birthday", 
+							@"user_education_history", @"friends_education_history",
+							@"user_hometown", @"friends_hometown", 
+							@"user_location", @"friends_location", 
+							@"user_relationships", @"friends_relationships", 
+							@"user_work_history", @"friends_work_history",
+							@"user_education_history", @"friends_education_history",
+							nil];
 	
 	[[FacebookClient sharedFacebook] authorize:permissions delegate:self];
 }
@@ -135,15 +153,26 @@
 
 - (void)parseFriends
 {
-	self.friendsInfoRequestArray = [NSMutableArray arrayWithCapacity:[self.currentUser.friends count]];
+	total = [self.currentUser.friends count];
 	
+	if ( queue )
+	{
+		[queue cancelAllOperations];
+		[queue release];
+	}
+	queue = [[NSOperationQueue alloc] init];
+	[queue addObserver:self forKeyPath:@"operationCount" options:NSKeyValueObservingOptionNew context:NULL];	
+
+	NSMutableArray* opArray = [NSMutableArray arrayWithCapacity:total];
 	for ( id friend in self.currentUser.friends )
 	{
 		NSString* friendID = [friend objectForKey:@"id"];
-		FBRequest* request = [[FacebookClient sharedFacebook] requestWithGraphPath:friendID andDelegate:self];
-		
-		[friendsInfoRequestArray addObject:request];
+		FBRequestOperation* op = [[FBRequestOperation alloc] initWithGraphPath:friendID delegate:nil];
+		[opArray addObject:op];
+		[op release];
 	}
+	[queue setMaxConcurrentOperationCount:5];
+	[queue addOperations:opArray waitUntilFinished:NO];
 }
 
 - (void)showMainMenuViewController
@@ -151,6 +180,22 @@
 	MainMenuViewController* childVC = [[MainMenuViewController alloc] init];
 	[self.navigationController pushViewController:childVC animated:YES];
 	[childVC release];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+	if ( [keyPath isEqualToString:@"operationCount"] )
+	{
+		pending = [queue operationCount];
+		
+		[self performSelectorOnMainThread:@selector(updateViewForProgress) withObject:nil waitUntilDone:YES];
+		
+		if ( pending == 0 )
+		{
+			[[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"LastUpdated"];
+			[self showMainMenuViewController];
+		}
+	}
 }
 
 
@@ -197,25 +242,6 @@
 		self.currentUser.friends = [result objectForKey:@"data"];
 		
 		[self parseFriends];
-	}
-	
-	else if ( [self.friendsInfoRequestArray containsObject:request] )
-	{
-		[friendsInfoRequestArray removeObject:request];
-
-		[User existingOrNewUserWithDictionary:result];
-
-		NSInteger total = [currentUser.friends count];
-		NSInteger pending = [friendsInfoRequestArray count];
-		loadingLabel.text = [NSString stringWithFormat:@"Loading %d of %d Friends...", total - pending, total];
-		progressView.progress = (float)(total - pending) / total;
-		
-		if ( pending == 0 )
-		{
-			self.friendsInfoRequestArray = nil;
-			[[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"LastUpdated"];
-			[self showMainMenuViewController];
-		}
 	}
 }
 

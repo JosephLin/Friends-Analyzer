@@ -12,8 +12,8 @@
 
 @implementation CategorizedTableViewController
 
-@synthesize category;
-@synthesize possibleKeys, valueDict;
+@synthesize property;
+@synthesize sortedKeys, userDict;
 
 
 
@@ -25,22 +25,30 @@
 {
     [super viewDidLoad];
 
-    self.possibleKeys = [User possibleValuesForCategory:category];
+	NSArray* unsortedKeys = [[User allUsers] valueForKeyPath:[NSString stringWithFormat:@"@distinctUnionOfObjects.%@", property]];
+	self.sortedKeys = [unsortedKeys sortedArrayUsingComparator:(NSComparator)^(id obj1, id obj2){
+		return [obj1 caseInsensitiveCompare:obj2];
+	}];
 	
-	self.valueDict = [NSMutableDictionary dictionary];
 	
-	if ( [category isEqualToString:@"degree"] )
-	{
-	}
-	else
-	{
-		for ( id key in possibleKeys)
-		{
-			NSArray* users = [User usersForKey:category value:key];
-			[valueDict setObject:users forKey:key];
-		}
-	}	
+	self.userDict = [NSMutableDictionary dictionaryWithCapacity:[sortedKeys count]];
+//	
+//	for ( id key in sortedKeys)
+//	{
+//		NSUInteger count = [User userCountsForKey:property value:key];
+//		[userDict setObject:[NSNumber numberWithInt:count] forKey:key];
+//	}
+
 	[self.tableView reloadData];
+}
+
+- (void)dealloc
+{
+	[property release];
+	[sortedKeys release];
+	[userDict release];
+	
+    [super dealloc];
 }
 
 
@@ -49,7 +57,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [possibleKeys count];
+    return [sortedKeys count];
 }
 
 
@@ -62,11 +70,18 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
     }
     
-	NSString* key = [possibleKeys objectAtIndex:indexPath.row];
+	NSString* key = [sortedKeys objectAtIndex:indexPath.row];
     cell.textLabel.text = key;
-	NSArray* users = [valueDict objectForKey:key];
-	cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [users count]];
-    
+
+	NSNumber* count = [userDict objectForKey:key];
+	if ( !count )
+	{
+		count = [NSNumber numberWithInteger:[User userCountsForKey:property value:key]];
+		[userDict setObject:count forKey:key];
+	}
+
+	cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [count intValue]];
+
     return cell;
 }
 
@@ -79,8 +94,8 @@
 	[[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
 	
 	GenericTableViewController* childVC = [[GenericTableViewController alloc] init];
-	NSString* key = [possibleKeys objectAtIndex:indexPath.row];
-	NSArray* users = [valueDict objectForKey:key];
+	NSString* key = [sortedKeys objectAtIndex:indexPath.row];
+	NSArray* users = [User usersForKey:property value:key];
 	childVC.userArray = users;
 	[self.navigationController pushViewController:childVC animated:YES];
 	[childVC release];
@@ -88,15 +103,6 @@
 
 
 
-- (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
-}
-
-
-- (void)dealloc {
-    [super dealloc];
-}
 
 
 @end

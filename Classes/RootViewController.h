@@ -27,7 +27,10 @@ typedef enum {
 	User* currentUser;
 	FBRequest* userInfoRequest;
 	FBRequest* userFriendsRequest;
-	NSMutableArray* friendsInfoRequestArray;
+	
+	NSOperationQueue* queue;
+	NSInteger total;
+	NSInteger pending;
 }
 
 @property (nonatomic, retain) IBOutlet UIButton* loginButton;
@@ -38,7 +41,6 @@ typedef enum {
 @property (nonatomic, retain) User* currentUser;
 @property (nonatomic, retain) FBRequest* userInfoRequest;
 @property (nonatomic, retain) FBRequest* userFriendsRequest;
-@property (nonatomic, retain) NSMutableArray* friendsInfoRequestArray;
 
 - (void)updateViewForMode:(RootViewMode)mode;
 - (IBAction)loginButtonTapped:(id)sender;

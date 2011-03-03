@@ -118,16 +118,11 @@
 	
 	Class aClass = [[NSBundle mainBundle] classNamed:viewControllerName];
 	UIViewController* childVC = [[[aClass alloc] init] autorelease];
-	if ( [childVC isMemberOfClass:[CategorizedTableViewController class]] )
+	if ( [childVC isKindOfClass:[CategorizedTableViewController class]] )
 	{
 		((CategorizedTableViewController*)childVC).property = [[menuStructureArray objectAtIndex:indexPath.row] objectForKey:@"property"];
 		[self.navigationController pushViewController:childVC animated:YES];
 	}
-
-//	CategorizedTableViewController* childVC = [[CategorizedTableViewController alloc] init];
-//	childVC.property = [[menuStructureArray objectAtIndex:indexPath.row] objectForKey:@"property"];
-//	[self.navigationController pushViewController:childVC animated:YES];
-//	[childVC release];
 }
 
 

@@ -7,23 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CategorizedTableViewController.h"
 
-
-@interface NameViewController : UIViewController
+@interface NameViewController : CategorizedTableViewController
 {
-	NSString* property;
-	NSArray* sortedKeys;
-	NSMutableDictionary* userDict;
-
-	UITableView* tableView;
-	UISegmentedControl* segmentedControl;
 }
-
-@property (nonatomic, retain) NSString* property;
-@property (nonatomic, retain) NSArray* sortedKeys;
-@property (nonatomic, retain) NSMutableDictionary* userDict;
-@property (nonatomic, retain) UITableView* tableView;
-@property (nonatomic, retain) UISegmentedControl* segmentedControl;
 
 
 @end

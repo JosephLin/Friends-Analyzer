@@ -13,11 +13,11 @@
 {
 	NSString* property;
 	NSArray* sortedKeys;
-	NSMutableDictionary* userDict;
+	NSMutableDictionary* userCountsDict;
 }
 
 @property (nonatomic, retain) NSString* property;
 @property (nonatomic, retain) NSArray* sortedKeys;
-@property (nonatomic, retain) NSMutableDictionary* userDict;
+@property (nonatomic, retain) NSMutableDictionary* userCountsDict;
 
 @end

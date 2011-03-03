@@ -174,7 +174,7 @@
 	
 	[request setResultType:NSDictionaryResultType];
 	[request setReturnsDistinctResults:YES];
-	[request setPropertiesToFetch:[NSArray arrayWithObject:@"last_name"]];
+	[request setPropertiesToFetch:[NSArray arrayWithObject:category]];
 	
 	// Execute the fetch
 	NSError* error;

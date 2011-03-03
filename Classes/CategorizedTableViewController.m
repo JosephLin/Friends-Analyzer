@@ -13,7 +13,7 @@
 @implementation CategorizedTableViewController
 
 @synthesize property;
-@synthesize sortedKeys, userDict;
+@synthesize sortedKeys, userCountsDict;
 
 
 
@@ -25,32 +25,25 @@
 {
     [super viewDidLoad];
 
-	NSArray* unsortedKeys = [[User allUsers] valueForKeyPath:[NSString stringWithFormat:@"@distinctUnionOfObjects.%@", property]];
-	self.sortedKeys = [unsortedKeys sortedArrayUsingComparator:(NSComparator)^(id obj1, id obj2){
-		return [obj1 caseInsensitiveCompare:obj2];
-	}];
+	self.sortedKeys = [[User possibleValuesForCategory:property] valueForKeyPath:[NSString stringWithFormat:@"@unionOfObjects.%@", property]];
 	
-	NSLog(@"speed test1");
-	self.sortedKeys = [[User possibleValuesForCategory:property] 
-					   valueForKeyPath:[NSString stringWithFormat:@"@unionOfObjects.%@", property]];
-	NSLog(@"speed test2");
-	
-	self.userDict = [NSMutableDictionary dictionaryWithCapacity:[sortedKeys count]];
-//	
-//	for ( id key in sortedKeys)
-//	{
-//		NSUInteger count = [User userCountsForKey:property value:key];
-//		[userDict setObject:[NSNumber numberWithInt:count] forKey:key];
-//	}
+    
+	self.userCountsDict = [NSMutableDictionary dictionaryWithCapacity:[sortedKeys count]];
 
-	[self.tableView reloadData];
+    for ( id key in sortedKeys )
+    {
+        NSNumber* count = [NSNumber numberWithInteger:[User userCountsForKey:property value:key]];
+		[userCountsDict setObject:count forKey:key];
+    }
+
+    [self.tableView reloadData];
 }
 
 - (void)dealloc
 {
 	[property release];
 	[sortedKeys release];
-	[userDict release];
+	[userCountsDict release];
 	
     [super dealloc];
 }
@@ -77,12 +70,7 @@
 	NSString* key = [sortedKeys objectAtIndex:indexPath.row];
     cell.textLabel.text = key;
 
-	NSNumber* count = [userDict objectForKey:key];
-	if ( !count )
-	{
-		count = [NSNumber numberWithInteger:[User userCountsForKey:property value:key]];
-		[userDict setObject:count forKey:key];
-	}
+	NSNumber* count = [userCountsDict objectForKey:key];
 
 	cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [count intValue]];
 

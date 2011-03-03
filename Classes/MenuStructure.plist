@@ -3,90 +3,90 @@
 <plist version="1.0">
 <array>
 	<dict>
-		<key>title</key>
-		<string>Last Name</string>
 		<key>property</key>
 		<string>last_name</string>
+		<key>title</key>
+		<string>Last Name</string>
 		<key>viewController</key>
-		<string>CategorizedTableViewController</string>
+		<string>NameViewController</string>
 	</dict>
 	<dict>
-		<key>title</key>
-		<string>Birthday</string>
 		<key>property</key>
 		<string>birthday</string>
+		<key>title</key>
+		<string>Birthday</string>
 		<key>viewController</key>
 		<string></string>
 	</dict>
 	<dict>
-		<key>title</key>
-		<string>Hometown</string>
 		<key>property</key>
 		<string>hometown</string>
+		<key>title</key>
+		<string>Hometown</string>
 		<key>viewController</key>
 		<string>CategorizedTableViewController</string>
 	</dict>
 	<dict>
-		<key>title</key>
-		<string>Current Location</string>
 		<key>property</key>
 		<string>location</string>
+		<key>title</key>
+		<string>Current Location</string>
 		<key>viewController</key>
 		<string>CategorizedTableViewController</string>
 	</dict>
 	<dict>
-		<key>title</key>
-		<string>Work</string>
 		<key>property</key>
 		<string>work</string>
+		<key>title</key>
+		<string>Work</string>
 		<key>viewController</key>
 		<string></string>
 	</dict>
 	<dict>
-		<key>title</key>
-		<string>Education</string>
 		<key>property</key>
 		<string>education</string>
+		<key>title</key>
+		<string>Education</string>
 		<key>viewController</key>
 		<string></string>
 	</dict>
 	<dict>
-		<key>title</key>
-		<string>Gender</string>
 		<key>property</key>
 		<string>gender</string>
+		<key>title</key>
+		<string>Gender</string>
 		<key>viewController</key>
 		<string>CategorizedTableViewController</string>
 	</dict>
 	<dict>
-		<key>title</key>
-		<string>Relationship Status</string>
 		<key>property</key>
 		<string>relationship_status</string>
+		<key>title</key>
+		<string>Relationship Status</string>
 		<key>viewController</key>
 		<string>CategorizedTableViewController</string>
 	</dict>
 	<dict>
-		<key>title</key>
-		<string>Time Zone</string>
 		<key>property</key>
 		<string>timezone</string>
+		<key>title</key>
+		<string>Time Zone</string>
 		<key>viewController</key>
 		<string></string>
 	</dict>
 	<dict>
-		<key>title</key>
-		<string>Locale</string>
 		<key>property</key>
 		<string>locale</string>
+		<key>title</key>
+		<string>Locale</string>
 		<key>viewController</key>
 		<string>CategorizedTableViewController</string>
 	</dict>
 	<dict>
-		<key>title</key>
-		<string>Last Updated Time</string>
 		<key>property</key>
 		<string>updated_time</string>
+		<key>title</key>
+		<string>Last Updated Time</string>
 		<key>viewController</key>
 		<string></string>
 	</dict>

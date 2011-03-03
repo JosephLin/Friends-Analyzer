@@ -12,9 +12,6 @@
 
 @implementation NameViewController
 
-@synthesize property;
-@synthesize sortedKeys, userDict;
-
 
 
 #pragma mark -
@@ -25,81 +22,39 @@
 {
     [super viewDidLoad];
 	
-	NSArray* unsortedKeys = [[User allUsers] valueForKeyPath:[NSString stringWithFormat:@"@distinctUnionOfObjects.%@", property]];
-	self.sortedKeys = [unsortedKeys sortedArrayUsingComparator:(NSComparator)^(id obj1, id obj2){
-		return [obj1 caseInsensitiveCompare:obj2];
-	}];
+    NSArray* controlItems = [NSArray arrayWithObjects:@"Name", @"Number", nil];
+    UISegmentedControl* segmentedControl = [[UISegmentedControl alloc] initWithItems:controlItems];
+
+	segmentedControl.selectedSegmentIndex = 0;
+	segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+	segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+	[segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
 	
-	
-	self.userDict = [NSMutableDictionary dictionaryWithCapacity:[sortedKeys count]];
-	//	
-	//	for ( id key in sortedKeys)
-	//	{
-	//		NSUInteger count = [User userCountsForKey:property value:key];
-	//		[userDict setObject:[NSNumber numberWithInt:count] forKey:key];
-	//	}
-	
-	[self.tableView reloadData];
+	self.navigationItem.titleView = segmentedControl;
+	[segmentedControl release];
 }
 
 - (void)dealloc
 {
-	[property release];
-	[sortedKeys release];
-	[userDict release];
-	
     [super dealloc];
 }
 
-
-#pragma mark -
-#pragma mark Table view data source
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (void)segmentedControlValueChanged:(UISegmentedControl*)sender
 {
-    return [sortedKeys count];
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+    if ( sender.selectedSegmentIndex == 0 )
+    {
+        self.sortedKeys = [[User possibleValuesForCategory:property] valueForKeyPath:[NSString stringWithFormat:@"@unionOfObjects.%@", property]];
+    }
+    else
+    {
+        self.sortedKeys = [sortedKeys sortedArrayUsingComparator:(NSComparator)^(id obj1, id obj2){
+            return [[userCountsDict objectForKey:obj1] intValue] < [[userCountsDict objectForKey:obj2] intValue];
+        }];
     }
     
-	NSString* key = [sortedKeys objectAtIndex:indexPath.row];
-    cell.textLabel.text = key;
-	
-	NSNumber* count = [userDict objectForKey:key];
-	if ( !count )
-	{
-		count = [NSNumber numberWithInteger:[User userCountsForKey:property value:key]];
-		[userDict setObject:count forKey:key];
-	}
-	
-	cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [count intValue]];
-	
-    return cell;
+	[self.tableView reloadData];
 }
 
-
-#pragma mark -
-#pragma mark Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	[[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
-	
-	GenericTableViewController* childVC = [[GenericTableViewController alloc] init];
-	NSString* key = [sortedKeys objectAtIndex:indexPath.row];
-	NSArray* users = [User usersForKey:property value:key];
-	childVC.userArray = users;
-	[self.navigationController pushViewController:childVC animated:YES];
-	[childVC release];
-}
 
 
 @end

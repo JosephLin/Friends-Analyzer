@@ -32,5 +32,7 @@
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
 @property (nonatomic, retain) IBOutlet UILabel* searchLabel;
 
+- (void)fetchFriends;
+
 
 @end

@@ -39,6 +39,7 @@
 + (NSArray*)allUsers;
 + (NSArray*)usersForKey:(NSString*)key value:(NSString*)value;
 + (NSUInteger)userCountsForKey:(NSString*)key value:(NSString*)value;
++ (NSArray*)possibleValuesForCategory:(NSString*)category;
 
 - (void)updateEducations:(NSArray*)newEducations;
 - (void)updateWorks:(NSArray*)newWorks;

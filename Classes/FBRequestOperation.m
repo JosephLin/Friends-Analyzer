@@ -24,7 +24,7 @@
 
 - (id)initWithGraphPath:(NSString*)thePath delegate:(id <FBRequestOperationDelegate>)theDelegate
 {
-	if ( self = [super init] )
+	if ( (self = [super init]) )
 	{
 		self.delegate = theDelegate;
 		self.graphPath = thePath;

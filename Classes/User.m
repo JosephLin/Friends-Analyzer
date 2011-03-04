@@ -21,6 +21,7 @@
 @dynamic last_name;
 @dynamic link;
 @dynamic birthday;
+@dynamic birthdayYear, birthdayMonth, birthdayDay;
 @dynamic hometown;
 @dynamic location;
 @dynamic works;
@@ -68,7 +69,8 @@
 	user.middle_name = [dict objectForKey:@"middle_name"];
 	user.last_name = [dict objectForKey:@"last_name"];
 	user.link = [dict objectForKey:@"link"];
-	user.birthday = [NSDate dateFromFacebookFormat:[dict objectForKey:@"birthday"]];
+//	user.birthday = [NSDate dateFromFacebookBirthday:[dict objectForKey:@"birthday"]];
+    [user setBirhtdayWithString:[dict objectForKey:@"birthday"]];
 	
 	id hometown = [[dict objectForKey:@"hometown"] objectForKey:@"name"];
 	user.hometown = ( hometown != [NSNull null] ) ? hometown : nil;
@@ -80,7 +82,7 @@
 	user.relationship_status = [dict objectForKey:@"relationship_status"];
 	user.timezone = [NSNumber numberWithInteger:[[dict objectForKey:@"timezone"] integerValue]];
 	user.locale = [dict objectForKey:@"locale"];
-	user.updated_time = [NSDate dateFromFacebookFormat:[dict objectForKey:@"updated_time"]];
+	user.updated_time = [NSDate dateFromFacebookFullFormat:[dict objectForKey:@"updated_time"]];
 	
 	[user updateEducations:[dict objectForKey:@"education"]];
 
@@ -90,6 +92,20 @@
 	[self save];
 	
 	return user;
+}
+
+- (void)setBirhtdayWithString:(NSString*)birthdayString
+{
+    NSArray* components = [birthdayString componentsSeparatedByString:@"/"];
+    if ( [components count] >= 3 )
+    {
+        self.birthdayYear = [NSNumber numberWithInteger:[[components objectAtIndex:2] integerValue]];
+    }
+    if ( [components count] >= 2 )
+    {
+        self.birthdayMonth = [NSNumber numberWithInteger:[[components objectAtIndex:0] integerValue]];
+        self.birthdayDay = [NSNumber numberWithInteger:[[components objectAtIndex:1] integerValue]];
+    }
 }
 
 - (void)updateEducations:(NSArray*)newEducations

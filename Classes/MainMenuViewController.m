@@ -125,8 +125,8 @@
 	if ( [childVC isKindOfClass:[CategorizedTableViewController class]] )
 	{
 		((CategorizedTableViewController*)childVC).property = [[menuStructureArray objectAtIndex:indexPath.row] objectForKey:@"property"];
-		[self.navigationController pushViewController:childVC animated:YES];
 	}
+    [self.navigationController pushViewController:childVC animated:YES];
 }
 
 

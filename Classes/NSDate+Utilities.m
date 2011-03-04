@@ -11,23 +11,31 @@
 
 @implementation NSDate (Utilities)
 
-+ (NSDate*)dateFromFacebookFormat:(NSString*)dateString
++ (NSDate*)dateFromString:(NSString*)dateString format:(NSString*)dateFormat
 {
 	NSDateFormatter* dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
-	[dateFormatter setDateFormat:@"yyyy-MM-ddTHH:mm:ssZ"];
+	[dateFormatter setDateFormat:dateFormat];
 	
 	NSDate* date = [dateFormatter dateFromString:dateString];
 	
 	return date;
 }
 
-+ (NSDate*)startDateFromString:(NSString*)dateString
++ (NSDate*)dateFromFacebookFullFormat:(NSString*)dateString
 {
-	NSDateFormatter* dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
-	[dateFormatter setDateFormat:@"yyyy-MM"];
-	
-	NSDate* date = [dateFormatter dateFromString:dateString];
-	
+	NSDate* date = [self dateFromString:dateString format:@"yyyy-MM-ddTHH:mm:ssZ"];
+	return date;
+}
+
++ (NSDate*)dateFromFacebookBirthday:(NSString*)dateString
+{
+    NSDate* date = [self dateFromString:dateString format:@"MM/dd/yyyy"];
+	return date;
+}
+
++ (NSDate*)dateFromYearMonth:(NSString*)dateString
+{
+    NSDate* date = [self dateFromString:dateString format:@"yyyy-MM"];
 	return date;
 }
 

@@ -15,6 +15,8 @@
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28D3F202112F7DC200FD0661 /* FriendsAnalyzer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28D3F201112F7DC200FD0661 /* FriendsAnalyzer.xcdatamodeld */; };
 		7C13AF8A132149E8001FD36C /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C13AF89132149E8001FD36C /* MainWindow-iPad.xib */; };
+		7C13AF8F13214C8C001FD36C /* BirthdayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C13AF8D13214C8C001FD36C /* BirthdayViewController.m */; };
+		7C13AF9013214C8C001FD36C /* BirthdayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C13AF8E13214C8C001FD36C /* BirthdayViewController.xib */; };
 		7C37C1A4131EA0FC004EFA64 /* FBRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C37C1A3131EA0FC004EFA64 /* FBRequestOperation.m */; };
 		7C37C30B131EEC91004EFA64 /* NameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C37C309131EEC91004EFA64 /* NameViewController.m */; };
 		7C37C30C131EEC91004EFA64 /* NameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C37C30A131EEC91004EFA64 /* NameViewController.xib */; };
@@ -66,6 +68,9 @@
 		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7C13AF89132149E8001FD36C /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
+		7C13AF8C13214C8C001FD36C /* BirthdayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BirthdayViewController.h; sourceTree = "<group>"; };
+		7C13AF8D13214C8C001FD36C /* BirthdayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BirthdayViewController.m; sourceTree = "<group>"; };
+		7C13AF8E13214C8C001FD36C /* BirthdayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BirthdayViewController.xib; sourceTree = "<group>"; };
 		7C37C1A2131EA0FC004EFA64 /* FBRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBRequestOperation.h; sourceTree = "<group>"; };
 		7C37C1A3131EA0FC004EFA64 /* FBRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBRequestOperation.m; sourceTree = "<group>"; };
 		7C37C308131EEC91004EFA64 /* NameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameViewController.h; sourceTree = "<group>"; };
@@ -225,6 +230,9 @@
 		7C13AF851321487F001FD36C /* Birthday */ = {
 			isa = PBXGroup;
 			children = (
+				7C13AF8C13214C8C001FD36C /* BirthdayViewController.h */,
+				7C13AF8D13214C8C001FD36C /* BirthdayViewController.m */,
+				7C13AF8E13214C8C001FD36C /* BirthdayViewController.xib */,
 			);
 			name = Birthday;
 			sourceTree = "<group>";
@@ -444,6 +452,7 @@
 				7C4DD51C131D852A006C69CF /* MainMenuViewController.xib in Resources */,
 				7C37C30C131EEC91004EFA64 /* NameViewController.xib in Resources */,
 				7C13AF8A132149E8001FD36C /* MainWindow-iPad.xib in Resources */,
+				7C13AF9013214C8C001FD36C /* BirthdayViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +493,7 @@
 				7CA36AE61320648B00B4FAF1 /* SBJsonBase.m in Sources */,
 				7CA36AE71320648B00B4FAF1 /* SBJsonParser.m in Sources */,
 				7CA36AE81320648B00B4FAF1 /* SBJsonWriter.m in Sources */,
+				7C13AF8F13214C8C001FD36C /* BirthdayViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

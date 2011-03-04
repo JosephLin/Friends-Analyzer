@@ -21,6 +21,9 @@
 @property (nonatomic, retain) NSString * last_name;
 @property (nonatomic, retain) NSString * link;
 @property (nonatomic, retain) NSDate * birthday;
+@property (nonatomic, retain) NSNumber * birthdayYear;
+@property (nonatomic, retain) NSNumber * birthdayMonth;
+@property (nonatomic, retain) NSNumber * birthdayDay;
 @property (nonatomic, retain) NSString * hometown;
 @property (nonatomic, retain) NSString * location;
 @property (nonatomic, retain) NSSet * works;
@@ -41,6 +44,7 @@
 + (NSUInteger)userCountsForKey:(NSString*)key value:(NSString*)value;
 + (NSArray*)possibleValuesForCategory:(NSString*)category;
 
+- (void)setBirhtdayWithString:(NSString*)birthdayString;
 - (void)updateEducations:(NSArray*)newEducations;
 - (void)updateWorks:(NSArray*)newWorks;
 

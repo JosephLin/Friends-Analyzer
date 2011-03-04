@@ -11,8 +11,9 @@
 
 @interface NSDate (Utilities)
 
-+ (NSDate*)dateFromFacebookFormat:(NSString*)dateString;
-+ (NSDate*)startDateFromString:(NSString*)dateString;
++ (NSDate*)dateFromFacebookFullFormat:(NSString*)dateString;
++ (NSDate*)dateFromFacebookBirthday:(NSString*)dateString;
++ (NSDate*)dateFromYearMonth:(NSString*)dateString;
 - (NSString*)stringFromDate;
 
 @end

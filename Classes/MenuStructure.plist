@@ -16,7 +16,7 @@
 		<key>title</key>
 		<string>Birthday</string>
 		<key>viewController</key>
-		<string></string>
+		<string>BirthdayViewController</string>
 	</dict>
 	<dict>
 		<key>property</key>

@@ -130,7 +130,7 @@ static NSArray* monthArray = nil;
     NSString* path = [[NSBundle mainBundle] pathForResource:@"Horoscope" ofType:@"plist"];
     if ( !monthArray )
     {
-        monthArray = [[NSDictionary dictionaryWithContentsOfFile:path] objectForKey:@"Root"];
+        monthArray = [[[NSDictionary dictionaryWithContentsOfFile:path] objectForKey:@"Root"] retain];
     }
     
     NSArray* dayArray = [monthArray valueForKeyPath:@"@unionOfObjects.startDay"];

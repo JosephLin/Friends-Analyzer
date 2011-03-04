@@ -23,6 +23,7 @@
 		7C4DD511131D8081006C69CF /* MenuStructure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C4DD510131D8081006C69CF /* MenuStructure.plist */; };
 		7C4DD51B131D852A006C69CF /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4DD519131D852A006C69CF /* MainMenuViewController.m */; };
 		7C4DD51C131D852A006C69CF /* MainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C4DD51A131D852A006C69CF /* MainMenuViewController.xib */; };
+		7C74C55813219060003258AC /* Horoscope.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C74C55713219060003258AC /* Horoscope.plist */; };
 		7CA36AE31320648B00B4FAF1 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA36AD81320648B00B4FAF1 /* NSObject+SBJSON.m */; };
 		7CA36AE41320648B00B4FAF1 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA36ADA1320648B00B4FAF1 /* NSString+SBJSON.m */; };
 		7CA36AE51320648B00B4FAF1 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA36ADC1320648B00B4FAF1 /* SBJSON.m */; };
@@ -80,6 +81,7 @@
 		7C4DD518131D852A006C69CF /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
 		7C4DD519131D852A006C69CF /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
 		7C4DD51A131D852A006C69CF /* MainMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenuViewController.xib; sourceTree = "<group>"; };
+		7C74C55713219060003258AC /* Horoscope.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Horoscope.plist; sourceTree = "<group>"; };
 		7CA36AD61320648B00B4FAF1 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		7CA36AD71320648B00B4FAF1 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
 		7CA36AD81320648B00B4FAF1 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				7C13AF8C13214C8C001FD36C /* BirthdayViewController.h */,
 				7C13AF8D13214C8C001FD36C /* BirthdayViewController.m */,
 				7C13AF8E13214C8C001FD36C /* BirthdayViewController.xib */,
+				7C74C55713219060003258AC /* Horoscope.plist */,
 			);
 			name = Birthday;
 			sourceTree = "<group>";
@@ -453,6 +456,7 @@
 				7C37C30C131EEC91004EFA64 /* NameViewController.xib in Resources */,
 				7C13AF8A132149E8001FD36C /* MainWindow-iPad.xib in Resources */,
 				7C13AF9013214C8C001FD36C /* BirthdayViewController.xib in Resources */,
+				7C74C55813219060003258AC /* Horoscope.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

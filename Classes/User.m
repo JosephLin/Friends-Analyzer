@@ -11,6 +11,7 @@
 #import "Work.h"
 #import "NSDate+Utilities.h"
 
+static NSArray* monthArray = nil;
 
 @implementation User 
 
@@ -22,6 +23,8 @@
 @dynamic link;
 @dynamic birthday;
 @dynamic birthdayYear, birthdayMonth, birthdayDay;
+@dynamic zodiacSymbol;
+@dynamic zodiacName;
 @dynamic hometown;
 @dynamic location;
 @dynamic works;
@@ -33,6 +36,30 @@
 @dynamic locale;
 @dynamic updated_time;
 @dynamic friends;
+
+@dynamic age;
+@dynamic ageGroup;
+
+
+
+#pragma -
+#pragma Transient Attributs
+
+- (NSNumber*)age
+{
+    NSDate* startDate = self.birthday;
+    NSDateComponents* components = [[NSCalendar currentCalendar] components:NSYearCalendarUnit fromDate:startDate  toDate:[NSDate date] options:0];
+    NSInteger years = [components year];
+    return [NSNumber numberWithInteger:years];
+}
+
+- (NSNumber*)ageGroup
+{
+    NSDate* startDate = self.birthday;
+    NSDateComponents* components = [[NSCalendar currentCalendar] components:NSYearCalendarUnit fromDate:startDate  toDate:[NSDate date] options:0];
+    NSInteger years = [components year];
+    return [NSNumber numberWithInteger:years/10];
+}
 
 
 #pragma mark -
@@ -69,9 +96,13 @@
 	user.middle_name = [dict objectForKey:@"middle_name"];
 	user.last_name = [dict objectForKey:@"last_name"];
 	user.link = [dict objectForKey:@"link"];
-//	user.birthday = [NSDate dateFromFacebookBirthday:[dict objectForKey:@"birthday"]];
+	user.birthday = [NSDate dateFromFacebookBirthday:[dict objectForKey:@"birthday"]];
     [user setBirhtdayWithString:[dict objectForKey:@"birthday"]];
-	
+    if ([user.birthdayMonth integerValue] && [user.birthdayDay integerValue])
+    {
+        [user setZodiac];
+    }
+    
 	id hometown = [[dict objectForKey:@"hometown"] objectForKey:@"name"];
 	user.hometown = ( hometown != [NSNull null] ) ? hometown : nil;
 
@@ -93,6 +124,36 @@
 	
 	return user;
 }
+
+- (void)setZodiac
+{
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"Horoscope" ofType:@"plist"];
+    if ( !monthArray )
+    {
+        monthArray = [[NSDictionary dictionaryWithContentsOfFile:path] objectForKey:@"Root"];
+    }
+    
+    NSArray* dayArray = [monthArray valueForKeyPath:@"@unionOfObjects.startDay"];
+    NSArray* symbolArray = [monthArray valueForKeyPath:@"@unionOfObjects.symbol"];
+    NSArray* nameArray = [monthArray valueForKeyPath:@"@unionOfObjects.name"];
+
+    NSInteger index = [self.birthdayMonth integerValue] - 1;
+    NSInteger startDay = [[dayArray objectAtIndex:index] integerValue];
+
+    if ( [self.birthdayDay integerValue] < startDay )
+    {
+        index = index - 1;
+    }
+    
+    if ( index < 0 )
+    {
+        index = 11;
+    }
+    
+    self.zodiacSymbol = [symbolArray objectAtIndex:index];
+    self.zodiacName = [nameArray objectAtIndex:index];
+}
+
 
 - (void)setBirhtdayWithString:(NSString*)birthdayString
 {
@@ -216,6 +277,8 @@
 	return sorted;
  */
 }
+
+
 
 
 

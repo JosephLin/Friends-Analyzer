@@ -9,34 +9,57 @@
 #import "BirthdayViewController.h"
 #import "User.h"
 
+
+
+
 @implementation BirthdayViewController
 
-@synthesize tableView;
+@synthesize tableView, segmentedControl;
 @synthesize fetchedResultController;
 
-- (void)dealloc
-{
-    [tableView release];
-    [fetchedResultController release];
-    [super dealloc];
-}
+
 
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    NSArray* controlItems = [NSArray arrayWithObjects:@"Age", @"Date", @"Horoscope", nil];
+    self.segmentedControl = [[UISegmentedControl alloc] initWithItems:controlItems];
+    
+	segmentedControl.selectedSegmentIndex = 0;
+	segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+	segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+	[segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
+	
+	self.navigationItem.titleView = segmentedControl;
+	[segmentedControl release];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    self.tableView = nil;
+    self.segmentedControl = nil;
+}
+
+- (void)dealloc
+{
+    [tableView release];
+    [segmentedControl release];
+    [fetchedResultController release];
+    [super dealloc];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
+}
+
+- (void)segmentedControlValueChanged:(UISegmentedControl*)sender
+{
+    self.fetchedResultController = [self fetchedResultControllerOfType:segmentedControl.selectedSegmentIndex];
+    [self.tableView reloadData];
 }
 
 
@@ -65,23 +88,44 @@
     
     User* user = [fetchedResultController objectAtIndexPath:indexPath];
     cell.textLabel.text = user.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%02d/%02d/%d", 
-                                 [user.birthdayMonth integerValue], [user.birthdayDay integerValue], [user.birthdayYear integerValue]];
+    
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%02d/%02d",
+                                 [user.birthdayMonth integerValue], [user.birthdayDay integerValue]];
     
     return cell;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section { 
     id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultController sections] objectAtIndex:section];
-    return [sectionInfo name];
+    
+    switch (segmentedControl.selectedSegmentIndex)
+    {
+        case TableViewSortTypeDate:
+        {
+            NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+            NSString* monthName = [[dateFormatter monthSymbols] objectAtIndex:[[sectionInfo name] integerValue] - 1];
+            [dateFormatter release];
+            return monthName;
+        }
+            
+        case TableViewSortTypeHoroscope:
+            return [sectionInfo name];
+            
+        default:    // Age
+            return [NSString stringWithFormat:@"%@ years old", [sectionInfo name]];
+    }
 }
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-    return [fetchedResultController sectionIndexTitles];
+    NSArray* sectionIndexTitles = [[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"];
+    return sectionIndexTitles;
+//  return [fetchedResultController sectionIndexTitles];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
-    return [fetchedResultController sectionForSectionIndexTitle:title atIndex:index];
+    NSArray* sectionIndexTitles = [[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"];
+    return [sectionIndexTitles indexOfObject:title];
+//  return [fetchedResultController sectionForSectionIndexTitle:title atIndex:index];
 }
 
 
@@ -91,45 +135,79 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	[[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
-	
-//	GenericTableViewController* childVC = [[GenericTableViewController alloc] init];
-//	NSString* key = [sortedKeys objectAtIndex:indexPath.row];
-//	NSArray* users = [User usersForKey:property value:key];
-//	childVC.userArray = users;
-//	[self.navigationController pushViewController:childVC animated:YES];
-//	[childVC release];
 }
 
 
 #pragma -
 #pragma Fetched Result Controller
 
-- (NSFetchedResultsController*)fetchedResultController
+- (NSFetchedResultsController*)fetchedResultControllerOfType:(TableViewSortType)type
 {
-    if ( !fetchedResultController )
-    {    
-        NSManagedObjectContext* context = [User managedObjectContext];
+    NSFetchRequest* fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:[User entity]];
+    
+    NSArray* sortDescriptors = nil;
+    NSPredicate* predicate = nil;
+    NSString* sectionNameKeyPath = nil;
+    switch (type)
+    {
+        case TableViewSortTypeDate:
+        {
+            predicate = [NSPredicate predicateWithFormat:@"birthdayMonth != 0 AND birthdayDay != 0"];
+            
+            NSSortDescriptor* monthSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"birthdayMonth" ascending:YES];
+            NSSortDescriptor* daySortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"birthdayDay" ascending:YES];
+            sortDescriptors = [NSArray arrayWithObjects:monthSortDescriptor, daySortDescriptor, nil];
+            
+            sectionNameKeyPath = @"birthdayMonth";
+
+        }
+            break;
+            
+        case TableViewSortTypeHoroscope:
+        {
+            predicate = [NSPredicate predicateWithFormat:@"birthdayMonth != 0 AND birthdayDay != 0"];
+
+            NSSortDescriptor* signSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"zodiacSymbol" ascending:YES];
+            NSSortDescriptor* monthSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"birthdayMonth" ascending:YES];
+            NSSortDescriptor* daySortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"birthdayDay" ascending:YES];
+            sortDescriptors = [NSArray arrayWithObjects:signSortDescriptor, monthSortDescriptor, daySortDescriptor, nil];
         
-        NSFetchRequest* fetchRequest = [[NSFetchRequest alloc] init];
-        [fetchRequest setEntity:[User entity]];
-        
-        NSSortDescriptor* yearSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"birthdayYear" ascending:YES];
-        NSSortDescriptor* monthSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"birthdayMonth" ascending:YES];
-        NSSortDescriptor* daySortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"birthdayDay" ascending:YES];
-        NSArray* sortDescriptors = [NSArray arrayWithObjects:yearSortDescriptor, monthSortDescriptor, daySortDescriptor, nil];
-        [fetchRequest setSortDescriptors:sortDescriptors];
-        
-        fetchedResultController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
-                                                                      managedObjectContext:context
-                                                                        sectionNameKeyPath:nil
-                                                                                 cacheName:nil];
-        [fetchRequest release];
-        
-        NSError* error;
-        BOOL success = [fetchedResultController performFetch:&error];
-        NSLog(@"Fetch successed? %d", success);
+            sectionNameKeyPath = @"zodiacSymbol";
+        }
+            break;
+            
+        default:    // Age
+        {
+            predicate = [NSPredicate predicateWithFormat:@"birthdayYear != 0"];
+            
+            NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"birthday" ascending:YES];
+            sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
+
+            sectionNameKeyPath = @"age";
+        }
+            break;
     }
-    return fetchedResultController;
+    
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];
+
+    if ( predicate)
+    {
+        [fetchRequest setPredicate:predicate];
+    }
+    
+    NSFetchedResultsController* controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
+                                                                  managedObjectContext:[User managedObjectContext]
+                                                                    sectionNameKeyPath:sectionNameKeyPath
+                                                                             cacheName:nil];
+    [fetchRequest release];
+    
+    NSError* error;
+    BOOL success = [controller performFetch:&error];
+    NSLog(@"Fetch successed? %d", success);
+    
+    return controller;
 }
 
 

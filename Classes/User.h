@@ -24,6 +24,8 @@
 @property (nonatomic, retain) NSNumber * birthdayYear;
 @property (nonatomic, retain) NSNumber * birthdayMonth;
 @property (nonatomic, retain) NSNumber * birthdayDay;
+@property (nonatomic, retain) NSString * zodiacSymbol;
+@property (nonatomic, retain) NSString * zodiacName;
 @property (nonatomic, retain) NSString * hometown;
 @property (nonatomic, retain) NSString * location;
 @property (nonatomic, retain) NSSet * works;
@@ -36,6 +38,10 @@
 @property (nonatomic, retain) NSDate * updated_time;
 @property (nonatomic, retain) NSArray * friends;
 
+@property (nonatomic, retain) NSNumber * age;
+@property (nonatomic, retain) NSNumber * ageGroup;
+
+
 + (User*)userWithID:(NSString*)theID;
 + (User*)existingOrNewUserWithDictionary:(NSDictionary*)dict;
 + (User*)currentUser;
@@ -45,6 +51,7 @@
 + (NSArray*)possibleValuesForCategory:(NSString*)category;
 
 - (void)setBirhtdayWithString:(NSString*)birthdayString;
+- (void)setZodiac;
 - (void)updateEducations:(NSArray*)newEducations;
 - (void)updateWorks:(NSArray*)newWorks;
 

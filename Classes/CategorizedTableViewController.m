@@ -48,6 +48,12 @@
     [super dealloc];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return YES;
+}
+
+
 
 #pragma mark -
 #pragma mark Table view data source

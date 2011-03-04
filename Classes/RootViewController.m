@@ -63,6 +63,12 @@
     [super dealloc];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return YES;
+}
+
+
 - (void)updateViewForMode:(RootViewMode)mode
 {
 	switch (mode)

@@ -22,7 +22,7 @@
 {
     [super viewDidLoad];
 	
-    NSArray* controlItems = [NSArray arrayWithObjects:@"Name", @"Number", nil];
+    NSArray* controlItems = [NSArray arrayWithObjects:@"Sort By Name", @"Sort By Number", nil];
     UISegmentedControl* segmentedControl = [[UISegmentedControl alloc] initWithItems:controlItems];
 
 	segmentedControl.selectedSegmentIndex = 0;

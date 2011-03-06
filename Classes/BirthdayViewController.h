@@ -16,16 +16,23 @@ typedef enum{
 } TableViewSortType;
 
 
-@interface BirthdayViewController : UIViewController
+@interface BirthdayViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 {
     UITableView* tableView;
     UISegmentedControl* segmentedControl;
+    UIPickerView* pickerView;
     NSFetchedResultsController* fetchedResultController;
+    
+    NSArray* sortOptions;
+    TableViewSortType currentSortType;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
 @property (nonatomic, retain) IBOutlet UISegmentedControl* segmentedControl;
+@property (nonatomic, retain) IBOutlet UIPickerView* pickerView;
 @property (nonatomic, retain) NSFetchedResultsController* fetchedResultController;
+@property (nonatomic, retain) NSArray* sortOptions;
+@property (nonatomic, assign) TableViewSortType currentSortType;
 
 - (NSFetchedResultsController*)fetchedResultControllerOfType:(TableViewSortType)type;
 

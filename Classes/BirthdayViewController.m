@@ -9,13 +9,14 @@
 #import "BirthdayViewController.h"
 #import "User.h"
 
-
+#define kAnimationDuration  0.25
 
 
 @implementation BirthdayViewController
 
-@synthesize tableView, segmentedControl;
+@synthesize tableView, segmentedControl, pickerView;
 @synthesize fetchedResultController;
+@synthesize sortOptions, currentSortType;
 
 
 
@@ -24,16 +25,32 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSArray* controlItems = [NSArray arrayWithObjects:@"Age", @"Date", @"Horoscope", nil];
-    self.segmentedControl = [[UISegmentedControl alloc] initWithItems:controlItems];
+    
+    self.sortOptions = [NSArray arrayWithObjects:@"Age", @"Date", @"Horoscope", nil];
+
+    
+    //// Segmented Control ////
+    NSArray* controlItems = [NSArray arrayWithObjects:@"List", @"Chart", nil];
+    self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:controlItems] autorelease];
     
 	segmentedControl.selectedSegmentIndex = 0;
 	segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 	segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-	[segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
-	
+	[segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];	
 	self.navigationItem.titleView = segmentedControl;
-	[segmentedControl release];
+    
+    
+    //// 'Sort By' Button ////
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Sort" style:UIBarButtonItemStyleBordered target:self action:@selector(sortByButtonTapped:)] autorelease];
+    
+    //// Picker View ////
+    self.pickerView = [[[UIPickerView alloc] initWithFrame:CGRectOffset(self.view.frame, 0, self.view.frame.size.height)] autorelease];
+    pickerView.dataSource = self;
+    pickerView.delegate = self;
+    pickerView.showsSelectionIndicator = YES;
+    
+    
+    self.currentSortType = TableViewSortTypeAge;
 }
 
 - (void)viewDidUnload
@@ -41,13 +58,16 @@
     [super viewDidUnload];
     self.tableView = nil;
     self.segmentedControl = nil;
+    self.pickerView = nil;
 }
 
 - (void)dealloc
 {
     [tableView release];
     [segmentedControl release];
+    [pickerView release];
     [fetchedResultController release];
+    [sortOptions release];
     [super dealloc];
 }
 
@@ -56,10 +76,89 @@
     return YES;
 }
 
+- (void)showPickerView
+{
+    [self.view addSubview:pickerView];
+    tableView.userInteractionEnabled = NO;
+    CGRect rect = CGRectMake(0, self.view.bounds.size.height - pickerView.bounds.size.height, 
+                             pickerView.bounds.size.width, pickerView.bounds.size.height);
+    [UIView animateWithDuration:kAnimationDuration 
+                     animations:^{
+                         pickerView.frame = rect;
+                         tableView.alpha = 0.5;
+                     }];
+}
+
+- (void)hidePickerView
+{
+    CGRect rect = CGRectMake(0, self.view.bounds.size.height, pickerView.bounds.size.width, pickerView.bounds.size.height);
+    [UIView animateWithDuration:kAnimationDuration 
+                     animations:^{
+                         pickerView.frame = rect;
+                         tableView.alpha = 1.0;
+                     } 
+                     completion:^(BOOL finished){ 
+                         [pickerView removeFromSuperview];
+                         tableView.userInteractionEnabled = YES;
+                     }];
+}
+
+- (void)sortByButtonTapped:(id)sender
+{
+    if ( [pickerView superview] )
+    {
+        [self hidePickerView];
+        
+    }
+    else
+    {
+        [self showPickerView];
+    }
+}
+
 - (void)segmentedControlValueChanged:(UISegmentedControl*)sender
 {
-    self.fetchedResultController = [self fetchedResultControllerOfType:segmentedControl.selectedSegmentIndex];
+    if ( [pickerView superview] )
+    {
+        [self hidePickerView];
+        
+    }
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self hidePickerView];
+}
+
+- (void)setCurrentSortType:(TableViewSortType)newSortType
+{
+    currentSortType = newSortType;
+    self.fetchedResultController = [self fetchedResultControllerOfType:currentSortType];
     [self.tableView reloadData];
+}
+
+
+#pragma -
+#pragma Picker View
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return 3;   
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return [sortOptions objectAtIndex:row];
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    self.currentSortType = row;
 }
 
 
@@ -98,7 +197,7 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section { 
     id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultController sections] objectAtIndex:section];
     
-    switch (segmentedControl.selectedSegmentIndex)
+    switch (currentSortType)
     {
         case TableViewSortTypeDate:
         {

@@ -48,6 +48,8 @@
     pickerView.dataSource = self;
     pickerView.delegate = self;
     pickerView.showsSelectionIndicator = YES;
+    pickerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+
     
     
     self.currentSortType = TableViewSortTypeAge;

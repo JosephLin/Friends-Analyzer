@@ -24,7 +24,7 @@
 		<key>title</key>
 		<string>Hometown</string>
 		<key>viewController</key>
-		<string>CategorizedTableViewController</string>
+		<string>HometownViewController</string>
 	</dict>
 	<dict>
 		<key>property</key>

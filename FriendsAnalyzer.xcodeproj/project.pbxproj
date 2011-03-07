@@ -24,6 +24,13 @@
 		7C4DD51B131D852A006C69CF /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4DD519131D852A006C69CF /* MainMenuViewController.m */; };
 		7C4DD51C131D852A006C69CF /* MainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C4DD51A131D852A006C69CF /* MainMenuViewController.xib */; };
 		7C74C55813219060003258AC /* Horoscope.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C74C55713219060003258AC /* Horoscope.plist */; };
+		7C83D9D313256BA10059BBF0 /* HometownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C83D9D113256BA10059BBF0 /* HometownViewController.m */; };
+		7C83D9D413256BA10059BBF0 /* HometownViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C83D9D213256BA10059BBF0 /* HometownViewController.xib */; };
+		7C83D9D613256D4B0059BBF0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C83D9D513256D4B0059BBF0 /* MapKit.framework */; };
+		7C83D9D9132574290059BBF0 /* LocationName.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C83D9D8132574290059BBF0 /* LocationName.m */; };
+		7C83D9DC1325742A0059BBF0 /* Geocode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C83D9DB1325742A0059BBF0 /* Geocode.m */; };
+		7C83D9DE1325745F0059BBF0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C83D9DD1325745F0059BBF0 /* CoreLocation.framework */; };
+		7C83D9E213257D570059BBF0 /* ForwardGeocoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C83D9E113257D570059BBF0 /* ForwardGeocoding.m */; };
 		7CA36AE31320648B00B4FAF1 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA36AD81320648B00B4FAF1 /* NSObject+SBJSON.m */; };
 		7CA36AE41320648B00B4FAF1 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA36ADA1320648B00B4FAF1 /* NSString+SBJSON.m */; };
 		7CA36AE51320648B00B4FAF1 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA36ADC1320648B00B4FAF1 /* SBJSON.m */; };
@@ -82,6 +89,17 @@
 		7C4DD519131D852A006C69CF /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
 		7C4DD51A131D852A006C69CF /* MainMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenuViewController.xib; sourceTree = "<group>"; };
 		7C74C55713219060003258AC /* Horoscope.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Horoscope.plist; sourceTree = "<group>"; };
+		7C83D9D013256BA10059BBF0 /* HometownViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HometownViewController.h; sourceTree = "<group>"; };
+		7C83D9D113256BA10059BBF0 /* HometownViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HometownViewController.m; sourceTree = "<group>"; };
+		7C83D9D213256BA10059BBF0 /* HometownViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HometownViewController.xib; sourceTree = "<group>"; };
+		7C83D9D513256D4B0059BBF0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		7C83D9D7132574290059BBF0 /* LocationName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationName.h; sourceTree = "<group>"; };
+		7C83D9D8132574290059BBF0 /* LocationName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationName.m; sourceTree = "<group>"; };
+		7C83D9DA1325742A0059BBF0 /* Geocode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Geocode.h; sourceTree = "<group>"; };
+		7C83D9DB1325742A0059BBF0 /* Geocode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Geocode.m; sourceTree = "<group>"; };
+		7C83D9DD1325745F0059BBF0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		7C83D9E013257D570059BBF0 /* ForwardGeocoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardGeocoding.h; sourceTree = "<group>"; };
+		7C83D9E113257D570059BBF0 /* ForwardGeocoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForwardGeocoding.m; sourceTree = "<group>"; };
 		7CA36AD61320648B00B4FAF1 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		7CA36AD71320648B00B4FAF1 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
 		7CA36AD81320648B00B4FAF1 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
@@ -149,6 +167,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C83D9DE1325745F0059BBF0 /* CoreLocation.framework in Frameworks */,
+				7C83D9D613256D4B0059BBF0 /* MapKit.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
@@ -166,10 +186,11 @@
 				7C4DD517131D8514006C69CF /* Main Menu View */,
 				7C37C307131EEC7E004EFA64 /* Name */,
 				7C13AF851321487F001FD36C /* Birthday */,
+				7C83D9CF13256B710059BBF0 /* Hometown */,
 				7C4DD677131DA42F006C69CF /* Table View */,
 				7CC5B10F131D6FB100FEA4DE /* old */,
 				7CC5B10E131D6FAB00FEA4DE /* Pie Chart */,
-				7CC5B10C131D6F8500FEA4DE /* Facebook */,
+				7C83D9DF13257D2F0059BBF0 /* Utilities */,
 				7CC5B10D131D6F8D00FEA4DE /* Categories */,
 				7CC5B10B131D6F7700FEA4DE /* Data Models */,
 				7CC5B0D4131D6F6200FEA4DE /* FriendsAnalyzerAppDelegate.h */,
@@ -221,6 +242,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7C83D9DD1325745F0059BBF0 /* CoreLocation.framework */,
+				7C83D9D513256D4B0059BBF0 /* MapKit.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
@@ -280,6 +303,26 @@
 				7CC5B0D8131D6F6200FEA4DE /* GenericTableViewController.xib */,
 			);
 			name = "Table View";
+			sourceTree = "<group>";
+		};
+		7C83D9CF13256B710059BBF0 /* Hometown */ = {
+			isa = PBXGroup;
+			children = (
+				7C83D9D013256BA10059BBF0 /* HometownViewController.h */,
+				7C83D9D113256BA10059BBF0 /* HometownViewController.m */,
+				7C83D9D213256BA10059BBF0 /* HometownViewController.xib */,
+			);
+			name = Hometown;
+			sourceTree = "<group>";
+		};
+		7C83D9DF13257D2F0059BBF0 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				7CC5B10C131D6F8500FEA4DE /* Facebook */,
+				7C83D9E013257D570059BBF0 /* ForwardGeocoding.h */,
+				7C83D9E113257D570059BBF0 /* ForwardGeocoding.m */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 		7CA36AD51320648B00B4FAF1 /* JSON */ = {
@@ -345,6 +388,10 @@
 				7CC5B13E131D739B00FEA4DE /* Concentration.m */,
 				7CC5B143131D739B00FEA4DE /* Work.h */,
 				7CC5B144131D739B00FEA4DE /* Work.m */,
+				7C83D9DA1325742A0059BBF0 /* Geocode.h */,
+				7C83D9DB1325742A0059BBF0 /* Geocode.m */,
+				7C83D9D7132574290059BBF0 /* LocationName.h */,
+				7C83D9D8132574290059BBF0 /* LocationName.m */,
 			);
 			name = "Data Models";
 			sourceTree = "<group>";
@@ -457,6 +504,7 @@
 				7C13AF8A132149E8001FD36C /* MainWindow-iPad.xib in Resources */,
 				7C13AF9013214C8C001FD36C /* BirthdayViewController.xib in Resources */,
 				7C74C55813219060003258AC /* Horoscope.plist in Resources */,
+				7C83D9D413256BA10059BBF0 /* HometownViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,6 +546,10 @@
 				7CA36AE71320648B00B4FAF1 /* SBJsonParser.m in Sources */,
 				7CA36AE81320648B00B4FAF1 /* SBJsonWriter.m in Sources */,
 				7C13AF8F13214C8C001FD36C /* BirthdayViewController.m in Sources */,
+				7C83D9D313256BA10059BBF0 /* HometownViewController.m in Sources */,
+				7C83D9D9132574290059BBF0 /* LocationName.m in Sources */,
+				7C83D9DC1325742A0059BBF0 /* Geocode.m in Sources */,
+				7C83D9E213257D570059BBF0 /* ForwardGeocoding.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

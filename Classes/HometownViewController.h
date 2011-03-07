@@ -8,14 +8,40 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "ForwardGeocodingOperation.h"
+
+typedef enum {
+	HometownViewModeLoading = 0,
+	HometownViewModeShowTableView,
+	HometownViewModeShowMap
+} HometownViewMode;
+
+
 
 @interface HometownViewController : UIViewController
 {
+    UILabel* loadingLabel;
+    UIActivityIndicatorView* activityIndicator;
+    UIProgressView* progressView;
     UITableView* tableView;
     MKMapView* mapView;
+    
+    NSFetchedResultsController* fetchedResultController;
+
+	NSOperationQueue* queue;
+	NSInteger total;
+	NSInteger pending;
 }
 
+@property (nonatomic, retain) IBOutlet UILabel* loadingLabel;
+@property (nonatomic, retain) IBOutlet UIActivityIndicatorView* activityIndicator;
+@property (nonatomic, retain) IBOutlet UIProgressView* progressView;
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
 @property (nonatomic, retain) IBOutlet MKMapView* mapView;
+@property (nonatomic, retain) NSFetchedResultsController* fetchedResultController;
+
+- (void)showTableView;
+- (void)showMapView;
+- (void)parseLocations;
 
 @end

@@ -29,6 +29,17 @@
 #pragma mark -
 #pragma mark Load/Save
 
++ (NSArray*)allGeocodes
+{
+	NSFetchRequest* request = [[[NSFetchRequest alloc] init] autorelease];
+	[request setEntity:[self entity]];
+	
+	NSError* error;
+	NSArray* results = [[self managedObjectContext] executeFetchRequest:request error:&error];
+	
+	return results;
+}
+
 + (Geocode*)insertGeocodeWithDictionary:(NSDictionary*)dict
 {
 	Geocode* geocode = [self insertNewObject];

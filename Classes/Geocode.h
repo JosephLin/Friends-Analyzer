@@ -29,6 +29,7 @@
 @property (nonatomic, retain) NSNumber * longitude;
 @property (nonatomic, retain) NSSet* locationNames;
 
++ (NSArray*)allGeocodes;
 + (Geocode*)insertGeocodeWithDictionary:(NSDictionary*)dict;
 + (Geocode*)geocodeForName:(NSString*)locationName;
 

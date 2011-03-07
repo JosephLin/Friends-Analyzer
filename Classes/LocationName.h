@@ -8,12 +8,18 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "EnhancedManagedObject.h"
 
 
-@interface LocationName : NSManagedObject {
-@private
+@interface LocationName : EnhancedManagedObject
+{
+
 }
+
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSManagedObject * geoCode;
+
++ (LocationName*)insertLocationNameWithName:(NSString*)theName;
++ (LocationName*)locationNameForName:(NSString*)theName;
 
 @end

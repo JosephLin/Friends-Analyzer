@@ -14,8 +14,9 @@
 
 @synthesize loadingLabel, activityIndicator, progressView;
 @synthesize tableView, mapView;
-@synthesize fetchedResultController, userCountsDict;
+@synthesize fetchedResultController;
 
+@synthesize sortedKeys, userCountsDict;
 
 #pragma mark - View lifecycle
 
@@ -34,6 +35,8 @@
     [segmentedControl release];
     
     [self parseLocations];
+    
+    
 }
 
 - (void)viewDidUnload
@@ -133,28 +136,12 @@
 
 - (void)parseLocations
 {
-    loadingLabel.hidden = NO;
-    loadingLabel.text = @"Analyzing Locations...";
-    [activityIndicator startAnimating];
-    progressView.progress = 0;
-    progressView.hidden = NO;
-    
-    
     NSArray* allUsers = [User allUsers];
-	total = [allUsers count];
-	
-	if ( queue )
-	{
-		[queue cancelAllOperations];
-		[queue release];
-	}
-	queue = [[NSOperationQueue alloc] init];
-	[queue addObserver:self forKeyPath:@"operationCount" options:NSKeyValueObservingOptionNew context:NULL];	
     
 	NSMutableArray* opArray = [NSMutableArray arrayWithCapacity:total];
 	for ( User* user in allUsers )
 	{
-        if ( user.hometown )
+        if ( ![user.hometownGeocode count] && user.hometown )
         {
             ForwardGeocodingOperation* op = [[ForwardGeocodingOperation alloc] initWithQuery:user.hometown 
                                                                                     delegate:nil];
@@ -162,8 +149,34 @@
             [op release];
         }
 	}
-	[queue setMaxConcurrentOperationCount:1];
-	[queue addOperations:opArray waitUntilFinished:NO];
+    
+    if ( [opArray count] )
+    {
+        loadingLabel.hidden = NO;
+        loadingLabel.text = @"Analyzing Locations...";
+        [activityIndicator startAnimating];
+        progressView.progress = 0;
+        progressView.hidden = NO;
+        
+        total = [allUsers count];
+        
+        if ( queue )
+        {
+            [queue cancelAllOperations];
+            [queue release];
+        }
+        queue = [[NSOperationQueue alloc] init];
+        [queue addObserver:self forKeyPath:@"operationCount" options:NSKeyValueObservingOptionNew context:NULL];	
+        
+        [queue setMaxConcurrentOperationCount:1];
+        [queue addOperations:opArray waitUntilFinished:NO];
+    }
+    else
+    {
+        [self loadDict];
+        [self showTableView];
+
+    }
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -177,8 +190,30 @@
 		if ( pending == 0 )
 		{
             [self performSelectorOnMainThread:@selector(showTableView) withObject:nil waitUntilDone:YES];
+            [self loadDict];
+            
 		}
 	}
+}
+
+- (void)loadDict
+{
+    NSArray* array = [[User allUsers] valueForKeyPath:@"@distinctUnionOfArrays.hometownGeocode.formatted_address"];	
+
+    self.sortedKeys = [array sortedArrayUsingComparator:(NSComparator)^(id obj1, id obj2){
+		return [obj1 caseInsensitiveCompare:obj2]; }];
+
+    NSLog(@"sortedKeys: %@", sortedKeys);
+
+	self.userCountsDict = [NSMutableDictionary dictionaryWithCapacity:[sortedKeys count]];
+    
+    for ( id key in sortedKeys )
+    {
+        NSNumber* count = [NSNumber numberWithInteger:[User userCountsForKey:@"hometownGeocode" value:key]];
+		[userCountsDict setObject:count forKey:key];
+    }
+    
+    NSLog(@"userCountsDict: %@", userCountsDict);
 }
 
 

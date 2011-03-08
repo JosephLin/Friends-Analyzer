@@ -40,6 +40,7 @@ static NSArray* monthArray = nil;
 @dynamic age;
 @dynamic ageGroup;
 
+@dynamic hometownGeocode;
 
 
 #pragma -

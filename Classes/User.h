@@ -41,6 +41,8 @@
 @property (nonatomic, retain) NSNumber * age;
 @property (nonatomic, retain) NSNumber * ageGroup;
 
+@property (nonatomic, retain, readonly) NSArray * hometownGeocode;
+
 
 + (User*)userWithID:(NSString*)theID;
 + (User*)existingOrNewUserWithDictionary:(NSDictionary*)dict;

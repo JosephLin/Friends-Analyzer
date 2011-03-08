@@ -13,6 +13,9 @@
 #import "EnhancedManagedObject.h"
 
 
+#define kUnknownGeocodeCoordinate  99999
+
+
 @class LocationName;
 
 @interface Geocode : EnhancedManagedObject <MKAnnotation>
@@ -37,6 +40,7 @@
 + (Geocode*)geocodeForName:(NSString*)locationName;
 + (NSArray*)allGeocodes;
 - (NSArray*)users;
++ (Geocode*)unknownGeocode;
 
 //// MKAnnotation Protocal ////
 - (NSString *)title;

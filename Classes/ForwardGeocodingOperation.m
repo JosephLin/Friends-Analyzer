@@ -101,6 +101,15 @@
                             [delegate operationDidFinish:self];
                     }
                 }
+                else if  ( [status isEqualToString:@"ZERO_RESULTS"] )
+                {
+                    self.geocode = [Geocode unknownGeocode];
+                    [geocode addLocationNamesObject:[LocationName insertLocationNameWithName:query]];
+                    NSLog(@"ZERO RESULTS: %@", geocode.formatted_address);
+                    
+                    if ( [delegate respondsToSelector:@selector(operationDidFinish:)] )
+                        [delegate operationDidFinish:self];
+                }
                 else
                 {
                     NSLog(@"urlString: %@", urlString);

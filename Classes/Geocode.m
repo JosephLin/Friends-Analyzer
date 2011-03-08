@@ -127,7 +127,24 @@
 	return results;
 }
 
-
++ (Geocode*)unknownGeocode
+{
+    NSNumber* unknownCoordinate = [NSNumber numberWithInt:kUnknownGeocodeCoordinate];
+    Geocode* geocode = [self geocodeWithLatitude:unknownCoordinate longitude:unknownCoordinate];
+	
+	if ( !geocode )
+	{
+		geocode = [self insertNewObject];
+        
+        geocode.latitude = unknownCoordinate;
+        geocode.longitude = unknownCoordinate;
+        geocode.formatted_address = @"Unknown";
+        
+        [self save];
+    }
+	
+	return geocode;
+}
 
 #pragma mark -
 #pragma mark MKAnnotation Protocal

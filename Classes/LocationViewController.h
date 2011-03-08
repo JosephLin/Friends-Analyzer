@@ -20,11 +20,13 @@
     MKMapView* mapView;
     
     NSFetchedResultsController* fetchedResultController;
-	NSMutableDictionary* userCountsDict;
 
 	NSOperationQueue* queue;
 	NSInteger total;
 	NSInteger pending;
+    
+    NSArray* sortedKeys;
+    NSMutableDictionary* userCountsDict;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel* loadingLabel;
@@ -33,6 +35,8 @@
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
 @property (nonatomic, retain) IBOutlet MKMapView* mapView;
 @property (nonatomic, retain) NSFetchedResultsController* fetchedResultController;
+
+@property (nonatomic, retain) NSArray* sortedKeys;
 @property (nonatomic, retain) NSMutableDictionary* userCountsDict;
 
 

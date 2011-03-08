@@ -24,7 +24,7 @@
 		7C4DD51B131D852A006C69CF /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4DD519131D852A006C69CF /* MainMenuViewController.m */; };
 		7C4DD51C131D852A006C69CF /* MainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C4DD51A131D852A006C69CF /* MainMenuViewController.xib */; };
 		7C74C55813219060003258AC /* Horoscope.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C74C55713219060003258AC /* Horoscope.plist */; };
-		7C83D9D313256BA10059BBF0 /* HometownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C83D9D113256BA10059BBF0 /* HometownViewController.m */; };
+		7C83D9D313256BA10059BBF0 /* LocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C83D9D113256BA10059BBF0 /* LocationViewController.m */; };
 		7C83D9D413256BA10059BBF0 /* HometownViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C83D9D213256BA10059BBF0 /* HometownViewController.xib */; };
 		7C83D9D613256D4B0059BBF0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C83D9D513256D4B0059BBF0 /* MapKit.framework */; };
 		7C83D9D9132574290059BBF0 /* LocationName.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C83D9D8132574290059BBF0 /* LocationName.m */; };
@@ -87,8 +87,8 @@
 		7C4DD519131D852A006C69CF /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
 		7C4DD51A131D852A006C69CF /* MainMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenuViewController.xib; sourceTree = "<group>"; };
 		7C74C55713219060003258AC /* Horoscope.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Horoscope.plist; sourceTree = "<group>"; };
-		7C83D9D013256BA10059BBF0 /* HometownViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HometownViewController.h; sourceTree = "<group>"; };
-		7C83D9D113256BA10059BBF0 /* HometownViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HometownViewController.m; sourceTree = "<group>"; };
+		7C83D9D013256BA10059BBF0 /* LocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationViewController.h; sourceTree = "<group>"; };
+		7C83D9D113256BA10059BBF0 /* LocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationViewController.m; sourceTree = "<group>"; };
 		7C83D9D213256BA10059BBF0 /* HometownViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HometownViewController.xib; sourceTree = "<group>"; };
 		7C83D9D513256D4B0059BBF0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		7C83D9D7132574290059BBF0 /* LocationName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationName.h; sourceTree = "<group>"; };
@@ -302,8 +302,8 @@
 		7C83D9CF13256B710059BBF0 /* Hometown */ = {
 			isa = PBXGroup;
 			children = (
-				7C83D9D013256BA10059BBF0 /* HometownViewController.h */,
-				7C83D9D113256BA10059BBF0 /* HometownViewController.m */,
+				7C83D9D013256BA10059BBF0 /* LocationViewController.h */,
+				7C83D9D113256BA10059BBF0 /* LocationViewController.m */,
 				7C83D9D213256BA10059BBF0 /* HometownViewController.xib */,
 			);
 			name = Hometown;
@@ -528,7 +528,7 @@
 				7CA36AE71320648B00B4FAF1 /* SBJsonParser.m in Sources */,
 				7CA36AE81320648B00B4FAF1 /* SBJsonWriter.m in Sources */,
 				7C13AF8F13214C8C001FD36C /* BirthdayViewController.m in Sources */,
-				7C83D9D313256BA10059BBF0 /* HometownViewController.m in Sources */,
+				7C83D9D313256BA10059BBF0 /* LocationViewController.m in Sources */,
 				7C83D9D9132574290059BBF0 /* LocationName.m in Sources */,
 				7C83D9DC1325742A0059BBF0 /* Geocode.m in Sources */,
 				7C83D9E5132580AF0059BBF0 /* ForwardGeocodingOperation.m in Sources */,

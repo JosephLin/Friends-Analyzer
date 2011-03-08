@@ -92,7 +92,7 @@
                     //// Just to be safe. Google should return "ZERO_RESULTS" if there's none. //
                     if ( [results count] )  
                     {
-                        self.geocode = [Geocode insertGeocodeWithDictionary:[results objectAtIndex:0]];
+                        self.geocode = [Geocode existingOrNewGeocodeWithDictionary:[results objectAtIndex:0]];
                         [geocode addLocationNamesObject:[LocationName insertLocationNameWithName:query]];
                         
                         NSLog(@"Location parsed: %@", geocode.formatted_address);

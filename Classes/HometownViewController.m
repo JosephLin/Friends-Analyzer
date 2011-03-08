@@ -7,13 +7,14 @@
 //
 
 #import "HometownViewController.h"
+#import "GenericTableViewController.h"
 #import "User.h"
 
 @implementation HometownViewController
 
 @synthesize loadingLabel, activityIndicator, progressView;
 @synthesize tableView, mapView;
-@synthesize fetchedResultController;
+@synthesize fetchedResultController, userCountsDict;
 
 
 #pragma mark - View lifecycle
@@ -23,9 +24,8 @@
     [super viewDidLoad];
 
     //// Segmented Control ////
-    NSArray* controlItems = [NSArray arrayWithObjects:@"List", @"Map", nil];
+    NSArray* controlItems = [NSArray arrayWithObjects:@"Show List", @"Show Map", nil];
     UISegmentedControl* segmentedControl = [[UISegmentedControl alloc] initWithItems:controlItems];
-    
 	segmentedControl.selectedSegmentIndex = 0;
 	segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 	segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
@@ -53,6 +53,8 @@
     [progressView release];
     [tableView release];
     [mapView release];
+    [fetchedResultController release];
+    [userCountsDict release];
     [queue cancelAllOperations];
     [queue release];
     [super dealloc];
@@ -63,12 +65,23 @@
     return YES;
 }
 
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+}
 
 #pragma mark -
 #pragma mark User Interface
 
 - (void)segmentedControlValueChanged:(UISegmentedControl*)sender
 {
+    if ( sender.selectedSegmentIndex == 0 )
+    {
+        [self showTableView];
+    }
+    else
+    {
+        [self showMapView];
+    }
 }
 
 - (void)showTableView
@@ -97,6 +110,13 @@
         [self.view addSubview:mapView];
     }
     [tableView removeFromSuperview];
+    
+    NSArray* fetchedObjects = [self.fetchedResultController fetchedObjects];
+
+    [mapView addAnnotations:fetchedObjects];
+    mapView.delegate = self;
+    
+    [self zoomToFitMapAnnotations];
 }
 
 - (void)updateViewForProgress
@@ -184,12 +204,14 @@
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+        cell.textLabel.adjustsFontSizeToFitWidth = YES;
+        cell.textLabel.minimumFontSize = 7.0;
     }
     
     Geocode* geocode = [self.fetchedResultController objectAtIndexPath:indexPath];
     cell.textLabel.text = geocode.formatted_address;
     
-    cell.detailTextLabel.text;
+    cell.detailTextLabel.text = [geocode subtitle];
     
     return cell;
 }
@@ -217,6 +239,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	[[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
+
+    Geocode* geocode = [self.fetchedResultController objectAtIndexPath:indexPath];
+    NSArray* users = [geocode users];
+
+    GenericTableViewController* childVC = [[GenericTableViewController alloc] init];
+	childVC.userArray = users;
+	[self.navigationController pushViewController:childVC animated:YES];
+	[childVC release];
 }
 
 
@@ -254,6 +284,73 @@
 }
 
 
+#pragma mark -
+#pragma mark MKMapView Delegate
+
+- (MKAnnotationView *)mapView:(MKMapView *)map viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    static NSString *AnnotationViewID = @"annotationViewID";
+	
+    MKPinAnnotationView* pin = (MKPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:AnnotationViewID];
+    if (pin == nil)
+    {
+        pin = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID] autorelease];
+        pin.animatesDrop = YES;
+        pin.canShowCallout = YES;
+        pin.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    }
+    
+    pin.annotation = annotation;
+    
+    return pin;
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+    Geocode* geocode = view.annotation;
+    NSArray* users = [geocode users];
+    
+    GenericTableViewController* childVC = [[GenericTableViewController alloc] init];
+	childVC.userArray = users;
+	[self.navigationController pushViewController:childVC animated:YES];
+	[childVC release];
+
+}
+
+
+- (void)zoomToFitMapAnnotations
+{
+    if ( [self.mapView.annotations count] )
+	{
+		CLLocationCoordinate2D topLeftCoordinate;
+		topLeftCoordinate.latitude = -90;
+		topLeftCoordinate.longitude = 180;
+		
+		CLLocationCoordinate2D bottomRightCoordinate;
+		bottomRightCoordinate.latitude = 90;
+		bottomRightCoordinate.longitude = -180;
+		
+		for ( id <MKAnnotation> annotation in mapView.annotations )
+		{
+			topLeftCoordinate.longitude = fmin(topLeftCoordinate.longitude, annotation.coordinate.longitude);
+			topLeftCoordinate.latitude = fmax(topLeftCoordinate.latitude, annotation.coordinate.latitude);
+			
+			bottomRightCoordinate.longitude = fmax(bottomRightCoordinate.longitude, annotation.coordinate.longitude);
+			bottomRightCoordinate.latitude = fmin(bottomRightCoordinate.latitude, annotation.coordinate.latitude);
+		}
+		
+		MKCoordinateRegion region;
+		region.center.latitude = (topLeftCoordinate.latitude + bottomRightCoordinate.latitude) / 2;
+		region.center.longitude = (topLeftCoordinate.longitude + bottomRightCoordinate.longitude ) / 2;
+		
+        // Add a little extra space on the sides
+		region.span.latitudeDelta = fabs(topLeftCoordinate.latitude - bottomRightCoordinate.latitude) * 1.1;
+		region.span.longitudeDelta = fabs(topLeftCoordinate.longitude - bottomRightCoordinate.longitude) * 1.1;
+        
+		region = [mapView regionThatFits:region];
+		[mapView setRegion:region animated:YES];
+	}
+}
 
 @end
 

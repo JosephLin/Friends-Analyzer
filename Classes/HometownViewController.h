@@ -18,7 +18,7 @@ typedef enum {
 
 
 
-@interface HometownViewController : UIViewController
+@interface HometownViewController : UIViewController <MKMapViewDelegate>
 {
     UILabel* loadingLabel;
     UIActivityIndicatorView* activityIndicator;
@@ -27,6 +27,7 @@ typedef enum {
     MKMapView* mapView;
     
     NSFetchedResultsController* fetchedResultController;
+	NSMutableDictionary* userCountsDict;
 
 	NSOperationQueue* queue;
 	NSInteger total;
@@ -39,9 +40,12 @@ typedef enum {
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
 @property (nonatomic, retain) IBOutlet MKMapView* mapView;
 @property (nonatomic, retain) NSFetchedResultsController* fetchedResultController;
+@property (nonatomic, retain) NSMutableDictionary* userCountsDict;
+
 
 - (void)showTableView;
 - (void)showMapView;
 - (void)parseLocations;
+- (void)zoomToFitMapAnnotations;
 
 @end

@@ -9,12 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
 #import "EnhancedManagedObject.h"
 
 
 @class LocationName;
 
-@interface Geocode : EnhancedManagedObject
+@interface Geocode : EnhancedManagedObject <MKAnnotation>
 {
 }
 
@@ -29,9 +30,17 @@
 @property (nonatomic, retain) NSNumber * longitude;
 @property (nonatomic, retain) NSSet* locationNames;
 
-+ (NSArray*)allGeocodes;
-+ (Geocode*)insertGeocodeWithDictionary:(NSDictionary*)dict;
+@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
+
++ (Geocode*)geocodeWithLatitude:(NSNumber*)latitude longitude:(NSNumber*)longitude;
++ (Geocode*)existingOrNewGeocodeWithDictionary:(NSDictionary*)dict;
 + (Geocode*)geocodeForName:(NSString*)locationName;
++ (NSArray*)allGeocodes;
+- (NSArray*)users;
+
+//// MKAnnotation Protocal ////
+- (NSString *)title;
+- (NSString *)subtitle;
 
 @end
 

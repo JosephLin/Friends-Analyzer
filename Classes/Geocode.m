@@ -8,7 +8,7 @@
 
 #import "Geocode.h"
 #import "LocationName.h"
-
+#import "User.h"
 
 @implementation Geocode
 
@@ -40,29 +40,51 @@
 	return results;
 }
 
-+ (Geocode*)insertGeocodeWithDictionary:(NSDictionary*)dict
++ (Geocode*)geocodeWithLatitude:(NSNumber*)latitude longitude:(NSNumber*)longitude
 {
-	Geocode* geocode = [self insertNewObject];
+    NSFetchRequest* request = [[[NSFetchRequest alloc] init] autorelease];
+	[request setEntity:[self entity]];
 	
-    geocode.formatted_address = [dict objectForKey:@"formatted_address"];
-    NSArray* address_components = [dict objectForKey:@"address_components"];
+	NSPredicate* predicate = [NSPredicate predicateWithFormat:@"latitude == %@ AND longitude == %@", latitude, longitude];
+	[request setPredicate:predicate];
     
-    for ( NSDictionary* address_component in address_components )
-    {
-        NSString* long_name = [address_component objectForKey:@"long_name"];
-        NSArray* types = [address_component objectForKey:@"types"];
-        for ( NSString* type in types )
-        {
-            //// "setValue:forUndefinedKey:" will catch invalid keys and ignores them. ////
-            [geocode setValue:long_name forKeyPath:type];
-        }
-    }
-    
+	NSError* error = nil;
+	NSArray* results = [[self managedObjectContext] executeFetchRequest:request error:&error];
+	
+    Geocode* geocode = ([results count]) ? [results objectAtIndex:0] : nil;
+	return geocode;
+}
+
++ (Geocode*)existingOrNewGeocodeWithDictionary:(NSDictionary*)dict
+{
     NSDictionary* location = [[dict objectForKey:@"geometry"] objectForKey:@"location"];
-	geocode.latitude = [location objectForKey:@"lat"];
-	geocode.longitude = [location objectForKey:@"lng"];
+	NSNumber* latitude = [location objectForKey:@"lat"];
+	NSNumber* longitude = [location objectForKey:@"lng"];
+
+    Geocode* geocode = [self geocodeWithLatitude:latitude longitude:longitude];
 	
-	[self save];
+	if ( !geocode )
+	{
+		geocode = [self insertNewObject];
+        
+        geocode.latitude = latitude;
+        geocode.longitude = longitude;
+        geocode.formatted_address = [dict objectForKey:@"formatted_address"];
+
+        NSArray* address_components = [dict objectForKey:@"address_components"];
+        for ( NSDictionary* address_component in address_components )
+        {
+            NSString* long_name = [address_component objectForKey:@"long_name"];
+            NSArray* types = [address_component objectForKey:@"types"];
+            for ( NSString* type in types )
+            {
+                //// "setValue:forUndefinedKey:" will catch invalid keys and ignores them. ////
+                [geocode setValue:long_name forKeyPath:type];
+            }
+        }
+        
+        [self save];
+    }
 	
 	return geocode;
 }
@@ -74,7 +96,7 @@
 	
 	NSPredicate* predicate = [NSPredicate predicateWithFormat:@"ANY locationNames.name == %@", locationName];
 	[request setPredicate:predicate];
-	
+    
 	NSError* error = nil;
 	NSArray* results = [[self managedObjectContext] executeFetchRequest:request error:&error];
 	
@@ -87,8 +109,46 @@
     return;
 }
 
+- (NSArray*)users
+{
+    NSFetchRequest* request = [[[NSFetchRequest alloc] init] autorelease];
+	[request setEntity:[User entity]];
+	
+    NSArray* names = [self.locationNames valueForKeyPath:@"@distinctUnionOfObjects.name"];
+	NSPredicate* predicate = [NSPredicate predicateWithFormat:@"hometown IN %@", names];
+	[request setPredicate:predicate];
+	
+    NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+    [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+
+	NSError* error = nil;
+	NSArray* results = [[self managedObjectContext] executeFetchRequest:request error:&error];
+	
+	return results;
+}
 
 
+
+#pragma mark -
+#pragma mark MKAnnotation Protocal
+
+- (CLLocationCoordinate2D)coordinate
+{
+    CLLocationDegrees latitude = [self.latitude doubleValue];
+	CLLocationDegrees longitude = [self.longitude doubleValue];
+    return CLLocationCoordinate2DMake(latitude, longitude);
+}
+
+- (NSString *)title
+{
+	return self.formatted_address;
+}
+
+- (NSString *)subtitle
+{
+    NSArray* users = [self users];
+    return [NSString stringWithFormat:@"%d", [users count]];
+}
 
 
 

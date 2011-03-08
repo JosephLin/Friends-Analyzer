@@ -25,7 +25,7 @@
 		7C4DD51C131D852A006C69CF /* MainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C4DD51A131D852A006C69CF /* MainMenuViewController.xib */; };
 		7C74C55813219060003258AC /* Horoscope.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C74C55713219060003258AC /* Horoscope.plist */; };
 		7C83D9D313256BA10059BBF0 /* LocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C83D9D113256BA10059BBF0 /* LocationViewController.m */; };
-		7C83D9D413256BA10059BBF0 /* HometownViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C83D9D213256BA10059BBF0 /* HometownViewController.xib */; };
+		7C83D9D413256BA10059BBF0 /* LocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C83D9D213256BA10059BBF0 /* LocationViewController.xib */; };
 		7C83D9D613256D4B0059BBF0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C83D9D513256D4B0059BBF0 /* MapKit.framework */; };
 		7C83D9D9132574290059BBF0 /* LocationName.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C83D9D8132574290059BBF0 /* LocationName.m */; };
 		7C83D9DC1325742A0059BBF0 /* Geocode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C83D9DB1325742A0059BBF0 /* Geocode.m */; };
@@ -89,7 +89,7 @@
 		7C74C55713219060003258AC /* Horoscope.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Horoscope.plist; sourceTree = "<group>"; };
 		7C83D9D013256BA10059BBF0 /* LocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationViewController.h; sourceTree = "<group>"; };
 		7C83D9D113256BA10059BBF0 /* LocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationViewController.m; sourceTree = "<group>"; };
-		7C83D9D213256BA10059BBF0 /* HometownViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HometownViewController.xib; sourceTree = "<group>"; };
+		7C83D9D213256BA10059BBF0 /* LocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationViewController.xib; sourceTree = "<group>"; };
 		7C83D9D513256D4B0059BBF0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		7C83D9D7132574290059BBF0 /* LocationName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationName.h; sourceTree = "<group>"; };
 		7C83D9D8132574290059BBF0 /* LocationName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationName.m; sourceTree = "<group>"; };
@@ -304,7 +304,7 @@
 			children = (
 				7C83D9D013256BA10059BBF0 /* LocationViewController.h */,
 				7C83D9D113256BA10059BBF0 /* LocationViewController.m */,
-				7C83D9D213256BA10059BBF0 /* HometownViewController.xib */,
+				7C83D9D213256BA10059BBF0 /* LocationViewController.xib */,
 			);
 			name = Hometown;
 			sourceTree = "<group>";
@@ -487,7 +487,7 @@
 				7C13AF8A132149E8001FD36C /* MainWindow-iPad.xib in Resources */,
 				7C13AF9013214C8C001FD36C /* BirthdayViewController.xib in Resources */,
 				7C74C55813219060003258AC /* Horoscope.plist in Resources */,
-				7C83D9D413256BA10059BBF0 /* HometownViewController.xib in Resources */,
+				7C83D9D413256BA10059BBF0 /* LocationViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

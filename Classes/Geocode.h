@@ -34,9 +34,9 @@
 @property (nonatomic, retain) NSNumber * latitude;
 @property (nonatomic, retain) NSNumber * longitude;
 @property (nonatomic, retain) NSSet * locationNames;
-@property (nonatomic, retain) User * userHometown;
-@property (nonatomic, retain) User * userLocation;
-@property (nonatomic, retain) Work * workLocation;
+@property (nonatomic, retain) NSSet * userHometowns;
+@property (nonatomic, retain) NSSet * userLocations;
+@property (nonatomic, retain) NSSet * workLocations;
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 

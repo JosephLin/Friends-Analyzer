@@ -23,9 +23,9 @@
 @dynamic latitude;
 @dynamic longitude;
 @dynamic locationNames;
-@dynamic userHometown;
-@dynamic userLocation;
-@dynamic workLocation;
+@dynamic userHometowns;
+@dynamic userLocations;
+@dynamic workLocations;
 
 
 

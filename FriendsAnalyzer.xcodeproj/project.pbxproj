@@ -62,6 +62,8 @@
 		7CC5B148131D739B00FEA4DE /* Work.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B144131D739B00FEA4DE /* Work.m */; };
 		7CC5B187131D764700FEA4DE /* EnhancedManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B186131D764700FEA4DE /* EnhancedManagedObject.m */; };
 		7CC5B1B1131D797D00FEA4DE /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B1B0131D797D00FEA4DE /* NSDate+Utilities.m */; };
+		7CF0CC681327F0E3006C5693 /* HometownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF0CC671327F0E2006C5693 /* HometownViewController.m */; };
+		7CF0CC6B1327F3DC006C5693 /* UserLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF0CC6A1327F3DB006C5693 /* UserLocationViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -157,6 +159,10 @@
 		7CC5B186131D764700FEA4DE /* EnhancedManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnhancedManagedObject.m; sourceTree = "<group>"; };
 		7CC5B1AF131D797D00FEA4DE /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
 		7CC5B1B0131D797D00FEA4DE /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
+		7CF0CC661327F0E2006C5693 /* HometownViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HometownViewController.h; sourceTree = "<group>"; };
+		7CF0CC671327F0E2006C5693 /* HometownViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HometownViewController.m; sourceTree = "<group>"; };
+		7CF0CC691327F3DB006C5693 /* UserLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLocationViewController.h; sourceTree = "<group>"; };
+		7CF0CC6A1327F3DB006C5693 /* UserLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLocationViewController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* FriendsAnalyzer-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "FriendsAnalyzer-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -308,6 +314,10 @@
 				7C83D9D013256BA10059BBF0 /* LocationViewController.h */,
 				7C83D9D113256BA10059BBF0 /* LocationViewController.m */,
 				7C83D9D213256BA10059BBF0 /* LocationViewController.xib */,
+				7CF0CC661327F0E2006C5693 /* HometownViewController.h */,
+				7CF0CC671327F0E2006C5693 /* HometownViewController.m */,
+				7CF0CC691327F3DB006C5693 /* UserLocationViewController.h */,
+				7CF0CC6A1327F3DB006C5693 /* UserLocationViewController.m */,
 			);
 			name = Hometown;
 			sourceTree = "<group>";
@@ -538,6 +548,8 @@
 				7C83D9DC1325742A0059BBF0 /* Geocode.m in Sources */,
 				7C83D9E5132580AF0059BBF0 /* ForwardGeocodingOperation.m in Sources */,
 				7C9E73011326E25E007FF56C /* FBUserOperation.m in Sources */,
+				7CF0CC681327F0E3006C5693 /* HometownViewController.m in Sources */,
+				7CF0CC6B1327F3DC006C5693 /* UserLocationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

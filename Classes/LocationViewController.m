@@ -15,7 +15,7 @@
 @synthesize loadingLabel, activityIndicator, progressView;
 @synthesize tableView, mapView;
 @synthesize fetchedResultController;
-
+@synthesize locationKeyPath, locationGeocodeKeyPath, userKeyPath;
 
 #pragma mark - View lifecycle
 
@@ -34,8 +34,6 @@
     [segmentedControl release];
     
     [self parseLocations];
-    
-    
 }
 
 - (void)viewDidUnload
@@ -56,6 +54,9 @@
     [tableView release];
     [mapView release];
     [fetchedResultController release];
+    [locationKeyPath release];
+    [locationGeocodeKeyPath release];
+    [userKeyPath release];
     [queue cancelAllOperations];
     [queue release];
     [super dealloc];
@@ -139,12 +140,16 @@
 	NSMutableArray* opArray = [NSMutableArray arrayWithCapacity:total];
 	for ( User* user in allUsers )
 	{
-        if ( !user.geocodeHometown && user.hometown )   // has hometown name but no geocode.
+        NSString* locationName = [user valueForKeyPath:locationKeyPath];
+        id locationGeocode = [user valueForKeyPath:locationGeocodeKeyPath];
+
+        if ( !locationGeocode && locationName )
         {
-            ForwardGeocodingOperation* op = [[ForwardGeocodingOperation alloc] initWithQuery:user.hometown 
-                                                                                    delegate:nil];
+            //// Has location name but no geocode. ////
+            
+            ForwardGeocodingOperation* op = [[ForwardGeocodingOperation alloc] initWithQuery:locationName delegate:nil];
             op.object = user;
-            op.keyPath = @"geocodeHometown";
+            op.keyPath = locationGeocodeKeyPath;
             [opArray addObject:op];
             [op release];
         }
@@ -223,7 +228,8 @@
     Geocode* geocode = [self.fetchedResultController objectAtIndexPath:indexPath];
     cell.textLabel.text = geocode.formatted_address;
     
-    cell.detailTextLabel.text = [geocode subtitle];
+    NSSet* users = [geocode valueForKeyPath:userKeyPath];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [users count]];
     
     return cell;
 }
@@ -253,10 +259,12 @@
 	[[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
 
     Geocode* geocode = [self.fetchedResultController objectAtIndexPath:indexPath];
-    NSArray* users = [geocode users];
-
+    NSSet* users = [geocode valueForKeyPath:userKeyPath];
+    
+    
     GenericTableViewController* childVC = [[GenericTableViewController alloc] init];
-	childVC.userArray = users;
+    NSSortDescriptor* sortdescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+    childVC.userArray = [users sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortdescriptor]];;
 	[self.navigationController pushViewController:childVC animated:YES];
 	[childVC release];
 }
@@ -272,7 +280,7 @@
         NSFetchRequest* fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
         [fetchRequest setEntity:[Geocode entity]];
         
-        NSPredicate* predicate = [NSPredicate predicateWithFormat:@"userHometown != nil"];
+        NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%K.@count != 0", userKeyPath];
         [fetchRequest setPredicate:predicate];
         
         NSSortDescriptor* sortDescriptor1 = [NSSortDescriptor sortDescriptorWithKey:@"country" ascending:YES];

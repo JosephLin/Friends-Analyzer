@@ -10,6 +10,8 @@
 #import "FriendsAnalyzerAppDelegate.h"
 #import "NSDate+Utilities.h"
 #import "CategorizedTableViewController.h"
+#import "LocationViewController.h"
+
 
 @implementation MainMenuViewController
 
@@ -126,6 +128,10 @@
 	{
 		((CategorizedTableViewController*)childVC).property = [[menuStructureArray objectAtIndex:indexPath.row] objectForKey:@"property"];
 	}
+//    else if ( [childVC isKindOfClass:[Loca class]] )
+//	{
+//		((CategorizedTableViewController*)childVC).property = [[menuStructureArray objectAtIndex:indexPath.row] objectForKey:@"property"];
+//	}
     [self.navigationController pushViewController:childVC animated:YES];
 }
 

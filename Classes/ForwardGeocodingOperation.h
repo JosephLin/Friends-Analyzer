@@ -19,12 +19,17 @@
 	NSString* query;
     NSString* status;
 	Geocode* geocode;
+
+    id object;
+    NSString* keyPath;
 }
 
 @property (nonatomic, assign) id <ForwardGeocodingOperationDelegate> delegate;
 @property (nonatomic, retain) NSString* query;
 @property (nonatomic, retain) NSString* status;
 @property (nonatomic, retain) Geocode* geocode;
+@property (nonatomic, retain) id object;
+@property (nonatomic, retain) NSString* keyPath;
 
 - (id)initWithQuery:(NSString*)theQuery delegate:(id <ForwardGeocodingOperationDelegate>)theDelegate;
 

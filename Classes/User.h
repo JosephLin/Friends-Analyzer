@@ -9,6 +9,7 @@
 #import <CoreData/CoreData.h>
 #import "EnhancedManagedObject.h"
 
+@class Geocode;
 
 @interface User :  EnhancedManagedObject  
 {
@@ -37,11 +38,12 @@
 @property (nonatomic, retain) NSString * locale;
 @property (nonatomic, retain) NSDate * updated_time;
 @property (nonatomic, retain) NSArray * friends;
+@property (nonatomic, retain) Geocode * geocodeHometown;
+@property (nonatomic, retain) Geocode * geocodeLocation;
 
 @property (nonatomic, retain) NSNumber * age;
 @property (nonatomic, retain) NSNumber * ageGroup;
 
-@property (nonatomic, retain, readonly) NSArray * hometownGeocode;
 
 
 + (User*)userWithID:(NSString*)theID;

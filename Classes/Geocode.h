@@ -17,6 +17,8 @@
 
 
 @class LocationName;
+@class User;
+@class Work;
 
 @interface Geocode : EnhancedManagedObject <MKAnnotation>
 {
@@ -31,7 +33,10 @@
 @property (nonatomic, retain) NSString * sublocality;
 @property (nonatomic, retain) NSNumber * latitude;
 @property (nonatomic, retain) NSNumber * longitude;
-@property (nonatomic, retain) NSSet* locationNames;
+@property (nonatomic, retain) NSSet * locationNames;
+@property (nonatomic, retain) User * userHometown;
+@property (nonatomic, retain) User * userLocation;
+@property (nonatomic, retain) Work * workLocation;
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 

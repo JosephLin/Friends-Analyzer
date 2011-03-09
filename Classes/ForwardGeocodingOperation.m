@@ -23,7 +23,7 @@
 @implementation ForwardGeocodingOperation
 
 @synthesize delegate, query, status, geocode;
-
+@synthesize object, keyPath;
 
 
 - (id)initWithQuery:(NSString*)theQuery delegate:(id <ForwardGeocodingOperationDelegate>)theDelegate
@@ -120,13 +120,15 @@
                 }
             }
         }
+        
+        if ( object && keyPath )
+        {
+            [object setValue:geocode forKeyPath:keyPath];
+        }
     }
 
 	[pool release];
 }
-
-
-
 
 
 

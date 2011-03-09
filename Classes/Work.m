@@ -8,6 +8,7 @@
 
 #import "Work.h"
 #import "User.h"
+#import "Geocode.h"
 #import "NSDate+Utilities.h"
 
 @implementation Work 
@@ -16,6 +17,7 @@
 @dynamic location;
 @dynamic start_date;
 @dynamic user;
+@dynamic geocodeLocation;
 
 
 + (Work*)insertWorkWithDictionary:(NSDictionary*)dict

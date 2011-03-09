@@ -16,7 +16,6 @@
 @synthesize tableView, mapView;
 @synthesize fetchedResultController;
 
-@synthesize sortedKeys, userCountsDict;
 
 #pragma mark - View lifecycle
 
@@ -57,7 +56,6 @@
     [tableView release];
     [mapView release];
     [fetchedResultController release];
-    [userCountsDict release];
     [queue cancelAllOperations];
     [queue release];
     [super dealloc];
@@ -141,10 +139,12 @@
 	NSMutableArray* opArray = [NSMutableArray arrayWithCapacity:total];
 	for ( User* user in allUsers )
 	{
-        if ( ![user.hometownGeocode count] && user.hometown )
+        if ( !user.geocodeHometown && user.hometown )   // has hometown name but no geocode.
         {
             ForwardGeocodingOperation* op = [[ForwardGeocodingOperation alloc] initWithQuery:user.hometown 
                                                                                     delegate:nil];
+            op.object = user;
+            op.keyPath = @"geocodeHometown";
             [opArray addObject:op];
             [op release];
         }
@@ -173,7 +173,6 @@
     }
     else
     {
-        [self loadDict];
         [self showTableView];
 
     }
@@ -190,30 +189,8 @@
 		if ( pending == 0 )
 		{
             [self performSelectorOnMainThread:@selector(showTableView) withObject:nil waitUntilDone:YES];
-            [self loadDict];
-            
 		}
 	}
-}
-
-- (void)loadDict
-{
-    NSArray* array = [[User allUsers] valueForKeyPath:@"@distinctUnionOfArrays.hometownGeocode.formatted_address"];	
-
-    self.sortedKeys = [array sortedArrayUsingComparator:(NSComparator)^(id obj1, id obj2){
-		return [obj1 caseInsensitiveCompare:obj2]; }];
-
-    NSLog(@"sortedKeys: %@", sortedKeys);
-
-	self.userCountsDict = [NSMutableDictionary dictionaryWithCapacity:[sortedKeys count]];
-    
-    for ( id key in sortedKeys )
-    {
-        NSNumber* count = [NSNumber numberWithInteger:[User userCountsForKey:@"hometownGeocode" value:key]];
-		[userCountsDict setObject:count forKey:key];
-    }
-    
-    NSLog(@"userCountsDict: %@", userCountsDict);
 }
 
 
@@ -294,6 +271,9 @@
     {
         NSFetchRequest* fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
         [fetchRequest setEntity:[Geocode entity]];
+        
+        NSPredicate* predicate = [NSPredicate predicateWithFormat:@"userHometown != nil"];
+        [fetchRequest setPredicate:predicate];
         
         NSSortDescriptor* sortDescriptor1 = [NSSortDescriptor sortDescriptorWithKey:@"country" ascending:YES];
         NSSortDescriptor* sortDescriptor2 = [NSSortDescriptor sortDescriptorWithKey:@"administrative_area_level_1" ascending:YES];

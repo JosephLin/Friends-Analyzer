@@ -9,6 +9,7 @@
 #import "Geocode.h"
 #import "LocationName.h"
 #import "User.h"
+#import "Work.h"
 
 @implementation Geocode
 
@@ -22,7 +23,9 @@
 @dynamic latitude;
 @dynamic longitude;
 @dynamic locationNames;
-
+@dynamic userHometown;
+@dynamic userLocation;
+@dynamic workLocation;
 
 
 

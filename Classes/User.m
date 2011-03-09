@@ -9,6 +9,7 @@
 #import "User.h"
 #import "Education.h"
 #import "Work.h"
+#import "Geocode.h"
 #import "NSDate+Utilities.h"
 
 static NSArray* monthArray = nil;
@@ -36,11 +37,12 @@ static NSArray* monthArray = nil;
 @dynamic locale;
 @dynamic updated_time;
 @dynamic friends;
+@dynamic geocodeHometown;
+@dynamic geocodeLocation;
 
 @dynamic age;
 @dynamic ageGroup;
 
-@dynamic hometownGeocode;
 
 
 #pragma -

@@ -308,7 +308,7 @@
     BOOL success = [controller performFetch:&error];
     NSLog(@"Fetch successed? %d", success);
     
-    return controller;
+    return [controller autorelease];
 }
 
 

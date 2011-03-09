@@ -128,10 +128,6 @@
 	{
 		((CategorizedTableViewController*)childVC).property = [[menuStructureArray objectAtIndex:indexPath.row] objectForKey:@"property"];
 	}
-//    else if ( [childVC isKindOfClass:[Loca class]] )
-//	{
-//		((CategorizedTableViewController*)childVC).property = [[menuStructureArray objectAtIndex:indexPath.row] objectForKey:@"property"];
-//	}
     [self.navigationController pushViewController:childVC animated:YES];
 }
 

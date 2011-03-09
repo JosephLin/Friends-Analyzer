@@ -23,6 +23,8 @@
     NSString* locationKeyPath;
     NSString* locationGeocodeKeyPath;
     NSString* userKeyPath;
+    
+    NSArray* mapAnnotations;
 
 	NSOperationQueue* queue;
 	NSInteger total;
@@ -38,6 +40,7 @@
 @property (nonatomic, retain) NSString* locationKeyPath;
 @property (nonatomic, retain) NSString* locationGeocodeKeyPath;
 @property (nonatomic, retain) NSString* userKeyPath;
+@property (nonatomic, retain) NSArray* mapAnnotations;
 
 
 - (void)showTableView;

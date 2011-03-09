@@ -8,10 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import <CoreLocation/CoreLocation.h>
-#import <MapKit/MapKit.h>
 #import "EnhancedManagedObject.h"
-
+#import <CoreLocation/CoreLocation.h>
 
 #define kUnknownGeocodeCoordinate  99999
 
@@ -20,7 +18,7 @@
 @class User;
 @class Work;
 
-@interface Geocode : EnhancedManagedObject <MKAnnotation>
+@interface Geocode : EnhancedManagedObject
 {
 }
 
@@ -38,18 +36,12 @@
 @property (nonatomic, retain) NSSet * userLocations;
 @property (nonatomic, retain) NSSet * workLocations;
 
-@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
-
 + (Geocode*)geocodeWithLatitude:(NSNumber*)latitude longitude:(NSNumber*)longitude;
 + (Geocode*)existingOrNewGeocodeWithDictionary:(NSDictionary*)dict;
 + (Geocode*)geocodeForName:(NSString*)locationName;
 + (NSArray*)allGeocodes;
-- (NSArray*)users;
 + (Geocode*)unknownGeocode;
-
-//// MKAnnotation Protocal ////
-- (NSString *)title;
-- (NSString *)subtitle;
+- (CLLocationCoordinate2D)coordinate;
 
 @end
 

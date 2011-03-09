@@ -112,24 +112,6 @@
     return;
 }
 
-- (NSArray*)users
-{
-    NSFetchRequest* request = [[[NSFetchRequest alloc] init] autorelease];
-	[request setEntity:[User entity]];
-	
-    NSArray* names = [self.locationNames valueForKeyPath:@"@distinctUnionOfObjects.name"];
-	NSPredicate* predicate = [NSPredicate predicateWithFormat:@"hometown IN %@", names];
-	[request setPredicate:predicate];
-	
-    NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
-    [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
-
-	NSError* error = nil;
-	NSArray* results = [[self managedObjectContext] executeFetchRequest:request error:&error];
-	
-	return results;
-}
-
 + (Geocode*)unknownGeocode
 {
     NSNumber* unknownCoordinate = [NSNumber numberWithInt:kUnknownGeocodeCoordinate];
@@ -149,25 +131,11 @@
 	return geocode;
 }
 
-#pragma mark -
-#pragma mark MKAnnotation Protocal
-
 - (CLLocationCoordinate2D)coordinate
 {
     CLLocationDegrees latitude = [self.latitude doubleValue];
 	CLLocationDegrees longitude = [self.longitude doubleValue];
     return CLLocationCoordinate2DMake(latitude, longitude);
-}
-
-- (NSString *)title
-{
-	return self.formatted_address;
-}
-
-- (NSString *)subtitle
-{
-    NSArray* users = [self users];
-    return [NSString stringWithFormat:@"%d", [users count]];
 }
 
 

@@ -64,6 +64,7 @@
 		7CC5B1B1131D797D00FEA4DE /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B1B0131D797D00FEA4DE /* NSDate+Utilities.m */; };
 		7CF0CC681327F0E3006C5693 /* HometownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF0CC671327F0E2006C5693 /* HometownViewController.m */; };
 		7CF0CC6B1327F3DC006C5693 /* UserLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF0CC6A1327F3DB006C5693 /* UserLocationViewController.m */; };
+		7CF0CC6E1327FEF6006C5693 /* MapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF0CC6D1327FEF2006C5693 /* MapAnnotation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -163,6 +164,8 @@
 		7CF0CC671327F0E2006C5693 /* HometownViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HometownViewController.m; sourceTree = "<group>"; };
 		7CF0CC691327F3DB006C5693 /* UserLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLocationViewController.h; sourceTree = "<group>"; };
 		7CF0CC6A1327F3DB006C5693 /* UserLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLocationViewController.m; sourceTree = "<group>"; };
+		7CF0CC6C1327FEF1006C5693 /* MapAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapAnnotation.h; sourceTree = "<group>"; };
+		7CF0CC6D1327FEF2006C5693 /* MapAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAnnotation.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* FriendsAnalyzer-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "FriendsAnalyzer-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -401,6 +404,8 @@
 				7C83D9DB1325742A0059BBF0 /* Geocode.m */,
 				7C83D9D7132574290059BBF0 /* LocationName.h */,
 				7C83D9D8132574290059BBF0 /* LocationName.m */,
+				7CF0CC6C1327FEF1006C5693 /* MapAnnotation.h */,
+				7CF0CC6D1327FEF2006C5693 /* MapAnnotation.m */,
 			);
 			name = "Data Models";
 			sourceTree = "<group>";
@@ -550,6 +555,7 @@
 				7C9E73011326E25E007FF56C /* FBUserOperation.m in Sources */,
 				7CF0CC681327F0E3006C5693 /* HometownViewController.m in Sources */,
 				7CF0CC6B1327F3DC006C5693 /* UserLocationViewController.m in Sources */,
+				7CF0CC6E1327FEF6006C5693 /* MapAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

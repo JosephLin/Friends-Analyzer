@@ -9,6 +9,7 @@
 #import "LocationViewController.h"
 #import "GenericTableViewController.h"
 #import "User.h"
+#import "MapAnnotation.h"
 
 @implementation LocationViewController
 
@@ -16,6 +17,7 @@
 @synthesize tableView, mapView;
 @synthesize fetchedResultController;
 @synthesize locationKeyPath, locationGeocodeKeyPath, userKeyPath;
+@synthesize mapAnnotations;
 
 #pragma mark - View lifecycle
 
@@ -57,6 +59,7 @@
     [locationKeyPath release];
     [locationGeocodeKeyPath release];
     [userKeyPath release];
+    [mapAnnotations release];
     [queue cancelAllOperations];
     [queue release];
     [super dealloc];
@@ -70,6 +73,7 @@
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
 }
+
 
 #pragma mark -
 #pragma mark User Interface
@@ -113,9 +117,7 @@
     }
     [tableView removeFromSuperview];
     
-    NSArray* fetchedObjects = [self.fetchedResultController fetchedObjects];
-
-    [mapView addAnnotations:fetchedObjects];
+    [mapView addAnnotations:self.mapAnnotations];
     mapView.delegate = self;
     
     [self zoomToFitMapAnnotations];
@@ -127,6 +129,31 @@
 	progressView.progress = (float)(total - pending) / total;
 	
 	NSLog(@"pending = %d", pending);
+}
+
+- (NSArray*)mapAnnotations
+{
+    if ( !mapAnnotations )
+    {
+        NSArray* fetchedObjects = [self.fetchedResultController fetchedObjects];
+
+        NSMutableArray* array = [NSMutableArray arrayWithCapacity:[fetchedObjects count]];
+        
+        for ( Geocode* geocode in fetchedObjects)
+        {
+            MapAnnotation* annotation = [[MapAnnotation alloc] init];
+            annotation.coordinate = [geocode coordinate];
+            annotation.title = geocode.formatted_address;
+            annotation.users = [geocode valueForKeyPath:userKeyPath];
+            
+            [array addObject:annotation];
+            [annotation release];
+        }
+
+        mapAnnotations = [[NSArray alloc] initWithArray:array];
+    }
+    
+    return mapAnnotations;
 }
 
 
@@ -330,14 +357,14 @@
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
-    Geocode* geocode = view.annotation;
-    NSArray* users = [geocode users];
-    
     GenericTableViewController* childVC = [[GenericTableViewController alloc] init];
-	childVC.userArray = users;
+
+    NSSortDescriptor* sortdescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+    MapAnnotation* annotation = view.annotation;
+    childVC.userArray = [annotation.users sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortdescriptor]];
+
 	[self.navigationController pushViewController:childVC animated:YES];
 	[childVC release];
-
 }
 
 

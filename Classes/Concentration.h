@@ -17,6 +17,9 @@
 @property (nonatomic, retain) NSManagedObject * education;
 
 + (Concentration*)insertConcentrationWithDictionary:(NSDictionary*)dict;
++ (NSArray*)concentrationsForName:(NSString*)theName;
++ (NSUInteger)concentrationCountsForName:(NSString*)theName;
++ (NSArray*)possibleValues;
 
 @end
 

@@ -66,6 +66,7 @@
 		7CC78ED713296F0900CA2B45 /* EducationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CC78ED513296F0900CA2B45 /* EducationViewController.xib */; };
 		7CC78EDA1329732100CA2B45 /* CategorizedEducationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78ED91329732000CA2B45 /* CategorizedEducationViewController.m */; };
 		7CC78EDD13297C1A00CA2B45 /* CategorizedUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78EDC13297C1900CA2B45 /* CategorizedUserTableViewController.m */; };
+		7CC78EE71329858200CA2B45 /* ConcentrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78EE61329858000CA2B45 /* ConcentrationViewController.m */; };
 		7CF0CC681327F0E3006C5693 /* HometownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF0CC671327F0E2006C5693 /* HometownViewController.m */; };
 		7CF0CC6B1327F3DC006C5693 /* UserLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF0CC6A1327F3DB006C5693 /* UserLocationViewController.m */; };
 		7CF0CC6E1327FEF6006C5693 /* MapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF0CC6D1327FEF2006C5693 /* MapAnnotation.m */; };
@@ -168,10 +169,12 @@
 		7CC78ED313296F0900CA2B45 /* EducationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EducationViewController.h; sourceTree = "<group>"; };
 		7CC78ED413296F0900CA2B45 /* EducationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EducationViewController.m; sourceTree = "<group>"; };
 		7CC78ED513296F0900CA2B45 /* EducationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EducationViewController.xib; sourceTree = "<group>"; };
-		7CC78ED81329732000CA2B45 /* CategorizedEducationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = CategorizedEducationViewController.h; sourceTree = "<group>"; };
+		7CC78ED81329732000CA2B45 /* CategorizedEducationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategorizedEducationViewController.h; sourceTree = "<group>"; };
 		7CC78ED91329732000CA2B45 /* CategorizedEducationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategorizedEducationViewController.m; sourceTree = "<group>"; };
 		7CC78EDB13297C1900CA2B45 /* CategorizedUserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategorizedUserTableViewController.h; sourceTree = "<group>"; };
 		7CC78EDC13297C1900CA2B45 /* CategorizedUserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategorizedUserTableViewController.m; sourceTree = "<group>"; };
+		7CC78EE51329857F00CA2B45 /* ConcentrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcentrationViewController.h; sourceTree = "<group>"; };
+		7CC78EE61329858000CA2B45 /* ConcentrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcentrationViewController.m; sourceTree = "<group>"; };
 		7CF0CC661327F0E2006C5693 /* HometownViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HometownViewController.h; sourceTree = "<group>"; };
 		7CF0CC671327F0E2006C5693 /* HometownViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HometownViewController.m; sourceTree = "<group>"; };
 		7CF0CC691327F3DB006C5693 /* UserLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLocationViewController.h; sourceTree = "<group>"; };
@@ -476,6 +479,8 @@
 				7CC78ED513296F0900CA2B45 /* EducationViewController.xib */,
 				7CC78ED81329732000CA2B45 /* CategorizedEducationViewController.h */,
 				7CC78ED91329732000CA2B45 /* CategorizedEducationViewController.m */,
+				7CC78EE51329857F00CA2B45 /* ConcentrationViewController.h */,
+				7CC78EE61329858000CA2B45 /* ConcentrationViewController.m */,
 			);
 			name = Education;
 			sourceTree = "<group>";
@@ -596,6 +601,7 @@
 				7CC78ED613296F0900CA2B45 /* EducationViewController.m in Sources */,
 				7CC78EDA1329732100CA2B45 /* CategorizedEducationViewController.m in Sources */,
 				7CC78EDD13297C1A00CA2B45 /* CategorizedUserTableViewController.m in Sources */,
+				7CC78EE71329858200CA2B45 /* ConcentrationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

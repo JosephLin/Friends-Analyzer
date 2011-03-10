@@ -49,7 +49,7 @@
 	NSFetchRequest* request = [[[NSFetchRequest alloc] init] autorelease];
 	[request setEntity:[self entity]];
 	
-	NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%K like %@", key, value];
+	NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%K like[c] %@", key, value];
 	[request setPredicate:predicate];
 	
 	NSError* error = nil;
@@ -63,7 +63,7 @@
 	NSFetchRequest* request = [[[NSFetchRequest alloc] init] autorelease];
 	[request setEntity:[self entity]];
 	
-	NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%K like %@", key, value];
+	NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%K like[c] %@", key, value];
 	[request setPredicate:predicate];
 	
 	NSError* error = nil;

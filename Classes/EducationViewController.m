@@ -8,7 +8,7 @@
 
 #import "EducationViewController.h"
 #import "CategorizedEducationViewController.h"
-
+#import "ConcentrationViewController.h"
 
 @implementation EducationViewController
 
@@ -72,26 +72,30 @@
 {
 	[[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
 	
-	CategorizedEducationViewController* childVC = [[CategorizedEducationViewController alloc] init];
-    childVC.property = [self propertyNameForRowAtIndexPath:indexPath];
+    UIViewController* childVC = nil;
+    
+    switch (indexPath.row)
+    {
+        case 1:
+            childVC = [[CategorizedEducationViewController alloc] init];
+            ((CategorizedEducationViewController*)childVC).property = @"degree";
+            break;
+
+        case 2:
+            childVC = [[CategorizedEducationViewController alloc] init];
+            ((CategorizedEducationViewController*)childVC).property = @"school";
+            break;
+            
+        default:
+            childVC = [[ConcentrationViewController alloc] init];
+            break;
+    }
+    
 	[self.navigationController pushViewController:childVC animated:YES];
 	[childVC release];
 }
 
-- (NSString*)propertyNameForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    switch (indexPath.row)
-    {
-        case 1:
-            return @"degree";
-            
-        case 2:
-            return @"school";
-            
-        default:
-            return nil;
-    }
-}
+
 
 
 

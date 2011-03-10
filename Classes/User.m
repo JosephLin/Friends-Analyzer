@@ -108,6 +108,23 @@ static NSArray* monthArray = nil;
 #pragma mark -
 #pragma mark Load/Save
 
++ (NSArray*)allUsers
+{
+	NSFetchRequest* request = [[[NSFetchRequest alloc] init] autorelease];
+	[request setEntity:[self entity]];
+	
+	NSError* error;
+	NSArray* results = [[self managedObjectContext] executeFetchRequest:request error:&error];
+	
+	return results;
+}
+
++ (User*)currentUser
+{
+	NSString* currentUserID = [[NSUserDefaults standardUserDefaults] stringForKey:@"CurrentUserID"];
+	return (currentUserID) ? [self userWithID:currentUserID] : nil;
+}
+
 + (User*)userWithID:(NSString*)theID
 {
 	NSFetchRequest* request = [[[NSFetchRequest alloc] init] autorelease];
@@ -241,6 +258,10 @@ static NSArray* monthArray = nil;
 	}
 }
 
+
+#pragma mark - 
+#pragma mark For Table View
+
 + (NSArray*)usersForKey:(NSString*)key value:(NSString*)value
 {
 	NSFetchRequest* request = [[[NSFetchRequest alloc] init] autorelease];
@@ -267,23 +288,6 @@ static NSArray* monthArray = nil;
 	NSUInteger count = [[self managedObjectContext] countForFetchRequest:request error:&error];
 	
 	return count;
-}
-
-+ (NSArray*)allUsers
-{
-	NSFetchRequest* request = [[[NSFetchRequest alloc] init] autorelease];
-	[request setEntity:[self entity]];
-	
-	NSError* error;
-	NSArray* results = [[self managedObjectContext] executeFetchRequest:request error:&error];
-	
-	return results;
-}
-
-+ (User*)currentUser
-{
-	NSString* currentUserID = [[NSUserDefaults standardUserDefaults] stringForKey:@"CurrentUserID"];
-	return (currentUserID) ? [self userWithID:currentUserID] : nil;
 }
 
 + (NSArray*)possibleValuesForCategory:(NSString*)category

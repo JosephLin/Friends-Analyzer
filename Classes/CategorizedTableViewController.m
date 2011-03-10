@@ -7,14 +7,12 @@
 //
 
 #import "CategorizedTableViewController.h"
-#import "User.h"
 #import "GenericTableViewController.h"
 
 @implementation CategorizedTableViewController
 
-@synthesize property;
 @synthesize sortedKeys, userCountsDict;
-
+@synthesize segmentedControl;
 
 
 #pragma mark -
@@ -22,29 +20,17 @@
 
 
 - (void)viewDidLoad
-{
+{    
+    self.navigationItem.titleView = self.segmentedControl;
+
     [super viewDidLoad];
-
-	self.sortedKeys = [[User possibleValuesForCategory:property] valueForKeyPath:[NSString stringWithFormat:@"@unionOfObjects.%@", property]];
-	
-    
-	self.userCountsDict = [NSMutableDictionary dictionaryWithCapacity:[sortedKeys count]];
-
-    for ( id key in sortedKeys )
-    {
-        NSNumber* count = [NSNumber numberWithInteger:[User userCountsForKey:property value:key]];
-		[userCountsDict setObject:count forKey:key];
-    }
-
-    [self.tableView reloadData];
 }
 
 - (void)dealloc
 {
-	[property release];
 	[sortedKeys release];
 	[userCountsDict release];
-	
+	[segmentedControl release];
     [super dealloc];
 }
 
@@ -54,15 +40,20 @@
 }
 
 
+- (void)segmentedControlValueChanged:(UISegmentedControl*)sender
+{
+    self.sortedKeys = nil;
+	[self.tableView reloadData];
+}
+
 
 #pragma mark -
-#pragma mark Table view data source
+#pragma mark Table View
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [sortedKeys count];
+    return [self.sortedKeys count];
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -73,11 +64,10 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
     }
     
-	NSString* key = [sortedKeys objectAtIndex:indexPath.row];
+	NSString* key = [self.sortedKeys objectAtIndex:indexPath.row];
     cell.textLabel.text = key;
 
-	NSNumber* count = [userCountsDict objectForKey:key];
-
+	NSNumber* count = [self.userCountsDict objectForKey:key];
 	cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [count intValue]];
 
     return cell;
@@ -92,13 +82,50 @@
 	[[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
 	
 	GenericTableViewController* childVC = [[GenericTableViewController alloc] init];
-	NSString* key = [sortedKeys objectAtIndex:indexPath.row];
-	NSArray* users = [User usersForKey:property value:key];
-	childVC.userArray = users;
+	childVC.userArray = [self usersForCellAtIndexPath:indexPath];
 	[self.navigationController pushViewController:childVC animated:YES];
 	[childVC release];
 }
 
+
+#pragma mark - 
+#pragma mark Table View Data Source
+//// Subclass should overload these methods ////
+
+- (NSArray*)sortedKeys
+{
+    return nil;
+}
+
+- (NSDictionary*)userCountsDict
+{
+    return nil;
+}
+
+- (NSArray*)usersForCellAtIndexPath:(NSIndexPath *)indexPath
+{
+    return nil;
+}
+
+
+#pragma mark - 
+#pragma mark Segmented Control
+//// Subclass should overload these methods ////
+
+- (UISegmentedControl*)segmentedControl
+{
+    if ( !segmentedControl )
+    {
+        NSArray* controlItems = [NSArray arrayWithObjects:@"Sort By Name", @"Sort By Number", nil];
+        
+        segmentedControl = [[UISegmentedControl alloc] initWithItems:controlItems];
+        segmentedControl.selectedSegmentIndex = 0;
+        segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+        [segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
+    }
+    return segmentedControl;
+}
 
 
 

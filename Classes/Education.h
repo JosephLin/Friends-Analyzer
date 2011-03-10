@@ -24,6 +24,9 @@
 @property (nonatomic, retain) User * user;
 
 + (Education*)insertEducationWithDictionary:(NSDictionary*)dict;
++ (NSArray*)educationsForKey:(NSString*)key value:(NSString*)value;
++ (NSUInteger)educationCountsForKey:(NSString*)key value:(NSString*)value;
++ (NSArray*)possibleValuesForCategory:(NSString*)category;
 
 @end
 

@@ -19,7 +19,6 @@
 		7C13AF9013214C8C001FD36C /* BirthdayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C13AF8E13214C8C001FD36C /* BirthdayViewController.xib */; };
 		7C37C1A4131EA0FC004EFA64 /* FBRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C37C1A3131EA0FC004EFA64 /* FBRequestOperation.m */; };
 		7C37C30B131EEC91004EFA64 /* NameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C37C309131EEC91004EFA64 /* NameViewController.m */; };
-		7C37C30C131EEC91004EFA64 /* NameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C37C30A131EEC91004EFA64 /* NameViewController.xib */; };
 		7C4DD511131D8081006C69CF /* MenuStructure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C4DD510131D8081006C69CF /* MenuStructure.plist */; };
 		7C4DD51B131D852A006C69CF /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4DD519131D852A006C69CF /* MainMenuViewController.m */; };
 		7C4DD51C131D852A006C69CF /* MainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C4DD51A131D852A006C69CF /* MainMenuViewController.xib */; };
@@ -39,7 +38,6 @@
 		7CA36AE71320648B00B4FAF1 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA36AE01320648B00B4FAF1 /* SBJsonParser.m */; };
 		7CA36AE81320648B00B4FAF1 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA36AE21320648B00B4FAF1 /* SBJsonWriter.m */; };
 		7CC5B0E9131D6F6200FEA4DE /* CategorizedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0B1131D6F6200FEA4DE /* CategorizedTableViewController.m */; };
-		7CC5B0EA131D6F6200FEA4DE /* CategorizedTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CC5B0B2131D6F6200FEA4DE /* CategorizedTableViewController.xib */; };
 		7CC5B0EC131D6F6200FEA4DE /* FacebookClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0B6131D6F6200FEA4DE /* FacebookClient.m */; };
 		7CC5B0EF131D6F6200FEA4DE /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0BD131D6F6200FEA4DE /* Facebook.m */; };
 		7CC5B0F0131D6F6200FEA4DE /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7CC5B0BF131D6F6200FEA4DE /* FBDialog.bundle */; };
@@ -66,7 +64,8 @@
 		7CC78EC5132965A700CA2B45 /* LastUpdateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CC78EC3132965A700CA2B45 /* LastUpdateViewController.xib */; };
 		7CC78ED613296F0900CA2B45 /* EducationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78ED413296F0900CA2B45 /* EducationViewController.m */; };
 		7CC78ED713296F0900CA2B45 /* EducationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CC78ED513296F0900CA2B45 /* EducationViewController.xib */; };
-		7CC78EDA1329732100CA2B45 /* EducationCategorizedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78ED91329732000CA2B45 /* EducationCategorizedTableViewController.m */; };
+		7CC78EDA1329732100CA2B45 /* CategorizedEducationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78ED91329732000CA2B45 /* CategorizedEducationViewController.m */; };
+		7CC78EDD13297C1A00CA2B45 /* CategorizedUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78EDC13297C1900CA2B45 /* CategorizedUserTableViewController.m */; };
 		7CF0CC681327F0E3006C5693 /* HometownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF0CC671327F0E2006C5693 /* HometownViewController.m */; };
 		7CF0CC6B1327F3DC006C5693 /* UserLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF0CC6A1327F3DB006C5693 /* UserLocationViewController.m */; };
 		7CF0CC6E1327FEF6006C5693 /* MapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF0CC6D1327FEF2006C5693 /* MapAnnotation.m */; };
@@ -90,7 +89,6 @@
 		7C37C1A3131EA0FC004EFA64 /* FBRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBRequestOperation.m; sourceTree = "<group>"; };
 		7C37C308131EEC91004EFA64 /* NameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameViewController.h; sourceTree = "<group>"; };
 		7C37C309131EEC91004EFA64 /* NameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameViewController.m; sourceTree = "<group>"; };
-		7C37C30A131EEC91004EFA64 /* NameViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NameViewController.xib; sourceTree = "<group>"; };
 		7C4DD510131D8081006C69CF /* MenuStructure.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MenuStructure.plist; sourceTree = "<group>"; };
 		7C4DD518131D852A006C69CF /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
 		7C4DD519131D852A006C69CF /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
@@ -124,7 +122,6 @@
 		7CA36AE21320648B00B4FAF1 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		7CC5B0B0131D6F6200FEA4DE /* CategorizedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategorizedTableViewController.h; sourceTree = "<group>"; };
 		7CC5B0B1131D6F6200FEA4DE /* CategorizedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategorizedTableViewController.m; sourceTree = "<group>"; };
-		7CC5B0B2131D6F6200FEA4DE /* CategorizedTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategorizedTableViewController.xib; sourceTree = "<group>"; };
 		7CC5B0B5131D6F6200FEA4DE /* FacebookClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookClient.h; sourceTree = "<group>"; };
 		7CC5B0B6131D6F6200FEA4DE /* FacebookClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookClient.m; sourceTree = "<group>"; };
 		7CC5B0BC131D6F6200FEA4DE /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
@@ -171,8 +168,10 @@
 		7CC78ED313296F0900CA2B45 /* EducationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EducationViewController.h; sourceTree = "<group>"; };
 		7CC78ED413296F0900CA2B45 /* EducationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EducationViewController.m; sourceTree = "<group>"; };
 		7CC78ED513296F0900CA2B45 /* EducationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EducationViewController.xib; sourceTree = "<group>"; };
-		7CC78ED81329732000CA2B45 /* EducationCategorizedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EducationCategorizedTableViewController.h; sourceTree = "<group>"; };
-		7CC78ED91329732000CA2B45 /* EducationCategorizedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EducationCategorizedTableViewController.m; sourceTree = "<group>"; };
+		7CC78ED81329732000CA2B45 /* CategorizedEducationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = CategorizedEducationViewController.h; sourceTree = "<group>"; };
+		7CC78ED91329732000CA2B45 /* CategorizedEducationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategorizedEducationViewController.m; sourceTree = "<group>"; };
+		7CC78EDB13297C1900CA2B45 /* CategorizedUserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategorizedUserTableViewController.h; sourceTree = "<group>"; };
+		7CC78EDC13297C1900CA2B45 /* CategorizedUserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategorizedUserTableViewController.m; sourceTree = "<group>"; };
 		7CF0CC661327F0E2006C5693 /* HometownViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HometownViewController.h; sourceTree = "<group>"; };
 		7CF0CC671327F0E2006C5693 /* HometownViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HometownViewController.m; sourceTree = "<group>"; };
 		7CF0CC691327F3DB006C5693 /* UserLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLocationViewController.h; sourceTree = "<group>"; };
@@ -297,7 +296,6 @@
 			children = (
 				7C37C308131EEC91004EFA64 /* NameViewController.h */,
 				7C37C309131EEC91004EFA64 /* NameViewController.m */,
-				7C37C30A131EEC91004EFA64 /* NameViewController.xib */,
 			);
 			name = Name;
 			sourceTree = "<group>";
@@ -318,7 +316,8 @@
 			children = (
 				7CC5B0B0131D6F6200FEA4DE /* CategorizedTableViewController.h */,
 				7CC5B0B1131D6F6200FEA4DE /* CategorizedTableViewController.m */,
-				7CC5B0B2131D6F6200FEA4DE /* CategorizedTableViewController.xib */,
+				7CC78EDB13297C1900CA2B45 /* CategorizedUserTableViewController.h */,
+				7CC78EDC13297C1900CA2B45 /* CategorizedUserTableViewController.m */,
 				7CC5B0D6131D6F6200FEA4DE /* GenericTableViewController.h */,
 				7CC5B0D7131D6F6200FEA4DE /* GenericTableViewController.m */,
 				7CC5B0D8131D6F6200FEA4DE /* GenericTableViewController.xib */,
@@ -475,8 +474,8 @@
 				7CC78ED313296F0900CA2B45 /* EducationViewController.h */,
 				7CC78ED413296F0900CA2B45 /* EducationViewController.m */,
 				7CC78ED513296F0900CA2B45 /* EducationViewController.xib */,
-				7CC78ED81329732000CA2B45 /* EducationCategorizedTableViewController.h */,
-				7CC78ED91329732000CA2B45 /* EducationCategorizedTableViewController.m */,
+				7CC78ED81329732000CA2B45 /* CategorizedEducationViewController.h */,
+				7CC78ED91329732000CA2B45 /* CategorizedEducationViewController.m */,
 			);
 			name = Education;
 			sourceTree = "<group>";
@@ -532,7 +531,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
-				7CC5B0EA131D6F6200FEA4DE /* CategorizedTableViewController.xib in Resources */,
 				7CC5B0F0131D6F6200FEA4DE /* FBDialog.bundle in Resources */,
 				7CC5B0FC131D6F6200FEA4DE /* GenericTableViewController.xib in Resources */,
 				7CC5B0FD131D6F6200FEA4DE /* PieChartColorScheme.plist in Resources */,
@@ -540,7 +538,6 @@
 				7CC5B102131D6F6200FEA4DE /* RootViewController.xib in Resources */,
 				7C4DD511131D8081006C69CF /* MenuStructure.plist in Resources */,
 				7C4DD51C131D852A006C69CF /* MainMenuViewController.xib in Resources */,
-				7C37C30C131EEC91004EFA64 /* NameViewController.xib in Resources */,
 				7C13AF8A132149E8001FD36C /* MainWindow-iPad.xib in Resources */,
 				7C13AF9013214C8C001FD36C /* BirthdayViewController.xib in Resources */,
 				7C74C55813219060003258AC /* Horoscope.plist in Resources */,
@@ -597,7 +594,8 @@
 				7CF0CC6E1327FEF6006C5693 /* MapAnnotation.m in Sources */,
 				7CC78EC4132965A700CA2B45 /* LastUpdateViewController.m in Sources */,
 				7CC78ED613296F0900CA2B45 /* EducationViewController.m in Sources */,
-				7CC78EDA1329732100CA2B45 /* EducationCategorizedTableViewController.m in Sources */,
+				7CC78EDA1329732100CA2B45 /* CategorizedEducationViewController.m in Sources */,
+				7CC78EDD13297C1A00CA2B45 /* CategorizedUserTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,4 +16,6 @@
 
 @property (nonatomic, retain) NSArray* menuItemArray;
 
+- (NSString*)propertyNameForRowAtIndexPath:(NSIndexPath *)indexPath;
+
 @end

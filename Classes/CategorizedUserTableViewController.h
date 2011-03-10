@@ -1,5 +1,5 @@
 //
-//  EducationCategorizedTableViewController.h
+//  CategorizedUserTableViewController.h
 //  FriendsAnalyzer
 //
 //  Created by Joseph Lin on 3/10/11.
@@ -10,7 +10,7 @@
 #import "CategorizedTableViewController.h"
 
 
-@interface CategorizedEducationViewController : CategorizedTableViewController
+@interface CategorizedUserTableViewController : CategorizedTableViewController
 {
     NSString* property;
 }

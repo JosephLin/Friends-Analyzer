@@ -7,8 +7,8 @@
 //
 
 #import "EducationViewController.h"
-#import "User.h"
-#import "GenericTableViewController.h"
+#import "CategorizedEducationViewController.h"
+
 
 @implementation EducationViewController
 
@@ -72,12 +72,25 @@
 {
 	[[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
 	
-//	GenericTableViewController* childVC = [[GenericTableViewController alloc] init];
-//	NSString* key = [sortedKeys objectAtIndex:indexPath.row];
-//	NSArray* users = [User usersForKey:property value:key];
-//	childVC.userArray = users;
-//	[self.navigationController pushViewController:childVC animated:YES];
-//	[childVC release];
+	CategorizedEducationViewController* childVC = [[CategorizedEducationViewController alloc] init];
+    childVC.property = [self propertyNameForRowAtIndexPath:indexPath];
+	[self.navigationController pushViewController:childVC animated:YES];
+	[childVC release];
+}
+
+- (NSString*)propertyNameForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.row)
+    {
+        case 1:
+            return @"degree";
+            
+        case 2:
+            return @"school";
+            
+        default:
+            return nil;
+    }
 }
 
 

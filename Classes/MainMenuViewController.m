@@ -9,7 +9,7 @@
 #import "MainMenuViewController.h"
 #import "FriendsAnalyzerAppDelegate.h"
 #import "NSDate+Utilities.h"
-#import "CategorizedTableViewController.h"
+#import "CategorizedUserTableViewController.h"
 #import "LocationViewController.h"
 
 
@@ -124,9 +124,9 @@
 	
 	Class aClass = [[NSBundle mainBundle] classNamed:viewControllerName];
 	UIViewController* childVC = [[[aClass alloc] init] autorelease];
-	if ( [childVC isKindOfClass:[CategorizedTableViewController class]] )
+	if ( [childVC isKindOfClass:[CategorizedUserTableViewController class]] )
 	{
-		((CategorizedTableViewController*)childVC).property = [[menuStructureArray objectAtIndex:indexPath.row] objectForKey:@"property"];
+		((CategorizedUserTableViewController*)childVC).property = [[menuStructureArray objectAtIndex:indexPath.row] objectForKey:@"property"];
 	}
     [self.navigationController pushViewController:childVC animated:YES];
 }

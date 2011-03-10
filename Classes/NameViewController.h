@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CategorizedTableViewController.h"
+#import "CategorizedUserTableViewController.h"
 
-@interface NameViewController : CategorizedTableViewController
+@interface NameViewController : CategorizedUserTableViewController
 {
 }
 

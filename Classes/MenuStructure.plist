@@ -12,6 +12,14 @@
 	</dict>
 	<dict>
 		<key>property</key>
+		<string>gender</string>
+		<key>title</key>
+		<string>Gender</string>
+		<key>viewController</key>
+		<string>CategorizedUserTableViewController</string>
+	</dict>
+	<dict>
+		<key>property</key>
 		<string>birthday</string>
 		<key>title</key>
 		<string>Birthday</string>
@@ -52,19 +60,11 @@
 	</dict>
 	<dict>
 		<key>property</key>
-		<string>gender</string>
-		<key>title</key>
-		<string>Gender</string>
-		<key>viewController</key>
-		<string>CategorizedTableViewController</string>
-	</dict>
-	<dict>
-		<key>property</key>
 		<string>relationship_status</string>
 		<key>title</key>
 		<string>Relationship Status</string>
 		<key>viewController</key>
-		<string>CategorizedTableViewController</string>
+		<string>CategorizedUserTableViewController</string>
 	</dict>
 	<dict>
 		<key>property</key>
@@ -72,7 +72,7 @@
 		<key>title</key>
 		<string>Locale</string>
 		<key>viewController</key>
-		<string>CategorizedTableViewController</string>
+		<string>CategorizedUserTableViewController</string>
 	</dict>
 	<dict>
 		<key>property</key>

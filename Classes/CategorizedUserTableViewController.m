@@ -1,19 +1,17 @@
 //
-//  EducationCategorizedTableViewController.m
+//  CategorizedUserTableViewController.m
 //  FriendsAnalyzer
 //
 //  Created by Joseph Lin on 3/10/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "CategorizedEducationViewController.h"
-#import "Education.h"
+#import "CategorizedUserTableViewController.h"
+#import "User.h"
 
-
-
-
-@implementation CategorizedEducationViewController
+@implementation CategorizedUserTableViewController
 @synthesize property;
+
 
 
 - (void)dealloc
@@ -30,7 +28,7 @@
 {
     if ( !sortedKeys )
     {
-        NSArray* possibleKeys = [Education possibleValuesForCategory:property];
+        NSArray* possibleKeys = [User possibleValuesForCategory:property];
         NSString* keyPath = [NSString stringWithFormat:@"@unionOfObjects.%@", property];
         NSArray* keys = [possibleKeys valueForKeyPath:keyPath];
         
@@ -56,7 +54,7 @@
         
         for ( id key in sortedKeys )
         {
-            NSNumber* count = [NSNumber numberWithInteger:[Education educationCountsForKey:property value:key]];
+            NSNumber* count = [NSNumber numberWithInteger:[User userCountsForKey:property value:key]];
             [tempDict setObject:count forKey:key];
         }
         
@@ -68,9 +66,7 @@
 - (NSArray*)usersForCellAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString* key = [self.sortedKeys objectAtIndex:indexPath.row];
-	NSArray* educations = [Education educationsForKey:property value:key];
-    NSArray* users = [educations valueForKeyPath:@"@unionOfObjects.user"];
-    
+	NSArray* users = [User usersForKey:property value:key];
 	return users;
 }
 

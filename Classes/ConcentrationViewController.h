@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CategorizedTableViewController.h"
 
 
-@interface ConcentrationViewController : CategorizedTableViewController
+@interface ConcentrationViewController : UITableViewController
 {
-    
+    NSFetchedResultsController* fetchedResultController;
+    NSMutableDictionary* userCountsDict;
 }
+
+@property (nonatomic, retain) NSFetchedResultsController* fetchedResultController;
+@property (nonatomic, retain) NSMutableDictionary* userCountsDict;
 
 @end

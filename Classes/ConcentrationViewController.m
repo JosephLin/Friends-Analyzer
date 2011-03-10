@@ -12,55 +12,99 @@
 
 @implementation ConcentrationViewController
 
+@synthesize fetchedResultController;
+@synthesize userCountsDict;
 
-#pragma mark - 
-#pragma mark Table View Data Source
 
-- (NSArray*)sortedKeys
+#pragma mark -
+#pragma mark Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if ( !sortedKeys )
-    {
-        NSArray* possibleKeys = [Concentration possibleValues];
-        NSArray* keys = [possibleKeys valueForKeyPath:@"@unionOfObjects.name"];
-        
-        if ( self.segmentedControl.selectedSegmentIndex == 0 )
-        {
-            sortedKeys = [keys retain];
-        }
-        else
-        {
-            sortedKeys = [[keys sortedArrayUsingComparator:(NSComparator)^(id obj1, id obj2){
-                return [[userCountsDict objectForKey:obj1] intValue] < [[userCountsDict objectForKey:obj2] intValue];
-            }] retain];
-        }
-    }
-    return sortedKeys;
+    return [[self.fetchedResultController sections] count];
 }
 
-- (NSDictionary*)userCountsDict
+- (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
 {
-    if ( !userCountsDict )
-    {
-        NSMutableDictionary* tempDict = [NSMutableDictionary dictionaryWithCapacity:[self.sortedKeys count]];
-        
-        for ( id key in sortedKeys )
-        {
-            NSNumber* count = [NSNumber numberWithInteger:[Concentration concentrationCountsForName:key]];
-            [tempDict setObject:count forKey:key];
-        }
-        
-        userCountsDict = [[NSDictionary alloc] initWithDictionary:tempDict];
-    }
-    return userCountsDict;
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultController sections] objectAtIndex:section];
+    return [sectionInfo numberOfObjects];
 }
 
-- (NSArray*)usersForCellAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSString* key = [self.sortedKeys objectAtIndex:indexPath.row];
-	NSArray* concentrations = [Concentration concentrationsForName:key];
-    NSArray* users = [concentrations valueForKeyPath:@"@unionOfObjects.education.user"];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{    
+    static NSString *CellIdentifier = @"Cell";
     
-	return users;
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+    }
+    
+    NSDictionary* dict = [fetchedResultController objectAtIndexPath:indexPath];
+    
+    cell.textLabel.text = [dict objectForKey:@"name"];
+    
+//    cell.detailTextLabel.text = [NSString stringWithFormat:@"%02d/%02d",
+//                                 [user.birthdayMonth integerValue], [user.birthdayDay integerValue]];
+    NSLog(@"%@", dict);
+    return cell;
 }
+
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section { 
+//    id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultController sections] objectAtIndex:section];
+//    return [sectionInfo name];
+//}
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+//    NSArray* sectionIndexTitles = [[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"];
+//    return sectionIndexTitles;
+    return [fetchedResultController sectionIndexTitles];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
+//    NSArray* sectionIndexTitles = [[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"];
+//    return [sectionIndexTitles indexOfObject:title];
+    return [fetchedResultController sectionForSectionIndexTitle:title atIndex:index];
+}
+
+
+#pragma mark -
+#pragma mark Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	[[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
+}
+
+
+#pragma -
+#pragma Fetched Result Controller
+
+- (NSFetchedResultsController*)fetchedResultController
+{
+    if ( !fetchedResultController )
+    {
+        NSFetchRequest* fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
+        [fetchRequest setEntity:[Concentration entity]];
+        
+        [fetchRequest setResultType:NSDictionaryResultType];
+        [fetchRequest setReturnsDistinctResults:YES];
+        [fetchRequest setPropertiesToFetch:[NSArray arrayWithObject:@"name"]];
+        
+        NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+        [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+        
+        
+        fetchedResultController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
+                                                                      managedObjectContext:[Concentration managedObjectContext]
+                                                                        sectionNameKeyPath:@"name"
+                                                                                 cacheName:nil];
+        
+        NSError* error;
+        BOOL success = [fetchedResultController performFetch:&error];
+        NSLog(@"Fetch successed? %d", success);
+    }
+    return fetchedResultController;
+}
+
 
 @end

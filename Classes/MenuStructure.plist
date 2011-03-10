@@ -48,7 +48,7 @@
 		<key>title</key>
 		<string>Education</string>
 		<key>viewController</key>
-		<string></string>
+		<string>EducationViewController</string>
 	</dict>
 	<dict>
 		<key>property</key>
@@ -68,14 +68,6 @@
 	</dict>
 	<dict>
 		<key>property</key>
-		<string>timezone</string>
-		<key>title</key>
-		<string>Time Zone</string>
-		<key>viewController</key>
-		<string></string>
-	</dict>
-	<dict>
-		<key>property</key>
 		<string>locale</string>
 		<key>title</key>
 		<string>Locale</string>
@@ -88,7 +80,7 @@
 		<key>title</key>
 		<string>Last Updated Time</string>
 		<key>viewController</key>
-		<string></string>
+		<string>LastUpdateViewController</string>
 	</dict>
 </array>
 </plist>

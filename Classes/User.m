@@ -12,6 +12,13 @@
 #import "Geocode.h"
 #import "NSDate+Utilities.h"
 
+#define kTimeIntervalADay           86400
+#define kTimeIntervalAWeek          604800
+#define kTimeIntervalAMonth         2592000
+#define kTimeIntervalThreeMonths    7776000
+#define kTimeIntervalSixMonths      15552000
+#define kTimeIntervalAYear          31536000
+
 static NSArray* monthArray = nil;
 
 @implementation User 
@@ -33,7 +40,6 @@ static NSArray* monthArray = nil;
 @dynamic gender;
 @dynamic relationship_status;
 @dynamic significant_other;
-@dynamic timezone;
 @dynamic locale;
 @dynamic updated_time;
 @dynamic friends;
@@ -62,6 +68,40 @@ static NSArray* monthArray = nil;
     NSDateComponents* components = [[NSCalendar currentCalendar] components:NSYearCalendarUnit fromDate:startDate  toDate:[NSDate date] options:0];
     NSInteger years = [components year];
     return [NSNumber numberWithInteger:years/10];
+}
+
+- (NSString*)lastUpdateCategory
+{
+    NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:self.updated_time];
+    
+    if ( interval < kTimeIntervalADay )
+    {
+        return @"A Day";
+    }
+    else if ( interval < kTimeIntervalAWeek )
+    {
+        return @"A Week";        
+    }
+    else if ( interval < kTimeIntervalAMonth )
+    {
+        return @"A Month";
+    }
+    else if ( interval < kTimeIntervalThreeMonths )
+    {
+        return @"Last Three Months";
+    }
+    else if ( interval < kTimeIntervalSixMonths )
+    {
+        return @"Last Six Months";
+    }
+    else if ( interval < kTimeIntervalAYear )
+    {
+        return @"A Year";
+    }
+    else
+    {
+        return @"More Than A Year";
+    }
 }
 
 
@@ -114,7 +154,6 @@ static NSArray* monthArray = nil;
 
 	user.gender = [dict objectForKey:@"gender"];
 	user.relationship_status = [dict objectForKey:@"relationship_status"];
-	user.timezone = [NSNumber numberWithInteger:[[dict objectForKey:@"timezone"] integerValue]];
 	user.locale = [dict objectForKey:@"locale"];
 	user.updated_time = [NSDate dateFromFacebookFullFormat:[dict objectForKey:@"updated_time"]];
 	

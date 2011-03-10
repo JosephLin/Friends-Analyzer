@@ -9,6 +9,19 @@
 #import <CoreData/CoreData.h>
 #import "EnhancedManagedObject.h"
 
+typedef enum {
+    LastUpdateCategoryNone = 0,
+    LastUpdateCategoryADay,
+    LastUpdateCategoryAWeek,
+    LastUpdateCategoryAMonth,
+    LastUpdateCategoryThreeMonths,
+    LastUpdateCategorySixMonths,
+    LastUpdateCategoryAYear,
+    LastUpdateCategoryMoreThanAYear
+} LastUpdateCategory;
+
+
+
 @class Geocode;
 
 @interface User :  EnhancedManagedObject  
@@ -34,7 +47,6 @@
 @property (nonatomic, retain) NSString * gender;
 @property (nonatomic, retain) NSString * relationship_status;
 @property (nonatomic, retain) NSManagedObject * significant_other;
-@property (nonatomic, retain) NSNumber * timezone;
 @property (nonatomic, retain) NSString * locale;
 @property (nonatomic, retain) NSDate * updated_time;
 @property (nonatomic, retain) NSArray * friends;
@@ -43,7 +55,7 @@
 
 @property (nonatomic, retain) NSNumber * age;
 @property (nonatomic, retain) NSNumber * ageGroup;
-
+@property (nonatomic, retain, readonly) NSString* lastUpdateCategory;
 
 
 + (User*)userWithID:(NSString*)theID;

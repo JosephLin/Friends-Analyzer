@@ -62,6 +62,11 @@
 		7CC5B148131D739B00FEA4DE /* Work.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B144131D739B00FEA4DE /* Work.m */; };
 		7CC5B187131D764700FEA4DE /* EnhancedManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B186131D764700FEA4DE /* EnhancedManagedObject.m */; };
 		7CC5B1B1131D797D00FEA4DE /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B1B0131D797D00FEA4DE /* NSDate+Utilities.m */; };
+		7CC78EC4132965A700CA2B45 /* LastUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78EC2132965A700CA2B45 /* LastUpdateViewController.m */; };
+		7CC78EC5132965A700CA2B45 /* LastUpdateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CC78EC3132965A700CA2B45 /* LastUpdateViewController.xib */; };
+		7CC78ED613296F0900CA2B45 /* EducationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78ED413296F0900CA2B45 /* EducationViewController.m */; };
+		7CC78ED713296F0900CA2B45 /* EducationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CC78ED513296F0900CA2B45 /* EducationViewController.xib */; };
+		7CC78EDA1329732100CA2B45 /* EducationCategorizedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78ED91329732000CA2B45 /* EducationCategorizedTableViewController.m */; };
 		7CF0CC681327F0E3006C5693 /* HometownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF0CC671327F0E2006C5693 /* HometownViewController.m */; };
 		7CF0CC6B1327F3DC006C5693 /* UserLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF0CC6A1327F3DB006C5693 /* UserLocationViewController.m */; };
 		7CF0CC6E1327FEF6006C5693 /* MapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF0CC6D1327FEF2006C5693 /* MapAnnotation.m */; };
@@ -160,6 +165,14 @@
 		7CC5B186131D764700FEA4DE /* EnhancedManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnhancedManagedObject.m; sourceTree = "<group>"; };
 		7CC5B1AF131D797D00FEA4DE /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
 		7CC5B1B0131D797D00FEA4DE /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
+		7CC78EC1132965A700CA2B45 /* LastUpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LastUpdateViewController.h; sourceTree = "<group>"; };
+		7CC78EC2132965A700CA2B45 /* LastUpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LastUpdateViewController.m; sourceTree = "<group>"; };
+		7CC78EC3132965A700CA2B45 /* LastUpdateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LastUpdateViewController.xib; sourceTree = "<group>"; };
+		7CC78ED313296F0900CA2B45 /* EducationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EducationViewController.h; sourceTree = "<group>"; };
+		7CC78ED413296F0900CA2B45 /* EducationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EducationViewController.m; sourceTree = "<group>"; };
+		7CC78ED513296F0900CA2B45 /* EducationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EducationViewController.xib; sourceTree = "<group>"; };
+		7CC78ED81329732000CA2B45 /* EducationCategorizedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EducationCategorizedTableViewController.h; sourceTree = "<group>"; };
+		7CC78ED91329732000CA2B45 /* EducationCategorizedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EducationCategorizedTableViewController.m; sourceTree = "<group>"; };
 		7CF0CC661327F0E2006C5693 /* HometownViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HometownViewController.h; sourceTree = "<group>"; };
 		7CF0CC671327F0E2006C5693 /* HometownViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HometownViewController.m; sourceTree = "<group>"; };
 		7CF0CC691327F3DB006C5693 /* UserLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLocationViewController.h; sourceTree = "<group>"; };
@@ -193,7 +206,9 @@
 				7C4DD517131D8514006C69CF /* Main Menu View */,
 				7C37C307131EEC7E004EFA64 /* Name */,
 				7C13AF851321487F001FD36C /* Birthday */,
-				7C83D9CF13256B710059BBF0 /* Hometown */,
+				7C83D9CF13256B710059BBF0 /* Location */,
+				7CC78ED213296EEF00CA2B45 /* Education */,
+				7CC78EC01329648B00CA2B45 /* Last Update */,
 				7C4DD677131DA42F006C69CF /* Table View */,
 				7CC5B10E131D6FAB00FEA4DE /* Pie Chart */,
 				7C83D9DF13257D2F0059BBF0 /* Utilities */,
@@ -311,7 +326,7 @@
 			name = "Table View";
 			sourceTree = "<group>";
 		};
-		7C83D9CF13256B710059BBF0 /* Hometown */ = {
+		7C83D9CF13256B710059BBF0 /* Location */ = {
 			isa = PBXGroup;
 			children = (
 				7C83D9D013256BA10059BBF0 /* LocationViewController.h */,
@@ -322,7 +337,7 @@
 				7CF0CC691327F3DB006C5693 /* UserLocationViewController.h */,
 				7CF0CC6A1327F3DB006C5693 /* UserLocationViewController.m */,
 			);
-			name = Hometown;
+			name = Location;
 			sourceTree = "<group>";
 		};
 		7C83D9DF13257D2F0059BBF0 /* Utilities */ = {
@@ -444,6 +459,28 @@
 			name = "Pie Chart";
 			sourceTree = "<group>";
 		};
+		7CC78EC01329648B00CA2B45 /* Last Update */ = {
+			isa = PBXGroup;
+			children = (
+				7CC78EC1132965A700CA2B45 /* LastUpdateViewController.h */,
+				7CC78EC2132965A700CA2B45 /* LastUpdateViewController.m */,
+				7CC78EC3132965A700CA2B45 /* LastUpdateViewController.xib */,
+			);
+			name = "Last Update";
+			sourceTree = "<group>";
+		};
+		7CC78ED213296EEF00CA2B45 /* Education */ = {
+			isa = PBXGroup;
+			children = (
+				7CC78ED313296F0900CA2B45 /* EducationViewController.h */,
+				7CC78ED413296F0900CA2B45 /* EducationViewController.m */,
+				7CC78ED513296F0900CA2B45 /* EducationViewController.xib */,
+				7CC78ED81329732000CA2B45 /* EducationCategorizedTableViewController.h */,
+				7CC78ED91329732000CA2B45 /* EducationCategorizedTableViewController.m */,
+			);
+			name = Education;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -508,6 +545,8 @@
 				7C13AF9013214C8C001FD36C /* BirthdayViewController.xib in Resources */,
 				7C74C55813219060003258AC /* Horoscope.plist in Resources */,
 				7C83D9D413256BA10059BBF0 /* LocationViewController.xib in Resources */,
+				7CC78EC5132965A700CA2B45 /* LastUpdateViewController.xib in Resources */,
+				7CC78ED713296F0900CA2B45 /* EducationViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,6 +595,9 @@
 				7CF0CC681327F0E3006C5693 /* HometownViewController.m in Sources */,
 				7CF0CC6B1327F3DC006C5693 /* UserLocationViewController.m in Sources */,
 				7CF0CC6E1327FEF6006C5693 /* MapAnnotation.m in Sources */,
+				7CC78EC4132965A700CA2B45 /* LastUpdateViewController.m in Sources */,
+				7CC78ED613296F0900CA2B45 /* EducationViewController.m in Sources */,
+				7CC78EDA1329732100CA2B45 /* EducationCategorizedTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,7 +610,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 1;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = FriendsAnalyzer_Prefix.pch;
 				INFOPLIST_FILE = "FriendsAnalyzer-Info.plist";

@@ -22,12 +22,13 @@
 {
     [super viewDidLoad];
 	
-	
-	if ( [[FacebookClient sharedFacebook] isSessionValid] )
+    self.currentUser = [User currentUser];
+    
+	if ( currentUser )
 	{
 		[self showMainMenuViewController];
 	}
-	else
+    else
 	{
 		[self updateViewForMode:RootViewModeIdle];
 	}
@@ -167,7 +168,6 @@
 		[queue release];
 	}
 	queue = [[NSOperationQueue alloc] init];
-	[queue addObserver:self forKeyPath:@"operationCount" options:NSKeyValueObservingOptionNew context:NULL];	
 
 	NSMutableArray* opArray = [NSMutableArray arrayWithCapacity:total];
 	for ( id friend in self.currentUser.friends )
@@ -179,6 +179,8 @@
 	}
 	[queue setMaxConcurrentOperationCount:5];
 	[queue addOperations:opArray waitUntilFinished:NO];
+    
+    [queue addObserver:self forKeyPath:@"operationCount" options:NSKeyValueObservingOptionNew context:NULL];	
 }
 
 - (void)showMainMenuViewController
@@ -198,8 +200,10 @@
 		
 		if ( pending == 0 )
 		{
+            [queue removeObserver:self forKeyPath:@"operationCount"];
 			[[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"LastUpdated"];
-			[self showMainMenuViewController];
+            
+            [self performSelectorOnMainThread:@selector(showMainMenuViewController) withObject:nil waitUntilDone:YES];
 		}
 	}
 }
@@ -253,7 +257,31 @@
 
 - (void)request:(FBRequest *)request didFailWithError:(NSError *)error
 {
-	NSLog(@"FBRequest failed with error: %@", error);
+    if ( request == self.userInfoRequest )
+	{
+		self.userInfoRequest = nil;
+
+		NSLog(@"userInfoRequest failed with error: %@", error);
+        
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Can't Access User Info" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+        
+        [self updateViewForMode:RootViewModeIdle];		
+	}
+	
+	else if ( request == self.userFriendsRequest )
+	{
+		self.userFriendsRequest = nil;
+		
+        NSLog(@"userFriendsRequest failed with error: %@", error);
+        
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Can't Access Friend List" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+		
+        [self updateViewForMode:RootViewModeIdle];		
+	}
 }
 
 

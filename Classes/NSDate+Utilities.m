@@ -17,13 +17,13 @@
 	[dateFormatter setDateFormat:dateFormat];
 	
 	NSDate* date = [dateFormatter dateFromString:dateString];
-	
+    
 	return date;
 }
 
 + (NSDate*)dateFromFacebookFullFormat:(NSString*)dateString
 {
-	NSDate* date = [self dateFromString:dateString format:@"yyyy-MM-ddTHH:mm:ssZ"];
+	NSDate* date = [self dateFromString:dateString format:@"yyyy-MM-dd'T'HH:mm:ssZ"];
 	return date;
 }
 

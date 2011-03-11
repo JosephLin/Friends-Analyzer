@@ -12,21 +12,9 @@
 @implementation Concentration 
 
 @dynamic name;
-@dynamic education;
+@dynamic educations;
 
-+ (Concentration*)insertConcentrationWithDictionary:(NSDictionary*)dict
-{
-	Concentration* concentration = [self insertNewObject];
-	concentration.name = [dict objectForKey:@"name"];
-	
-	return concentration;
-}
-
-
-#pragma mark - 
-#pragma mark For Table View
-
-+ (NSArray*)concentrationsForName:(NSString*)theName
++ (Concentration*)concentrationWithName:(NSString*)theName
 {
 	NSFetchRequest* request = [[[NSFetchRequest alloc] init] autorelease];
 	[request setEntity:[self entity]];
@@ -37,7 +25,16 @@
 	NSError* error = nil;
 	NSArray* results = [[self managedObjectContext] executeFetchRequest:request error:&error];
 	
-	return results;
+    if ([results count])
+    {
+        return [results objectAtIndex:0];
+    }
+    else
+    {
+        Concentration* concentration = [self insertNewObject];
+        concentration.name = theName;
+        return concentration;
+    }
 }
 
 + (NSUInteger)concentrationCountsForName:(NSString*)theName
@@ -69,7 +66,6 @@
     
 	return results;
 }
-
 
 
 @end

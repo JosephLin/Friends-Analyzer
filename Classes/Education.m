@@ -33,7 +33,8 @@
 	NSArray* concentrationArray = [dict objectForKey:@"concentration"];
 	for ( id dict in concentrationArray )
 	{
-		[education addConcentrationsObject:[Concentration insertConcentrationWithDictionary:dict]];
+        Concentration* concentration = [Concentration concentrationWithName:[dict objectForKey:@"name"]];
+        [education addConcentrationsObject:concentration];
 	}
 	
 	return education;

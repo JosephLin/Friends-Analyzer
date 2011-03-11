@@ -14,10 +14,9 @@
 }
 
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSManagedObject * education;
+@property (nonatomic, retain) NSSet * educations;
 
-+ (Concentration*)insertConcentrationWithDictionary:(NSDictionary*)dict;
-+ (NSArray*)concentrationsForName:(NSString*)theName;
++ (Concentration*)concentrationWithName:(NSString*)theName;
 + (NSUInteger)concentrationCountsForName:(NSString*)theName;
 + (NSArray*)possibleValues;
 

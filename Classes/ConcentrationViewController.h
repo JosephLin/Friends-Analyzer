@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CategorizedTableViewController.h"
 
-
-@interface ConcentrationViewController : CategorizedTableViewController
+@interface ConcentrationViewController : UITableViewController
 {
-    
+    NSArray* sortedKeys;
 }
+
+@property (nonatomic, retain) NSArray* sortedKeys;
 
 @end

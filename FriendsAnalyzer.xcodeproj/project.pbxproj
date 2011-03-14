@@ -67,6 +67,9 @@
 		7CC78EDD13297C1A00CA2B45 /* CategorizedUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78EDC13297C1900CA2B45 /* CategorizedUserTableViewController.m */; };
 		7CC78EE71329858200CA2B45 /* ConcentrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78EE61329858000CA2B45 /* ConcentrationViewController.m */; };
 		7CEF039F132DBAA10058FD63 /* ObjectAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEF039E132DBAA10058FD63 /* ObjectAttribute.m */; };
+		7CEF03A2132DD04A0058FD63 /* LastName.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEF03A1132DD0420058FD63 /* LastName.m */; };
+		7CEF03A5132DD07A0058FD63 /* Concentration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEF03A4132DD0710058FD63 /* Concentration.m */; };
+		7CEF03A8132DD0850058FD63 /* School.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEF03A7132DD07F0058FD63 /* School.m */; };
 		7CF0CC681327F0E3006C5693 /* HometownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF0CC671327F0E2006C5693 /* HometownViewController.m */; };
 		7CF0CC6B1327F3DC006C5693 /* UserLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF0CC6A1327F3DB006C5693 /* UserLocationViewController.m */; };
 		7CF0CC6E1327FEF6006C5693 /* MapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF0CC6D1327FEF2006C5693 /* MapAnnotation.m */; };
@@ -175,6 +178,12 @@
 		7CC78EE61329858000CA2B45 /* ConcentrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcentrationViewController.m; sourceTree = "<group>"; };
 		7CEF039D132DBAA10058FD63 /* ObjectAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectAttribute.h; sourceTree = "<group>"; };
 		7CEF039E132DBAA10058FD63 /* ObjectAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectAttribute.m; sourceTree = "<group>"; };
+		7CEF03A0132DD0410058FD63 /* LastName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LastName.h; sourceTree = "<group>"; };
+		7CEF03A1132DD0420058FD63 /* LastName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LastName.m; sourceTree = "<group>"; };
+		7CEF03A3132DD06E0058FD63 /* Concentration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Concentration.h; sourceTree = "<group>"; };
+		7CEF03A4132DD0710058FD63 /* Concentration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Concentration.m; sourceTree = "<group>"; };
+		7CEF03A6132DD07B0058FD63 /* School.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = School.h; sourceTree = "<group>"; };
+		7CEF03A7132DD07F0058FD63 /* School.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = School.m; sourceTree = "<group>"; };
 		7CF0CC661327F0E2006C5693 /* HometownViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HometownViewController.h; sourceTree = "<group>"; };
 		7CF0CC671327F0E2006C5693 /* HometownViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HometownViewController.m; sourceTree = "<group>"; };
 		7CF0CC691327F3DB006C5693 /* UserLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLocationViewController.h; sourceTree = "<group>"; };
@@ -409,6 +418,12 @@
 			isa = PBXGroup;
 			children = (
 				7CC5B185131D764700FEA4DE /* EnhancedManagedObject.h */,
+				7CEF03A6132DD07B0058FD63 /* School.h */,
+				7CEF03A7132DD07F0058FD63 /* School.m */,
+				7CEF03A3132DD06E0058FD63 /* Concentration.h */,
+				7CEF03A4132DD0710058FD63 /* Concentration.m */,
+				7CEF03A0132DD0410058FD63 /* LastName.h */,
+				7CEF03A1132DD0420058FD63 /* LastName.m */,
 				7CC5B186131D764700FEA4DE /* EnhancedManagedObject.m */,
 				7CEF039D132DBAA10058FD63 /* ObjectAttribute.h */,
 				7CEF039E132DBAA10058FD63 /* ObjectAttribute.m */,
@@ -610,6 +625,9 @@
 				7CC78EDD13297C1A00CA2B45 /* CategorizedUserTableViewController.m in Sources */,
 				7CC78EE71329858200CA2B45 /* ConcentrationViewController.m in Sources */,
 				7CEF039F132DBAA10058FD63 /* ObjectAttribute.m in Sources */,
+				7CEF03A2132DD04A0058FD63 /* LastName.m in Sources */,
+				7CEF03A5132DD07A0058FD63 /* Concentration.m in Sources */,
+				7CEF03A8132DD0850058FD63 /* School.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

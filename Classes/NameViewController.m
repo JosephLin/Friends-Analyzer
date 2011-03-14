@@ -65,7 +65,7 @@
     }
     
     ObjectAttribute* object = [fetchedResultController objectAtIndexPath:indexPath];
-    cell.textLabel.text = object.indexTitle;
+    cell.textLabel.text = object.name;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [object.owners count]];
     
     return cell;

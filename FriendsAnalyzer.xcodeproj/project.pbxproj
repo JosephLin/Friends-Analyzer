@@ -19,7 +19,7 @@
 		7C13AF9013214C8C001FD36C /* BirthdayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C13AF8E13214C8C001FD36C /* BirthdayViewController.xib */; };
 		7C1FF31D132EABE300110D03 /* WorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1FF31C132EABE300110D03 /* WorkViewController.m */; };
 		7C1FF320132EAD3700110D03 /* FRCBasedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1FF31F132EAD3700110D03 /* FRCBasedTableViewController.m */; };
-		7C1FF323132EB29600110D03 /* EmplyerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1FF322132EB29500110D03 /* EmplyerViewController.m */; };
+		7C1FF323132EB29600110D03 /* EmployerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1FF322132EB29500110D03 /* EmployerViewController.m */; };
 		7C37C1A4131EA0FC004EFA64 /* FBRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C37C1A3131EA0FC004EFA64 /* FBRequestOperation.m */; };
 		7C37C30B131EEC91004EFA64 /* NameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C37C309131EEC91004EFA64 /* NameViewController.m */; };
 		7C4DD511131D8081006C69CF /* MenuStructure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C4DD510131D8081006C69CF /* MenuStructure.plist */; };
@@ -93,8 +93,8 @@
 		7C1FF31C132EABE300110D03 /* WorkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkViewController.m; sourceTree = "<group>"; };
 		7C1FF31E132EAD3700110D03 /* FRCBasedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRCBasedTableViewController.h; sourceTree = "<group>"; };
 		7C1FF31F132EAD3700110D03 /* FRCBasedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRCBasedTableViewController.m; sourceTree = "<group>"; };
-		7C1FF321132EB29500110D03 /* EmplyerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmplyerViewController.h; sourceTree = "<group>"; };
-		7C1FF322132EB29500110D03 /* EmplyerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmplyerViewController.m; sourceTree = "<group>"; };
+		7C1FF321132EB29500110D03 /* EmployerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = EmployerViewController.h; sourceTree = "<group>"; };
+		7C1FF322132EB29500110D03 /* EmployerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmployerViewController.m; sourceTree = "<group>"; };
 		7C37C1A2131EA0FC004EFA64 /* FBRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBRequestOperation.h; sourceTree = "<group>"; };
 		7C37C1A3131EA0FC004EFA64 /* FBRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBRequestOperation.m; sourceTree = "<group>"; };
 		7C37C308131EEC91004EFA64 /* NameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameViewController.h; sourceTree = "<group>"; };
@@ -311,8 +311,8 @@
 			children = (
 				7C1FF31B132EABE300110D03 /* WorkViewController.h */,
 				7C1FF31C132EABE300110D03 /* WorkViewController.m */,
-				7C1FF321132EB29500110D03 /* EmplyerViewController.h */,
-				7C1FF322132EB29500110D03 /* EmplyerViewController.m */,
+				7C1FF321132EB29500110D03 /* EmployerViewController.h */,
+				7C1FF322132EB29500110D03 /* EmployerViewController.m */,
 			);
 			name = "Work View";
 			sourceTree = "<group>";
@@ -637,7 +637,7 @@
 				7CEF03AB132DD5F20058FD63 /* DegreeViewController.m in Sources */,
 				7C1FF31D132EABE300110D03 /* WorkViewController.m in Sources */,
 				7C1FF320132EAD3700110D03 /* FRCBasedTableViewController.m in Sources */,
-				7C1FF323132EB29600110D03 /* EmplyerViewController.m in Sources */,
+				7C1FF323132EB29600110D03 /* EmployerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

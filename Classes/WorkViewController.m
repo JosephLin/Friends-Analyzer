@@ -7,6 +7,7 @@
 //
 
 #import "WorkViewController.h"
+#import "EmployerViewController.h"
 
 
 @implementation WorkViewController
@@ -84,7 +85,7 @@
             break;
             
         default:
-//            childVC = [[ConcentrationViewController alloc] init];
+            childVC = [[EmployerViewController alloc] init];
             break;
     }
     

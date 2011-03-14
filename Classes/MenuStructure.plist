@@ -48,7 +48,7 @@
 		<key>title</key>
 		<string>Work</string>
 		<key>viewController</key>
-		<string></string>
+		<string>WorkViewController</string>
 	</dict>
 	<dict>
 		<key>property</key>

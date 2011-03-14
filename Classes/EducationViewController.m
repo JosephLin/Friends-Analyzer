@@ -7,8 +7,9 @@
 //
 
 #import "EducationViewController.h"
-#import "CategorizedEducationViewController.h"
 #import "ConcentrationViewController.h"
+#import "DegreeViewController.h"
+#import "SchoolViewController.h"
 
 @implementation EducationViewController
 
@@ -77,13 +78,11 @@
     switch (indexPath.row)
     {
         case 1:
-//            childVC = [[CategorizedEducationViewController alloc] init];
-//            ((CategorizedEducationViewController*)childVC).property = @"degree";
+            childVC = [[DegreeViewController alloc] init];
             break;
 
         case 2:
-            childVC = [[CategorizedEducationViewController alloc] init];
-//            ((CategorizedEducationViewController*)childVC).property = @"school";
+            childVC = [[SchoolViewController alloc] init];
             break;
             
         default:

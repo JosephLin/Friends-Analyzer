@@ -23,8 +23,11 @@
     NSEntityDescription* e = [NSEntityDescription entityForName:entity inManagedObjectContext:[self managedObjectContext]];
 	[request setEntity:e];
 	
-	NSPredicate* predicate = [NSPredicate predicateWithFormat:@"name like[c] %@", theName];
-	[request setPredicate:predicate];
+    if (theName)
+    {
+        NSPredicate* predicate = [NSPredicate predicateWithFormat:@"name like[c] %@", theName];
+        [request setPredicate:predicate];
+    }
 	
 	NSError* error = nil;
 	NSArray* results = [[self managedObjectContext] executeFetchRequest:request error:&error];

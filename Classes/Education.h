@@ -18,7 +18,7 @@
 }
 
 @property (nonatomic, retain) ObjectAttribute * school;
-@property (nonatomic, retain) NSString * degree;
+@property (nonatomic, retain) ObjectAttribute * degree;
 @property (nonatomic, retain) NSString * year;
 @property (nonatomic, retain) NSSet* concentrations;
 @property (nonatomic, retain) NSString * type;

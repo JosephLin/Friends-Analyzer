@@ -25,7 +25,7 @@
 	Education* education = [self insertNewObject];
 	
 	education.school = [ObjectAttribute entity:@"School" withName:[[dict objectForKey:@"school"] objectForKey:@"name"]];
-	education.degree = [[dict objectForKey:@"degree"] objectForKey:@"name"];
+	education.degree = [ObjectAttribute entity:@"Degree" withName:[[dict objectForKey:@"degree"] objectForKey:@"name"]];
 	education.year = [[dict objectForKey:@"year"] objectForKey:@"name"];
 	education.type = [dict objectForKey:@"type"];
 	

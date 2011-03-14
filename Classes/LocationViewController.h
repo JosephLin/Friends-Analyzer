@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "ForwardGeocodingOperation.h"
+#import "MapAnnotation.h"
 
 
 @interface LocationViewController : UIViewController <MKMapViewDelegate>
@@ -20,15 +21,15 @@
     MKMapView* mapView;
     
     NSFetchedResultsController* fetchedResultController;
-    NSString* locationKeyPath;
-    NSString* locationGeocodeKeyPath;
-    NSString* userKeyPath;
+    NSString* ownerKeyPath;
     
     NSArray* mapAnnotations;
 
 	NSOperationQueue* queue;
 	NSInteger total;
 	NSInteger pending;
+    
+    NSArray* pendingOperations;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel* loadingLabel;
@@ -37,15 +38,15 @@
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
 @property (nonatomic, retain) IBOutlet MKMapView* mapView;
 @property (nonatomic, retain) NSFetchedResultsController* fetchedResultController;
-@property (nonatomic, retain) NSString* locationKeyPath;
-@property (nonatomic, retain) NSString* locationGeocodeKeyPath;
-@property (nonatomic, retain) NSString* userKeyPath;
+@property (nonatomic, retain) NSString* ownerKeyPath;
 @property (nonatomic, retain) NSArray* mapAnnotations;
+@property (nonatomic, retain) NSArray* pendingOperations;
 
 
 - (void)showTableView;
 - (void)showMapView;
 - (void)parseLocations;
 - (void)zoomToFitMapAnnotations;
+- (void)pushChildViewControllerWithObjects:(NSArray*)objects;
 
 @end

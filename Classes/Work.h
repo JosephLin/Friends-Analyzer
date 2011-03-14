@@ -24,6 +24,7 @@
 @property (nonatomic, retain) Geocode * geocodeLocation;
 
 + (Work*)insertWorkWithDictionary:(NSDictionary*)dict;
++ (NSArray*)allWorks;
 
 @end
 

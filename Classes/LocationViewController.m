@@ -7,17 +7,17 @@
 //
 
 #import "LocationViewController.h"
-#import "GenericTableViewController.h"
-#import "User.h"
-#import "MapAnnotation.h"
+
 
 @implementation LocationViewController
 
 @synthesize loadingLabel, activityIndicator, progressView;
 @synthesize tableView, mapView;
 @synthesize fetchedResultController;
-@synthesize locationKeyPath, locationGeocodeKeyPath, userKeyPath;
+@synthesize ownerKeyPath;
 @synthesize mapAnnotations;
+@synthesize pendingOperations;
+
 
 #pragma mark - View lifecycle
 
@@ -56,9 +56,7 @@
     [tableView release];
     [mapView release];
     [fetchedResultController release];
-    [locationKeyPath release];
-    [locationGeocodeKeyPath release];
-    [userKeyPath release];
+    [ownerKeyPath release];
     [mapAnnotations release];
     [queue cancelAllOperations];
     [queue release];
@@ -68,10 +66,6 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
-}
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
 }
 
 
@@ -139,12 +133,12 @@
 
         NSMutableArray* array = [NSMutableArray arrayWithCapacity:[fetchedObjects count]];
         
-        for ( Geocode* geocode in fetchedObjects)
+        for ( Geocode* geocode in fetchedObjects )
         {
             MapAnnotation* annotation = [[MapAnnotation alloc] init];
             annotation.coordinate = [geocode coordinate];
             annotation.title = geocode.formatted_address;
-            annotation.users = [geocode valueForKeyPath:userKeyPath];
+            annotation.owners = [geocode valueForKeyPath:ownerKeyPath];
             
             [array addObject:annotation];
             [annotation release];
@@ -156,41 +150,30 @@
     return mapAnnotations;
 }
 
+- (void)pushChildViewControllerWithObjects:(NSArray*)objects
+{
+    //// Sub-class should override this. ////
+}
+
 
 #pragma mark -
 #pragma mark Geocoding
 
+- (NSArray*)pendingOperations
+{
+    //// Sub-class should override this. ////
+    return nil;
+}
+
 - (void)parseLocations
 {
-    NSArray* allUsers = [User allUsers];
-    
-	NSMutableArray* opArray = [NSMutableArray arrayWithCapacity:total];
-	for ( User* user in allUsers )
-	{
-        NSString* locationName = [user valueForKeyPath:locationKeyPath];
-        id locationGeocode = [user valueForKeyPath:locationGeocodeKeyPath];
-
-        if ( !locationGeocode && locationName )
-        {
-            //// Has location name but no geocode. ////
-            
-            ForwardGeocodingOperation* op = [[ForwardGeocodingOperation alloc] initWithQuery:locationName delegate:nil];
-            op.object = user;
-            op.keyPath = locationGeocodeKeyPath;
-            [opArray addObject:op];
-            [op release];
-        }
-	}
-    
-    if ( [opArray count] )
+    if ( [self.pendingOperations count] )
     {
         loadingLabel.hidden = NO;
         loadingLabel.text = @"Analyzing Locations...";
         [activityIndicator startAnimating];
         progressView.progress = 0;
         progressView.hidden = NO;
-        
-        total = [allUsers count];
         
         if ( queue )
         {
@@ -201,12 +184,11 @@
         [queue addObserver:self forKeyPath:@"operationCount" options:NSKeyValueObservingOptionNew context:NULL];	
         
         [queue setMaxConcurrentOperationCount:1];
-        [queue addOperations:opArray waitUntilFinished:NO];
+        [queue addOperations:self.pendingOperations waitUntilFinished:NO];
     }
     else
     {
         [self showTableView];
-
     }
 }
 
@@ -255,8 +237,8 @@
     Geocode* geocode = [self.fetchedResultController objectAtIndexPath:indexPath];
     cell.textLabel.text = geocode.formatted_address;
     
-    NSSet* users = [geocode valueForKeyPath:userKeyPath];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [users count]];
+    NSSet* objects = [geocode valueForKeyPath:ownerKeyPath];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [objects count]];
     
     return cell;
 }
@@ -278,25 +260,6 @@
 }
 
 
-#pragma mark -
-#pragma mark Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	[[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
-
-    Geocode* geocode = [self.fetchedResultController objectAtIndexPath:indexPath];
-    NSSet* users = [geocode valueForKeyPath:userKeyPath];
-    
-    
-    GenericTableViewController* childVC = [[GenericTableViewController alloc] init];
-    NSSortDescriptor* sortdescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
-    childVC.userArray = [users sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortdescriptor]];;
-	[self.navigationController pushViewController:childVC animated:YES];
-	[childVC release];
-}
-
-
 #pragma -
 #pragma Fetched Result Controller
 
@@ -307,7 +270,7 @@
         NSFetchRequest* fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
         [fetchRequest setEntity:[Geocode entity]];
         
-        NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%K.@count != 0", userKeyPath];
+        NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%K.@count != 0", ownerKeyPath];
         [fetchRequest setPredicate:predicate];
         
         NSSortDescriptor* sortDescriptor1 = [NSSortDescriptor sortDescriptorWithKey:@"country" ascending:YES];
@@ -354,19 +317,6 @@
     
     return pin;
 }
-
-- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
-{
-    GenericTableViewController* childVC = [[GenericTableViewController alloc] init];
-
-    NSSortDescriptor* sortdescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
-    MapAnnotation* annotation = view.annotation;
-    childVC.userArray = [annotation.users sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortdescriptor]];
-
-	[self.navigationController pushViewController:childVC animated:YES];
-	[childVC release];
-}
-
 
 - (void)zoomToFitMapAnnotations
 {

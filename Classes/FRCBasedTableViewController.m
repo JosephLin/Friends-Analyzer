@@ -7,7 +7,7 @@
 //
 
 #import "FRCBasedTableViewController.h"
-#import "GenericTableViewController.h"
+#import "UserTableViewController.h"
 
 @implementation FRCBasedTableViewController
 
@@ -88,7 +88,7 @@
 {
 	[[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
     
-    GenericTableViewController* childVC = [[GenericTableViewController alloc] init];
+    UserTableViewController* childVC = [[UserTableViewController alloc] init];
 	childVC.userArray = [self usersForRowAtIndexPath:indexPath];
 	[self.navigationController pushViewController:childVC animated:YES];
 	[childVC release];

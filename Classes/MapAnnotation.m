@@ -13,20 +13,20 @@
 
 @synthesize coordinate;
 @synthesize title;
-@synthesize users;
+@synthesize owners;
 
 
 
 - (void)dealloc
 {
     [title release];
-    [users release];
+    [owners release];
     [super dealloc];
 }
 
 - (NSString*)subtitle
 {
-    return [NSString stringWithFormat:@"%d", [users count]];
+    return [NSString stringWithFormat:@"%d", [owners count]];
 }
 
 @end

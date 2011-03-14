@@ -8,7 +8,7 @@
 
 #import "WorkViewController.h"
 #import "EmployerViewController.h"
-
+#import "WorkLocationViewController.h"
 
 @implementation WorkViewController
 
@@ -77,7 +77,7 @@
     switch (indexPath.row)
     {
         case 1:
-//            childVC = [[DegreeViewController alloc] init];
+            childVC = [[WorkLocationViewController alloc] init];
             break;
             
         case 2:

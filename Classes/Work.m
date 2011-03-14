@@ -32,5 +32,16 @@
 	return work;
 }
 
++ (NSArray*)allWorks
+{
+	NSFetchRequest* request = [[[NSFetchRequest alloc] init] autorelease];
+	[request setEntity:[self entity]];
+	
+	NSError* error;
+	NSArray* results = [[self managedObjectContext] executeFetchRequest:request error:&error];
+	
+	return results;
+}
+
 
 @end

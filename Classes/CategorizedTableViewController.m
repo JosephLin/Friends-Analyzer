@@ -7,7 +7,7 @@
 //
 
 #import "CategorizedTableViewController.h"
-#import "GenericTableViewController.h"
+#import "UserTableViewController.h"
 
 @implementation CategorizedTableViewController
 
@@ -81,7 +81,7 @@
 {
 	[[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
 	
-	GenericTableViewController* childVC = [[GenericTableViewController alloc] init];
+	UserTableViewController* childVC = [[UserTableViewController alloc] init];
 	childVC.userArray = [self usersForCellAtIndexPath:indexPath];
 	[self.navigationController pushViewController:childVC animated:YES];
 	[childVC release];

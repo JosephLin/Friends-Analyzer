@@ -15,12 +15,12 @@
     CLLocationCoordinate2D coordinate;
     NSString* title;
     
-    NSSet* users;
+    NSSet* owners;
 }
 
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;
 @property (nonatomic, retain) NSString* title;
-@property (nonatomic, retain) NSSet* users;
+@property (nonatomic, retain) NSSet* owners;
 
 - (NSString*)subtitle;
 

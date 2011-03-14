@@ -11,6 +11,7 @@
 #import "Work.h"
 #import "Geocode.h"
 #import "NSDate+Utilities.h"
+#import "LastName.h"
 
 #define kTimeIntervalADay           86400
 #define kTimeIntervalAWeek          604800
@@ -27,7 +28,7 @@ static NSArray* monthArray = nil;
 @dynamic name;
 @dynamic first_name;
 @dynamic middle_name;
-@dynamic last_name;
+@dynamic lastName;
 @dynamic link;
 @dynamic birthday;
 @dynamic birthdayYear, birthdayMonth, birthdayDay;
@@ -154,8 +155,10 @@ static NSArray* monthArray = nil;
 	user.name = [dict objectForKey:@"name"];
 	user.first_name = [dict objectForKey:@"first_name"];
 	user.middle_name = [dict objectForKey:@"middle_name"];
-	user.last_name = [dict objectForKey:@"last_name"];
-	user.link = [dict objectForKey:@"link"];
+
+	user.lastName = [LastName objectWithName:[dict objectForKey:@"last_name"]];
+	
+    user.link = [dict objectForKey:@"link"];
 	user.birthday = [NSDate dateFromFacebookBirthday:[dict objectForKey:@"birthday"]];
     [user setBirhtdayWithString:[dict objectForKey:@"birthday"]];
     if ([user.birthdayMonth integerValue] && [user.birthdayDay integerValue])

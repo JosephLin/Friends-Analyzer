@@ -17,8 +17,6 @@
 @property (nonatomic, retain) NSSet * educations;
 
 + (Concentration*)concentrationWithName:(NSString*)theName;
-+ (NSUInteger)concentrationCountsForName:(NSString*)theName;
-+ (NSArray*)possibleValues;
 
 @end
 

@@ -23,6 +23,7 @@ typedef enum {
 
 
 @class Geocode;
+@class lastName;
 
 @interface User :  EnhancedManagedObject  
 {
@@ -32,7 +33,7 @@ typedef enum {
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * first_name;
 @property (nonatomic, retain) NSString * middle_name;
-@property (nonatomic, retain) NSString * last_name;
+@property (nonatomic, retain) NSManagedObject * lastName;
 @property (nonatomic, retain) NSString * link;
 @property (nonatomic, retain) NSDate * birthday;
 @property (nonatomic, retain) NSNumber * birthdayYear;

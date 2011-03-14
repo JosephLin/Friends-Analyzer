@@ -26,7 +26,7 @@
 	
 	//// Set Navigation Bar ////
 	self.title = @"Home";
-	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Logout" 
+	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Logout" 
 																			   style:UIBarButtonItemStylePlain 
 																			  target:self 
 																			  action:@selector(facebookLogout)] autorelease];

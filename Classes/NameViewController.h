@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CategorizedUserTableViewController.h"
 
-@interface NameViewController : CategorizedUserTableViewController
+
+@interface NameViewController : UITableViewController
 {
+    NSArray* sortedKeys;
 }
+
+@property (nonatomic, retain) NSArray* sortedKeys;
+
 
 
 @end

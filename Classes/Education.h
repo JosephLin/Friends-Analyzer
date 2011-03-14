@@ -8,6 +8,7 @@
 
 #import <CoreData/CoreData.h>
 #import "EnhancedManagedObject.h"
+#import "ObjectAttribute.h"
 
 @class Concentration;
 @class User;
@@ -16,7 +17,7 @@
 {
 }
 
-@property (nonatomic, retain) NSString * school;
+@property (nonatomic, retain) ObjectAttribute * school;
 @property (nonatomic, retain) NSString * degree;
 @property (nonatomic, retain) NSString * year;
 @property (nonatomic, retain) NSSet* concentrations;

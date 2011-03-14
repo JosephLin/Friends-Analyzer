@@ -17,10 +17,11 @@
 @dynamic owners;
 
 
-+ (id)objectWithName:(NSString*)theName
++ (id)entity:(NSString*)entity withName:(NSString*)theName
 {
 	NSFetchRequest* request = [[[NSFetchRequest alloc] init] autorelease];
-	[request setEntity:[self entity]];
+    NSEntityDescription* e = [NSEntityDescription entityForName:entity inManagedObjectContext:[self managedObjectContext]];
+	[request setEntity:e];
 	
 	NSPredicate* predicate = [NSPredicate predicateWithFormat:@"name like[c] %@", theName];
 	[request setPredicate:predicate];
@@ -34,7 +35,7 @@
     }
     else
     {
-        ObjectAttribute* object = [self insertNewObject];
+        ObjectAttribute* object = [NSEntityDescription insertNewObjectForEntityForName:entity inManagedObjectContext:[self managedObjectContext]];
         object.name = theName;
         return object;
     }

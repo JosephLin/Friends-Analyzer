@@ -156,7 +156,7 @@ static NSArray* monthArray = nil;
 	user.first_name = [dict objectForKey:@"first_name"];
 	user.middle_name = [dict objectForKey:@"middle_name"];
 
-	user.lastName = [LastName objectWithName:[dict objectForKey:@"last_name"]];
+	user.lastName = [ObjectAttribute entity:@"LastName" withName:[dict objectForKey:@"last_name"]];
 	
     user.link = [dict objectForKey:@"link"];
 	user.birthday = [NSDate dateFromFacebookBirthday:[dict objectForKey:@"birthday"]];

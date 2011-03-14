@@ -7,14 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CategorizedTableViewController.h"
 
 
-@interface CategorizedEducationViewController : CategorizedTableViewController
+@interface CategorizedEducationViewController : UITableViewController
 {
-    NSString* property;
+    NSFetchedResultsController* fetchedResultController;
+    UISegmentedControl* segmentedControl;
 }
 
-@property (nonatomic, retain) NSString* property;
+@property (nonatomic, retain) NSFetchedResultsController* fetchedResultController;
+@property (nonatomic, retain) UISegmentedControl* segmentedControl;
+
+- (NSFetchedResultsController*)fetchedResultControllerOfType:(NSInteger)selectedSegmentIndex;
 
 @end

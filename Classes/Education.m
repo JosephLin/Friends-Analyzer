@@ -25,7 +25,7 @@
 {
 	Education* education = [self insertNewObject];
 	
-	education.school = [[dict objectForKey:@"school"] objectForKey:@"name"];
+	education.school = [ObjectAttribute entity:@"School" withName:[[dict objectForKey:@"school"] objectForKey:@"name"]];
 	education.degree = [[dict objectForKey:@"degree"] objectForKey:@"name"];
 	education.year = [[dict objectForKey:@"year"] objectForKey:@"name"];
 	education.type = [dict objectForKey:@"type"];
@@ -33,7 +33,7 @@
 	NSArray* concentrationArray = [dict objectForKey:@"concentration"];
 	for ( id dict in concentrationArray )
 	{
-        Concentration* concentration = [Concentration objectWithName:[dict objectForKey:@"name"]];
+        Concentration* concentration = [ObjectAttribute entity:@"Concentration" withName:[dict objectForKey:@"name"]];
         [education addConcentrationsObject:concentration];
 	}
 	

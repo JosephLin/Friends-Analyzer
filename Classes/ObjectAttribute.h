@@ -19,6 +19,6 @@
 @property (nonatomic, retain) NSNumber * ownerCount;
 @property (nonatomic, retain) NSSet* owners;
 
-+ (id)objectWithName:(NSString*)theName;
++ (id)entity:(NSString*)entity withName:(NSString*)theName;
 
 @end

@@ -77,13 +77,13 @@
     switch (indexPath.row)
     {
         case 1:
-            childVC = [[CategorizedEducationViewController alloc] init];
-            ((CategorizedEducationViewController*)childVC).property = @"degree";
+//            childVC = [[CategorizedEducationViewController alloc] init];
+//            ((CategorizedEducationViewController*)childVC).property = @"degree";
             break;
 
         case 2:
             childVC = [[CategorizedEducationViewController alloc] init];
-            ((CategorizedEducationViewController*)childVC).property = @"school";
+//            ((CategorizedEducationViewController*)childVC).property = @"school";
             break;
             
         default:

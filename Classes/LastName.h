@@ -11,8 +11,6 @@
 #import "ObjectAttribute.h"
 
 
-@class User;
-
 @interface LastName : ObjectAttribute
 {
 }

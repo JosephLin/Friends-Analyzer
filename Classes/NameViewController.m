@@ -13,64 +13,31 @@
 
 @implementation NameViewController
 
+@synthesize fetchedResultController;
+@synthesize segmentedControl;
 
-
-@synthesize sortedKeys;
 
 
 - (void)viewDidLoad
 {    
     NSArray* controlItems = [NSArray arrayWithObjects:@"Sort By Name", @"Sort By Number", nil];
     
-    UISegmentedControl* segmentedControl = [[UISegmentedControl alloc] initWithItems:controlItems];
-    segmentedControl.selectedSegmentIndex = 0;
+    self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:controlItems] autorelease];
     segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-    [segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];    
     
     self.navigationItem.titleView = segmentedControl;
-    [segmentedControl release];
     
+    segmentedControl.selectedSegmentIndex = 0;
+
     [super viewDidLoad];
 }
 
 - (void)segmentedControlValueChanged:(UISegmentedControl*)sender
 {
-    if ( sender.selectedSegmentIndex == 0 )
-    {
-        NSSortDescriptor* numberSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
-        self.sortedKeys = [sortedKeys sortedArrayUsingDescriptors:[NSArray arrayWithObject:numberSortDescriptor]];
-    }
-    else
-    {
-        NSSortDescriptor* numberSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"users.@count" ascending:NO];
-        self.sortedKeys = [sortedKeys sortedArrayUsingDescriptors:[NSArray arrayWithObject:numberSortDescriptor]];
-    }
-    
+    self.fetchedResultController = [self fetchedResultControllerOfType:sender.selectedSegmentIndex];    
 	[self.tableView reloadData];
-}
-
-
-
-#pragma mark - 
-#pragma mark Table View Data Source
-
-- (NSArray*)sortedKeys
-{
-    if ( !sortedKeys )
-    {
-        NSFetchRequest* fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
-        [fetchRequest setEntity:[LastName entity]];
-        
-        NSSortDescriptor* nameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
-        [fetchRequest setSortDescriptors:[NSArray arrayWithObject:nameSortDescriptor]];
-        
-        NSError* error = nil;
-        NSArray* results = [[LastName managedObjectContext] executeFetchRequest:fetchRequest error:&error];
-        
-        sortedKeys = [results retain];
-    }
-    return sortedKeys;
 }
 
 
@@ -79,12 +46,13 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [self.sortedKeys count];
+    return [[self.fetchedResultController sections] count];
 }
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultController sections] objectAtIndex:section];
+    return [sectionInfo numberOfObjects];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -96,20 +64,21 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    LastName* object = [self.sortedKeys objectAtIndex:indexPath.section];
+    LastName* object = [fetchedResultController objectAtIndexPath:indexPath];
     cell.textLabel.text = object.name;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [object.users count]];
     
     return cell;
 }
 
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-    NSArray* sectionIndexTitles = [self.sortedKeys valueForKeyPath:@"@unionOfObjects.name"];
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+{
+    NSArray* sectionIndexTitles = [[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"];
     return sectionIndexTitles;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
-    NSArray* sectionIndexTitles = [self.sortedKeys valueForKeyPath:@"@unionOfObjects.name"];
+    NSArray* sectionIndexTitles = [[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"];
     return [sectionIndexTitles indexOfObject:title];
 }
 
@@ -121,14 +90,53 @@
 {
 	[[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
     
-    LastName* object = [self.sortedKeys objectAtIndex:indexPath.section];
-    NSSortDescriptor* nameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
-    NSArray* users = [object.users sortedArrayUsingDescriptors:[NSArray arrayWithObject:nameSortDescriptor]];
+    LastName* object = [fetchedResultController objectAtIndexPath:indexPath];
+    NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+    NSArray* users = [object.users sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
 
     GenericTableViewController* childVC = [[GenericTableViewController alloc] init];
 	childVC.userArray = users;
 	[self.navigationController pushViewController:childVC animated:YES];
 	[childVC release];
+}
+
+
+#pragma -
+#pragma Fetched Result Controller
+
+- (NSFetchedResultsController*)fetchedResultControllerOfType:(NSInteger)selectedSegmentIndex
+{
+    NSFetchRequest* fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
+    [fetchRequest setEntity:[LastName entity]];
+    
+    NSSortDescriptor* sortDescriptor = nil;
+    NSString* sectionNameKeyPath = nil;
+    
+    if ( selectedSegmentIndex == 0 )
+    {
+        sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+        sectionNameKeyPath = @"indexTitle";
+    }
+    else
+    {
+        sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"userCount" ascending:NO];
+        sectionNameKeyPath = nil;
+    }
+    
+    
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+    
+
+    NSFetchedResultsController* controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
+                                                                                 managedObjectContext:[LastName managedObjectContext]
+                                                                                   sectionNameKeyPath:sectionNameKeyPath
+                                                                                            cacheName:nil];
+    
+    NSError* error;
+    BOOL success = [controller performFetch:&error];
+    NSLog(@"Fetch successed? %d", success);
+    
+    return [controller autorelease];
 }
 
 

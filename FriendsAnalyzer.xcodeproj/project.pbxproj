@@ -210,6 +210,7 @@
 				7CC5B10A131D6F6B00FEA4DE /* Root View */,
 				7C4DD517131D8514006C69CF /* Main Menu View */,
 				7C37C307131EEC7E004EFA64 /* Name */,
+				7CEF039C132DB6B40058FD63 /* Gender */,
 				7C13AF851321487F001FD36C /* Birthday */,
 				7C83D9CF13256B710059BBF0 /* Location */,
 				7CC78ED213296EEF00CA2B45 /* Education */,
@@ -488,6 +489,13 @@
 				7CC78EE61329858000CA2B45 /* ConcentrationViewController.m */,
 			);
 			name = Education;
+			sourceTree = "<group>";
+		};
+		7CEF039C132DB6B40058FD63 /* Gender */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Gender;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

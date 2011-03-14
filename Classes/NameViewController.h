@@ -11,11 +11,14 @@
 
 @interface NameViewController : UITableViewController
 {
-    NSArray* sortedKeys;
+    NSFetchedResultsController* fetchedResultController;
+    UISegmentedControl* segmentedControl;
 }
 
-@property (nonatomic, retain) NSArray* sortedKeys;
+@property (nonatomic, retain) NSFetchedResultsController* fetchedResultController;
+@property (nonatomic, retain) UISegmentedControl* segmentedControl;
 
+- (NSFetchedResultsController*)fetchedResultControllerOfType:(NSInteger)selectedSegmentIndex;
 
 
 @end

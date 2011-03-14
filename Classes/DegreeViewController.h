@@ -7,17 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FRCBasedTableViewController.h"
 
 
-@interface DegreeViewController : UITableViewController
+@interface DegreeViewController : FRCBasedTableViewController
 {
-    NSFetchedResultsController* fetchedResultController;
-    UISegmentedControl* segmentedControl;
 }
-
-@property (nonatomic, retain) NSFetchedResultsController* fetchedResultController;
-@property (nonatomic, retain) UISegmentedControl* segmentedControl;
-
-- (NSFetchedResultsController*)fetchedResultControllerOfType:(NSInteger)selectedSegmentIndex;
 
 @end

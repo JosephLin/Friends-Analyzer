@@ -7,16 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FRCBasedTableViewController.h"
 
-@interface ConcentrationViewController : UITableViewController
+
+@interface ConcentrationViewController : FRCBasedTableViewController
 {
-    NSFetchedResultsController* fetchedResultController;
-    UISegmentedControl* segmentedControl;
 }
-
-@property (nonatomic, retain) NSFetchedResultsController* fetchedResultController;
-@property (nonatomic, retain) UISegmentedControl* segmentedControl;
-
-- (NSFetchedResultsController*)fetchedResultControllerOfType:(NSInteger)selectedSegmentIndex;
 
 @end

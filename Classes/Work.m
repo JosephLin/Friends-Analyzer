@@ -24,7 +24,8 @@
 {
 	Work* work = [self insertNewObject];
 	
-	work.employer = [[dict objectForKey:@"employer"] objectForKey:@"name"];
+    work.employer = [ObjectAttribute entity:@"Employer" withName:[[dict objectForKey:@"employer"] objectForKey:@"name"]];
+
 	work.location = [[dict objectForKey:@"location"] objectForKey:@"name"];
 	work.start_date = [NSDate dateFromYearMonth:[dict objectForKey:@"start_date"]];
 	

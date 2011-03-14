@@ -7,17 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FRCBasedTableViewController.h"
 
 
-@interface SchoolViewController : UITableViewController
+@interface SchoolViewController : FRCBasedTableViewController
 {
-    NSFetchedResultsController* fetchedResultController;
-    UISegmentedControl* segmentedControl;
 }
-
-@property (nonatomic, retain) NSFetchedResultsController* fetchedResultController;
-@property (nonatomic, retain) UISegmentedControl* segmentedControl;
-
-- (NSFetchedResultsController*)fetchedResultControllerOfType:(NSInteger)selectedSegmentIndex;
 
 @end

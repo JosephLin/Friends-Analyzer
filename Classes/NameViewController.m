@@ -7,137 +7,25 @@
 //
 
 #import "NameViewController.h"
-#import "User.h"
-#import "GenericTableViewController.h"
-#import "ObjectAttribute.h"
+
 
 @implementation NameViewController
-
-@synthesize fetchedResultController;
-@synthesize segmentedControl;
-
 
 
 - (void)viewDidLoad
 {    
-    NSArray* controlItems = [NSArray arrayWithObjects:@"Sort By Name", @"Sort By Number", nil];
+    self.entityName = @"LastName";
     
-    self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:controlItems] autorelease];
-    segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-    [segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];    
-    
-    self.navigationItem.titleView = segmentedControl;
-    
-    segmentedControl.selectedSegmentIndex = 0;
-
     [super viewDidLoad];
 }
 
-- (void)segmentedControlValueChanged:(UISegmentedControl*)sender
+- (NSArray*)usersForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.fetchedResultController = [self fetchedResultControllerOfType:sender.selectedSegmentIndex];    
-	[self.tableView reloadData];
-}
-
-
-#pragma mark -
-#pragma mark Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return [[self.fetchedResultController sections] count];
-}
-
-- (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
-{
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultController sections] objectAtIndex:section];
-    return [sectionInfo numberOfObjects];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{    
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
-    }
-    
-    ObjectAttribute* object = [fetchedResultController objectAtIndexPath:indexPath];
-    cell.textLabel.text = object.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [object.owners count]];
-    
-    return cell;
-}
-
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
-{
-    NSArray* sectionIndexTitles = [[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"];
-    return sectionIndexTitles;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
-    NSArray* sectionIndexTitles = [[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"];
-    return [sectionIndexTitles indexOfObject:title];
-}
-
-
-#pragma mark -
-#pragma mark Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	[[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
-    
     ObjectAttribute* object = [fetchedResultController objectAtIndexPath:indexPath];
     NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
-    NSArray* users = [object.owners sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
-
-    GenericTableViewController* childVC = [[GenericTableViewController alloc] init];
-	childVC.userArray = users;
-	[self.navigationController pushViewController:childVC animated:YES];
-	[childVC release];
-}
-
-
-#pragma -
-#pragma Fetched Result Controller
-
-- (NSFetchedResultsController*)fetchedResultControllerOfType:(NSInteger)selectedSegmentIndex
-{
-    NSFetchRequest* fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
-    NSEntityDescription* entity = [NSEntityDescription entityForName:@"LastName" inManagedObjectContext:[ObjectAttribute managedObjectContext]];
-    [fetchRequest setEntity:entity];
+    NSArray* array = [object.owners sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     
-    NSSortDescriptor* sortDescriptor = nil;
-    NSString* sectionNameKeyPath = nil;
-    
-    if ( selectedSegmentIndex == 0 )
-    {
-        sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
-        sectionNameKeyPath = @"indexTitle";
-    }
-    else
-    {
-        sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"ownerCount" ascending:NO];
-        sectionNameKeyPath = nil;
-    }
-    
-    
-    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
-    
-
-    NSFetchedResultsController* controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
-                                                                                 managedObjectContext:[ObjectAttribute managedObjectContext]
-                                                                                   sectionNameKeyPath:sectionNameKeyPath
-                                                                                            cacheName:nil];
-    
-    NSError* error;
-    BOOL success = [controller performFetch:&error];
-    NSLog(@"Fetch successed? %d", success);
-    
-    return [controller autorelease];
+    return array;
 }
 
 

@@ -8,6 +8,7 @@
 
 #import <CoreData/CoreData.h>
 #import "EnhancedManagedObject.h"
+#import "ObjectAttribute.h"
 
 @class User;
 @class Geocode;
@@ -16,7 +17,7 @@
 {
 }
 
-@property (nonatomic, retain) NSString * employer;
+@property (nonatomic, retain) ObjectAttribute * employer;
 @property (nonatomic, retain) NSString * location;
 @property (nonatomic, retain) NSDate * start_date;
 @property (nonatomic, retain) User * user;

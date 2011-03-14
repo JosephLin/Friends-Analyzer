@@ -17,6 +17,8 @@
 		7C13AF8A132149E8001FD36C /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C13AF89132149E8001FD36C /* MainWindow-iPad.xib */; };
 		7C13AF8F13214C8C001FD36C /* BirthdayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C13AF8D13214C8C001FD36C /* BirthdayViewController.m */; };
 		7C13AF9013214C8C001FD36C /* BirthdayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C13AF8E13214C8C001FD36C /* BirthdayViewController.xib */; };
+		7C1FF31D132EABE300110D03 /* WorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1FF31C132EABE300110D03 /* WorkViewController.m */; };
+		7C1FF320132EAD3700110D03 /* FRCBasedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1FF31F132EAD3700110D03 /* FRCBasedTableViewController.m */; };
 		7C37C1A4131EA0FC004EFA64 /* FBRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C37C1A3131EA0FC004EFA64 /* FBRequestOperation.m */; };
 		7C37C30B131EEC91004EFA64 /* NameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C37C309131EEC91004EFA64 /* NameViewController.m */; };
 		7C4DD511131D8081006C69CF /* MenuStructure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C4DD510131D8081006C69CF /* MenuStructure.plist */; };
@@ -62,7 +64,6 @@
 		7CC78EC4132965A700CA2B45 /* LastUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78EC2132965A700CA2B45 /* LastUpdateViewController.m */; };
 		7CC78EC5132965A700CA2B45 /* LastUpdateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CC78EC3132965A700CA2B45 /* LastUpdateViewController.xib */; };
 		7CC78ED613296F0900CA2B45 /* EducationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78ED413296F0900CA2B45 /* EducationViewController.m */; };
-		7CC78ED713296F0900CA2B45 /* EducationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CC78ED513296F0900CA2B45 /* EducationViewController.xib */; };
 		7CC78EDA1329732100CA2B45 /* SchoolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78ED91329732000CA2B45 /* SchoolViewController.m */; };
 		7CC78EDD13297C1A00CA2B45 /* CategorizedUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78EDC13297C1900CA2B45 /* CategorizedUserTableViewController.m */; };
 		7CC78EE71329858200CA2B45 /* ConcentrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78EE61329858000CA2B45 /* ConcentrationViewController.m */; };
@@ -87,6 +88,10 @@
 		7C13AF8C13214C8C001FD36C /* BirthdayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BirthdayViewController.h; sourceTree = "<group>"; };
 		7C13AF8D13214C8C001FD36C /* BirthdayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BirthdayViewController.m; sourceTree = "<group>"; };
 		7C13AF8E13214C8C001FD36C /* BirthdayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BirthdayViewController.xib; sourceTree = "<group>"; };
+		7C1FF31B132EABE300110D03 /* WorkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkViewController.h; sourceTree = "<group>"; };
+		7C1FF31C132EABE300110D03 /* WorkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkViewController.m; sourceTree = "<group>"; };
+		7C1FF31E132EAD3700110D03 /* FRCBasedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRCBasedTableViewController.h; sourceTree = "<group>"; };
+		7C1FF31F132EAD3700110D03 /* FRCBasedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRCBasedTableViewController.m; sourceTree = "<group>"; };
 		7C37C1A2131EA0FC004EFA64 /* FBRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBRequestOperation.h; sourceTree = "<group>"; };
 		7C37C1A3131EA0FC004EFA64 /* FBRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBRequestOperation.m; sourceTree = "<group>"; };
 		7C37C308131EEC91004EFA64 /* NameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameViewController.h; sourceTree = "<group>"; };
@@ -167,8 +172,7 @@
 		7CC78EC3132965A700CA2B45 /* LastUpdateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LastUpdateViewController.xib; sourceTree = "<group>"; };
 		7CC78ED313296F0900CA2B45 /* EducationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EducationViewController.h; sourceTree = "<group>"; };
 		7CC78ED413296F0900CA2B45 /* EducationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EducationViewController.m; sourceTree = "<group>"; };
-		7CC78ED513296F0900CA2B45 /* EducationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EducationViewController.xib; sourceTree = "<group>"; };
-		7CC78ED81329732000CA2B45 /* SchoolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = SchoolViewController.h; sourceTree = "<group>"; };
+		7CC78ED81329732000CA2B45 /* SchoolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolViewController.h; sourceTree = "<group>"; };
 		7CC78ED91329732000CA2B45 /* SchoolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolViewController.m; sourceTree = "<group>"; };
 		7CC78EDB13297C1900CA2B45 /* CategorizedUserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategorizedUserTableViewController.h; sourceTree = "<group>"; };
 		7CC78EDC13297C1900CA2B45 /* CategorizedUserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategorizedUserTableViewController.m; sourceTree = "<group>"; };
@@ -209,12 +213,13 @@
 			children = (
 				7CC5B10A131D6F6B00FEA4DE /* Root View */,
 				7C4DD517131D8514006C69CF /* Main Menu View */,
-				7C37C307131EEC7E004EFA64 /* Name */,
-				7CEF039C132DB6B40058FD63 /* Gender */,
-				7C13AF851321487F001FD36C /* Birthday */,
-				7C83D9CF13256B710059BBF0 /* Location */,
-				7CC78ED213296EEF00CA2B45 /* Education */,
-				7CC78EC01329648B00CA2B45 /* Last Update */,
+				7C37C307131EEC7E004EFA64 /* Name View */,
+				7CEF039C132DB6B40058FD63 /* Gender View */,
+				7C13AF851321487F001FD36C /* Birthday View */,
+				7C83D9CF13256B710059BBF0 /* Location View */,
+				7C1FF31A132EA9D000110D03 /* Work View */,
+				7CC78ED213296EEF00CA2B45 /* Education View */,
+				7CC78EC01329648B00CA2B45 /* Last Update View */,
 				7C4DD677131DA42F006C69CF /* Table View */,
 				7CC5B10E131D6FAB00FEA4DE /* Pie Chart */,
 				7C83D9DF13257D2F0059BBF0 /* Utilities */,
@@ -279,7 +284,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		7C13AF851321487F001FD36C /* Birthday */ = {
+		7C13AF851321487F001FD36C /* Birthday View */ = {
 			isa = PBXGroup;
 			children = (
 				7C13AF8C13214C8C001FD36C /* BirthdayViewController.h */,
@@ -287,7 +292,7 @@
 				7C13AF8E13214C8C001FD36C /* BirthdayViewController.xib */,
 				7C74C55713219060003258AC /* Horoscope.plist */,
 			);
-			name = Birthday;
+			name = "Birthday View";
 			sourceTree = "<group>";
 		};
 		7C13AF88132149E6001FD36C /* iPad */ = {
@@ -298,13 +303,22 @@
 			name = iPad;
 			sourceTree = "<group>";
 		};
-		7C37C307131EEC7E004EFA64 /* Name */ = {
+		7C1FF31A132EA9D000110D03 /* Work View */ = {
+			isa = PBXGroup;
+			children = (
+				7C1FF31B132EABE300110D03 /* WorkViewController.h */,
+				7C1FF31C132EABE300110D03 /* WorkViewController.m */,
+			);
+			name = "Work View";
+			sourceTree = "<group>";
+		};
+		7C37C307131EEC7E004EFA64 /* Name View */ = {
 			isa = PBXGroup;
 			children = (
 				7C37C308131EEC91004EFA64 /* NameViewController.h */,
 				7C37C309131EEC91004EFA64 /* NameViewController.m */,
 			);
-			name = Name;
+			name = "Name View";
 			sourceTree = "<group>";
 		};
 		7C4DD517131D8514006C69CF /* Main Menu View */ = {
@@ -328,11 +342,13 @@
 				7CC5B0D6131D6F6200FEA4DE /* GenericTableViewController.h */,
 				7CC5B0D7131D6F6200FEA4DE /* GenericTableViewController.m */,
 				7CC5B0D8131D6F6200FEA4DE /* GenericTableViewController.xib */,
+				7C1FF31E132EAD3700110D03 /* FRCBasedTableViewController.h */,
+				7C1FF31F132EAD3700110D03 /* FRCBasedTableViewController.m */,
 			);
 			name = "Table View";
 			sourceTree = "<group>";
 		};
-		7C83D9CF13256B710059BBF0 /* Location */ = {
+		7C83D9CF13256B710059BBF0 /* Location View */ = {
 			isa = PBXGroup;
 			children = (
 				7C83D9D013256BA10059BBF0 /* LocationViewController.h */,
@@ -343,7 +359,7 @@
 				7CF0CC691327F3DB006C5693 /* UserLocationViewController.h */,
 				7CF0CC6A1327F3DB006C5693 /* UserLocationViewController.m */,
 			);
-			name = Location;
+			name = "Location View";
 			sourceTree = "<group>";
 		};
 		7C83D9DF13257D2F0059BBF0 /* Utilities */ = {
@@ -465,22 +481,21 @@
 			name = "Pie Chart";
 			sourceTree = "<group>";
 		};
-		7CC78EC01329648B00CA2B45 /* Last Update */ = {
+		7CC78EC01329648B00CA2B45 /* Last Update View */ = {
 			isa = PBXGroup;
 			children = (
 				7CC78EC1132965A700CA2B45 /* LastUpdateViewController.h */,
 				7CC78EC2132965A700CA2B45 /* LastUpdateViewController.m */,
 				7CC78EC3132965A700CA2B45 /* LastUpdateViewController.xib */,
 			);
-			name = "Last Update";
+			name = "Last Update View";
 			sourceTree = "<group>";
 		};
-		7CC78ED213296EEF00CA2B45 /* Education */ = {
+		7CC78ED213296EEF00CA2B45 /* Education View */ = {
 			isa = PBXGroup;
 			children = (
 				7CC78ED313296F0900CA2B45 /* EducationViewController.h */,
 				7CC78ED413296F0900CA2B45 /* EducationViewController.m */,
-				7CC78ED513296F0900CA2B45 /* EducationViewController.xib */,
 				7CC78ED81329732000CA2B45 /* SchoolViewController.h */,
 				7CC78ED91329732000CA2B45 /* SchoolViewController.m */,
 				7CEF03A9132DD5F10058FD63 /* DegreeViewController.h */,
@@ -488,14 +503,14 @@
 				7CC78EE51329857F00CA2B45 /* ConcentrationViewController.h */,
 				7CC78EE61329858000CA2B45 /* ConcentrationViewController.m */,
 			);
-			name = Education;
+			name = "Education View";
 			sourceTree = "<group>";
 		};
-		7CEF039C132DB6B40058FD63 /* Gender */ = {
+		7CEF039C132DB6B40058FD63 /* Gender View */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = Gender;
+			name = "Gender View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -561,7 +576,6 @@
 				7C74C55813219060003258AC /* Horoscope.plist in Resources */,
 				7C83D9D413256BA10059BBF0 /* LocationViewController.xib in Resources */,
 				7CC78EC5132965A700CA2B45 /* LastUpdateViewController.xib in Resources */,
-				7CC78ED713296F0900CA2B45 /* EducationViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -616,6 +630,8 @@
 				7CC78EE71329858200CA2B45 /* ConcentrationViewController.m in Sources */,
 				7CEF039F132DBAA10058FD63 /* ObjectAttribute.m in Sources */,
 				7CEF03AB132DD5F20058FD63 /* DegreeViewController.m in Sources */,
+				7C1FF31D132EABE300110D03 /* WorkViewController.m in Sources */,
+				7C1FF320132EAD3700110D03 /* FRCBasedTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

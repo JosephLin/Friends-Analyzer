@@ -8,7 +8,6 @@
 
 #import "Education.h"
 
-#import "Concentration.h"
 #import "User.h"
 
 @implementation Education 

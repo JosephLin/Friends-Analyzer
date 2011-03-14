@@ -8,7 +8,6 @@
 
 #import "ConcentrationViewController.h"
 #import "Education.h"
-#import "Concentration.h"
 #import "GenericTableViewController.h"
 
 @implementation ConcentrationViewController

@@ -9,7 +9,7 @@
 #import "NameViewController.h"
 #import "User.h"
 #import "GenericTableViewController.h"
-#import "LastName.h"
+#import "ObjectAttribute.h"
 
 @implementation NameViewController
 
@@ -64,8 +64,8 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    LastName* object = [fetchedResultController objectAtIndexPath:indexPath];
-    cell.textLabel.text = object.name;
+    ObjectAttribute* object = [fetchedResultController objectAtIndexPath:indexPath];
+    cell.textLabel.text = object.indexTitle;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [object.owners count]];
     
     return cell;
@@ -90,7 +90,7 @@
 {
 	[[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
     
-    LastName* object = [fetchedResultController objectAtIndexPath:indexPath];
+    ObjectAttribute* object = [fetchedResultController objectAtIndexPath:indexPath];
     NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
     NSArray* users = [object.owners sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
 
@@ -107,7 +107,8 @@
 - (NSFetchedResultsController*)fetchedResultControllerOfType:(NSInteger)selectedSegmentIndex
 {
     NSFetchRequest* fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
-    [fetchRequest setEntity:[LastName entity]];
+    NSEntityDescription* entity = [NSEntityDescription entityForName:@"LastName" inManagedObjectContext:[ObjectAttribute managedObjectContext]];
+    [fetchRequest setEntity:entity];
     
     NSSortDescriptor* sortDescriptor = nil;
     NSString* sectionNameKeyPath = nil;
@@ -128,7 +129,7 @@
     
 
     NSFetchedResultsController* controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
-                                                                                 managedObjectContext:[LastName managedObjectContext]
+                                                                                 managedObjectContext:[ObjectAttribute managedObjectContext]
                                                                                    sectionNameKeyPath:sectionNameKeyPath
                                                                                             cacheName:nil];
     

@@ -11,7 +11,6 @@
 #import "Work.h"
 #import "Geocode.h"
 #import "NSDate+Utilities.h"
-#import "LastName.h"
 
 #define kTimeIntervalADay           86400
 #define kTimeIntervalAWeek          604800

@@ -8,18 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "EnhancedManagedObject.h"
+#import "ObjectAttribute.h"
+
 
 @class User;
 
-@interface LastName : EnhancedManagedObject {
-@private
+@interface LastName : ObjectAttribute
+{
 }
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * indexTitle;
-@property (nonatomic, retain) NSNumber * userCount;
-@property (nonatomic, retain) NSSet* users;
-
-+ (id)objectWithName:(NSString*)theName;
 
 @end

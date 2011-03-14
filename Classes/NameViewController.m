@@ -66,7 +66,7 @@
     
     LastName* object = [fetchedResultController objectAtIndexPath:indexPath];
     cell.textLabel.text = object.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [object.users count]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [object.owners count]];
     
     return cell;
 }
@@ -92,7 +92,7 @@
     
     LastName* object = [fetchedResultController objectAtIndexPath:indexPath];
     NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
-    NSArray* users = [object.users sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    NSArray* users = [object.owners sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
 
     GenericTableViewController* childVC = [[GenericTableViewController alloc] init];
 	childVC.userArray = users;
@@ -119,7 +119,7 @@
     }
     else
     {
-        sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"userCount" ascending:NO];
+        sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"ownerCount" ascending:NO];
         sectionNameKeyPath = nil;
     }
     

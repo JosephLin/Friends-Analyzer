@@ -7,16 +7,11 @@
 //
 
 #import <CoreData/CoreData.h>
-#import "EnhancedManagedObject.h"
+#import "ObjectAttribute.h"
 
-@interface Concentration :  EnhancedManagedObject  
+@interface Concentration :  ObjectAttribute  
 {
 }
-
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSSet * educations;
-
-+ (Concentration*)concentrationWithName:(NSString*)theName;
 
 @end
 

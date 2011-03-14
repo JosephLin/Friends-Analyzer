@@ -9,75 +9,36 @@
 #import "ConcentrationViewController.h"
 #import "Education.h"
 #import "Concentration.h"
+#import "GenericTableViewController.h"
 
 @implementation ConcentrationViewController
 
-@synthesize sortedKeys;
+@synthesize fetchedResultController;
+@synthesize segmentedControl;
+
 
 
 - (void)viewDidLoad
 {    
     NSArray* controlItems = [NSArray arrayWithObjects:@"Sort By Name", @"Sort By Number", nil];
     
-    UISegmentedControl* segmentedControl = [[UISegmentedControl alloc] initWithItems:controlItems];
-    segmentedControl.selectedSegmentIndex = 0;
+    self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:controlItems] autorelease];
     segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-    [segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];    
     
     self.navigationItem.titleView = segmentedControl;
-    [segmentedControl release];
+    
+    segmentedControl.selectedSegmentIndex = 0;
     
     [super viewDidLoad];
 }
 
 - (void)segmentedControlValueChanged:(UISegmentedControl*)sender
 {
-    if ( sender.selectedSegmentIndex == 0 )
-    {
-        NSSortDescriptor* numberSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-        self.sortedKeys = [sortedKeys sortedArrayUsingDescriptors:[NSArray arrayWithObject:numberSortDescriptor]];
-    }
-    else
-    {
-        NSSortDescriptor* numberSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"educations.@count" ascending:NO];
-        self.sortedKeys = [sortedKeys sortedArrayUsingDescriptors:[NSArray arrayWithObject:numberSortDescriptor]];
-    }
-
+    self.fetchedResultController = [self fetchedResultControllerOfType:sender.selectedSegmentIndex];    
 	[self.tableView reloadData];
 }
-
-
-
-#pragma mark - 
-#pragma mark Table View Data Source
-
-- (NSArray*)sortedKeys
-{
-    if ( !sortedKeys )
-    {
-        NSFetchRequest* fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
-        [fetchRequest setEntity:[Concentration entity]];
-        
-        NSSortDescriptor* nameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
-        [fetchRequest setSortDescriptors:[NSArray arrayWithObject:nameSortDescriptor]];
-        
-        NSError* error = nil;
-        NSArray* results = [[Concentration managedObjectContext] executeFetchRequest:fetchRequest error:&error];
-        
-        sortedKeys = [results retain];
-    }
-    return sortedKeys;
-}
-
-//- (NSArray*)usersForCellAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    NSString* key = [self.sortedKeys objectAtIndex:indexPath.row];
-//	NSArray* concentrations = [Concentration concentrationsForName:key];
-//    NSArray* users = [concentrations valueForKeyPath:@"@unionOfObjects.education.user"];
-//    
-//	return users;
-//}
 
 
 #pragma mark -
@@ -85,12 +46,13 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [self.sortedKeys count];
+    return [[self.fetchedResultController sections] count];
 }
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultController sections] objectAtIndex:section];
+    return [sectionInfo numberOfObjects];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -102,25 +64,24 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    Concentration* concentration = [self.sortedKeys objectAtIndex:indexPath.section];
-    cell.textLabel.text = concentration.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [concentration.educations count]];
-
+    ObjectAttribute* object = [fetchedResultController objectAtIndexPath:indexPath];
+    cell.textLabel.text = object.name;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [object.owners count]];
+    
     return cell;
 }
-/*
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-    //    NSArray* sectionIndexTitles = [[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"];
-    //    return sectionIndexTitles;
-    return [fetchedResultController sectionIndexTitles];
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+{
+    NSArray* sectionIndexTitles = [[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"];
+    return sectionIndexTitles;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
-    //    NSArray* sectionIndexTitles = [[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"];
-    //    return [sectionIndexTitles indexOfObject:title];
-    return [fetchedResultController sectionForSectionIndexTitle:title atIndex:index];
+    NSArray* sectionIndexTitles = [[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"];
+    return [sectionIndexTitles indexOfObject:title];
 }
-*/
+
 
 #pragma mark -
 #pragma mark Table view delegate
@@ -128,7 +89,59 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	[[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
+    
+    ObjectAttribute* object = [fetchedResultController objectAtIndexPath:indexPath];
+
+    NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"user.name" ascending:YES];
+    NSArray* sorted = [object.owners sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    NSArray* array = [sorted valueForKeyPath:@"@unionOfObjects.user"];
+
+    GenericTableViewController* childVC = [[GenericTableViewController alloc] init];
+	childVC.userArray = array;
+	[self.navigationController pushViewController:childVC animated:YES];
+	[childVC release];
 }
+
+
+#pragma -
+#pragma Fetched Result Controller
+
+- (NSFetchedResultsController*)fetchedResultControllerOfType:(NSInteger)selectedSegmentIndex
+{
+    NSFetchRequest* fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
+    NSEntityDescription* entity = [NSEntityDescription entityForName:@"Concentration" inManagedObjectContext:[ObjectAttribute managedObjectContext]];
+    [fetchRequest setEntity:entity];
+    
+    NSSortDescriptor* sortDescriptor = nil;
+    NSString* sectionNameKeyPath = nil;
+    
+    if ( selectedSegmentIndex == 0 )
+    {
+        sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+        sectionNameKeyPath = @"indexTitle";
+    }
+    else
+    {
+        sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"ownerCount" ascending:NO];
+        sectionNameKeyPath = nil;
+    }
+    
+    
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+    
+    
+    NSFetchedResultsController* controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
+                                                                                 managedObjectContext:[ObjectAttribute managedObjectContext]
+                                                                                   sectionNameKeyPath:sectionNameKeyPath
+                                                                                            cacheName:nil];
+    
+    NSError* error;
+    BOOL success = [controller performFetch:&error];
+    NSLog(@"Fetch successed? %d", success);
+    
+    return [controller autorelease];
+}
+
 
 
 @end

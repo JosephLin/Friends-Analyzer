@@ -25,7 +25,15 @@
 
 - (void)viewDidLoad
 {    
-    self.navigationItem.titleView = self.segmentedControl;
+    NSArray* controlItems = [NSArray arrayWithObjects:@"Sort By Name", @"Sort By Number", nil];
+    
+    self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:controlItems] autorelease];
+    segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+    [segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
+    self.navigationItem.titleView = segmentedControl;
+    
+    segmentedControl.selectedSegmentIndex = 0;
     
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Chart" 
 																			   style:UIBarButtonItemStylePlain 
@@ -33,6 +41,14 @@
 																			  action:@selector(toggleChartView)] autorelease];
     
     [super viewDidLoad];
+}
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    
+    self.segmentedControl = nil;
+    self.pieChartView = nil;
 }
 
 - (void)dealloc
@@ -121,9 +137,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	[[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
+    
+    NSString* key = [self.sortedKeys objectAtIndex:indexPath.row];
+	NSArray* users = [User usersForKey:property value:key];
+    NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+	NSArray* sorted = [users sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
 	
 	UserTableViewController* childVC = [[UserTableViewController alloc] init];
-	childVC.userArray = [self usersForCellAtIndexPath:indexPath];
+	childVC.userArray = sorted;
+    childVC.title = key;
 	[self.navigationController pushViewController:childVC animated:YES];
 	[childVC release];
 }
@@ -171,38 +193,6 @@
     }
     return userCountsDict;
 }
-
-
-- (NSArray*)usersForCellAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSString* key = [self.sortedKeys objectAtIndex:indexPath.row];
-	NSArray* users = [User usersForKey:property value:key];
-    NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
-	NSArray* sorted = [users sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
-	return sorted;
-}
-
-
-#pragma mark - 
-#pragma mark Segmented Control
-//// Subclass should overload these methods ////
-
-- (UISegmentedControl*)segmentedControl
-{
-    if ( !segmentedControl )
-    {
-        NSArray* controlItems = [NSArray arrayWithObjects:@"Name", @"Number", nil];
-        
-        segmentedControl = [[UISegmentedControl alloc] initWithItems:controlItems];
-        segmentedControl.selectedSegmentIndex = 0;
-        segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-        [segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
-    }
-    return segmentedControl;
-}
-
-
 
 
 

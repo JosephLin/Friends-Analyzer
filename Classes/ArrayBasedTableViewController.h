@@ -26,6 +26,4 @@
 @property (nonatomic, retain) IBOutlet UISegmentedControl* segmentedControl;
 @property (nonatomic, retain) PieChartView* pieChartView;
 
-- (NSArray*)usersForCellAtIndexPath:(NSIndexPath *)indexPath;
-
 @end

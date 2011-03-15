@@ -40,7 +40,6 @@
 		7CA36AE61320648B00B4FAF1 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA36ADE1320648B00B4FAF1 /* SBJsonBase.m */; };
 		7CA36AE71320648B00B4FAF1 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA36AE01320648B00B4FAF1 /* SBJsonParser.m */; };
 		7CA36AE81320648B00B4FAF1 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA36AE21320648B00B4FAF1 /* SBJsonWriter.m */; };
-		7CC5B0E9131D6F6200FEA4DE /* CategorizedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0B1131D6F6200FEA4DE /* CategorizedTableViewController.m */; };
 		7CC5B0EC131D6F6200FEA4DE /* FacebookClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0B6131D6F6200FEA4DE /* FacebookClient.m */; };
 		7CC5B0EF131D6F6200FEA4DE /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0BD131D6F6200FEA4DE /* Facebook.m */; };
 		7CC5B0F0131D6F6200FEA4DE /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7CC5B0BF131D6F6200FEA4DE /* FBDialog.bundle */; };
@@ -65,8 +64,8 @@
 		7CC78EC5132965A700CA2B45 /* LastUpdateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CC78EC3132965A700CA2B45 /* LastUpdateViewController.xib */; };
 		7CC78ED613296F0900CA2B45 /* EducationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78ED413296F0900CA2B45 /* EducationViewController.m */; };
 		7CC78EDA1329732100CA2B45 /* SchoolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78ED91329732000CA2B45 /* SchoolViewController.m */; };
-		7CC78EDD13297C1A00CA2B45 /* CategorizedUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78EDC13297C1900CA2B45 /* CategorizedUserTableViewController.m */; };
 		7CC78EE71329858200CA2B45 /* ConcentrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78EE61329858000CA2B45 /* ConcentrationViewController.m */; };
+		7CD02E611330161D0019728A /* ArrayBasedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD02E601330161D0019728A /* ArrayBasedTableViewController.m */; };
 		7CEF039F132DBAA10058FD63 /* ObjectAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEF039E132DBAA10058FD63 /* ObjectAttribute.m */; };
 		7CEF03AB132DD5F20058FD63 /* DegreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEF03AA132DD5F10058FD63 /* DegreeViewController.m */; };
 		7CF0CC681327F0E3006C5693 /* HometownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF0CC671327F0E2006C5693 /* HometownViewController.m */; };
@@ -131,8 +130,6 @@
 		7CA36AE01320648B00B4FAF1 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		7CA36AE11320648B00B4FAF1 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		7CA36AE21320648B00B4FAF1 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		7CC5B0B0131D6F6200FEA4DE /* CategorizedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategorizedTableViewController.h; sourceTree = "<group>"; };
-		7CC5B0B1131D6F6200FEA4DE /* CategorizedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategorizedTableViewController.m; sourceTree = "<group>"; };
 		7CC5B0B5131D6F6200FEA4DE /* FacebookClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookClient.h; sourceTree = "<group>"; };
 		7CC5B0B6131D6F6200FEA4DE /* FacebookClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookClient.m; sourceTree = "<group>"; };
 		7CC5B0BC131D6F6200FEA4DE /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
@@ -177,10 +174,10 @@
 		7CC78ED413296F0900CA2B45 /* EducationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EducationViewController.m; sourceTree = "<group>"; };
 		7CC78ED81329732000CA2B45 /* SchoolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolViewController.h; sourceTree = "<group>"; };
 		7CC78ED91329732000CA2B45 /* SchoolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolViewController.m; sourceTree = "<group>"; };
-		7CC78EDB13297C1900CA2B45 /* CategorizedUserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategorizedUserTableViewController.h; sourceTree = "<group>"; };
-		7CC78EDC13297C1900CA2B45 /* CategorizedUserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategorizedUserTableViewController.m; sourceTree = "<group>"; };
 		7CC78EE51329857F00CA2B45 /* ConcentrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcentrationViewController.h; sourceTree = "<group>"; };
 		7CC78EE61329858000CA2B45 /* ConcentrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcentrationViewController.m; sourceTree = "<group>"; };
+		7CD02E5F1330161D0019728A /* ArrayBasedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayBasedTableViewController.h; sourceTree = "<group>"; };
+		7CD02E601330161D0019728A /* ArrayBasedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayBasedTableViewController.m; sourceTree = "<group>"; };
 		7CEF039D132DBAA10058FD63 /* ObjectAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectAttribute.h; sourceTree = "<group>"; };
 		7CEF039E132DBAA10058FD63 /* ObjectAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectAttribute.m; sourceTree = "<group>"; };
 		7CEF03A9132DD5F10058FD63 /* DegreeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DegreeViewController.h; sourceTree = "<group>"; };
@@ -348,14 +345,12 @@
 		7C4DD677131DA42F006C69CF /* Table View */ = {
 			isa = PBXGroup;
 			children = (
-				7CC5B0B0131D6F6200FEA4DE /* CategorizedTableViewController.h */,
-				7CC5B0B1131D6F6200FEA4DE /* CategorizedTableViewController.m */,
-				7CC78EDB13297C1900CA2B45 /* CategorizedUserTableViewController.h */,
-				7CC78EDC13297C1900CA2B45 /* CategorizedUserTableViewController.m */,
 				7CC5B0D6131D6F6200FEA4DE /* UserTableViewController.h */,
 				7CC5B0D7131D6F6200FEA4DE /* UserTableViewController.m */,
 				7C1FF31E132EAD3700110D03 /* FRCBasedTableViewController.h */,
 				7C1FF31F132EAD3700110D03 /* FRCBasedTableViewController.m */,
+				7CD02E5F1330161D0019728A /* ArrayBasedTableViewController.h */,
+				7CD02E601330161D0019728A /* ArrayBasedTableViewController.m */,
 			);
 			name = "Table View";
 			sourceTree = "<group>";
@@ -599,7 +594,6 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				28D3F202112F7DC200FD0661 /* FriendsAnalyzer.xcdatamodeld in Sources */,
-				7CC5B0E9131D6F6200FEA4DE /* CategorizedTableViewController.m in Sources */,
 				7CC5B0EC131D6F6200FEA4DE /* FacebookClient.m in Sources */,
 				7CC5B0EF131D6F6200FEA4DE /* Facebook.m in Sources */,
 				7CC5B0F1131D6F6200FEA4DE /* FBDialog.m in Sources */,
@@ -637,7 +631,6 @@
 				7CC78EC4132965A700CA2B45 /* LastUpdateViewController.m in Sources */,
 				7CC78ED613296F0900CA2B45 /* EducationViewController.m in Sources */,
 				7CC78EDA1329732100CA2B45 /* SchoolViewController.m in Sources */,
-				7CC78EDD13297C1A00CA2B45 /* CategorizedUserTableViewController.m in Sources */,
 				7CC78EE71329858200CA2B45 /* ConcentrationViewController.m in Sources */,
 				7CEF039F132DBAA10058FD63 /* ObjectAttribute.m in Sources */,
 				7CEF03AB132DD5F20058FD63 /* DegreeViewController.m in Sources */,
@@ -646,6 +639,7 @@
 				7C1FF323132EB29600110D03 /* EmployerViewController.m in Sources */,
 				7CF6105D132EC0AA002D21DB /* WorkLocationViewController.m in Sources */,
 				7CF61060132EC979002D21DB /* WorkTableViewController.m in Sources */,
+				7CD02E611330161D0019728A /* ArrayBasedTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

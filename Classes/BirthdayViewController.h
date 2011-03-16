@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CategorizedTableViewController.h"
 
 typedef enum{
     TableViewSortTypeAge = 0,

@@ -86,7 +86,7 @@
             }
         }
         
-        [self save];
+//        [self save];
     }
 	
 	return geocode;
@@ -125,7 +125,7 @@
         geocode.longitude = unknownCoordinate;
         geocode.formatted_address = @"Unknown";
         
-        [self save];
+//        [self save];
     }
 	
 	return geocode;

@@ -200,6 +200,8 @@
 		
 		if ( pending == 0 )
 		{
+            [[User managedObjectContext] save:nil];
+            
             [queue removeObserver:self forKeyPath:@"operationCount"];
 			[[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"LastUpdated"];
             

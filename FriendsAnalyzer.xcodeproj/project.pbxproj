@@ -33,7 +33,6 @@
 		7C83D9DC1325742A0059BBF0 /* Geocode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C83D9DB1325742A0059BBF0 /* Geocode.m */; };
 		7C83D9DE1325745F0059BBF0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C83D9DD1325745F0059BBF0 /* CoreLocation.framework */; };
 		7C83D9E5132580AF0059BBF0 /* ForwardGeocodingOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C83D9E4132580AE0059BBF0 /* ForwardGeocodingOperation.m */; };
-		7C9E73011326E25E007FF56C /* FBUserOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C9E73001326E25D007FF56C /* FBUserOperation.m */; };
 		7CA36AE31320648B00B4FAF1 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA36AD81320648B00B4FAF1 /* NSObject+SBJSON.m */; };
 		7CA36AE41320648B00B4FAF1 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA36ADA1320648B00B4FAF1 /* NSString+SBJSON.m */; };
 		7CA36AE51320648B00B4FAF1 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA36ADC1320648B00B4FAF1 /* SBJSON.m */; };
@@ -115,8 +114,6 @@
 		7C83D9DD1325745F0059BBF0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		7C83D9E3132580AD0059BBF0 /* ForwardGeocodingOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardGeocodingOperation.h; sourceTree = "<group>"; };
 		7C83D9E4132580AE0059BBF0 /* ForwardGeocodingOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForwardGeocodingOperation.m; sourceTree = "<group>"; };
-		7C9E72FF1326E25D007FF56C /* FBUserOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBUserOperation.h; sourceTree = "<group>"; };
-		7C9E73001326E25D007FF56C /* FBUserOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBUserOperation.m; sourceTree = "<group>"; };
 		7CA36AD61320648B00B4FAF1 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		7CA36AD71320648B00B4FAF1 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
 		7CA36AD81320648B00B4FAF1 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
@@ -377,8 +374,6 @@
 				7C37C1A3131EA0FC004EFA64 /* FBRequestOperation.m */,
 				7C83D9E3132580AD0059BBF0 /* ForwardGeocodingOperation.h */,
 				7C83D9E4132580AE0059BBF0 /* ForwardGeocodingOperation.m */,
-				7C9E72FF1326E25D007FF56C /* FBUserOperation.h */,
-				7C9E73001326E25D007FF56C /* FBUserOperation.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -624,7 +619,6 @@
 				7C83D9D9132574290059BBF0 /* LocationName.m in Sources */,
 				7C83D9DC1325742A0059BBF0 /* Geocode.m in Sources */,
 				7C83D9E5132580AF0059BBF0 /* ForwardGeocodingOperation.m in Sources */,
-				7C9E73011326E25E007FF56C /* FBUserOperation.m in Sources */,
 				7CF0CC681327F0E3006C5693 /* HometownViewController.m in Sources */,
 				7CF0CC6B1327F3DC006C5693 /* UserLocationViewController.m in Sources */,
 				7CF0CC6E1327FEF6006C5693 /* MapAnnotation.m in Sources */,

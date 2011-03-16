@@ -181,7 +181,7 @@ static NSArray* monthArray = nil;
 	[user updateWorks:[dict objectForKey:@"work"]];
 
 	
-	[self save];
+//	[self save];
 	
 	return user;
 }

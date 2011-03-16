@@ -28,5 +28,6 @@
 @property (nonatomic, retain) NSArray* menuStructureArray;
 @property (nonatomic, retain) User* currentUser;
 
+- (IBAction)refreshButtonTapped:(id)sender;
 
 @end

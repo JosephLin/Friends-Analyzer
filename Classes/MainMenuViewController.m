@@ -11,6 +11,7 @@
 #import "NSDate+Utilities.h"
 #import "ArrayBasedTableViewController.h"
 #import "LocationViewController.h"
+#import "RootViewController.h"
 
 
 @implementation MainMenuViewController
@@ -83,6 +84,13 @@
     return YES;
 }
 
+- (IBAction)refreshButtonTapped:(id)sender
+{
+    RootViewController* rootVC = [self.navigationController.viewControllers objectAtIndex:0];
+    [rootVC getUserInfo];
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
 
 #pragma mark -
 #pragma mark Table View

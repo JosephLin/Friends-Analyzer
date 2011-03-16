@@ -30,6 +30,14 @@
     [self setNeedsDisplay];
 }
 
+- (void)setDict:(NSDictionary*)theDict
+{
+    [dict autorelease];
+    dict = [theDict retain];
+    
+    [self setNeedsDisplay];
+}
+
 - (void)drawRect:(CGRect)rect
 {
 	NSNumber* valueSum = [[dict allValues] valueForKeyPath:@"@sum.intValue"];
@@ -51,7 +59,18 @@
 	UIGraphicsPushContext(context);
 	
 	int colorIndex = 0;
-	for ( NSString* key in [dict allKeys] )
+    NSArray* sortedKeys = [[dict allKeys] sortedArrayUsingComparator:(NSComparator)^(id obj1, id obj2){
+        if ( [obj1 intValue] )
+        {
+            return [obj1 intValue] > [obj2 intValue];
+        }
+        else
+        {
+            return [obj1 caseInsensitiveCompare:obj2];
+        }
+    }];
+
+	for ( NSString* key in sortedKeys )
 	{
 		NSInteger value = [[dict objectForKey:key] intValue];
 		

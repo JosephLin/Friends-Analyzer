@@ -7,32 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
-
-typedef enum{
-    TableViewSortTypeAge = 0,
-    TableViewSortTypeDate,
-    TableViewSortTypeHoroscope
-} TableViewSortType;
+#import "PieChartView.h"
 
 
-@interface BirthdayViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface BirthdayViewController : UIViewController
 {
     UITableView* tableView;
     UISegmentedControl* segmentedControl;
-    UIPickerView* pickerView;
+    PieChartView* pieChartView;
     NSFetchedResultsController* fetchedResultController;
-    
-    NSArray* sortOptions;
-    TableViewSortType currentSortType;
+    NSArray* monthNameArray;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
 @property (nonatomic, retain) IBOutlet UISegmentedControl* segmentedControl;
-@property (nonatomic, retain) IBOutlet UIPickerView* pickerView;
+@property (nonatomic, retain) PieChartView* pieChartView;
 @property (nonatomic, retain) NSFetchedResultsController* fetchedResultController;
-@property (nonatomic, retain) NSArray* sortOptions;
-@property (nonatomic, assign) TableViewSortType currentSortType;
+@property (nonatomic, retain) NSArray* monthNameArray;
 
-- (NSFetchedResultsController*)fetchedResultControllerOfType:(TableViewSortType)type;
+- (NSFetchedResultsController*)fetchedResultControllerOfType:(NSInteger)selectedSegmentIndex;
+- (NSDictionary*)userCountDict;
 
 @end

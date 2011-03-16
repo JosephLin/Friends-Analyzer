@@ -7,6 +7,7 @@
 //
 
 #import "LocationViewController.h"
+#import "GeocodeTableViewCell.h"
 
 
 @implementation LocationViewController
@@ -96,6 +97,7 @@
         [self.view addSubview:tableView];
     }
     [mapView removeFromSuperview];
+    [tableView reloadData];
 }
 
 - (void)showMapView
@@ -122,7 +124,7 @@
     loadingLabel.text = [NSString stringWithFormat:@"Analyzing %d of %d Locations...", total - pending, total];
 	progressView.progress = (float)(total - pending) / total;
 	
-	NSLog(@"pending = %d", pending);
+//	NSLog(@"pending = %d", pending);
 }
 
 - (NSArray*)mapAnnotations
@@ -202,6 +204,9 @@
 		
 		if ( pending == 0 )
 		{
+            [[Geocode managedObjectContext] save:nil];
+
+            self.fetchedResultController = nil;
             [self performSelectorOnMainThread:@selector(showTableView) withObject:nil waitUntilDone:YES];
 		}
 	}
@@ -227,18 +232,20 @@
 {    
     static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    GeocodeTableViewCell *cell = (GeocodeTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[GeocodeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         cell.textLabel.adjustsFontSizeToFitWidth = YES;
         cell.textLabel.minimumFontSize = 7.0;
     }
     
     Geocode* geocode = [self.fetchedResultController objectAtIndexPath:indexPath];
-    cell.textLabel.text = geocode.formatted_address;
+    
+    
+    cell.titleLabel.text = geocode.formatted_address;
     
     NSSet* objects = [geocode valueForKeyPath:ownerKeyPath];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [objects count]];
+    cell.countLabel.text = [NSString stringWithFormat:@"%d", [objects count]];
     
     return cell;
 }
@@ -285,7 +292,7 @@
         
         fetchedResultController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
                                                                       managedObjectContext:[Geocode managedObjectContext]
-                                                                        sectionNameKeyPath:nil
+                                                                        sectionNameKeyPath:@"country"
                                                                                  cacheName:nil];
         
         NSError* error;

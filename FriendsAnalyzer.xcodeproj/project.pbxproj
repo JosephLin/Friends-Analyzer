@@ -25,6 +25,9 @@
 		7C4DD511131D8081006C69CF /* MenuStructure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C4DD510131D8081006C69CF /* MenuStructure.plist */; };
 		7C4DD51B131D852A006C69CF /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4DD519131D852A006C69CF /* MainMenuViewController.m */; };
 		7C4DD51C131D852A006C69CF /* MainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C4DD51A131D852A006C69CF /* MainMenuViewController.xib */; };
+		7C70C0071331574900E1B87C /* GeocodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C70C0061331574700E1B87C /* GeocodeTableViewCell.m */; };
+		7C70C00A13315F3000E1B87C /* WorkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C70C00913315F3000E1B87C /* WorkTableViewCell.m */; };
+		7C70C00D1331614C00E1B87C /* PositionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C70C00C1331614A00E1B87C /* PositionViewController.m */; };
 		7C74C55813219060003258AC /* Horoscope.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C74C55713219060003258AC /* Horoscope.plist */; };
 		7C83D9D313256BA10059BBF0 /* LocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C83D9D113256BA10059BBF0 /* LocationViewController.m */; };
 		7C83D9D413256BA10059BBF0 /* LocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C83D9D213256BA10059BBF0 /* LocationViewController.xib */; };
@@ -102,6 +105,12 @@
 		7C4DD518131D852A006C69CF /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
 		7C4DD519131D852A006C69CF /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
 		7C4DD51A131D852A006C69CF /* MainMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenuViewController.xib; sourceTree = "<group>"; };
+		7C70C0051331574700E1B87C /* GeocodeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeocodeTableViewCell.h; sourceTree = "<group>"; };
+		7C70C0061331574700E1B87C /* GeocodeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeocodeTableViewCell.m; sourceTree = "<group>"; };
+		7C70C00813315F3000E1B87C /* WorkTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkTableViewCell.h; sourceTree = "<group>"; };
+		7C70C00913315F3000E1B87C /* WorkTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkTableViewCell.m; sourceTree = "<group>"; };
+		7C70C00B1331614A00E1B87C /* PositionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositionViewController.h; sourceTree = "<group>"; };
+		7C70C00C1331614A00E1B87C /* PositionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PositionViewController.m; sourceTree = "<group>"; };
 		7C74C55713219060003258AC /* Horoscope.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Horoscope.plist; sourceTree = "<group>"; };
 		7C83D9D013256BA10059BBF0 /* LocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationViewController.h; sourceTree = "<group>"; };
 		7C83D9D113256BA10059BBF0 /* LocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationViewController.m; sourceTree = "<group>"; };
@@ -313,8 +322,12 @@
 				7C1FF322132EB29500110D03 /* EmployerViewController.m */,
 				7CF6105B132EC0AA002D21DB /* WorkLocationViewController.h */,
 				7CF6105C132EC0AA002D21DB /* WorkLocationViewController.m */,
+				7C70C00B1331614A00E1B87C /* PositionViewController.h */,
+				7C70C00C1331614A00E1B87C /* PositionViewController.m */,
 				7CF6105E132EC978002D21DB /* WorkTableViewController.h */,
 				7CF6105F132EC979002D21DB /* WorkTableViewController.m */,
+				7C70C00813315F3000E1B87C /* WorkTableViewCell.h */,
+				7C70C00913315F3000E1B87C /* WorkTableViewCell.m */,
 			);
 			name = "Work View";
 			sourceTree = "<group>";
@@ -362,6 +375,8 @@
 				7CF0CC671327F0E2006C5693 /* HometownViewController.m */,
 				7CF0CC691327F3DB006C5693 /* UserLocationViewController.h */,
 				7CF0CC6A1327F3DB006C5693 /* UserLocationViewController.m */,
+				7C70C0051331574700E1B87C /* GeocodeTableViewCell.h */,
+				7C70C0061331574700E1B87C /* GeocodeTableViewCell.m */,
 			);
 			name = "Location View";
 			sourceTree = "<group>";
@@ -634,6 +649,9 @@
 				7CF6105D132EC0AA002D21DB /* WorkLocationViewController.m in Sources */,
 				7CF61060132EC979002D21DB /* WorkTableViewController.m in Sources */,
 				7CD02E611330161D0019728A /* ArrayBasedTableViewController.m in Sources */,
+				7C70C0071331574900E1B87C /* GeocodeTableViewCell.m in Sources */,
+				7C70C00A13315F3000E1B87C /* WorkTableViewCell.m in Sources */,
+				7C70C00D1331614C00E1B87C /* PositionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,7 @@
 #import "WorkTableViewController.h"
 #import "Work.h"
 #import "User.h"
+#import "WorkTableViewCell.h"
 
 
 @implementation WorkTableViewController
@@ -20,6 +21,11 @@
 #pragma mark -
 #pragma mark Table view data source
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 120.0;    
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [workArray count];
@@ -29,14 +35,15 @@
 {
     static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    WorkTableViewCell *cell = (WorkTableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[WorkTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
 	Work* work = [workArray objectAtIndex:indexPath.row];
-	cell.textLabel.text = work.user.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@, %@, %@", work.employer.name, work.start_date, work.location];
+    cell.work = work;
+//	cell.textLabel.text = work.user.name;
+//    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@, %@, %@", work.employer.name, work.start_date, work.location];
     
     return cell;
 }

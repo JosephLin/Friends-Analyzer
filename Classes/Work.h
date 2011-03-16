@@ -18,8 +18,10 @@
 }
 
 @property (nonatomic, retain) ObjectAttribute * employer;
+@property (nonatomic, retain) ObjectAttribute * position;
 @property (nonatomic, retain) NSString * location;
 @property (nonatomic, retain) NSDate * start_date;
+@property (nonatomic, retain) NSDate * end_date;
 @property (nonatomic, retain) User * user;
 @property (nonatomic, retain) Geocode * geocodeLocation;
 

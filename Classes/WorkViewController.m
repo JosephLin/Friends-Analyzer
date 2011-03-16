@@ -9,6 +9,7 @@
 #import "WorkViewController.h"
 #import "EmployerViewController.h"
 #import "WorkLocationViewController.h"
+#import "PositionViewController.h"
 
 @implementation WorkViewController
 
@@ -23,7 +24,7 @@
 {
     [super viewDidLoad];
     
-	self.menuItemArray = [NSArray arrayWithObjects:@"By Employer", @"By Location", @"By Start Date", nil];
+	self.menuItemArray = [NSArray arrayWithObjects:@"By Employer", @"By Position", @"By Location", @"List All", nil];
 	
     [self.tableView reloadData];
 }
@@ -77,10 +78,14 @@
     switch (indexPath.row)
     {
         case 1:
-            childVC = [[WorkLocationViewController alloc] init];
+            childVC = [[PositionViewController alloc] init];
             break;
             
         case 2:
+            childVC = [[WorkLocationViewController alloc] init];
+            break;
+
+        case 3:
 //            childVC = [[SchoolViewController alloc] init];
             break;
             

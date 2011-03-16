@@ -14,8 +14,10 @@
 @implementation Work 
 
 @dynamic employer;
+@dynamic position;
 @dynamic location;
 @dynamic start_date;
+@dynamic end_date;
 @dynamic user;
 @dynamic geocodeLocation;
 
@@ -25,9 +27,11 @@
 	Work* work = [self insertNewObject];
 	
     work.employer = [ObjectAttribute entity:@"Employer" withName:[[dict objectForKey:@"employer"] objectForKey:@"name"]];
+    work.position = [ObjectAttribute entity:@"Position" withName:[[dict objectForKey:@"position"] objectForKey:@"name"]];
 
 	work.location = [[dict objectForKey:@"location"] objectForKey:@"name"];
 	work.start_date = [NSDate dateFromYearMonth:[dict objectForKey:@"start_date"]];
+	work.end_date = [NSDate dateFromYearMonth:[dict objectForKey:@"end_date"]];
 	
 	return work;
 }

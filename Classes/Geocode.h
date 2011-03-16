@@ -42,6 +42,7 @@
 + (NSArray*)allGeocodes;
 + (Geocode*)unknownGeocode;
 - (CLLocationCoordinate2D)coordinate;
+- (NSString*)shortName;
 
 @end
 

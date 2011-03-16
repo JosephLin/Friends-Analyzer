@@ -47,7 +47,8 @@
     
 	CGFloat radius = ( MIN( rect.size.width , rect.size.height ) / 2 ) * 0.8;
 	CGFloat centerX = rect.size.width / 2;
-	CGFloat centerY = self.bounds.size.height - radius - 10.0;
+	CGFloat centerY = rect.size.height / 2;
+//	CGFloat centerY = self.bounds.size.height - radius - 10.0;
 
     
     CGFloat labelX = 15.0;

@@ -16,6 +16,57 @@
 
 @synthesize workArray;
 @synthesize subtitleStringFormat, subtitleArguments;
+@synthesize segmentedControl;
+
+
+- (void)viewDidLoad
+{    
+    NSArray* controlItems = [NSArray arrayWithObjects:@"Name", @"Employer", nil];
+    
+    self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:controlItems] autorelease];
+    segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+    [segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
+    self.navigationItem.titleView = segmentedControl;
+    
+    segmentedControl.selectedSegmentIndex = 0;
+    
+    [super viewDidLoad];
+}
+
+- (void)segmentedControlValueChanged:(UISegmentedControl*)sender
+{
+    NSSortDescriptor* nameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"user.name" ascending:YES];
+    NSSortDescriptor* employerSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"employer.name" ascending:YES];
+    NSSortDescriptor* positionSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"position.name" ascending:YES];
+    NSSortDescriptor* dateSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"start_date" ascending:NO];
+
+    NSArray* sortDescriptors;
+    
+    
+    switch (sender.selectedSegmentIndex)
+    {
+        case 0:
+            sortDescriptors = [NSArray arrayWithObjects:nameSortDescriptor, employerSortDescriptor, dateSortDescriptor, nil];
+            break;
+            
+        case 1:
+            sortDescriptors = [NSArray arrayWithObjects:employerSortDescriptor, nameSortDescriptor, dateSortDescriptor, nil];
+            break;
+            
+        case 2:
+            sortDescriptors = [NSArray arrayWithObjects:positionSortDescriptor, nameSortDescriptor, employerSortDescriptor, nil];
+            break;
+            
+        default:
+            sortDescriptors = [NSArray arrayWithObjects:dateSortDescriptor, nameSortDescriptor, employerSortDescriptor, nil];
+            break;
+    }
+    
+	self.workArray = [workArray sortedArrayUsingDescriptors:sortDescriptors];
+
+	[self.tableView reloadData];
+}
 
 
 #pragma mark -

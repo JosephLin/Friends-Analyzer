@@ -16,16 +16,12 @@
     
     UILabel* nameLabel;
     UILabel* employerLabel;
-    UILabel* positionLabel;
-    UILabel* dateLabel;
-    UILabel* locationLabel;
+    UILabel* descriptionLabel;
 }
 
 @property (nonatomic, retain) Work* work;
 @property (nonatomic, retain) UILabel* nameLabel;
 @property (nonatomic, retain) UILabel* employerLabel;
-@property (nonatomic, retain) UILabel* positionLabel;
-@property (nonatomic, retain) UILabel* dateLabel;
-@property (nonatomic, retain) UILabel* locationLabel;
+@property (nonatomic, retain) UILabel* descriptionLabel;
 
 @end

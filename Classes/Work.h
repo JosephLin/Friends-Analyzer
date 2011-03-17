@@ -27,6 +27,7 @@
 
 + (Work*)insertWorkWithDictionary:(NSDictionary*)dict;
 + (NSArray*)allWorks;
+- (NSString*)workDate;
 
 @end
 

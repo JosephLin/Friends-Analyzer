@@ -60,8 +60,18 @@
     return pendingOperations;
 }
 
+
 #pragma mark -
-#pragma mark Table view delegate
+#pragma mark Child View Controller
+
+- (void)pushChildViewControllerWithObjects:(NSArray*)objects title:(NSString*)title
+{
+    WorkTableViewController* childVC = [[WorkTableViewController alloc] init];
+    childVC.workArray = objects;
+    childVC.title = title;
+	[self.navigationController pushViewController:childVC animated:YES];
+	[childVC release];
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -70,13 +80,19 @@
     Geocode* geocode = [self.fetchedResultController objectAtIndexPath:indexPath];
     NSSet* objects = [geocode valueForKeyPath:ownerKeyPath];
     
-    
-    WorkTableViewController* childVC = [[WorkTableViewController alloc] init];
     NSSortDescriptor* sortdescriptor = [NSSortDescriptor sortDescriptorWithKey:@"user.name" ascending:YES];
     NSArray* sortedObjects = [objects sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortdescriptor]];
-    childVC.workArray = sortedObjects;
-	[self.navigationController pushViewController:childVC animated:YES];
-	[childVC release];
+    
+    [self pushChildViewControllerWithObjects:sortedObjects title:geocode.formatted_address];
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+    NSSortDescriptor* sortdescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+    MapAnnotation* annotation = view.annotation;
+    NSArray* sortedObjects = [annotation.owners sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortdescriptor]];
+    
+    [self pushChildViewControllerWithObjects:sortedObjects title:annotation.title];
 }
 
 

@@ -19,7 +19,7 @@
     [super viewDidLoad];
 }
 
-- (NSArray*)usersForRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSArray*)objectsForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ObjectAttribute* object = [fetchedResultController objectAtIndexPath:indexPath];
     NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];

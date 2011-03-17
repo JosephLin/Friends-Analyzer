@@ -23,6 +23,6 @@
 @property (nonatomic, retain) NSString* entityName;
 
 - (NSFetchedResultsController*)fetchedResultControllerOfType:(NSInteger)selectedSegmentIndex;
-- (NSArray*)usersForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (NSArray*)objectsForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

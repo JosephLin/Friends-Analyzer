@@ -152,7 +152,7 @@
     return mapAnnotations;
 }
 
-- (void)pushChildViewControllerWithObjects:(NSArray*)objects
+- (void)pushChildViewControllerWithObjects:(NSArray*)objects title:(NSString*)title
 {
     //// Sub-class should override this. ////
 }

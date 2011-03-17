@@ -64,10 +64,11 @@
 #pragma mark -
 #pragma mark Child View Controller
 
-- (void)pushChildViewControllerWithObjects:(NSArray*)objects
+- (void)pushChildViewControllerWithObjects:(NSArray*)objects title:(NSString*)title
 {
     UserTableViewController* childVC = [[UserTableViewController alloc] init];
     childVC.userArray = objects;
+    childVC.title = title;
 	[self.navigationController pushViewController:childVC animated:YES];
 	[childVC release];
 }
@@ -82,7 +83,7 @@
     NSSortDescriptor* sortdescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
     NSArray* sortedObjects = [objects sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortdescriptor]];
     
-    [self pushChildViewControllerWithObjects:sortedObjects];
+    [self pushChildViewControllerWithObjects:sortedObjects title:geocode.formatted_address];
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
@@ -91,7 +92,7 @@
     MapAnnotation* annotation = view.annotation;
     NSArray* sortedObjects = [annotation.owners sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortdescriptor]];
     
-    [self pushChildViewControllerWithObjects:sortedObjects];
+    [self pushChildViewControllerWithObjects:sortedObjects title:annotation.title];
 }
 
 

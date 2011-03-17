@@ -93,21 +93,8 @@
             break;
             
         default:
-        {
-            NSFetchRequest* fetchRequest = [[NSFetchRequest alloc] init];
-            [fetchRequest setEntity:[Work entity]];
-            
-            NSSortDescriptor* nameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"user.name" ascending:YES];
-            NSSortDescriptor* dateSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"start_date" ascending:NO];
-            [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:nameSortDescriptor, dateSortDescriptor, nil]];
-            
-            NSError* error = nil;
-            NSArray* results = [[Work managedObjectContext] executeFetchRequest:fetchRequest error:&error];
-            
             childVC = [[WorkTableViewController alloc] init];
-            ((WorkTableViewController*)childVC).workArray = results;
-            childVC.title = @"Works";
-        }
+            ((WorkTableViewController*)childVC).shouldShowSegmentedControl = YES;
             break;
     }
     

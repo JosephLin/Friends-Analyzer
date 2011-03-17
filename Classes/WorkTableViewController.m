@@ -14,9 +14,9 @@
 
 @implementation WorkTableViewController
 
-@synthesize workArray;
-@synthesize subtitleStringFormat, subtitleArguments;
-@synthesize segmentedControl;
+@synthesize keyPath, value;
+@synthesize fetchedResultController, segmentedControl;
+@synthesize shouldShowSegmentedControl;
 
 
 - (void)viewDidLoad
@@ -27,44 +27,27 @@
     segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
     [segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
-    self.navigationItem.titleView = segmentedControl;
+    
+    if ( shouldShowSegmentedControl )
+        self.navigationItem.titleView = segmentedControl;
     
     segmentedControl.selectedSegmentIndex = 0;
     
     [super viewDidLoad];
 }
 
+- (void)dealloc
+{
+    [keyPath release];
+    [value release];
+    [fetchedResultController release];
+    [segmentedControl release];
+    [super dealloc];
+}
+
 - (void)segmentedControlValueChanged:(UISegmentedControl*)sender
 {
-    NSSortDescriptor* nameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"user.name" ascending:YES];
-    NSSortDescriptor* employerSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"employer.name" ascending:YES];
-    NSSortDescriptor* positionSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"position.name" ascending:YES];
-    NSSortDescriptor* dateSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"start_date" ascending:NO];
-
-    NSArray* sortDescriptors;
-    
-    
-    switch (sender.selectedSegmentIndex)
-    {
-        case 0:
-            sortDescriptors = [NSArray arrayWithObjects:nameSortDescriptor, employerSortDescriptor, dateSortDescriptor, nil];
-            break;
-            
-        case 1:
-            sortDescriptors = [NSArray arrayWithObjects:employerSortDescriptor, nameSortDescriptor, dateSortDescriptor, nil];
-            break;
-            
-        case 2:
-            sortDescriptors = [NSArray arrayWithObjects:positionSortDescriptor, nameSortDescriptor, employerSortDescriptor, nil];
-            break;
-            
-        default:
-            sortDescriptors = [NSArray arrayWithObjects:dateSortDescriptor, nameSortDescriptor, employerSortDescriptor, nil];
-            break;
-    }
-    
-	self.workArray = [workArray sortedArrayUsingDescriptors:sortDescriptors];
-
+    self.fetchedResultController = [self fetchedResultControllerOfType:sender.selectedSegmentIndex];    
 	[self.tableView reloadData];
 }
 
@@ -77,13 +60,19 @@
     return 120.0;    
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [workArray count];
+    return [[self.fetchedResultController sections] count];
+}
+
+- (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
+{
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultController sections] objectAtIndex:section];
+    return [sectionInfo numberOfObjects];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+{    
     static NSString *CellIdentifier = @"Cell";
     
     WorkTableViewCell *cell = (WorkTableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -91,39 +80,91 @@
         cell = [[[WorkTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
-	Work* work = [workArray objectAtIndex:indexPath.row];
+	Work* work = [fetchedResultController objectAtIndexPath:indexPath];
     cell.work = work;
-//	cell.textLabel.text = work.user.name;
-//    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@, %@, %@", work.employer.name, work.start_date, work.location];
     
     return cell;
 }
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+{
+    NSArray* sectionIndexTitles = [[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"];
+    if ( [sectionIndexTitles count] > 10 )
+    { 
+        return sectionIndexTitles;
+    }
+    else
+    {
+        return nil;
+    }
+}
+
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index 
+{
+    NSArray* sectionIndexTitles = [[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"];
+    return [sectionIndexTitles indexOfObject:title];
+}
+
 
 
 #pragma mark -
 #pragma mark Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
-}
-
-
-#pragma mark -
-#pragma mark Memory management
-
-
-- (void)dealloc
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [workArray release];
-    [super dealloc];
+	[[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
 }
+
+
+#pragma -
+#pragma Fetched Result Controller
+
+- (NSFetchedResultsController*)fetchedResultControllerOfType:(NSInteger)selectedSegmentIndex
+{
+    NSFetchRequest* fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
+    [fetchRequest setEntity:[Work entity]];
+    
+    if ( keyPath && value )
+    {
+        NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%K like[c] %@", keyPath, value];
+        [fetchRequest setPredicate:predicate];
+    }
+                              
+    NSSortDescriptor* nameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"user.name" ascending:YES];
+    NSSortDescriptor* employerSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"employer.name" ascending:YES];
+//    NSSortDescriptor* positionSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"position.name" ascending:YES];
+    NSSortDescriptor* dateSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"start_date" ascending:NO];
+    NSArray* sortDescriptors = nil;
+    
+
+    NSString* sectionNameKeyPath = nil;
+    
+    if ( selectedSegmentIndex == 0 )
+    {
+        sortDescriptors = [NSArray arrayWithObjects:nameSortDescriptor, employerSortDescriptor, dateSortDescriptor, nil];
+        sectionNameKeyPath = @"user.indexTitle";
+    }
+    else
+    {
+        sortDescriptors = [NSArray arrayWithObjects:employerSortDescriptor, nameSortDescriptor, dateSortDescriptor, nil];
+        sectionNameKeyPath = @"employer.indexTitle";
+    }
+    [fetchRequest setSortDescriptors:sortDescriptors];    
+    
+    NSFetchedResultsController* controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
+                                                                                 managedObjectContext:[Work managedObjectContext]
+                                                                                   sectionNameKeyPath:sectionNameKeyPath
+                                                                                            cacheName:nil];
+    
+    NSError* error;
+    BOOL success = [controller performFetch:&error];
+    NSLog(@"Fetch successed? %d", success);
+    
+    return [controller autorelease];
+}
+
+
+
 
 
 @end

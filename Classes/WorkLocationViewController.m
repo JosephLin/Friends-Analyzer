@@ -66,11 +66,11 @@
 
 - (void)pushChildViewControllerWithObjects:(NSArray*)objects title:(NSString*)title
 {
-    WorkTableViewController* childVC = [[WorkTableViewController alloc] init];
-    childVC.workArray = objects;
-    childVC.title = title;
-	[self.navigationController pushViewController:childVC animated:YES];
-	[childVC release];
+//    WorkTableViewController* childVC = [[WorkTableViewController alloc] init];
+//    childVC.workArray = objects;
+//    childVC.title = title;
+//	[self.navigationController pushViewController:childVC animated:YES];
+//	[childVC release];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -78,21 +78,26 @@
 	[[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
     
     Geocode* geocode = [self.fetchedResultController objectAtIndexPath:indexPath];
-    NSSet* objects = [geocode valueForKeyPath:ownerKeyPath];
     
-    NSSortDescriptor* sortdescriptor = [NSSortDescriptor sortDescriptorWithKey:@"user.name" ascending:YES];
-    NSArray* sortedObjects = [objects sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortdescriptor]];
-    
-    [self pushChildViewControllerWithObjects:sortedObjects title:geocode.formatted_address];
+    WorkTableViewController* childVC = [[WorkTableViewController alloc] init];
+    childVC.keyPath = @"geocodeLocation.formatted_address";
+    childVC.value = geocode.formatted_address;
+    childVC.title = geocode.formatted_address;
+	[self.navigationController pushViewController:childVC animated:YES];
+	[childVC release];
+
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
-    NSSortDescriptor* sortdescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
     MapAnnotation* annotation = view.annotation;
-    NSArray* sortedObjects = [annotation.owners sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortdescriptor]];
     
-    [self pushChildViewControllerWithObjects:sortedObjects title:annotation.title];
+    WorkTableViewController* childVC = [[WorkTableViewController alloc] init];
+    childVC.keyPath = @"geocodeLocation.formatted_address";
+    childVC.value = annotation.title;
+    childVC.title = annotation.title;
+	[self.navigationController pushViewController:childVC animated:YES];
+	[childVC release];
 }
 
 

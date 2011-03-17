@@ -326,7 +326,11 @@ static NSArray* monthArray = nil;
  */
 }
 
-
+- (NSString*)indexTitle
+{
+    NSString* string = [self.name substringToIndex:1];
+    return string;
+}
 
 
 

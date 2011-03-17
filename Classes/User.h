@@ -73,6 +73,8 @@ typedef enum {
 - (void)updateEducations:(NSArray*)newEducations;
 - (void)updateWorks:(NSArray*)newWorks;
 
++ (NSString*)lastUpdateCategoryIndexTitleForString:(NSString*)string;
+
 @end
 
 

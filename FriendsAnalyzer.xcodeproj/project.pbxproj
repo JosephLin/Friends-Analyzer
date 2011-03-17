@@ -63,7 +63,6 @@
 		7CC5B187131D764700FEA4DE /* EnhancedManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B186131D764700FEA4DE /* EnhancedManagedObject.m */; };
 		7CC5B1B1131D797D00FEA4DE /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B1B0131D797D00FEA4DE /* NSDate+Utilities.m */; };
 		7CC78EC4132965A700CA2B45 /* LastUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78EC2132965A700CA2B45 /* LastUpdateViewController.m */; };
-		7CC78EC5132965A700CA2B45 /* LastUpdateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CC78EC3132965A700CA2B45 /* LastUpdateViewController.xib */; };
 		7CC78ED613296F0900CA2B45 /* EducationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78ED413296F0900CA2B45 /* EducationViewController.m */; };
 		7CC78EDA1329732100CA2B45 /* SchoolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78ED91329732000CA2B45 /* SchoolViewController.m */; };
 		7CC78EE71329858200CA2B45 /* ConcentrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78EE61329858000CA2B45 /* ConcentrationViewController.m */; };
@@ -175,7 +174,6 @@
 		7CC5B1B0131D797D00FEA4DE /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
 		7CC78EC1132965A700CA2B45 /* LastUpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LastUpdateViewController.h; sourceTree = "<group>"; };
 		7CC78EC2132965A700CA2B45 /* LastUpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LastUpdateViewController.m; sourceTree = "<group>"; };
-		7CC78EC3132965A700CA2B45 /* LastUpdateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LastUpdateViewController.xib; sourceTree = "<group>"; };
 		7CC78ED313296F0900CA2B45 /* EducationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EducationViewController.h; sourceTree = "<group>"; };
 		7CC78ED413296F0900CA2B45 /* EducationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EducationViewController.m; sourceTree = "<group>"; };
 		7CC78ED81329732000CA2B45 /* SchoolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolViewController.h; sourceTree = "<group>"; };
@@ -503,7 +501,6 @@
 			children = (
 				7CC78EC1132965A700CA2B45 /* LastUpdateViewController.h */,
 				7CC78EC2132965A700CA2B45 /* LastUpdateViewController.m */,
-				7CC78EC3132965A700CA2B45 /* LastUpdateViewController.xib */,
 			);
 			name = "Last Update View";
 			sourceTree = "<group>";
@@ -591,7 +588,6 @@
 				7C13AF9013214C8C001FD36C /* BirthdayViewController.xib in Resources */,
 				7C74C55813219060003258AC /* Horoscope.plist in Resources */,
 				7C83D9D413256BA10059BBF0 /* LocationViewController.xib in Resources */,
-				7CC78EC5132965A700CA2B45 /* LastUpdateViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

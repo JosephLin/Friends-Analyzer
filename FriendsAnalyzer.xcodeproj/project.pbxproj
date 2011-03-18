@@ -20,6 +20,7 @@
 		7C1FF31D132EABE300110D03 /* WorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1FF31C132EABE300110D03 /* WorkViewController.m */; };
 		7C1FF320132EAD3700110D03 /* FRCBasedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1FF31F132EAD3700110D03 /* FRCBasedTableViewController.m */; };
 		7C1FF323132EB29600110D03 /* EmployerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1FF322132EB29500110D03 /* EmployerViewController.m */; };
+		7C2B33971333112200E4AAA3 /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2B33961333112200E4AAA3 /* AppIcon.png */; };
 		7C37C1A4131EA0FC004EFA64 /* FBRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C37C1A3131EA0FC004EFA64 /* FBRequestOperation.m */; };
 		7C37C30B131EEC91004EFA64 /* NameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C37C309131EEC91004EFA64 /* NameViewController.m */; };
 		7C4DD511131D8081006C69CF /* MenuStructure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C4DD510131D8081006C69CF /* MenuStructure.plist */; };
@@ -66,7 +67,7 @@
 		7CC78ED613296F0900CA2B45 /* EducationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78ED413296F0900CA2B45 /* EducationViewController.m */; };
 		7CC78EDA1329732100CA2B45 /* SchoolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78ED91329732000CA2B45 /* SchoolViewController.m */; };
 		7CC78EE71329858200CA2B45 /* ConcentrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78EE61329858000CA2B45 /* ConcentrationViewController.m */; };
-		7CD6133C132F166500EB2345 /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CD6133B132F166500EB2345 /* AppIcon.png */; };
+		7CD02E611330161D0019728A /* ArrayBasedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD02E601330161D0019728A /* ArrayBasedTableViewController.m */; };
 		7CEF039F132DBAA10058FD63 /* ObjectAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEF039E132DBAA10058FD63 /* ObjectAttribute.m */; };
 		7CEF03AB132DD5F20058FD63 /* DegreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEF03AA132DD5F10058FD63 /* DegreeViewController.m */; };
 		7CF0CC681327F0E3006C5693 /* HometownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF0CC671327F0E2006C5693 /* HometownViewController.m */; };
@@ -96,6 +97,7 @@
 		7C1FF31F132EAD3700110D03 /* FRCBasedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRCBasedTableViewController.m; sourceTree = "<group>"; };
 		7C1FF321132EB29500110D03 /* EmployerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmployerViewController.h; sourceTree = "<group>"; };
 		7C1FF322132EB29500110D03 /* EmployerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmployerViewController.m; sourceTree = "<group>"; };
+		7C2B33961333112200E4AAA3 /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon.png; sourceTree = "<group>"; };
 		7C37C1A2131EA0FC004EFA64 /* FBRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBRequestOperation.h; sourceTree = "<group>"; };
 		7C37C1A3131EA0FC004EFA64 /* FBRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBRequestOperation.m; sourceTree = "<group>"; };
 		7C37C308131EEC91004EFA64 /* NameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameViewController.h; sourceTree = "<group>"; };
@@ -180,7 +182,8 @@
 		7CC78ED91329732000CA2B45 /* SchoolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolViewController.m; sourceTree = "<group>"; };
 		7CC78EE51329857F00CA2B45 /* ConcentrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcentrationViewController.h; sourceTree = "<group>"; };
 		7CC78EE61329858000CA2B45 /* ConcentrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcentrationViewController.m; sourceTree = "<group>"; };
-		7CD6133B132F166500EB2345 /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon.png; sourceTree = "<group>"; };
+		7CD02E5F1330161D0019728A /* ArrayBasedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayBasedTableViewController.h; sourceTree = "<group>"; };
+		7CD02E601330161D0019728A /* ArrayBasedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayBasedTableViewController.m; sourceTree = "<group>"; };
 		7CEF039D132DBAA10058FD63 /* ObjectAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectAttribute.h; sourceTree = "<group>"; };
 		7CEF039E132DBAA10058FD63 /* ObjectAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectAttribute.m; sourceTree = "<group>"; };
 		7CEF03A9132DD5F10058FD63 /* DegreeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DegreeViewController.h; sourceTree = "<group>"; };
@@ -271,9 +274,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				7CD6133B132F166500EB2345 /* AppIcon.png */,
 				28D3F201112F7DC200FD0661 /* FriendsAnalyzer.xcdatamodeld */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
+				7C2B33961333112200E4AAA3 /* AppIcon.png */,
 				8D1107310486CEB800E47090 /* FriendsAnalyzer-Info.plist */,
 			);
 			name = Resources;
@@ -588,8 +591,7 @@
 				7C13AF9013214C8C001FD36C /* BirthdayViewController.xib in Resources */,
 				7C74C55813219060003258AC /* Horoscope.plist in Resources */,
 				7C83D9D413256BA10059BBF0 /* LocationViewController.xib in Resources */,
-				7CC78EC5132965A700CA2B45 /* LastUpdateViewController.xib in Resources */,
-				7CD6133C132F166500EB2345 /* AppIcon.png in Resources */,
+				7C2B33971333112200E4AAA3 /* AppIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

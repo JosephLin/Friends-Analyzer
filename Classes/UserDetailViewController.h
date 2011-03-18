@@ -19,8 +19,11 @@
     NSMutableArray* keyPaths;
     NSArray* works;
     NSArray* educations;
-
     NSDictionary* displayNameDict;
+    
+    UIView* headerView;
+    UIImageView* profileImageView;
+    UILabel* nameLabel;
 }
 
 @property (nonatomic, retain) User* user;   
@@ -28,9 +31,12 @@
 @property (nonatomic, retain) NSArray* works;
 @property (nonatomic, retain) NSArray* educations;
 @property (nonatomic, retain) NSDictionary* displayNameDict;
+@property (nonatomic, retain) IBOutlet UIView* headerView;
+@property (nonatomic, retain) IBOutlet UIImageView* profileImageView;
+@property (nonatomic, retain) IBOutlet UILabel* nameLabel;
 
 - (NSString*)descriptionForWork:(Work*)work;
 - (NSString*)descriptionForEducation:(Education*)education;
-
+- (IBAction)openProfilePageLink;
 
 @end

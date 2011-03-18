@@ -349,7 +349,7 @@ static NSArray* monthArray = nil;
 
 - (NSArray*)sortedWorks
 {
-    NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"employer.name" ascending:YES];
+    NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"start_date" ascending:YES];
     NSArray* array = [self.works sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     return array;
 }

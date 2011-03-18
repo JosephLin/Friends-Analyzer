@@ -19,12 +19,22 @@
 @synthesize user;
 @synthesize keyPaths, works, educations;
 @synthesize displayNameDict;
-
+@synthesize headerView, profileImageView, nameLabel;
 
 
 - (void)viewDidLoad
 {
-    self.title = user.name;
+    self.title = @"Profile";
+    nameLabel.text = user.name;
+    
+    NSString* urlString = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=normal", user.id];
+    NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
+    UIImage* image = [UIImage imageWithData:data];
+    headerView.frame = CGRectMake(0, 0, headerView.frame.size.width, image.size.height + 10.0 );
+    profileImageView.image = image;
+    
+    
+    
     
     NSArray* possibleKeys = [NSArray arrayWithObjects:@"gender", @"birthday", @"relationship_status", @"hometown", @"location", @"updated_time", @"locale", nil];
 
@@ -41,7 +51,7 @@
     self.works = [user sortedWorks];
     self.educations = [user sortedEducations];
     
-    if ( [possibleKeys count] ) [keyPaths addObject:possibleKeys];    
+    if ( [existKeys count] ) [keyPaths addObject:existKeys];    
     if ( [self.works count] ) [keyPaths addObject:self.works];    
     if ( [self.educations count] ) [keyPaths addObject:self.educations];    
 
@@ -52,6 +62,9 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    self.headerView = nil;
+    self.profileImageView = nil;
+    self.nameLabel = nil;    
 }
 
 - (void)dealloc
@@ -61,6 +74,9 @@
     [works release];
     [educations release];
     [displayNameDict release];
+    [headerView release];
+    [profileImageView release];
+    [nameLabel release];
     [super dealloc];
 }
 
@@ -78,6 +94,13 @@
     }
     return displayNameDict;
 }
+
+- (IBAction)openProfilePageLink
+{
+    NSURL* url = [NSURL URLWithString:user.link];
+    [[UIApplication sharedApplication] openURL:url];
+}
+
 
 
 #pragma mark -
@@ -221,6 +244,7 @@
     NSString* string = [array componentsJoinedByString:@"\n"];
     return string;
 }
+
 
 
 

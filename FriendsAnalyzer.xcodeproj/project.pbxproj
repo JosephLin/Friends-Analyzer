@@ -23,6 +23,9 @@
 		7C2B33971333112200E4AAA3 /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2B33961333112200E4AAA3 /* AppIcon.png */; };
 		7C37C1A4131EA0FC004EFA64 /* FBRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C37C1A3131EA0FC004EFA64 /* FBRequestOperation.m */; };
 		7C37C30B131EEC91004EFA64 /* NameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C37C309131EEC91004EFA64 /* NameViewController.m */; };
+		7C42EFD91333DD8300BA6B5F /* UserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C42EFD71333DD8300BA6B5F /* UserDetailViewController.m */; };
+		7C42EFDA1333DD8300BA6B5F /* UserDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C42EFD81333DD8300BA6B5F /* UserDetailViewController.xib */; };
+		7C42EFDC1333EE9400BA6B5F /* UserDetailStructure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C42EFDB1333EE9400BA6B5F /* UserDetailStructure.plist */; };
 		7C4DD511131D8081006C69CF /* MenuStructure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C4DD510131D8081006C69CF /* MenuStructure.plist */; };
 		7C4DD51B131D852A006C69CF /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4DD519131D852A006C69CF /* MainMenuViewController.m */; };
 		7C4DD51C131D852A006C69CF /* MainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C4DD51A131D852A006C69CF /* MainMenuViewController.xib */; };
@@ -68,6 +71,7 @@
 		7CC78EDA1329732100CA2B45 /* SchoolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78ED91329732000CA2B45 /* SchoolViewController.m */; };
 		7CC78EE71329858200CA2B45 /* ConcentrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78EE61329858000CA2B45 /* ConcentrationViewController.m */; };
 		7CD02E611330161D0019728A /* ArrayBasedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD02E601330161D0019728A /* ArrayBasedTableViewController.m */; };
+		7CD9A8001333FD4F0004AA48 /* attributeDisplayNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7CD9A7FF1333FD4F0004AA48 /* attributeDisplayNames.plist */; };
 		7CEF039F132DBAA10058FD63 /* ObjectAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEF039E132DBAA10058FD63 /* ObjectAttribute.m */; };
 		7CEF03AB132DD5F20058FD63 /* DegreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEF03AA132DD5F10058FD63 /* DegreeViewController.m */; };
 		7CF0CC681327F0E3006C5693 /* HometownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF0CC671327F0E2006C5693 /* HometownViewController.m */; };
@@ -102,6 +106,10 @@
 		7C37C1A3131EA0FC004EFA64 /* FBRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBRequestOperation.m; sourceTree = "<group>"; };
 		7C37C308131EEC91004EFA64 /* NameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameViewController.h; sourceTree = "<group>"; };
 		7C37C309131EEC91004EFA64 /* NameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameViewController.m; sourceTree = "<group>"; };
+		7C42EFD61333DD8300BA6B5F /* UserDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailViewController.h; sourceTree = "<group>"; };
+		7C42EFD71333DD8300BA6B5F /* UserDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailViewController.m; sourceTree = "<group>"; };
+		7C42EFD81333DD8300BA6B5F /* UserDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailViewController.xib; sourceTree = "<group>"; };
+		7C42EFDB1333EE9400BA6B5F /* UserDetailStructure.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserDetailStructure.plist; sourceTree = "<group>"; };
 		7C4DD510131D8081006C69CF /* MenuStructure.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MenuStructure.plist; sourceTree = "<group>"; };
 		7C4DD518131D852A006C69CF /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
 		7C4DD519131D852A006C69CF /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
@@ -184,6 +192,7 @@
 		7CC78EE61329858000CA2B45 /* ConcentrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcentrationViewController.m; sourceTree = "<group>"; };
 		7CD02E5F1330161D0019728A /* ArrayBasedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayBasedTableViewController.h; sourceTree = "<group>"; };
 		7CD02E601330161D0019728A /* ArrayBasedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayBasedTableViewController.m; sourceTree = "<group>"; };
+		7CD9A7FF1333FD4F0004AA48 /* attributeDisplayNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = attributeDisplayNames.plist; sourceTree = "<group>"; };
 		7CEF039D132DBAA10058FD63 /* ObjectAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectAttribute.h; sourceTree = "<group>"; };
 		7CEF039E132DBAA10058FD63 /* ObjectAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectAttribute.m; sourceTree = "<group>"; };
 		7CEF03A9132DD5F10058FD63 /* DegreeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DegreeViewController.h; sourceTree = "<group>"; };
@@ -232,6 +241,7 @@
 				7CC78EC01329648B00CA2B45 /* Last Update View */,
 				7C4DD677131DA42F006C69CF /* Table View */,
 				7CC5B10E131D6FAB00FEA4DE /* Pie Chart */,
+				7C42EFD51333DD6100BA6B5F /* User Detail View */,
 				7C83D9DF13257D2F0059BBF0 /* Utilities */,
 				7CC5B10D131D6F8D00FEA4DE /* Categories */,
 				7CC5B10B131D6F7700FEA4DE /* Data Models */,
@@ -340,6 +350,18 @@
 				7C37C309131EEC91004EFA64 /* NameViewController.m */,
 			);
 			name = "Name View";
+			sourceTree = "<group>";
+		};
+		7C42EFD51333DD6100BA6B5F /* User Detail View */ = {
+			isa = PBXGroup;
+			children = (
+				7C42EFD61333DD8300BA6B5F /* UserDetailViewController.h */,
+				7C42EFD71333DD8300BA6B5F /* UserDetailViewController.m */,
+				7C42EFD81333DD8300BA6B5F /* UserDetailViewController.xib */,
+				7C42EFDB1333EE9400BA6B5F /* UserDetailStructure.plist */,
+				7CD9A7FF1333FD4F0004AA48 /* attributeDisplayNames.plist */,
+			);
+			name = "User Detail View";
 			sourceTree = "<group>";
 		};
 		7C4DD517131D8514006C69CF /* Main Menu View */ = {
@@ -592,6 +614,9 @@
 				7C74C55813219060003258AC /* Horoscope.plist in Resources */,
 				7C83D9D413256BA10059BBF0 /* LocationViewController.xib in Resources */,
 				7C2B33971333112200E4AAA3 /* AppIcon.png in Resources */,
+				7C42EFDA1333DD8300BA6B5F /* UserDetailViewController.xib in Resources */,
+				7C42EFDC1333EE9400BA6B5F /* UserDetailStructure.plist in Resources */,
+				7CD9A8001333FD4F0004AA48 /* attributeDisplayNames.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -652,6 +677,7 @@
 				7C70C0071331574900E1B87C /* GeocodeTableViewCell.m in Sources */,
 				7C70C00A13315F3000E1B87C /* WorkTableViewCell.m in Sources */,
 				7C70C00D1331614C00E1B87C /* PositionViewController.m in Sources */,
+				7C42EFD91333DD8300BA6B5F /* UserDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

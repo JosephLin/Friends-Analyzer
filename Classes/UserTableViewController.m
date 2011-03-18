@@ -8,6 +8,8 @@
 
 #import "UserTableViewController.h"
 #import "User.h"
+#import "UserDetailViewController.h"
+
 
 @implementation UserTableViewController
 
@@ -42,15 +44,16 @@
 #pragma mark -
 #pragma mark Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-    // ...
-    // Pass the selected object to the new view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
-    [detailViewController release];
-    */
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
+
+    User* user = [userArray objectAtIndex:indexPath.row];
+
+    UserDetailViewController* childVC = [[UserDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    childVC.user = user;
+    [self.navigationController pushViewController:childVC animated:YES];
+    [childVC release];
 }
 
 

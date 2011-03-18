@@ -347,6 +347,18 @@ static NSArray* monthArray = nil;
     return string;
 }
 
+- (NSArray*)sortedWorks
+{
+    NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"employer.name" ascending:YES];
+    NSArray* array = [self.works sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    return array;
+}
 
+- (NSArray*)sortedEducations
+{
+    NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"year" ascending:NO];
+    NSArray* array = [self.educations sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    return array;
+}
 
 @end

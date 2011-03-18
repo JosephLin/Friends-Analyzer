@@ -8,7 +8,11 @@
 
 #import "WorkViewController.h"
 #import "EmployerViewController.h"
+#import "PositionViewController.h"
 #import "WorkLocationViewController.h"
+#import "WorkTableViewController.h"
+#import "Work.h"
+
 
 @implementation WorkViewController
 
@@ -23,7 +27,7 @@
 {
     [super viewDidLoad];
     
-	self.menuItemArray = [NSArray arrayWithObjects:@"By Employer", @"By Location", @"By Start Date", nil];
+	self.menuItemArray = [NSArray arrayWithObjects:@"By Employer", @"By Position", @"By Location", @"List All", nil];
 	
     [self.tableView reloadData];
 }
@@ -76,16 +80,21 @@
     
     switch (indexPath.row)
     {
+        case 0:
+            childVC = [[EmployerViewController alloc] init];
+            break;
+            
         case 1:
+            childVC = [[PositionViewController alloc] init];
+            break;
+
+        case 2:
             childVC = [[WorkLocationViewController alloc] init];
             break;
             
-        case 2:
-//            childVC = [[SchoolViewController alloc] init];
-            break;
-            
         default:
-            childVC = [[EmployerViewController alloc] init];
+            childVC = [[WorkTableViewController alloc] init];
+            ((WorkTableViewController*)childVC).shouldShowSegmentedControl = YES;
             break;
     }
     

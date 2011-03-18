@@ -9,13 +9,13 @@
 #import <UIKit/UIKit.h>
 
 
-@interface LastUpdateViewController : UIViewController
+@interface LastUpdateViewController : UITableViewController
 {
-    UITableView* tableView;
     NSFetchedResultsController* fetchedResultController;
+    NSArray* sectionIndexTitles;
 }
 
-@property (nonatomic, retain) IBOutlet UITableView* tableView;
 @property (nonatomic, retain) NSFetchedResultsController* fetchedResultController;
+@property (nonatomic, retain) NSArray* sectionIndexTitles;
 
 @end

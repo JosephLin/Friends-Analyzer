@@ -14,45 +14,35 @@
 
 @implementation BirthdayViewController
 
-@synthesize tableView, segmentedControl, pickerView;
+@synthesize tableView, segmentedControl;
+@synthesize pieChartView;
 @synthesize fetchedResultController;
-@synthesize sortOptions, currentSortType;
+@synthesize monthNameArray;
 
 
-
-#pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    self.sortOptions = [NSArray arrayWithObjects:@"Age", @"Date", @"Horoscope", nil];
-
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    self.monthNameArray = [dateFormatter monthSymbols];
+    [dateFormatter release];
     
-    //// Segmented Control ////
-    NSArray* controlItems = [NSArray arrayWithObjects:@"List", @"Chart", nil];
+    NSArray* controlItems = [NSArray arrayWithObjects:@"Age", @"Date", @"Horoscope", nil];
     self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:controlItems] autorelease];
-    
-	segmentedControl.selectedSegmentIndex = 0;
 	segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 	segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
 	[segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];	
 	self.navigationItem.titleView = segmentedControl;
     
-    
-    //// 'Sort By' Button ////
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Sort" style:UIBarButtonItemStyleBordered target:self action:@selector(sortByButtonTapped:)] autorelease];
-    
-    //// Picker View ////
-    self.pickerView = [[[UIPickerView alloc] initWithFrame:CGRectOffset(self.view.frame, 0, self.view.frame.size.height)] autorelease];
-    pickerView.dataSource = self;
-    pickerView.delegate = self;
-    pickerView.showsSelectionIndicator = YES;
-    pickerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-
+    segmentedControl.selectedSegmentIndex = 0;
     
     
-    self.currentSortType = TableViewSortTypeAge;
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Chart" 
+																			   style:UIBarButtonItemStylePlain 
+																			  target:self 
+																			  action:@selector(toggleChartView)] autorelease];
 }
 
 - (void)viewDidUnload
@@ -60,16 +50,16 @@
     [super viewDidUnload];
     self.tableView = nil;
     self.segmentedControl = nil;
-    self.pickerView = nil;
+    self.pieChartView = nil;
 }
 
 - (void)dealloc
 {
     [tableView release];
     [segmentedControl release];
-    [pickerView release];
+    [pieChartView release];
     [fetchedResultController release];
-    [sortOptions release];
+    [monthNameArray release];
     [super dealloc];
 }
 
@@ -78,89 +68,49 @@
     return YES;
 }
 
-- (void)showPickerView
+- (void)segmentedControlValueChanged:(UISegmentedControl*)sender
 {
-    [self.view addSubview:pickerView];
-    tableView.userInteractionEnabled = NO;
-    CGRect rect = CGRectMake(0, self.view.bounds.size.height - pickerView.bounds.size.height, 
-                             pickerView.bounds.size.width, pickerView.bounds.size.height);
-    [UIView animateWithDuration:kAnimationDuration 
-                     animations:^{
-                         pickerView.frame = rect;
-                         tableView.alpha = 0.5;
-                     }];
+    self.fetchedResultController = [self fetchedResultControllerOfType:sender.selectedSegmentIndex];    
+    [self.tableView reloadData];
+    
+    pieChartView.dict = [self userCountDict];
 }
 
-- (void)hidePickerView
+- (void)toggleChartView
 {
-    CGRect rect = CGRectMake(0, self.view.bounds.size.height, pickerView.bounds.size.width, pickerView.bounds.size.height);
-    [UIView animateWithDuration:kAnimationDuration 
-                     animations:^{
-                         pickerView.frame = rect;
-                         tableView.alpha = 1.0;
-                     } 
-                     completion:^(BOOL finished){ 
-                         [pickerView removeFromSuperview];
-                         tableView.userInteractionEnabled = YES;
-                     }];
-}
-
-- (void)sortByButtonTapped:(id)sender
-{
-    if ( [pickerView superview] )
+    if ( [pieChartView superview] )
     {
-        [self hidePickerView];
-        
+        [pieChartView removeFromSuperview]; 
+        self.navigationItem.rightBarButtonItem.title = @"Chart";
     }
     else
     {
-        [self showPickerView];
-    }
-}
+        self.pieChartView.frame = self.view.bounds;
+        pieChartView.dict = [self userCountDict];
 
-- (void)segmentedControlValueChanged:(UISegmentedControl*)sender
-{
-    if ( [pickerView superview] )
-    {
-        [self hidePickerView];
+        [self.view addSubview:self.pieChartView];
         
+        self.navigationItem.rightBarButtonItem.title = @"Table";
     }
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+- (PieChartView*)pieChartView
 {
-    [self hidePickerView];
+    if ( !pieChartView )
+    {
+        pieChartView = [[PieChartView alloc] initWithFrame:self.view.bounds];
+        pieChartView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    }
+    return pieChartView;
 }
 
-- (void)setCurrentSortType:(TableViewSortType)newSortType
+- (NSDictionary*)userCountDict
 {
-    currentSortType = newSortType;
-    self.fetchedResultController = [self fetchedResultControllerOfType:currentSortType];
-    [self.tableView reloadData];
-}
-
-
-#pragma -
-#pragma Picker View
-
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 1;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    return 3;   
-}
-
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    return [sortOptions objectAtIndex:row];
-}
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
-    self.currentSortType = row;
+    NSArray* sectionIndexTitles = [[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"];
+    NSArray* counts = [[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.numberOfObjects"];
+    
+    NSDictionary* dict = [NSDictionary dictionaryWithObjects:counts forKeys:sectionIndexTitles];
+    return dict;
 }
 
 
@@ -196,20 +146,19 @@
     return cell;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section { 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{ 
     id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultController sections] objectAtIndex:section];
     
-    switch (currentSortType)
+    switch (segmentedControl.selectedSegmentIndex)
     {
-        case TableViewSortTypeDate:
+        case 1:
         {
-            NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-            NSString* monthName = [[dateFormatter monthSymbols] objectAtIndex:[[sectionInfo name] integerValue] - 1];
-            [dateFormatter release];
+            NSString* monthName = [monthNameArray objectAtIndex:[[sectionInfo name] integerValue] - 1];
             return monthName;
         }
             
-        case TableViewSortTypeHoroscope:
+        case 2:
             return [sectionInfo name];
             
         default:    // Age
@@ -217,13 +166,15 @@
     }
 }
 
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+{
     NSArray* sectionIndexTitles = [[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"];
     return sectionIndexTitles;
 //  return [fetchedResultController sectionIndexTitles];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
+{
     NSArray* sectionIndexTitles = [[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"];
     return [sectionIndexTitles indexOfObject:title];
 //  return [fetchedResultController sectionForSectionIndexTitle:title atIndex:index];
@@ -242,7 +193,7 @@
 #pragma -
 #pragma Fetched Result Controller
 
-- (NSFetchedResultsController*)fetchedResultControllerOfType:(TableViewSortType)type
+- (NSFetchedResultsController*)fetchedResultControllerOfType:(NSInteger)selectedSegmentIndex
 {
     NSFetchRequest* fetchRequest = [[NSFetchRequest alloc] init];
     [fetchRequest setEntity:[User entity]];
@@ -250,9 +201,10 @@
     NSArray* sortDescriptors = nil;
     NSPredicate* predicate = nil;
     NSString* sectionNameKeyPath = nil;
-    switch (type)
+    
+    switch ( segmentedControl.selectedSegmentIndex )
     {
-        case TableViewSortTypeDate:
+        case 1:
         {
             predicate = [NSPredicate predicateWithFormat:@"birthdayMonth != 0 AND birthdayDay != 0"];
             
@@ -261,11 +213,10 @@
             sortDescriptors = [NSArray arrayWithObjects:monthSortDescriptor, daySortDescriptor, nil];
             
             sectionNameKeyPath = @"birthdayMonth";
-
         }
             break;
             
-        case TableViewSortTypeHoroscope:
+        case 2:
         {
             predicate = [NSPredicate predicateWithFormat:@"birthdayMonth != 0 AND birthdayDay != 0"];
 

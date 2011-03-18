@@ -11,13 +11,21 @@
 
 @interface WorkTableViewController : UITableViewController
 {
-	NSArray* workArray;
-    NSString* subtitleStringFormat;
-    NSArray* subtitleArguments;
+    NSString* keyPath;
+    id value;
+    
+    NSFetchedResultsController* fetchedResultController;
+    UISegmentedControl* segmentedControl;
+    
+    BOOL shouldShowSegmentedControl;
 }
 
-@property (nonatomic, retain) NSArray* workArray;
-@property (nonatomic, retain) NSString* subtitleStringFormat;
-@property (nonatomic, retain) NSArray* subtitleArguments; 
+@property (nonatomic, retain) NSString* keyPath;
+@property (nonatomic, retain) id value;
+@property (nonatomic, retain) NSFetchedResultsController* fetchedResultController;
+@property (nonatomic, retain) UISegmentedControl* segmentedControl;
+@property (nonatomic, assign) BOOL shouldShowSegmentedControl;
+
+- (NSFetchedResultsController*)fetchedResultControllerOfType:(NSInteger)selectedSegmentIndex;
 
 @end

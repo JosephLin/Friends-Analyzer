@@ -1,21 +1,21 @@
 //
-//  EmployerViewController.m
+//  PositionViewController.m
 //  FriendsAnalyzer
 //
-//  Created by Joseph Lin on 3/14/11.
+//  Created by Joseph Lin on 3/16/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "EmployerViewController.h"
+#import "PositionViewController.h"
 #import "WorkTableViewController.h"
 
 
-@implementation EmployerViewController
+@implementation PositionViewController
 
 
 - (void)viewDidLoad
 {    
-    self.entityName = @"Employer";
+    self.entityName = @"Position";
     
     [super viewDidLoad];
 }
@@ -25,13 +25,14 @@
 	[[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
     
     ObjectAttribute* object = [fetchedResultController objectAtIndexPath:indexPath];
-
+    
     WorkTableViewController* childVC = [[WorkTableViewController alloc] init];
-    childVC.keyPath = @"employer.name";
+    childVC.keyPath = @"position.name";
     childVC.value = object.name;
     childVC.title = object.name;
 	[self.navigationController pushViewController:childVC animated:YES];
 	[childVC release];
+
 }
 
 

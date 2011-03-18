@@ -57,6 +57,7 @@ typedef enum {
 @property (nonatomic, retain) NSNumber * age;
 @property (nonatomic, retain) NSNumber * ageGroup;
 @property (nonatomic, retain, readonly) NSString* lastUpdateCategory;
+@property (nonatomic, retain, readonly) NSString* indexTitle;
 
 
 + (User*)userWithID:(NSString*)theID;
@@ -71,6 +72,8 @@ typedef enum {
 - (void)setZodiac;
 - (void)updateEducations:(NSArray*)newEducations;
 - (void)updateWorks:(NSArray*)newWorks;
+
++ (NSString*)lastUpdateCategoryIndexTitleForString:(NSString*)string;
 
 @end
 

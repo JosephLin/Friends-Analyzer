@@ -12,25 +12,24 @@
 
 @implementation LastUpdateViewController
 
-@synthesize tableView, fetchedResultController;
-
+@synthesize fetchedResultController;
+@synthesize sectionIndexTitles;
 
 
 - (void)viewDidLoad
 {
+    self.title = @"Last Updated";
     [super viewDidLoad];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    self.tableView = nil;
     self.fetchedResultController = nil;
 }
 
 - (void)dealloc
 {
-    [tableView release];
     [fetchedResultController release];
     [super dealloc];
 }
@@ -62,7 +61,7 @@
     
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
     User* user = [fetchedResultController objectAtIndexPath:indexPath];
@@ -81,13 +80,22 @@
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-    return [fetchedResultController sectionIndexTitles];
+    NSArray* sectionTitles = [[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"];
+    NSMutableArray* array = [NSMutableArray arrayWithCapacity:[sectionTitles count]];
+    for ( NSString* title in sectionTitles )
+    {
+        NSString* indexTitle = [User lastUpdateCategoryIndexTitleForString:title];
+        [array addObject:indexTitle];
+    }
+    self.sectionIndexTitles = [NSArray arrayWithArray:array];
+    return sectionIndexTitles;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index 
 {
-    return [fetchedResultController sectionForSectionIndexTitle:title atIndex:index];
+    return [sectionIndexTitles indexOfObject:title];
 }
+
 
 
 #pragma mark -

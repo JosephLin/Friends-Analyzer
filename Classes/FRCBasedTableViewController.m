@@ -89,12 +89,12 @@
 	[[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
     
     UserTableViewController* childVC = [[UserTableViewController alloc] init];
-	childVC.userArray = [self usersForRowAtIndexPath:indexPath];
+	childVC.userArray = [self objectsForRowAtIndexPath:indexPath];
 	[self.navigationController pushViewController:childVC animated:YES];
 	[childVC release];
 }
 
-- (NSArray*)usersForRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSArray*)objectsForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //// Sub-class should override this. ////
     return nil;

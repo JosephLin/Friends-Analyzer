@@ -86,7 +86,7 @@
             }
         }
         
-        [self save];
+//        [self save];
     }
 	
 	return geocode;
@@ -124,8 +124,9 @@
         geocode.latitude = unknownCoordinate;
         geocode.longitude = unknownCoordinate;
         geocode.formatted_address = @"Unknown";
+        geocode.country = @"Unknown";
         
-        [self save];
+//        [self save];
     }
 	
 	return geocode;
@@ -138,7 +139,27 @@
     return CLLocationCoordinate2DMake(latitude, longitude);
 }
 
+- (NSString*)shortName
+{
+    NSMutableArray* array = [NSMutableArray arrayWithCapacity:5];
+    if ( self.sublocality )
+        [array addObject:self.sublocality];
+    if ( self.locality )
+        [array addObject:self.locality];
+    if ( self.administrative_area_level_3 )
+        [array addObject:self.administrative_area_level_3];
+    if ( self.administrative_area_level_2 )
+        [array addObject:self.administrative_area_level_2];
+    if ( self.administrative_area_level_1 )
+        [array addObject:self.administrative_area_level_1];
+    
+    NSString* string = [array componentsJoinedByString:@", "];
 
+    if ( ![string length] )
+        string = self.country;
+    
+    return string;
+}
 
 
 

@@ -60,21 +60,42 @@
     return pendingOperations;
 }
 
+
 #pragma mark -
-#pragma mark Table view delegate
+#pragma mark Child View Controller
+
+- (void)pushChildViewControllerWithObjects:(NSArray*)objects title:(NSString*)title
+{
+//    WorkTableViewController* childVC = [[WorkTableViewController alloc] init];
+//    childVC.workArray = objects;
+//    childVC.title = title;
+//	[self.navigationController pushViewController:childVC animated:YES];
+//	[childVC release];
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	[[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
     
     Geocode* geocode = [self.fetchedResultController objectAtIndexPath:indexPath];
-    NSSet* objects = [geocode valueForKeyPath:ownerKeyPath];
-    
     
     WorkTableViewController* childVC = [[WorkTableViewController alloc] init];
-    NSSortDescriptor* sortdescriptor = [NSSortDescriptor sortDescriptorWithKey:@"user.name" ascending:YES];
-    NSArray* sortedObjects = [objects sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortdescriptor]];
-    childVC.workArray = sortedObjects;
+    childVC.keyPath = @"geocodeLocation.formatted_address";
+    childVC.value = geocode.formatted_address;
+    childVC.title = geocode.formatted_address;
+	[self.navigationController pushViewController:childVC animated:YES];
+	[childVC release];
+
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+    MapAnnotation* annotation = view.annotation;
+    
+    WorkTableViewController* childVC = [[WorkTableViewController alloc] init];
+    childVC.keyPath = @"geocodeLocation.formatted_address";
+    childVC.value = annotation.title;
+    childVC.title = annotation.title;
 	[self.navigationController pushViewController:childVC animated:YES];
 	[childVC release];
 }

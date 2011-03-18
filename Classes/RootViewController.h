@@ -46,5 +46,6 @@ typedef enum {
 - (IBAction)loginButtonTapped:(id)sender;
 - (void)facebookLogin;
 - (void)showMainMenuViewController;
+- (void)getUserInfo;
 
 @end

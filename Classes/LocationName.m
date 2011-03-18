@@ -20,7 +20,7 @@
 	
     locationName.name = theName;
 
-	[self save];
+//	[self save];
 	
 	return locationName;
 }

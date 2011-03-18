@@ -47,6 +47,6 @@
 - (void)showMapView;
 - (void)parseLocations;
 - (void)zoomToFitMapAnnotations;
-- (void)pushChildViewControllerWithObjects:(NSArray*)objects;
+- (void)pushChildViewControllerWithObjects:(NSArray*)objects title:(NSString*)title;
 
 @end

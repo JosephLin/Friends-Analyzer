@@ -11,11 +11,11 @@
 
 @interface PieChartView : UIView
 {
-	NSMutableDictionary* dict;
+	NSDictionary* dict;
 	NSArray* colorScheme;
 }
 
-@property (nonatomic, retain) NSMutableDictionary* dict;
+@property (nonatomic, retain) NSDictionary* dict;
 @property (nonatomic, retain) NSArray* colorScheme;
 
 @end

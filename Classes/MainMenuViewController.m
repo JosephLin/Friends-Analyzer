@@ -9,8 +9,9 @@
 #import "MainMenuViewController.h"
 #import "FriendsAnalyzerAppDelegate.h"
 #import "NSDate+Utilities.h"
-#import "CategorizedUserTableViewController.h"
+#import "ArrayBasedTableViewController.h"
 #import "LocationViewController.h"
+#import "RootViewController.h"
 
 
 @implementation MainMenuViewController
@@ -83,6 +84,13 @@
     return YES;
 }
 
+- (IBAction)refreshButtonTapped:(id)sender
+{
+    RootViewController* rootVC = [self.navigationController.viewControllers objectAtIndex:0];
+    [rootVC getUserInfo];
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
 
 #pragma mark -
 #pragma mark Table View
@@ -124,9 +132,9 @@
 	
 	Class aClass = [[NSBundle mainBundle] classNamed:viewControllerName];
 	UIViewController* childVC = [[[aClass alloc] init] autorelease];
-	if ( [childVC isKindOfClass:[CategorizedUserTableViewController class]] )
+	if ( [childVC isKindOfClass:[ArrayBasedTableViewController class]] )
 	{
-		((CategorizedUserTableViewController*)childVC).property = [[menuStructureArray objectAtIndex:indexPath.row] objectForKey:@"property"];
+		((ArrayBasedTableViewController*)childVC).property = [[menuStructureArray objectAtIndex:indexPath.row] objectForKey:@"property"];
 	}
     [self.navigationController pushViewController:childVC animated:YES];
 }

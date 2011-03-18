@@ -51,7 +51,7 @@
         //// Geocode already exist. ////
         if ( geocode )
         {
-            NSLog(@"Geocode already exist: %@", geocode.formatted_address);
+//            NSLog(@"Geocode already exist: %@", geocode.formatted_address);
 
             if ( [delegate respondsToSelector:@selector(operationDidFinish:)] )
                 [delegate operationDidFinish:self];

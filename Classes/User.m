@@ -76,7 +76,7 @@ static NSArray* monthArray = nil;
     
     if ( interval < kTimeIntervalADay )
     {
-        return @"A Day";
+        return @"Today";
     }
     else if ( interval < kTimeIntervalAWeek )
     {
@@ -103,6 +103,39 @@ static NSArray* monthArray = nil;
         return @"More Than A Year";
     }
 }
+
++ (NSString*)lastUpdateCategoryIndexTitleForString:(NSString*)string
+{
+    if ( [string isEqualToString: @"Today"] )
+    {
+        return @"D";
+    }
+    else if ( [string isEqualToString: @"A Week"] )
+    {
+        return @"W";        
+    }
+    else if ( [string isEqualToString: @"A Month"] )
+    {
+        return @"1M";
+    }
+    else if ( [string isEqualToString: @"Last Three Months"] )
+    {
+        return @"3M";
+    }
+    else if ( [string isEqualToString: @"Last Six Months"] )
+    {
+        return @"6M";
+    }
+    else if ( [string isEqualToString: @"A Year"] )
+    {
+        return @"Y";
+    }
+    else
+    {
+        return @">Y";
+    }
+}
+
 
 
 #pragma mark -
@@ -181,7 +214,7 @@ static NSArray* monthArray = nil;
 	[user updateWorks:[dict objectForKey:@"work"]];
 
 	
-	[self save];
+//	[self save];
 	
 	return user;
 }
@@ -306,27 +339,13 @@ static NSArray* monthArray = nil;
 	NSArray* results = [[self managedObjectContext] executeFetchRequest:request error:&error];
 
 	return results;
-	
-/*	
-	NSArray* results = nil;
-	
-	if ( [category isEqualToString:@"degree"] )
-	{
-		NSArray* educationArray = [[self allUsers] valueForKeyPath:@"@distinctUnionOfObjects.educations"];
-		results = [educationArray valueForKeyPath:@"@distinctUnionOfSets.degree.name"];
-	}
-	else
-	{
-		results = [[self allUsers] valueForKeyPath:[NSString stringWithFormat:@"@distinctUnionOfObjects.%@", category]];
-	}
-	
-	NSArray* sorted = [results sortedArrayUsingComparator:(NSComparator)^(id obj1, id obj2){
-		return [obj1 caseInsensitiveCompare:obj2]; }];
-	return sorted;
- */
 }
 
-
+- (NSString*)indexTitle
+{
+    NSString* string = [self.name substringToIndex:1];
+    return string;
+}
 
 
 

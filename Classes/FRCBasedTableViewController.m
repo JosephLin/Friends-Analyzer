@@ -60,6 +60,7 @@
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
     
     ObjectAttribute* object = [fetchedResultController objectAtIndexPath:indexPath];
@@ -88,8 +89,11 @@
 {
 	[[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
     
+    ObjectAttribute* object = [fetchedResultController objectAtIndexPath:indexPath];
+
     UserTableViewController* childVC = [[UserTableViewController alloc] init];
 	childVC.userArray = [self objectsForRowAtIndexPath:indexPath];
+    childVC.title = object.name;
 	[self.navigationController pushViewController:childVC animated:YES];
 	[childVC release];
 }

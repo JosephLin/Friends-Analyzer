@@ -12,11 +12,12 @@
 #import "ArrayBasedTableViewController.h"
 #import "LocationViewController.h"
 #import "RootViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 
 @implementation MainMenuViewController
 
-@synthesize userImageView, nameLabel, friendsCountLabel, tableView, lastUpdatedLabel;
+@synthesize headerView, profileImageView, nameLabel, friendsCountLabel, tableView, lastUpdatedLabel;
 @synthesize menuStructureArray;
 @synthesize currentUser;
 
@@ -34,13 +35,10 @@
 
 	//// Display Current User Info ////
 	self.currentUser = [User currentUser];
-	
-	NSString* avatarURL = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture", currentUser.id];
-	NSData* imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:avatarURL]];
-	self.userImageView.image = [UIImage imageWithData:imageData];
-	
 	self.nameLabel.text = currentUser.name;
 	self.friendsCountLabel.text = [NSString stringWithFormat:@"%d Friends", [currentUser.friends count]];
+    
+    [self loadProfileImage];
 	
 	
 	//// Load Property List ////
@@ -59,7 +57,8 @@
 {
     [super viewDidUnload];
 
-	self.userImageView = nil;
+    self.headerView = nil;
+	self.profileImageView = nil;
 	self.nameLabel = nil;
 	self.friendsCountLabel = nil;
 	self.tableView = nil;
@@ -68,7 +67,11 @@
 
 - (void)dealloc
 {
-	[userImageView release];
+	[queue cancelAllOperations];
+    [queue release];
+
+    [headerView release];
+    [profileImageView release];
 	[nameLabel release];
 	[friendsCountLabel release];
 	[tableView release];
@@ -91,6 +94,47 @@
     [self.navigationController popViewControllerAnimated:YES];
     
 }
+
+
+#pragma mark -
+#pragma mark Profile Image
+
+- (void)loadProfileImage
+{
+    if ( queue )
+    {
+        [queue cancelAllOperations];
+        [queue release];
+    }
+    queue = [[NSOperationQueue alloc] init];
+    
+    self.currentUser = [User currentUser];
+	NSString* avatarURL = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=normal", currentUser.id];
+	
+    AsyncImageOperation* op = [[AsyncImageOperation alloc] initWithURL:avatarURL delegate:self];
+    [queue addOperation:op];
+    [op release];
+}
+
+- (void)operation:(AsyncImageOperation*)op didLoadData:(NSData*)data
+{
+    [self performSelectorOnMainThread:@selector(setImageViewWithData:) withObject:data waitUntilDone:NO];
+}
+
+- (void)setImageViewWithData:(NSData*)data
+{
+    UIImage* image = [UIImage imageWithData:data];
+    headerView.frame = CGRectMake(0, 0, headerView.frame.size.width, image.size.height + 20.0 );
+    self.tableView.tableHeaderView = headerView;
+    profileImageView.image = image;
+    
+    CALayer* layer = [profileImageView layer];
+    [layer setMasksToBounds:YES];
+    [layer setCornerRadius:10.0];
+    [layer setBorderWidth:1.0];
+    [layer setBorderColor:[[UIColor darkGrayColor] CGColor]];
+}
+
 
 #pragma mark -
 #pragma mark Table View
@@ -115,6 +159,7 @@
 	{
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
 		cell.selectionStyle = UITableViewCellSelectionStyleGray;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
 	
 	NSDictionary* dict = [menuStructureArray objectAtIndex:indexPath.row];

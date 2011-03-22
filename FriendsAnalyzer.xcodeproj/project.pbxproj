@@ -56,8 +56,6 @@
 		7CC5B0FB131D6F6200FEA4DE /* UserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0D7131D6F6200FEA4DE /* UserTableViewController.m */; };
 		7CC5B0FD131D6F6200FEA4DE /* PieChartColorScheme.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7CC5B0D9131D6F6200FEA4DE /* PieChartColorScheme.plist */; };
 		7CC5B0FE131D6F6200FEA4DE /* PieChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0DB131D6F6200FEA4DE /* PieChartView.m */; };
-		7CC5B0FF131D6F6200FEA4DE /* PieChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0DD131D6F6200FEA4DE /* PieChartViewController.m */; };
-		7CC5B100131D6F6200FEA4DE /* PieChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CC5B0DE131D6F6200FEA4DE /* PieChartViewController.xib */; };
 		7CC5B101131D6F6200FEA4DE /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0E0131D6F6200FEA4DE /* RootViewController.m */; };
 		7CC5B102131D6F6200FEA4DE /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CC5B0E1131D6F6200FEA4DE /* RootViewController.xib */; };
 		7CC5B105131D6F6200FEA4DE /* UIColor-Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0E6131D6F6200FEA4DE /* UIColor-Expanded.m */; };
@@ -165,9 +163,6 @@
 		7CC5B0D9131D6F6200FEA4DE /* PieChartColorScheme.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PieChartColorScheme.plist; sourceTree = "<group>"; };
 		7CC5B0DA131D6F6200FEA4DE /* PieChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieChartView.h; sourceTree = "<group>"; };
 		7CC5B0DB131D6F6200FEA4DE /* PieChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieChartView.m; sourceTree = "<group>"; };
-		7CC5B0DC131D6F6200FEA4DE /* PieChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieChartViewController.h; sourceTree = "<group>"; };
-		7CC5B0DD131D6F6200FEA4DE /* PieChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieChartViewController.m; sourceTree = "<group>"; };
-		7CC5B0DE131D6F6200FEA4DE /* PieChartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PieChartViewController.xib; sourceTree = "<group>"; };
 		7CC5B0DF131D6F6200FEA4DE /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		7CC5B0E0131D6F6200FEA4DE /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		7CC5B0E1131D6F6200FEA4DE /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
@@ -243,8 +238,8 @@
 				7CC78ED213296EEF00CA2B45 /* Education View */,
 				7CC78EC01329648B00CA2B45 /* Last Update View */,
 				7C4DD677131DA42F006C69CF /* Table View */,
-				7CC5B10E131D6FAB00FEA4DE /* Pie Chart */,
 				7C42EFD51333DD6100BA6B5F /* User Detail View */,
+				7CC5B10E131D6FAB00FEA4DE /* Pie Chart */,
 				7C83D9DF13257D2F0059BBF0 /* Utilities */,
 				7CC5B10D131D6F8D00FEA4DE /* Categories */,
 				7CC5B10B131D6F7700FEA4DE /* Data Models */,
@@ -519,9 +514,6 @@
 				7CC5B0D9131D6F6200FEA4DE /* PieChartColorScheme.plist */,
 				7CC5B0DA131D6F6200FEA4DE /* PieChartView.h */,
 				7CC5B0DB131D6F6200FEA4DE /* PieChartView.m */,
-				7CC5B0DC131D6F6200FEA4DE /* PieChartViewController.h */,
-				7CC5B0DD131D6F6200FEA4DE /* PieChartViewController.m */,
-				7CC5B0DE131D6F6200FEA4DE /* PieChartViewController.xib */,
 			);
 			name = "Pie Chart";
 			sourceTree = "<group>";
@@ -610,7 +602,6 @@
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				7CC5B0F0131D6F6200FEA4DE /* FBDialog.bundle in Resources */,
 				7CC5B0FD131D6F6200FEA4DE /* PieChartColorScheme.plist in Resources */,
-				7CC5B100131D6F6200FEA4DE /* PieChartViewController.xib in Resources */,
 				7CC5B102131D6F6200FEA4DE /* RootViewController.xib in Resources */,
 				7C4DD511131D8081006C69CF /* MenuStructure.plist in Resources */,
 				7C4DD51C131D852A006C69CF /* MainMenuViewController.xib in Resources */,
@@ -642,7 +633,6 @@
 				7CC5B0FA131D6F6200FEA4DE /* FriendsAnalyzerAppDelegate.m in Sources */,
 				7CC5B0FB131D6F6200FEA4DE /* UserTableViewController.m in Sources */,
 				7CC5B0FE131D6F6200FEA4DE /* PieChartView.m in Sources */,
-				7CC5B0FF131D6F6200FEA4DE /* PieChartViewController.m in Sources */,
 				7CC5B101131D6F6200FEA4DE /* RootViewController.m in Sources */,
 				7CC5B105131D6F6200FEA4DE /* UIColor-Expanded.m in Sources */,
 				7CC5B146131D739B00FEA4DE /* User.m in Sources */,

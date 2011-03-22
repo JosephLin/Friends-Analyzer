@@ -127,7 +127,7 @@
 - (void)setImageViewWithData:(NSData*)data
 {
     UIImage* image = [UIImage imageWithData:data];
-    headerView.frame = CGRectMake(0, 0, headerView.frame.size.width, image.size.height + 10.0 );
+    headerView.frame = CGRectMake(0, 0, headerView.frame.size.width, image.size.height + 20.0 );
     self.tableView.tableHeaderView = headerView;
     profileImageView.image = image;
     

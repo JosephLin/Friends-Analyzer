@@ -8,8 +8,9 @@
 
 #import "BirthdayViewController.h"
 #import "User.h"
+#import "UserDetailViewController.h"
 
-#define kAnimationDuration  0.25
+
 
 
 @implementation BirthdayViewController
@@ -187,6 +188,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	[[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
+    
+    User* user = [fetchedResultController objectAtIndexPath:indexPath];
+    
+    UserDetailViewController* childVC = [[UserDetailViewController alloc] initWithNibName:@"UserDetailViewController" bundle:nil];
+    childVC.user = user;
+    [self.navigationController pushViewController:childVC animated:YES];
+    [childVC release];
 }
 
 

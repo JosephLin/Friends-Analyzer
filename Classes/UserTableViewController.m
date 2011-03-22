@@ -50,7 +50,6 @@
 
     User* user = [userArray objectAtIndex:indexPath.row];
 
-//    UserDetailViewController* childVC = [[UserDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
     UserDetailViewController* childVC = [[UserDetailViewController alloc] initWithNibName:@"UserDetailViewController" bundle:nil];
     childVC.user = user;
     [self.navigationController pushViewController:childVC animated:YES];

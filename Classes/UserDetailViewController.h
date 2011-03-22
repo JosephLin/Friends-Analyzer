@@ -10,9 +10,10 @@
 #import "User.h"
 #import "Work.h"
 #import "Education.h"
+#import "AsyncImageOperation.h"
 
 
-@interface UserDetailViewController : UITableViewController
+@interface UserDetailViewController : UITableViewController <AsyncImageOperationDelegate>
 {
     User* user;
     
@@ -24,6 +25,8 @@
     UIView* headerView;
     UIImageView* profileImageView;
     UILabel* nameLabel;
+    
+    NSOperationQueue* queue;
 }
 
 @property (nonatomic, retain) User* user;   
@@ -35,6 +38,8 @@
 @property (nonatomic, retain) IBOutlet UIImageView* profileImageView;
 @property (nonatomic, retain) IBOutlet UILabel* nameLabel;
 
+- (void)loadProfileImage;
+- (void)setImageViewWithData:(NSData*)data;
 - (NSString*)descriptionForWork:(Work*)work;
 - (NSString*)descriptionForEducation:(Education*)education;
 - (IBAction)openProfilePageLink;

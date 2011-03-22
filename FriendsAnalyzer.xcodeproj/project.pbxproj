@@ -72,6 +72,7 @@
 		7CC78EE71329858200CA2B45 /* ConcentrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78EE61329858000CA2B45 /* ConcentrationViewController.m */; };
 		7CD02E611330161D0019728A /* ArrayBasedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD02E601330161D0019728A /* ArrayBasedTableViewController.m */; };
 		7CD9A8001333FD4F0004AA48 /* attributeDisplayNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7CD9A7FF1333FD4F0004AA48 /* attributeDisplayNames.plist */; };
+		7CEE3BF013390B320004D50C /* AsyncImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEE3BEF13390B320004D50C /* AsyncImageOperation.m */; };
 		7CEF039F132DBAA10058FD63 /* ObjectAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEF039E132DBAA10058FD63 /* ObjectAttribute.m */; };
 		7CEF03AB132DD5F20058FD63 /* DegreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEF03AA132DD5F10058FD63 /* DegreeViewController.m */; };
 		7CF0CC681327F0E3006C5693 /* HometownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF0CC671327F0E2006C5693 /* HometownViewController.m */; };
@@ -193,6 +194,8 @@
 		7CD02E5F1330161D0019728A /* ArrayBasedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayBasedTableViewController.h; sourceTree = "<group>"; };
 		7CD02E601330161D0019728A /* ArrayBasedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayBasedTableViewController.m; sourceTree = "<group>"; };
 		7CD9A7FF1333FD4F0004AA48 /* attributeDisplayNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = attributeDisplayNames.plist; sourceTree = "<group>"; };
+		7CEE3BEE13390B320004D50C /* AsyncImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageOperation.h; sourceTree = "<group>"; };
+		7CEE3BEF13390B320004D50C /* AsyncImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageOperation.m; sourceTree = "<group>"; };
 		7CEF039D132DBAA10058FD63 /* ObjectAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectAttribute.h; sourceTree = "<group>"; };
 		7CEF039E132DBAA10058FD63 /* ObjectAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectAttribute.m; sourceTree = "<group>"; };
 		7CEF03A9132DD5F10058FD63 /* DegreeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DegreeViewController.h; sourceTree = "<group>"; };
@@ -412,6 +415,8 @@
 				7C37C1A3131EA0FC004EFA64 /* FBRequestOperation.m */,
 				7C83D9E3132580AD0059BBF0 /* ForwardGeocodingOperation.h */,
 				7C83D9E4132580AE0059BBF0 /* ForwardGeocodingOperation.m */,
+				7CEE3BEE13390B320004D50C /* AsyncImageOperation.h */,
+				7CEE3BEF13390B320004D50C /* AsyncImageOperation.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -678,6 +683,7 @@
 				7C70C00A13315F3000E1B87C /* WorkTableViewCell.m in Sources */,
 				7C70C00D1331614C00E1B87C /* PositionViewController.m in Sources */,
 				7C42EFD91333DD8300BA6B5F /* UserDetailViewController.m in Sources */,
+				7CEE3BF013390B320004D50C /* AsyncImageOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

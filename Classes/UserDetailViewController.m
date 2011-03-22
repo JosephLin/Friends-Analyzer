@@ -8,6 +8,8 @@
 
 #import "UserDetailViewController.h"
 #import "NSDate+Utilities.h"
+#import <QuartzCore/QuartzCore.h>
+
 
 #define kCellMargin             20.0
 #define kDetailLabelWidth       210.0
@@ -26,15 +28,6 @@
 {
     self.title = @"Profile";
     nameLabel.text = user.name;
-    
-    NSString* urlString = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=normal", user.id];
-    NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
-    UIImage* image = [UIImage imageWithData:data];
-    headerView.frame = CGRectMake(0, 0, headerView.frame.size.width, image.size.height + 10.0 );
-    profileImageView.image = image;
-    
-    
-    
     
     NSArray* possibleKeys = [NSArray arrayWithObjects:@"gender", @"birthday", @"relationship_status", @"hometown", @"location", @"updated_time", @"locale", nil];
 
@@ -56,6 +49,8 @@
     if ( [self.educations count] ) [keyPaths addObject:self.educations];    
 
     
+    [self loadProfileImage];
+    
     [super viewDidLoad];
 }
 
@@ -69,6 +64,9 @@
 
 - (void)dealloc
 {
+    [queue cancelAllOperations];
+    [queue release];
+
     [user release];
     [keyPaths release];
     [works release];
@@ -101,6 +99,44 @@
     [[UIApplication sharedApplication] openURL:url];
 }
 
+
+#pragma mark -
+#pragma mark Profile Image
+
+- (void)loadProfileImage
+{
+    if ( queue )
+    {
+        [queue cancelAllOperations];
+        [queue release];
+    }
+    queue = [[NSOperationQueue alloc] init];
+    
+    NSString* urlString = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=normal", user.id];
+    
+    AsyncImageOperation* op = [[AsyncImageOperation alloc] initWithURL:urlString delegate:self];
+    [queue addOperation:op];
+    [op release];
+}
+
+- (void)operation:(AsyncImageOperation*)op didLoadData:(NSData*)data
+{
+    [self performSelectorOnMainThread:@selector(setImageViewWithData:) withObject:data waitUntilDone:NO];
+}
+
+- (void)setImageViewWithData:(NSData*)data
+{
+    UIImage* image = [UIImage imageWithData:data];
+    headerView.frame = CGRectMake(0, 0, headerView.frame.size.width, image.size.height + 10.0 );
+    self.tableView.tableHeaderView = headerView;
+    profileImageView.image = image;
+    
+    CALayer* layer = [profileImageView layer];
+    [layer setMasksToBounds:YES];
+    [layer setCornerRadius:10.0];
+    [layer setBorderWidth:1.0];
+    [layer setBorderColor:[[UIColor darkGrayColor] CGColor]];
+}
 
 
 #pragma mark -

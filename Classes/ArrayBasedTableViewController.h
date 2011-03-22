@@ -10,20 +10,22 @@
 #import "PieChartView.h"
 
 
-@interface ArrayBasedTableViewController : UITableViewController
+@interface ArrayBasedTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 {
     NSString* property;
 	NSArray* sortedKeys;
 	NSMutableDictionary* userCountsDict;
     
     UISegmentedControl* segmentedControl;
+    UITableView* tableView;
     PieChartView* pieChartView;
 }
 
 @property (nonatomic, retain) NSString* property;
 @property (nonatomic, retain) NSArray* sortedKeys;
 @property (nonatomic, retain) NSMutableDictionary* userCountsDict;
-@property (nonatomic, retain) IBOutlet UISegmentedControl* segmentedControl;
+@property (nonatomic, retain) UISegmentedControl* segmentedControl;
+@property (nonatomic, retain) UITableView* tableView;
 @property (nonatomic, retain) PieChartView* pieChartView;
 
 @end

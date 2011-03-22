@@ -10,6 +10,10 @@
 #import "ConcentrationViewController.h"
 #import "DegreeViewController.h"
 #import "SchoolViewController.h"
+#import "EducationTableViewController.h"
+
+
+
 
 @implementation EducationViewController
 
@@ -24,7 +28,7 @@
 {
     [super viewDidLoad];
     
-	self.menuItemArray = [NSArray arrayWithObjects:@"By Concentration", @"By Degree", @"By School", nil];
+	self.menuItemArray = [NSArray arrayWithObjects:@"By Concentration", @"By Degree", @"By School", @"List All", nil];
 	
     [self.tableView reloadData];
 }
@@ -58,6 +62,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
     cell.textLabel.text = [menuItemArray objectAtIndex:indexPath.row];
@@ -77,16 +83,21 @@
     
     switch (indexPath.row)
     {
+        case 0:
+            childVC = [[ConcentrationViewController alloc] init];
+            break;
+            
         case 1:
             childVC = [[DegreeViewController alloc] init];
             break;
-
+            
         case 2:
             childVC = [[SchoolViewController alloc] init];
             break;
             
         default:
-            childVC = [[ConcentrationViewController alloc] init];
+            childVC = [[EducationTableViewController alloc] init];
+            ((EducationTableViewController*)childVC).shouldShowSegmentedControl = YES;
             break;
     }
     

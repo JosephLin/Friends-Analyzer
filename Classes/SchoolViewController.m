@@ -7,6 +7,7 @@
 //
 
 #import "SchoolViewController.h"
+#import "EducationTableViewController.h"
 
 
 @implementation SchoolViewController
@@ -19,15 +20,18 @@
     [super viewDidLoad];
 }
 
-- (NSArray*)objectsForRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	[[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
+    
     ObjectAttribute* object = [fetchedResultController objectAtIndexPath:indexPath];
     
-    NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"user.name" ascending:YES];
-    NSArray* sorted = [object.owners sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
-    NSArray* array = [sorted valueForKeyPath:@"@unionOfObjects.user"];
-    
-    return array;
+    EducationTableViewController* childVC = [[EducationTableViewController alloc] init];
+    childVC.keyPath = @"school.name";
+    childVC.value = object.name;
+    childVC.title = object.name;
+	[self.navigationController pushViewController:childVC animated:YES];
+	[childVC release];
 }
 
 

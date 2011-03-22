@@ -37,7 +37,7 @@
         countLabel = [[UILabel alloc] initWithFrame:CGRectMake(width - kCountLabelWidth - kRightMargin, 0, kCountLabelWidth, height)];
         countLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
         countLabel.textAlignment = UITextAlignmentRight;
-        countLabel.textColor = [UIColor darkGrayColor];
+        countLabel.textColor = [UIColor colorWithRed:0.22 green:0.33 blue:0.53 alpha:1.0];
         [self addSubview:countLabel];
     }
     return self;

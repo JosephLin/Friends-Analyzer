@@ -27,6 +27,12 @@
 {
     [super viewDidLoad];
     
+    self.tableView = [[[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain] autorelease];
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    [self.view addSubview:tableView];
+    
+    
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
     self.monthNameArray = [dateFormatter monthSymbols];
     [dateFormatter release];

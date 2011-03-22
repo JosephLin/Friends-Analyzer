@@ -24,7 +24,6 @@
 		7C37C30B131EEC91004EFA64 /* NameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C37C309131EEC91004EFA64 /* NameViewController.m */; };
 		7C42EFD91333DD8300BA6B5F /* UserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C42EFD71333DD8300BA6B5F /* UserDetailViewController.m */; };
 		7C42EFDA1333DD8300BA6B5F /* UserDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C42EFD81333DD8300BA6B5F /* UserDetailViewController.xib */; };
-		7C42EFDC1333EE9400BA6B5F /* UserDetailStructure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C42EFDB1333EE9400BA6B5F /* UserDetailStructure.plist */; };
 		7C4DD511131D8081006C69CF /* MenuStructure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C4DD510131D8081006C69CF /* MenuStructure.plist */; };
 		7C4DD51B131D852A006C69CF /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4DD519131D852A006C69CF /* MainMenuViewController.m */; };
 		7C4DD51C131D852A006C69CF /* MainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C4DD51A131D852A006C69CF /* MainMenuViewController.xib */; };
@@ -70,6 +69,8 @@
 		7CD02E611330161D0019728A /* ArrayBasedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD02E601330161D0019728A /* ArrayBasedTableViewController.m */; };
 		7CD9A8001333FD4F0004AA48 /* attributeDisplayNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7CD9A7FF1333FD4F0004AA48 /* attributeDisplayNames.plist */; };
 		7CEE3BF013390B320004D50C /* AsyncImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEE3BEF13390B320004D50C /* AsyncImageOperation.m */; };
+		7CEE3BFC133946EB0004D50C /* EducationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEE3BFB133946EB0004D50C /* EducationTableViewController.m */; };
+		7CEE3BFF133946FB0004D50C /* EducationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEE3BFE133946FB0004D50C /* EducationTableViewCell.m */; };
 		7CEF039F132DBAA10058FD63 /* ObjectAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEF039E132DBAA10058FD63 /* ObjectAttribute.m */; };
 		7CEF03AB132DD5F20058FD63 /* DegreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEF03AA132DD5F10058FD63 /* DegreeViewController.m */; };
 		7CF0CC681327F0E3006C5693 /* HometownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF0CC671327F0E2006C5693 /* HometownViewController.m */; };
@@ -106,7 +107,6 @@
 		7C42EFD61333DD8300BA6B5F /* UserDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailViewController.h; sourceTree = "<group>"; };
 		7C42EFD71333DD8300BA6B5F /* UserDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailViewController.m; sourceTree = "<group>"; };
 		7C42EFD81333DD8300BA6B5F /* UserDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailViewController.xib; sourceTree = "<group>"; };
-		7C42EFDB1333EE9400BA6B5F /* UserDetailStructure.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserDetailStructure.plist; sourceTree = "<group>"; };
 		7C4DD510131D8081006C69CF /* MenuStructure.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MenuStructure.plist; sourceTree = "<group>"; };
 		7C4DD518131D852A006C69CF /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
 		7C4DD519131D852A006C69CF /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
@@ -189,6 +189,10 @@
 		7CD9A7FF1333FD4F0004AA48 /* attributeDisplayNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = attributeDisplayNames.plist; sourceTree = "<group>"; };
 		7CEE3BEE13390B320004D50C /* AsyncImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageOperation.h; sourceTree = "<group>"; };
 		7CEE3BEF13390B320004D50C /* AsyncImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageOperation.m; sourceTree = "<group>"; };
+		7CEE3BFA133946EB0004D50C /* EducationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EducationTableViewController.h; sourceTree = "<group>"; };
+		7CEE3BFB133946EB0004D50C /* EducationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EducationTableViewController.m; sourceTree = "<group>"; };
+		7CEE3BFD133946FA0004D50C /* EducationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EducationTableViewCell.h; sourceTree = "<group>"; };
+		7CEE3BFE133946FB0004D50C /* EducationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EducationTableViewCell.m; sourceTree = "<group>"; };
 		7CEF039D132DBAA10058FD63 /* ObjectAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectAttribute.h; sourceTree = "<group>"; };
 		7CEF039E132DBAA10058FD63 /* ObjectAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectAttribute.m; sourceTree = "<group>"; };
 		7CEF03A9132DD5F10058FD63 /* DegreeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DegreeViewController.h; sourceTree = "<group>"; };
@@ -353,7 +357,6 @@
 				7C42EFD61333DD8300BA6B5F /* UserDetailViewController.h */,
 				7C42EFD71333DD8300BA6B5F /* UserDetailViewController.m */,
 				7C42EFD81333DD8300BA6B5F /* UserDetailViewController.xib */,
-				7C42EFDB1333EE9400BA6B5F /* UserDetailStructure.plist */,
 				7CD9A7FF1333FD4F0004AA48 /* attributeDisplayNames.plist */,
 			);
 			name = "User Detail View";
@@ -535,6 +538,10 @@
 				7CEF03AA132DD5F10058FD63 /* DegreeViewController.m */,
 				7CC78EE51329857F00CA2B45 /* ConcentrationViewController.h */,
 				7CC78EE61329858000CA2B45 /* ConcentrationViewController.m */,
+				7CEE3BFA133946EB0004D50C /* EducationTableViewController.h */,
+				7CEE3BFB133946EB0004D50C /* EducationTableViewController.m */,
+				7CEE3BFD133946FA0004D50C /* EducationTableViewCell.h */,
+				7CEE3BFE133946FB0004D50C /* EducationTableViewCell.m */,
 			);
 			name = "Education View";
 			sourceTree = "<group>";
@@ -607,7 +614,6 @@
 				7C83D9D413256BA10059BBF0 /* LocationViewController.xib in Resources */,
 				7C2B33971333112200E4AAA3 /* AppIcon.png in Resources */,
 				7C42EFDA1333DD8300BA6B5F /* UserDetailViewController.xib in Resources */,
-				7C42EFDC1333EE9400BA6B5F /* UserDetailStructure.plist in Resources */,
 				7CD9A8001333FD4F0004AA48 /* attributeDisplayNames.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -670,6 +676,8 @@
 				7C70C00D1331614C00E1B87C /* PositionViewController.m in Sources */,
 				7C42EFD91333DD8300BA6B5F /* UserDetailViewController.m in Sources */,
 				7CEE3BF013390B320004D50C /* AsyncImageOperation.m in Sources */,
+				7CEE3BFC133946EB0004D50C /* EducationTableViewController.m in Sources */,
+				7CEE3BFF133946FB0004D50C /* EducationTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

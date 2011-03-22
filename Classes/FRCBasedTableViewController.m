@@ -8,6 +8,8 @@
 
 #import "FRCBasedTableViewController.h"
 #import "UserTableViewController.h"
+#import "GeocodeTableViewCell.h"
+
 
 @implementation FRCBasedTableViewController
 
@@ -57,15 +59,16 @@
 {    
     static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+    GeocodeTableViewCell *cell = (GeocodeTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil)
+    {
+        cell = [[[GeocodeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
     
     ObjectAttribute* object = [fetchedResultController objectAtIndexPath:indexPath];
-    cell.textLabel.text = object.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [object.owners count]];
+    cell.titleLabel.text = object.name;
+    cell.countLabel.text = [NSString stringWithFormat:@"%d", [object.ownerCount intValue]];
     
     return cell;
 }
@@ -129,6 +132,9 @@
     }
     
     [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+    
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"ownerCount != 0"];
+    [fetchRequest setPredicate:predicate];
     
     NSFetchedResultsController* controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
                                                                                  managedObjectContext:[ObjectAttribute managedObjectContext]

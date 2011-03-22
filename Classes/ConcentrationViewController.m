@@ -7,6 +7,7 @@
 //
 
 #import "ConcentrationViewController.h"
+#import "EducationTableViewController.h"
 
 
 @implementation ConcentrationViewController
@@ -29,6 +30,22 @@
     
     return array;
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	[[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
+    
+    ObjectAttribute* object = [fetchedResultController objectAtIndexPath:indexPath];
+    
+    EducationTableViewController* childVC = [[EducationTableViewController alloc] init];
+    childVC.keyPath = @"concentrations.name";
+    childVC.value = object;
+    childVC.title = object.name;
+	[self.navigationController pushViewController:childVC animated:YES];
+	[childVC release];
+}
+
+
+
 
 
 

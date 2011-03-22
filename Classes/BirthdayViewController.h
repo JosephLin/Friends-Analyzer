@@ -10,7 +10,7 @@
 #import "PieChartView.h"
 
 
-@interface BirthdayViewController : UIViewController
+@interface BirthdayViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 {
     UITableView* tableView;
     UISegmentedControl* segmentedControl;

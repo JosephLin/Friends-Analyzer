@@ -18,7 +18,7 @@
 @synthesize property;
 @synthesize sortedKeys, userCountsDict;
 @synthesize segmentedControl;
-@synthesize pieChartView;
+@synthesize tableView, pieChartView;
 
 
 #pragma mark -
@@ -27,6 +27,12 @@
 
 - (void)viewDidLoad
 {    
+    self.tableView = [[[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain] autorelease];
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    [self.view addSubview:tableView];
+    
+    
     NSArray* controlItems = [NSArray arrayWithObjects:@"Sort By Name", @"Sort By Number", nil];
     
     self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:controlItems] autorelease];
@@ -50,6 +56,7 @@
     [super viewDidUnload];
     
     self.segmentedControl = nil;
+    self.tableView = nil;
     self.pieChartView = nil;
 }
 
@@ -59,6 +66,7 @@
 	[sortedKeys release];
 	[userCountsDict release];
 	[segmentedControl release];
+    [tableView release];
     [pieChartView release];
     [super dealloc];
 }
@@ -83,7 +91,7 @@
         self.navigationItem.rightBarButtonItem.title = @"Chart";
         
         [UIView beginAnimations:@"FlipToChart" context:nil];
-        [UIView setAnimationTransition: UIViewAnimationTransitionFlipFromLeft forView:self.tableView cache:YES];
+        [UIView setAnimationTransition: UIViewAnimationTransitionFlipFromLeft forView:self.view cache:YES];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
         [UIView setAnimationDuration:kAnimationDuration];
         
@@ -99,7 +107,7 @@
         self.navigationItem.rightBarButtonItem.title = @"Table";
 
         [UIView beginAnimations:@"FlipToChart" context:nil];
-        [UIView setAnimationTransition: UIViewAnimationTransitionFlipFromRight forView:self.tableView cache:YES];
+        [UIView setAnimationTransition: UIViewAnimationTransitionFlipFromRight forView:self.view cache:YES];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
         [UIView setAnimationDuration:kAnimationDuration];
         
@@ -135,10 +143,11 @@
 {
     static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
 	NSString* key = [self.sortedKeys objectAtIndex:indexPath.row];

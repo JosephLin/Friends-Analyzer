@@ -1,20 +1,20 @@
 //
-//  WorkTableViewController.m
+//  EducationTableViewController.m
 //  FriendsAnalyzer
 //
-//  Created by Joseph Lin on 3/14/11.
+//  Created by Joseph Lin on 3/22/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "WorkTableViewController.h"
-#import "Work.h"
+#import "EducationTableViewController.h"
+#import "Education.h"
 #import "User.h"
-#import "WorkTableViewCell.h"
+#import "EducationTableViewCell.h"
 #import "UserDetailViewController.h"
 
 
 
-@implementation WorkTableViewController
+@implementation EducationTableViewController
 
 @synthesize keyPath, value;
 @synthesize fetchedResultController, segmentedControl;
@@ -23,7 +23,7 @@
 
 - (void)viewDidLoad
 {    
-    NSArray* controlItems = [NSArray arrayWithObjects:@"Name", @"Employer", nil];
+    NSArray* controlItems = [NSArray arrayWithObjects:@"Name", @"School", nil];
     
     self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:controlItems] autorelease];
     segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -59,7 +59,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 120.0;    
+    return 100.0;    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -77,13 +77,14 @@
 {    
     static NSString *CellIdentifier = @"Cell";
     
-    WorkTableViewCell *cell = (WorkTableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    EducationTableViewCell *cell = (EducationTableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[WorkTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[EducationTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
     
-	Work* work = [fetchedResultController objectAtIndexPath:indexPath];
-    cell.work = work;
+	Education* education = [fetchedResultController objectAtIndexPath:indexPath];
+    cell.education = education;
     
     return cell;
 }
@@ -116,10 +117,10 @@
 {
 	[[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
     
-	Work* work = [fetchedResultController objectAtIndexPath:indexPath];
+	Education* education = [fetchedResultController objectAtIndexPath:indexPath];
     
     UserDetailViewController* childVC = [[UserDetailViewController alloc] initWithNibName:@"UserDetailViewController" bundle:nil];
-    childVC.user = work.user;
+    childVC.user = education.user;
     [self.navigationController pushViewController:childVC animated:YES];
     [childVC release];
 }
@@ -131,37 +132,45 @@
 - (NSFetchedResultsController*)fetchedResultControllerOfType:(NSInteger)selectedSegmentIndex
 {
     NSFetchRequest* fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
-    [fetchRequest setEntity:[Work entity]];
+    [fetchRequest setEntity:[Education entity]];
     
     if ( keyPath && value )
     {
-        NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%K like[c] %@", keyPath, value];
-        [fetchRequest setPredicate:predicate];
+        if ( [value isMemberOfClass:[NSString class]] )
+        {        
+            NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%K like[c] %@", keyPath, value];
+            [fetchRequest setPredicate:predicate];
+        }
+        else if ( [value isKindOfClass:[ObjectAttribute class]] )
+        {
+            NSPredicate* predicate = [NSPredicate predicateWithFormat:@"ANY %K == %@", keyPath, ((ObjectAttribute*)value).name];
+            [fetchRequest setPredicate:predicate];
+        }
     }
-                              
+    
     NSSortDescriptor* nameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"user.name" ascending:YES];
-    NSSortDescriptor* employerSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"employer.name" ascending:YES];
-//    NSSortDescriptor* positionSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"position.name" ascending:YES];
-    NSSortDescriptor* dateSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"start_date" ascending:NO];
+    NSSortDescriptor* schoolSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"school.name" ascending:YES];
+//    NSSortDescriptor* degreeSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"degree.name" ascending:YES];
+    NSSortDescriptor* dateSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"year" ascending:NO];
     NSArray* sortDescriptors = nil;
     
-
+    
     NSString* sectionNameKeyPath = nil;
     
     if ( selectedSegmentIndex == 0 )
     {
-        sortDescriptors = [NSArray arrayWithObjects:nameSortDescriptor, employerSortDescriptor, dateSortDescriptor, nil];
+        sortDescriptors = [NSArray arrayWithObjects:nameSortDescriptor, schoolSortDescriptor, dateSortDescriptor, nil];
         sectionNameKeyPath = @"user.indexTitle";
     }
     else
     {
-        sortDescriptors = [NSArray arrayWithObjects:employerSortDescriptor, nameSortDescriptor, dateSortDescriptor, nil];
-        sectionNameKeyPath = @"employer.indexTitle";
+        sortDescriptors = [NSArray arrayWithObjects:schoolSortDescriptor, nameSortDescriptor, dateSortDescriptor, nil];
+        sectionNameKeyPath = @"school.indexTitle";
     }
     [fetchRequest setSortDescriptors:sortDescriptors];    
     
     NSFetchedResultsController* controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
-                                                                                 managedObjectContext:[Work managedObjectContext]
+                                                                                 managedObjectContext:[Education managedObjectContext]
                                                                                    sectionNameKeyPath:sectionNameKeyPath
                                                                                             cacheName:nil];
     
@@ -177,3 +186,4 @@
 
 
 @end
+

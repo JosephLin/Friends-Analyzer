@@ -16,7 +16,6 @@
 		28D3F202112F7DC200FD0661 /* FriendsAnalyzer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28D3F201112F7DC200FD0661 /* FriendsAnalyzer.xcdatamodeld */; };
 		7C13AF8A132149E8001FD36C /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C13AF89132149E8001FD36C /* MainWindow-iPad.xib */; };
 		7C13AF8F13214C8C001FD36C /* BirthdayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C13AF8D13214C8C001FD36C /* BirthdayViewController.m */; };
-		7C13AF9013214C8C001FD36C /* BirthdayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C13AF8E13214C8C001FD36C /* BirthdayViewController.xib */; };
 		7C1FF31D132EABE300110D03 /* WorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1FF31C132EABE300110D03 /* WorkViewController.m */; };
 		7C1FF320132EAD3700110D03 /* FRCBasedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1FF31F132EAD3700110D03 /* FRCBasedTableViewController.m */; };
 		7C1FF323132EB29600110D03 /* EmployerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1FF322132EB29500110D03 /* EmployerViewController.m */; };
@@ -93,7 +92,6 @@
 		7C13AF89132149E8001FD36C /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		7C13AF8C13214C8C001FD36C /* BirthdayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BirthdayViewController.h; sourceTree = "<group>"; };
 		7C13AF8D13214C8C001FD36C /* BirthdayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BirthdayViewController.m; sourceTree = "<group>"; };
-		7C13AF8E13214C8C001FD36C /* BirthdayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BirthdayViewController.xib; sourceTree = "<group>"; };
 		7C1FF31B132EABE300110D03 /* WorkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkViewController.h; sourceTree = "<group>"; };
 		7C1FF31C132EABE300110D03 /* WorkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkViewController.m; sourceTree = "<group>"; };
 		7C1FF31E132EAD3700110D03 /* FRCBasedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRCBasedTableViewController.h; sourceTree = "<group>"; };
@@ -308,7 +306,6 @@
 			children = (
 				7C13AF8C13214C8C001FD36C /* BirthdayViewController.h */,
 				7C13AF8D13214C8C001FD36C /* BirthdayViewController.m */,
-				7C13AF8E13214C8C001FD36C /* BirthdayViewController.xib */,
 				7C74C55713219060003258AC /* Horoscope.plist */,
 			);
 			name = "Birthday View";
@@ -606,7 +603,6 @@
 				7C4DD511131D8081006C69CF /* MenuStructure.plist in Resources */,
 				7C4DD51C131D852A006C69CF /* MainMenuViewController.xib in Resources */,
 				7C13AF8A132149E8001FD36C /* MainWindow-iPad.xib in Resources */,
-				7C13AF9013214C8C001FD36C /* BirthdayViewController.xib in Resources */,
 				7C74C55813219060003258AC /* Horoscope.plist in Resources */,
 				7C83D9D413256BA10059BBF0 /* LocationViewController.xib in Resources */,
 				7C2B33971333112200E4AAA3 /* AppIcon.png in Resources */,

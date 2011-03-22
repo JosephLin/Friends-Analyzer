@@ -162,8 +162,8 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
 	
-	NSDictionary* dict = [menuStructureArray objectAtIndex:indexPath.row];
-    cell.textLabel.text = [dict objectForKey:@"title"];
+	NSDictionary* menuDictionary = [menuStructureArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = [menuDictionary objectForKey:@"title"];
     
     return cell;
 }
@@ -174,14 +174,16 @@
 	
 	NSDictionary* menuDictionary = [menuStructureArray objectAtIndex:indexPath.row];
 	NSString* viewControllerName = [menuDictionary objectForKey:@"viewController"];
-	
 	Class aClass = [[NSBundle mainBundle] classNamed:viewControllerName];
-	UIViewController* childVC = [[[aClass alloc] init] autorelease];
+
+	UIViewController* childVC = [[aClass alloc] init];
+    childVC.title = [menuDictionary objectForKey:@"title"];
 	if ( [childVC isKindOfClass:[ArrayBasedTableViewController class]] )
 	{
 		((ArrayBasedTableViewController*)childVC).property = [[menuStructureArray objectAtIndex:indexPath.row] objectForKey:@"property"];
 	}
     [self.navigationController pushViewController:childVC animated:YES];
+    [childVC release];
 }
 
 

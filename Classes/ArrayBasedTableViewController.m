@@ -10,6 +10,8 @@
 #import "UserTableViewController.h"
 #import "User.h"
 
+#define kAnimationDuration  0.75
+
 
 @implementation ArrayBasedTableViewController
 
@@ -77,17 +79,33 @@
 {
     if ( [pieChartView superview] )
     {
-        [pieChartView removeFromSuperview]; 
         self.navigationItem.titleView = self.segmentedControl;
         self.navigationItem.rightBarButtonItem.title = @"Chart";
+        
+        [UIView beginAnimations:@"FlipToChart" context:nil];
+        [UIView setAnimationTransition: UIViewAnimationTransitionFlipFromLeft forView:self.tableView cache:YES];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        [UIView setAnimationDuration:kAnimationDuration];
+        
+        [pieChartView removeFromSuperview]; 
+        
+        [UIView commitAnimations];
     }
     else
     {
         self.pieChartView.frame = self.view.bounds;
-        [self.view addSubview:self.pieChartView];
         
         self.navigationItem.titleView = nil;
         self.navigationItem.rightBarButtonItem.title = @"Table";
+
+        [UIView beginAnimations:@"FlipToChart" context:nil];
+        [UIView setAnimationTransition: UIViewAnimationTransitionFlipFromRight forView:self.tableView cache:YES];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        [UIView setAnimationDuration:kAnimationDuration];
+        
+        [self.view addSubview:self.pieChartView];
+        
+        [UIView commitAnimations];
     }
 }
 
@@ -102,6 +120,7 @@
     }
     return pieChartView;
 }
+
 
 
 #pragma mark -

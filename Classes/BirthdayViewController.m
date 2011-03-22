@@ -10,6 +10,7 @@
 #import "User.h"
 #import "UserDetailViewController.h"
 
+#define kAnimationDuration  0.75
 
 
 
@@ -30,7 +31,7 @@
     self.monthNameArray = [dateFormatter monthSymbols];
     [dateFormatter release];
     
-    NSArray* controlItems = [NSArray arrayWithObjects:@"Age", @"Date", @"Horoscope", nil];
+    NSArray* controlItems = [NSArray arrayWithObjects:@"Age", @"Date", @"Zodiac", nil];
     self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:controlItems] autorelease];
 	segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 	segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
@@ -81,17 +82,32 @@
 {
     if ( [pieChartView superview] )
     {
-        [pieChartView removeFromSuperview]; 
         self.navigationItem.rightBarButtonItem.title = @"Chart";
+        
+        [UIView beginAnimations:@"FlipToChart" context:nil];
+        [UIView setAnimationTransition: UIViewAnimationTransitionFlipFromLeft forView:self.view cache:YES];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        [UIView setAnimationDuration:kAnimationDuration];
+        
+        [pieChartView removeFromSuperview]; 
+        
+        [UIView commitAnimations];
     }
     else
     {
         self.pieChartView.frame = self.view.bounds;
         pieChartView.dict = [self userCountDict];
 
+        self.navigationItem.rightBarButtonItem.title = @"Table";
+        
+        [UIView beginAnimations:@"FlipToChart" context:nil];
+        [UIView setAnimationTransition: UIViewAnimationTransitionFlipFromRight forView:self.view cache:YES];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        [UIView setAnimationDuration:kAnimationDuration];
+        
         [self.view addSubview:self.pieChartView];
         
-        self.navigationItem.rightBarButtonItem.title = @"Table";
+        [UIView commitAnimations];
     }
 }
 

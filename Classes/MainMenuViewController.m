@@ -180,6 +180,10 @@
 	NSDictionary* menuDictionary = [menuStructureArray objectAtIndex:indexPath.row];
     cell.textLabel.text = [menuDictionary objectForKey:@"title"];
     
+    UIImage* iconImage = [UIImage imageNamed:[menuDictionary objectForKey:@"title"]];
+    cell.imageView.image = iconImage;
+    
+    
     return cell;
 }
 

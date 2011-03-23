@@ -28,10 +28,10 @@
 	
 	//// Set Navigation Bar ////
 	self.title = @"Home";
-	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Logout" 
+	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Logout" 
 																			   style:UIBarButtonItemStylePlain 
 																			  target:self 
-																			  action:@selector(facebookLogout)] autorelease];
+																			  action:@selector(logoutButtonTapped:)] autorelease];
 
 	//// Display Current User Info ////
 	self.currentUser = [User currentUser];
@@ -93,6 +93,21 @@
     [rootVC getUserInfo];
     [self.navigationController popViewControllerAnimated:YES];
     
+}
+
+- (IBAction)logoutButtonTapped:(id)sender
+{
+    UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:@"To protect your privacy, all stored friend information will be deleted when you logout." delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Logout" otherButtonTitles:nil];
+    [sheet showInView:self.view];
+    [sheet release];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if ( buttonIndex == [actionSheet destructiveButtonIndex] )
+    {
+        [self facebookLogout];
+    }
 }
 
 
@@ -170,7 +185,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	[[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 	
 	NSDictionary* menuDictionary = [menuStructureArray objectAtIndex:indexPath.row];
 	NSString* viewControllerName = [menuDictionary objectForKey:@"viewController"];

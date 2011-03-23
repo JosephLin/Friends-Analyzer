@@ -147,8 +147,15 @@
 - (void)getUserInfo
 {
 	[self updateViewForMode:RootViewModeLoadingUserInfo];
-	
-	self.userInfoRequest = [[FacebookClient sharedFacebook] requestWithGraphPath:@"me" andDelegate:self];
+
+    if ( [[FacebookClient sharedFacebook] isSessionValid] )
+    {
+        self.userInfoRequest = [[FacebookClient sharedFacebook] requestWithGraphPath:@"me" andDelegate:self];
+    }
+    else
+    {
+        [self facebookLogin];
+    }
 }
 
 - (void)fetchFriends

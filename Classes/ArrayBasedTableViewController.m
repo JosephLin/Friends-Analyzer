@@ -165,7 +165,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	[[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
+	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     NSString* key = [self.sortedKeys objectAtIndex:indexPath.row];
 	NSArray* users = [User usersForKey:property value:key];

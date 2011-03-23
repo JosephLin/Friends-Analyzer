@@ -12,7 +12,7 @@
 #import "AsyncImageOperation.h"
 
 
-@interface MainMenuViewController : UIViewController <FBSessionDelegate, AsyncImageOperationDelegate>
+@interface MainMenuViewController : UIViewController <FBSessionDelegate, AsyncImageOperationDelegate, UIActionSheetDelegate>
 {
     UIView* headerView;
 	UIImageView* profileImageView;
@@ -36,6 +36,8 @@
 @property (nonatomic, retain) User* currentUser;
 
 - (void)loadProfileImage;
+- (void)facebookLogout;
 - (IBAction)refreshButtonTapped:(id)sender;
+- (IBAction)logoutButtonTapped:(id)sender;
 
 @end

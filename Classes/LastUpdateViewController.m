@@ -103,7 +103,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	[[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
+	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 

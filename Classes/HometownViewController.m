@@ -77,7 +77,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	[[self.tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
+	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     Geocode* geocode = [self.fetchedResultController objectAtIndexPath:indexPath];
     NSSet* objects = [geocode valueForKeyPath:ownerKeyPath];

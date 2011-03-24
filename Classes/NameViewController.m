@@ -7,25 +7,89 @@
 //
 
 #import "NameViewController.h"
+#import "LastNameViewController.h"
+#import "FullNameViewController.h"
 
 
 @implementation NameViewController
 
+@synthesize menuItemArray;
+
+
+#pragma mark -
+#pragma mark View lifecycle
+
 
 - (void)viewDidLoad
-{    
-    self.entityName = @"LastName";
-    
+{
     [super viewDidLoad];
+    
+	self.menuItemArray = [NSArray arrayWithObjects:@"Group By Last Name", @"List All", nil];
+	
+    [self.tableView reloadData];
 }
 
-- (NSArray*)objectsForRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)dealloc
 {
-    ObjectAttribute* object = [fetchedResultController objectAtIndexPath:indexPath];
-    NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
-    NSArray* array = [object.owners sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+	[menuItemArray release];
+	
+    [super dealloc];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return YES;
+}
+
+
+#pragma mark -
+#pragma mark Table view data source
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [menuItemArray count];
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
     
-    return array;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    
+    cell.textLabel.text = [menuItemArray objectAtIndex:indexPath.row];
+    
+    return cell;
+}
+
+
+#pragma mark -
+#pragma mark Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+	
+    UIViewController* childVC = nil;
+    
+    switch (indexPath.row)
+    {
+        case 0:
+            childVC = [[LastNameViewController alloc] init];
+            break;
+            
+        default:
+            childVC = [[FullNameViewController alloc] init];
+            break;
+    }
+    
+	[self.navigationController pushViewController:childVC animated:YES];
+	[childVC release];
 }
 
 

@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FRCBasedTableViewController.h"
 
 
-@interface NameViewController : FRCBasedTableViewController
+@interface NameViewController : UITableViewController
 {
+    NSArray* menuItemArray;
 }
 
+@property (nonatomic, retain) NSArray* menuItemArray;
 
 @end

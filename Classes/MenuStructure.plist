@@ -4,9 +4,9 @@
 <array>
 	<dict>
 		<key>property</key>
-		<string>last_name</string>
+		<string>name</string>
 		<key>title</key>
-		<string>Last Name</string>
+		<string>Name</string>
 		<key>viewController</key>
 		<string>NameViewController</string>
 	</dict>

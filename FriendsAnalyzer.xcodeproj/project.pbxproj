@@ -27,6 +27,10 @@
 		7C4DD511131D8081006C69CF /* MenuStructure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C4DD510131D8081006C69CF /* MenuStructure.plist */; };
 		7C4DD51B131D852A006C69CF /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4DD519131D852A006C69CF /* MainMenuViewController.m */; };
 		7C4DD51C131D852A006C69CF /* MainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C4DD51A131D852A006C69CF /* MainMenuViewController.xib */; };
+		7C5141F1133BF35F001A0573 /* icon_pie_chart.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C5141ED133BF35F001A0573 /* icon_pie_chart.png */; };
+		7C5141F2133BF35F001A0573 /* icon_pie_chart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C5141EE133BF35F001A0573 /* icon_pie_chart@2x.png */; };
+		7C5141F3133BF35F001A0573 /* icon_table_view.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C5141EF133BF35F001A0573 /* icon_table_view.png */; };
+		7C5141F4133BF35F001A0573 /* icon_table_view@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C5141F0133BF35F001A0573 /* icon_table_view@2x.png */; };
 		7C70C0071331574900E1B87C /* GeocodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C70C0061331574700E1B87C /* GeocodeTableViewCell.m */; };
 		7C70C00A13315F3000E1B87C /* WorkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C70C00913315F3000E1B87C /* WorkTableViewCell.m */; };
 		7C70C00D1331614C00E1B87C /* PositionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C70C00C1331614A00E1B87C /* PositionViewController.m */; };
@@ -131,6 +135,10 @@
 		7C4DD518131D852A006C69CF /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
 		7C4DD519131D852A006C69CF /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
 		7C4DD51A131D852A006C69CF /* MainMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenuViewController.xib; sourceTree = "<group>"; };
+		7C5141ED133BF35F001A0573 /* icon_pie_chart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_pie_chart.png; sourceTree = "<group>"; };
+		7C5141EE133BF35F001A0573 /* icon_pie_chart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_pie_chart@2x.png"; sourceTree = "<group>"; };
+		7C5141EF133BF35F001A0573 /* icon_table_view.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_table_view.png; sourceTree = "<group>"; };
+		7C5141F0133BF35F001A0573 /* icon_table_view@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_table_view@2x.png"; sourceTree = "<group>"; };
 		7C70C0051331574700E1B87C /* GeocodeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeocodeTableViewCell.h; sourceTree = "<group>"; };
 		7C70C0061331574700E1B87C /* GeocodeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeocodeTableViewCell.m; sourceTree = "<group>"; };
 		7C70C00813315F3000E1B87C /* WorkTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkTableViewCell.h; sourceTree = "<group>"; };
@@ -500,6 +508,10 @@
 				7CB4B339133AA8EF0021F656 /* updated_time@2x.png */,
 				7CB4B33A133AA8EF0021F656 /* work.png */,
 				7CB4B33B133AA8EF0021F656 /* work@2x.png */,
+				7C5141ED133BF35F001A0573 /* icon_pie_chart.png */,
+				7C5141EE133BF35F001A0573 /* icon_pie_chart@2x.png */,
+				7C5141EF133BF35F001A0573 /* icon_table_view.png */,
+				7C5141F0133BF35F001A0573 /* icon_table_view@2x.png */,
 			);
 			path = Icons;
 			sourceTree = "<group>";
@@ -703,6 +715,10 @@
 				7CB4B34D133AA8EF0021F656 /* updated_time@2x.png in Resources */,
 				7CB4B34E133AA8EF0021F656 /* work.png in Resources */,
 				7CB4B34F133AA8EF0021F656 /* work@2x.png in Resources */,
+				7C5141F1133BF35F001A0573 /* icon_pie_chart.png in Resources */,
+				7C5141F2133BF35F001A0573 /* icon_pie_chart@2x.png in Resources */,
+				7C5141F3133BF35F001A0573 /* icon_table_view.png in Resources */,
+				7C5141F4133BF35F001A0573 /* icon_table_view@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

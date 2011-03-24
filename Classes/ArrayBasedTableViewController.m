@@ -43,10 +43,10 @@
     
     segmentedControl.selectedSegmentIndex = 0;
     
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Chart" 
-																			   style:UIBarButtonItemStylePlain 
-																			  target:self 
-																			  action:@selector(toggleChartView)] autorelease];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_pie_chart"]
+                                                                               style:UIBarButtonItemStyleBordered
+                                                                              target:self 
+                                                                              action:@selector(toggleChartView)] autorelease];
     
     [super viewDidLoad];
 }
@@ -88,7 +88,7 @@
     if ( [pieChartView superview] )
     {
         self.navigationItem.titleView = self.segmentedControl;
-        self.navigationItem.rightBarButtonItem.title = @"Chart";
+        self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"icon_pie_chart"];
         
         [UIView beginAnimations:@"FlipToChart" context:nil];
         [UIView setAnimationTransition: UIViewAnimationTransitionFlipFromLeft forView:self.view cache:YES];
@@ -104,7 +104,7 @@
         self.pieChartView.frame = self.view.bounds;
         
         self.navigationItem.titleView = nil;
-        self.navigationItem.rightBarButtonItem.title = @"Table";
+        self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"icon_table_view"];
 
         [UIView beginAnimations:@"FlipToChart" context:nil];
         [UIView setAnimationTransition: UIViewAnimationTransitionFlipFromRight forView:self.view cache:YES];

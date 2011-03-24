@@ -136,7 +136,7 @@
     
     if ( keyPath && value )
     {
-        if ( [value isMemberOfClass:[NSString class]] )
+        if ( [value isKindOfClass:[NSString class]] )
         {        
             NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%K like[c] %@", keyPath, value];
             [fetchRequest setPredicate:predicate];

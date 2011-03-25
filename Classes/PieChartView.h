@@ -16,6 +16,6 @@
 }
 
 @property (nonatomic, retain) NSDictionary* dict;
-@property (nonatomic, retain) NSArray* colorScheme;
+@property (nonatomic, retain, readonly) NSArray* colorScheme;
 
 @end

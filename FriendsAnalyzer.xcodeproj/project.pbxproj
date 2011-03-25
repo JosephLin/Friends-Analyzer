@@ -601,9 +601,9 @@
 		7CC5B10E131D6FAB00FEA4DE /* Pie Chart */ = {
 			isa = PBXGroup;
 			children = (
-				7CC5B0D9131D6F6200FEA4DE /* PieChartColorScheme.plist */,
 				7CC5B0DA131D6F6200FEA4DE /* PieChartView.h */,
 				7CC5B0DB131D6F6200FEA4DE /* PieChartView.m */,
+				7CC5B0D9131D6F6200FEA4DE /* PieChartColorScheme.plist */,
 			);
 			name = "Pie Chart";
 			sourceTree = "<group>";

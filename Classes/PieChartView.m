@@ -90,24 +90,37 @@
         {
             NSInteger value = [[dict objectForKey:key] intValue];
             
-            UIColor* color = [self.colorScheme objectAtIndex:colorIndex];
+            NSInteger index = colorIndex % [self.colorScheme count];
+            CGFloat k = 1 + 0.1 * colorIndex / [self.colorScheme count];
+            colorIndex++;
+            
+            NSDictionary* colorDict = [self.colorScheme objectAtIndex:index];
+            CGFloat red = [[colorDict objectForKey:@"red"] floatValue] * k;
+            CGFloat green = [[colorDict objectForKey:@"green"] floatValue] * k;
+            CGFloat blue = [[colorDict objectForKey:@"blue"] floatValue] * k;
+            
+			UIColor* color = [UIColor colorWithRed:red green:green blue:blue alpha:1.0];
+			
+//            UIColor* color = [self.colorScheme objectAtIndex:colorIndex];
             [color setStroke];
             [color setFill];
-            colorIndex = ( colorIndex + 1 ) % [colorScheme count];
+//            colorIndex = ( colorIndex + 1 ) % [colorScheme count];
             
             CGFloat endValue = startValue + value;
             CGFloat startAngle = 2 * M_PI * startValue / total;
             CGFloat endAngle = 2 * M_PI * endValue / total;
             
             // Draw pie
-            CGContextSaveGState(context);
-            
             CGContextAddArc(context, centerX, centerY, radius, startAngle - M_PI_2, endAngle - M_PI_2, NO);
             CGContextAddLineToPoint(context, centerX, centerY);
-//            CGContextDrawPath(context, kCGPathFill);
+            CGContextDrawPath(context, kCGPathFill);
           
+            CGContextClosePath(context);
+/*
+            CGRect rect = CGContextGetPathBoundingBox(context);
+            CGContextSaveGState(context);
             CGContextClip(context);
-            
+
 
             CGFloat locations[2] = { 0.0, 1.0 };
             CGFloat components[8] = { 
@@ -118,20 +131,23 @@
             CGColorSpaceRef rgbColorspace = CGColorSpaceCreateDeviceRGB();
             CGGradientRef glossGradient = CGGradientCreateWithColorComponents(rgbColorspace, components, locations, 2);
             
-            CGPoint topCenter = CGPointMake( centerX, centerY - radius);
-            CGPoint bottomCenter = CGPointMake( centerX, centerY + radius);
+            
+            CGPoint topCenter = rect.origin;
+            CGPoint bottomCenter = CGPointMake(rect.origin.x + rect.size.width, rect.origin.y + rect.size.height);
             CGContextDrawLinearGradient(context, glossGradient, topCenter, bottomCenter, 0);
             
             CGGradientRelease(glossGradient);
             CGColorSpaceRelease(rgbColorspace);
             
             CGContextRestoreGState(context);
-
+*/
             
             // Draw Label
             CGRect squareFrame = CGRectMake(labelX, labelY, 10.0, 10.0);
             CGContextFillRect(context, squareFrame);
             
+            [[UIColor blackColor] setFill];
+
             CGRect labelFrame = CGRectMake(labelX + 15.0, labelY, 200.0, 15.0);
             [key drawInRect:labelFrame withFont:[UIFont systemFontOfSize:12.0]];
             
@@ -155,6 +171,18 @@
 {
 	if ( !colorScheme )
 	{
+		NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"PieChartColorSchemeRGB" ofType:@"plist"];
+		NSArray* plistArray = [[NSDictionary dictionaryWithContentsOfFile:plistPath] objectForKey:@"Root"];
+		colorScheme = [[NSArray alloc] initWithArray:plistArray];
+	}
+	return colorScheme;
+}
+
+/*
+- (NSArray*)colorScheme
+{
+	if ( !colorScheme )
+	{
 		NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"PieChartColorScheme" ofType:@"plist"];
 		NSArray* plistArray = [NSArray arrayWithContentsOfFile:plistPath];
 		NSMutableArray* tempArray = [NSMutableArray arrayWithCapacity:[plistArray count]];
@@ -168,7 +196,7 @@
 	}
 	return colorScheme;
 }
-
+*/
 
 @end
 

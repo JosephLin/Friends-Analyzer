@@ -104,6 +104,7 @@
 		7CF0CC6E1327FEF6006C5693 /* MapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF0CC6D1327FEF2006C5693 /* MapAnnotation.m */; };
 		7CF6105D132EC0AA002D21DB /* WorkLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6105C132EC0AA002D21DB /* WorkLocationViewController.m */; };
 		7CF61060132EC979002D21DB /* WorkTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6105F132EC979002D21DB /* WorkTableViewController.m */; };
+		7CF6DCE4133E434C001CE00F /* PieChartColorSchemeRGB.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7CF6DCE3133E434C001CE00F /* PieChartColorSchemeRGB.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -261,6 +262,7 @@
 		7CF6105C132EC0AA002D21DB /* WorkLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkLocationViewController.m; sourceTree = "<group>"; };
 		7CF6105E132EC978002D21DB /* WorkTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkTableViewController.h; sourceTree = "<group>"; };
 		7CF6105F132EC979002D21DB /* WorkTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkTableViewController.m; sourceTree = "<group>"; };
+		7CF6DCE3133E434C001CE00F /* PieChartColorSchemeRGB.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PieChartColorSchemeRGB.plist; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* FriendsAnalyzer-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "FriendsAnalyzer-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -604,6 +606,7 @@
 				7CC5B0DA131D6F6200FEA4DE /* PieChartView.h */,
 				7CC5B0DB131D6F6200FEA4DE /* PieChartView.m */,
 				7CC5B0D9131D6F6200FEA4DE /* PieChartColorScheme.plist */,
+				7CF6DCE3133E434C001CE00F /* PieChartColorSchemeRGB.plist */,
 			);
 			name = "Pie Chart";
 			sourceTree = "<group>";
@@ -729,6 +732,7 @@
 				7C5141F2133BF35F001A0573 /* icon_pie_chart@2x.png in Resources */,
 				7C5141F3133BF35F001A0573 /* icon_table_view.png in Resources */,
 				7C5141F4133BF35F001A0573 /* icon_table_view@2x.png in Resources */,
+				7CF6DCE4133E434C001CE00F /* PieChartColorSchemeRGB.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -47,8 +47,8 @@
     segmentedControl.selectedSegmentIndex = 0;
     
     
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Chart" 
-																			   style:UIBarButtonItemStylePlain 
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_pie_chart"]
+                                                                               style:UIBarButtonItemStyleBordered
 																			  target:self 
 																			  action:@selector(toggleChartView)] autorelease];
 }
@@ -81,14 +81,21 @@
     self.fetchedResultController = [self fetchedResultControllerOfType:sender.selectedSegmentIndex];    
     [self.tableView reloadData];
     
-    pieChartView.dict = [self userCountDict];
+    if ( segmentedControl.selectedSegmentIndex == 1 )
+    {
+        [pieChartView setPieChartWithKeys:[[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"] values:[[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.numberOfObjects"] displayNames:monthNameArray];
+    }
+    else
+    {
+        [pieChartView setPieChartWithKeys:[[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"] values:[[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.numberOfObjects"]];
+    }
 }
 
 - (void)toggleChartView
 {
     if ( [pieChartView superview] )
     {
-        self.navigationItem.rightBarButtonItem.title = @"Chart";
+        self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"icon_pie_chart"];
         
         [UIView beginAnimations:@"FlipToChart" context:nil];
         [UIView setAnimationTransition: UIViewAnimationTransitionFlipFromLeft forView:self.view cache:YES];
@@ -102,9 +109,16 @@
     else
     {
         self.pieChartView.frame = self.view.bounds;
-        pieChartView.dict = [self userCountDict];
-
-        self.navigationItem.rightBarButtonItem.title = @"Table";
+        if ( segmentedControl.selectedSegmentIndex == 1 )
+        {
+            [pieChartView setPieChartWithKeys:[[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"] values:[[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.numberOfObjects"] displayNames:monthNameArray];
+        }
+        else
+        {
+            [pieChartView setPieChartWithKeys:[[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"] values:[[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.numberOfObjects"]];
+        }
+        
+        self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"icon_table_view"];
         
         [UIView beginAnimations:@"FlipToChart" context:nil];
         [UIView setAnimationTransition: UIViewAnimationTransitionFlipFromRight forView:self.view cache:YES];
@@ -129,7 +143,10 @@
 
 - (NSDictionary*)userCountDict
 {
-    NSArray* sectionIndexTitles = [[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"];
+    NSArray* sectionIndexTitles = ( segmentedControl.selectedSegmentIndex == 1 )
+    ? monthNameArray
+    : [[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"];
+
     NSArray* counts = [[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.numberOfObjects"];
     
     NSDictionary* dict = [NSDictionary dictionaryWithObjects:counts forKeys:sectionIndexTitles];
@@ -176,17 +193,17 @@
     
     switch (segmentedControl.selectedSegmentIndex)
     {
-        case 1:
+        case 0:    // Age
+            return [NSString stringWithFormat:@"%@ years old", [sectionInfo name]];
+
+        case 1:     // Date
         {
             NSString* monthName = [monthNameArray objectAtIndex:[[sectionInfo name] integerValue] - 1];
             return monthName;
         }
             
-        case 2:
+        default:    // Zodiac
             return [sectionInfo name];
-            
-        default:    // Age
-            return [NSString stringWithFormat:@"%@ years old", [sectionInfo name]];
     }
 }
 

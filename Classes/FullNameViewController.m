@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad
 {    
-    NSArray* controlItems = [NSArray arrayWithObjects:@"Full Name", @"Last Number", nil];
+    NSArray* controlItems = [NSArray arrayWithObjects:@"Full Name", @"Last Name", nil];
     
     self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:controlItems] autorelease];
     segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;

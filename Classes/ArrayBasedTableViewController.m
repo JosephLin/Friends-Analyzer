@@ -124,7 +124,7 @@
     {
         pieChartView = [[PieChartView alloc] initWithFrame:self.view.bounds];
         pieChartView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        pieChartView.dict = userCountsDict;
+        [pieChartView setPieChartWithKeys:[userCountsDict allKeys] values:[userCountsDict allValues]];
     }
     return pieChartView;
 }

@@ -7,15 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PieChartObject.h"
 
 
 @interface PieChartView : UIView
 {
-	NSDictionary* dict;
+    NSMutableArray* pieChartObjects;
 	NSArray* colorScheme;
 }
 
-@property (nonatomic, retain) NSDictionary* dict;
+@property (nonatomic, retain) NSMutableArray* pieChartObjects;
 @property (nonatomic, retain, readonly) NSArray* colorScheme;
+
+- (void)setPieChartWithKeys:(NSArray*)keys values:(NSArray*)values displayNames:(NSArray*)displayNames;
+- (void)setPieChartWithKeys:(NSArray*)keys values:(NSArray*)values;
 
 @end

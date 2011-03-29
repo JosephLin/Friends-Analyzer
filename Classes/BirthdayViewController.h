@@ -19,8 +19,8 @@
     NSArray* monthNameArray;
 }
 
-@property (nonatomic, retain) IBOutlet UITableView* tableView;
-@property (nonatomic, retain) IBOutlet UISegmentedControl* segmentedControl;
+@property (nonatomic, retain) UITableView* tableView;
+@property (nonatomic, retain) UISegmentedControl* segmentedControl;
 @property (nonatomic, retain) PieChartView* pieChartView;
 @property (nonatomic, retain) NSFetchedResultsController* fetchedResultController;
 @property (nonatomic, retain) NSArray* monthNameArray;

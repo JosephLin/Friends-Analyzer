@@ -24,6 +24,7 @@
 		7C37C30B131EEC91004EFA64 /* NameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C37C309131EEC91004EFA64 /* NameViewController.m */; };
 		7C42EFD91333DD8300BA6B5F /* UserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C42EFD71333DD8300BA6B5F /* UserDetailViewController.m */; };
 		7C42EFDA1333DD8300BA6B5F /* UserDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C42EFD81333DD8300BA6B5F /* UserDetailViewController.xib */; };
+		7C4995E71342758500A49BBA /* PieChartObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4995E61342758500A49BBA /* PieChartObject.m */; };
 		7C4DD511131D8081006C69CF /* MenuStructure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C4DD510131D8081006C69CF /* MenuStructure.plist */; };
 		7C4DD51B131D852A006C69CF /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4DD519131D852A006C69CF /* MainMenuViewController.m */; };
 		7C4DD51C131D852A006C69CF /* MainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C4DD51A131D852A006C69CF /* MainMenuViewController.xib */; };
@@ -134,6 +135,8 @@
 		7C42EFD61333DD8300BA6B5F /* UserDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailViewController.h; sourceTree = "<group>"; };
 		7C42EFD71333DD8300BA6B5F /* UserDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailViewController.m; sourceTree = "<group>"; };
 		7C42EFD81333DD8300BA6B5F /* UserDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailViewController.xib; sourceTree = "<group>"; };
+		7C4995E51342758500A49BBA /* PieChartObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieChartObject.h; sourceTree = "<group>"; };
+		7C4995E61342758500A49BBA /* PieChartObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieChartObject.m; sourceTree = "<group>"; };
 		7C4DD510131D8081006C69CF /* MenuStructure.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MenuStructure.plist; sourceTree = "<group>"; };
 		7C4DD518131D852A006C69CF /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
 		7C4DD519131D852A006C69CF /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
@@ -605,6 +608,8 @@
 			children = (
 				7CC5B0DA131D6F6200FEA4DE /* PieChartView.h */,
 				7CC5B0DB131D6F6200FEA4DE /* PieChartView.m */,
+				7C4995E51342758500A49BBA /* PieChartObject.h */,
+				7C4995E61342758500A49BBA /* PieChartObject.m */,
 				7CC5B0D9131D6F6200FEA4DE /* PieChartColorScheme.plist */,
 				7CF6DCE3133E434C001CE00F /* PieChartColorSchemeRGB.plist */,
 			);
@@ -798,6 +803,7 @@
 				7CEE3BFF133946FB0004D50C /* EducationTableViewCell.m in Sources */,
 				7C5141F7133BF991001A0573 /* LastNameViewController.m in Sources */,
 				7C5141FA133BF9A0001A0573 /* FullNameViewController.m in Sources */,
+				7C4995E71342758500A49BBA /* PieChartObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,7 +18,7 @@
 
 @implementation PieChartView
 
-@synthesize dict, colorScheme;
+@synthesize pieChartObjects, colorScheme;
 
 
 - (id)initWithFrame:(CGRect)frame
@@ -31,9 +31,51 @@
     return self;
 }
 
+- (void)setPieChartWithKeys:(NSArray*)keys values:(NSArray*)values displayNames:(NSArray*)displayNames
+{
+    NSInteger keyCount = [keys count];
+    
+    if ( [values count] != keyCount || [displayNames count] != keyCount )
+    {
+        NSLog(@"Array counts don't match!");
+        return;
+    }
+    
+    self.pieChartObjects = [NSMutableArray arrayWithCapacity:keyCount];
+    for ( int i = 0; i < keyCount; i++ )
+    {
+        id key = [keys objectAtIndex:i];
+        id value = [values objectAtIndex:i];
+        id displayName = [displayNames objectAtIndex:i];
+        PieChartObject* object = [[PieChartObject alloc] initWithKey:key value:value displayName:displayName];
+        [pieChartObjects addObject:object];
+        [object release];
+    }
+    
+
+//    NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"key" ascending:YES];
+    [pieChartObjects sortUsingComparator:(NSComparator)^(PieChartObject* obj1, PieChartObject* obj2){
+        if ( [obj1.key intValue] )
+        {
+            return [obj1.key intValue] > [obj2.key intValue];
+        }
+        else
+        {
+            return [obj1.key caseInsensitiveCompare:obj2.key];
+        }
+    }];
+    
+    [self setNeedsDisplay];
+}
+
+- (void)setPieChartWithKeys:(NSArray*)keys values:(NSArray*)values
+{
+    [self setPieChartWithKeys:keys values:values displayNames:keys];
+}
+
 - (void)dealloc
 {
-	[dict release];
+	[pieChartObjects release];
 	[colorScheme release];
     [super dealloc];
 }
@@ -41,14 +83,6 @@
 - (void)setFrame:(CGRect)frame
 {
     [super setFrame:frame];
-    [self setNeedsDisplay];
-}
-
-- (void)setDict:(NSDictionary*)theDict
-{
-    [dict autorelease];
-    dict = [theDict retain];
-    
     [self setNeedsDisplay];
 }
 
@@ -61,20 +95,6 @@
 		colorScheme = [[NSArray alloc] initWithArray:plistArray];
 	}
 	return colorScheme;
-}
-
-- (NSArray*)sortedKeys
-{
-    return [[dict allKeys] sortedArrayUsingComparator:(NSComparator)^(id obj1, id obj2){
-        if ( [obj1 intValue] )
-        {
-            return [obj1 intValue] > [obj2 intValue];
-        }
-        else
-        {
-            return [obj1 caseInsensitiveCompare:obj2];
-        }
-    }];
 }
 
 - (UIColor*)colorAtIndex:(NSInteger)index
@@ -118,59 +138,6 @@
     CGColorSpaceRelease(rgbColorspace);
 }
 
-- (void)drawLabels:(NSArray*)values inRect:(CGRect)rect
-{
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    int index = 0;
-
-    NSArray* sortedKeys = [self sortedKeys];
-    NSNumber* maxKeyLength = [sortedKeys valueForKeyPath:@"@max.length"];
-    CGFloat labelWidth = [maxKeyLength intValue] * 20.0 + kLabelSquareSize;
-    NSInteger labelColCount;
-    NSInteger labelRowCount;
-    if ( rect.size.width > rect.size.height )
-    {
-        labelColCount = rect.size.width / labelWidth;
-        labelRowCount = ceilf( (float)[sortedKeys count] / labelColCount );
-    }
-    else
-    {
-        labelRowCount = rect.size.height / kLabelRowHeight;
-        labelColCount = ceilf( (float)[sortedKeys count] / labelRowCount );        
-    }
-    
-    for ( NSString* key in [self sortedKeys] )
-    {
-        //// Select Color ////
-        UIColor* color = [self colorAtIndex:index];
-        [color setStroke];
-        [color setFill];
-        index++;
-        
-        //// Draw Label ////
-        if ( rect.size.width > rect.size.height )     // Portrait; draw labels at the bottom.
-        {
-            CGFloat labelX = index % labelColCount * labelWidth;
-            CGFloat labelY = index / labelColCount * kLabelRowHeight;
-            CGRect squareFrame = CGRectMake(labelX, labelY, kLabelSquareSize, kLabelSquareSize);
-            CGContextFillRect(context, squareFrame);
-            
-            [[UIColor blackColor] setFill];
-            CGRect labelFrame = CGRectMake(labelX + kLabelSquareSize + kLabelSquareSpacing, labelY, labelWidth, kLabelRowHeight);
-            [key drawInRect:labelFrame withFont:[UIFont systemFontOfSize:kLabelFontSize]];
-        }
-        else                                                        // Landscapel draw labels at the left side.
-        {
-            //            CGRect squareFrame = CGRectMake(labelX, labelY, kLabelSquareSize, kLabelSquareSize);
-            //            CGContextFillRect(context, squareFrame);
-            //            
-            //            [[UIColor blackColor] setFill];
-            //            CGRect labelFrame = CGRectMake(labelX + kLabelSquareSize + kLabelSquareSpacing, labelY, 200.0, kLabelRowHeight);
-            //            [key drawInRect:labelFrame withFont:[UIFont systemFontOfSize:kLabelFontSize]];
-        }
-    }
-}
-
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -184,24 +151,20 @@
     
     
     //// Set Data ////
-    NSNumber* valueSum = [[dict allValues] valueForKeyPath:@"@sum.intValue"];
+    NSNumber* valueSum = [pieChartObjects valueForKeyPath:@"@sum.value"];
     NSInteger total = [valueSum intValue];
     CGFloat startValue = 0;
     int index = 0;
     
-    NSArray* sortedKeys = [self sortedKeys];
-    
-    //    NSNumber* maxKeyLength = [sortedKeys valueForKeyPath:@"@max.length"];
-    //    CGFloat labelWidth = [maxKeyLength intValue] * 20.0 + kLabelSquareSize;
     CGFloat labelWidth = (self.bounds.size.width - 20) / 6;
-    for ( NSString* key in sortedKeys )
+    for ( PieChartObject* object in pieChartObjects )
     {
-        CGSize size = [key sizeWithFont:[UIFont systemFontOfSize:kLabelFontSize]];
+        CGSize size = [object.displayName sizeWithFont:[UIFont systemFontOfSize:kLabelFontSize]];
         if ( size.width + kLabelSquareSize + 4 * kLabelSquareSpacing > labelWidth )
             labelWidth = size.width + kLabelSquareSize + 4 * kLabelSquareSpacing;
     }
     
-    for ( NSString* key in sortedKeys )
+    for ( PieChartObject* object in pieChartObjects )
     {
         //// Select Color ////
         UIColor* color = [self colorAtIndex:index];
@@ -210,7 +173,7 @@
 
 
         //// Calculate Value ////
-        NSInteger value = [[dict objectForKey:key] intValue];
+        NSInteger value = [object.value intValue];
         CGFloat endValue = startValue + value;
         CGFloat startAngle = 2 * M_PI * startValue / total;
         CGFloat endAngle = 2 * M_PI * endValue / total;
@@ -237,7 +200,7 @@
             
             [[UIColor blackColor] setFill];
             CGRect labelFrame = CGRectMake(labelX + kLabelSquareSize + kLabelSquareSpacing, labelY, labelWidth, kLabelRowHeight);
-            [key drawInRect:labelFrame withFont:[UIFont systemFontOfSize:kLabelFontSize]];
+            [object.displayName drawInRect:labelFrame withFont:[UIFont systemFontOfSize:kLabelFontSize]];
         }
         else                                                        // Landscapel draw labels at the left side.
         {
@@ -252,7 +215,7 @@
             
             [[UIColor blackColor] setFill];
             CGRect labelFrame = CGRectMake(labelX + kLabelSquareSize + kLabelSquareSpacing, labelY, labelWidth, kLabelRowHeight);
-            [key drawInRect:labelFrame withFont:[UIFont systemFontOfSize:kLabelFontSize]];
+            [object.displayName drawInRect:labelFrame withFont:[UIFont systemFontOfSize:kLabelFontSize]];
         }
         
         

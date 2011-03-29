@@ -49,16 +49,17 @@
 
 - (NSString*)workDate
 {
-    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy/MM"];
 	
     if ( self.start_date)
     {
+        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy/MM"];
+
         NSString* startDateString = [dateFormatter stringFromDate:self.start_date];
-        
         NSString* endDateString = ( self.end_date ) ? [dateFormatter stringFromDate:self.end_date] : @"Present";
-        
         NSString* dateString = [NSString stringWithFormat:@"%@ to %@", startDateString, endDateString];
+        
+        [dateFormatter release];
         
         return dateString;
     }

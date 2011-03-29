@@ -25,6 +25,7 @@
 		7C42EFD91333DD8300BA6B5F /* UserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C42EFD71333DD8300BA6B5F /* UserDetailViewController.m */; };
 		7C42EFDA1333DD8300BA6B5F /* UserDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C42EFD81333DD8300BA6B5F /* UserDetailViewController.xib */; };
 		7C4995E71342758500A49BBA /* PieChartObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4995E61342758500A49BBA /* PieChartObject.m */; };
+		7C4995E913428C1F00A49BBA /* GoogleLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C4995E813428C1F00A49BBA /* GoogleLogo.png */; };
 		7C4DD511131D8081006C69CF /* MenuStructure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C4DD510131D8081006C69CF /* MenuStructure.plist */; };
 		7C4DD51B131D852A006C69CF /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4DD519131D852A006C69CF /* MainMenuViewController.m */; };
 		7C4DD51C131D852A006C69CF /* MainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C4DD51A131D852A006C69CF /* MainMenuViewController.xib */; };
@@ -137,6 +138,7 @@
 		7C42EFD81333DD8300BA6B5F /* UserDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailViewController.xib; sourceTree = "<group>"; };
 		7C4995E51342758500A49BBA /* PieChartObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieChartObject.h; sourceTree = "<group>"; };
 		7C4995E61342758500A49BBA /* PieChartObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieChartObject.m; sourceTree = "<group>"; };
+		7C4995E813428C1F00A49BBA /* GoogleLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GoogleLogo.png; sourceTree = "<group>"; };
 		7C4DD510131D8081006C69CF /* MenuStructure.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MenuStructure.plist; sourceTree = "<group>"; };
 		7C4DD518131D852A006C69CF /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
 		7C4DD519131D852A006C69CF /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 				28D3F201112F7DC200FD0661 /* FriendsAnalyzer.xcdatamodeld */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				7C2B33961333112200E4AAA3 /* AppIcon.png */,
+				7C4995E813428C1F00A49BBA /* GoogleLogo.png */,
 				8D1107310486CEB800E47090 /* FriendsAnalyzer-Info.plist */,
 			);
 			name = Resources;
@@ -738,6 +741,7 @@
 				7C5141F3133BF35F001A0573 /* icon_table_view.png in Resources */,
 				7C5141F4133BF35F001A0573 /* icon_table_view@2x.png in Resources */,
 				7CF6DCE4133E434C001CE00F /* PieChartColorSchemeRGB.plist in Resources */,
+				7C4995E913428C1F00A49BBA /* GoogleLogo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

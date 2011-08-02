@@ -13,7 +13,7 @@
 
 @implementation RootViewController
 
-@synthesize loginButton, loadingLabel, activityIndicator, progressView;
+@synthesize loginButton, loadingLabel, progressView;
 @synthesize currentUser;
 @synthesize userInfoRequest, userFriendsRequest;
 
@@ -22,6 +22,8 @@
 {
     [super viewDidLoad];
 	
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    
     self.currentUser = [User currentUser];
     
 	if ( currentUser )
@@ -34,10 +36,16 @@
 	}
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+	[self updateViewForMode:RootViewModeIdle];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
 - (void)viewDidDisappear:(BOOL)animated
 {
 	[self updateViewForMode:RootViewModeIdle];
-
 	[super viewDidDisappear:animated];
 }
 
@@ -47,7 +55,6 @@
 
 	self.loginButton = nil;
 	self.loadingLabel = nil;
-	self.activityIndicator = nil;
 	self.progressView = nil;
 }
 
@@ -55,7 +62,6 @@
 {
 	[loginButton release];
 	[loadingLabel release];
-	[activityIndicator release];
 	[progressView release];
 	[currentUser release];
 	[userInfoRequest release];
@@ -78,7 +84,7 @@
 			loginButton.hidden = YES;
 			loadingLabel.hidden = NO;
 			loadingLabel.text = @"Loading User Info...";
-			[activityIndicator startAnimating];
+			[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 			progressView.hidden = YES;
 			break;
 			
@@ -86,7 +92,7 @@
 			loginButton.hidden = YES;
 			loadingLabel.hidden = NO;
 			loadingLabel.text = @"Loading Friends...";
-			[activityIndicator startAnimating];
+			[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 			progressView.hidden = NO;			
 			progressView.progress = 0;
 			break;
@@ -94,14 +100,14 @@
 		case RootViewModeLoadingFriendsInfo:
 			loginButton.hidden = YES;
 			loadingLabel.hidden = NO;
-			[activityIndicator startAnimating];
+			[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 			progressView.hidden = NO;			
 			break;
 			
 		default:
 			loginButton.hidden = NO;
 			loadingLabel.hidden = YES;
-			[activityIndicator stopAnimating];
+			[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 			progressView.hidden = YES;
 			break;
 	}

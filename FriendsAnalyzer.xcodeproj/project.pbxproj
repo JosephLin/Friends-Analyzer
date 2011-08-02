@@ -104,6 +104,8 @@
 		7CF0CC681327F0E3006C5693 /* HometownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF0CC671327F0E2006C5693 /* HometownViewController.m */; };
 		7CF0CC6B1327F3DC006C5693 /* UserLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF0CC6A1327F3DB006C5693 /* UserLocationViewController.m */; };
 		7CF0CC6E1327FEF6006C5693 /* MapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF0CC6D1327FEF2006C5693 /* MapAnnotation.m */; };
+		7CF46A8F13E7906800D3E318 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CF46A8D13E7906800D3E318 /* Default.png */; };
+		7CF46A9013E7906800D3E318 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CF46A8E13E7906800D3E318 /* Default@2x.png */; };
 		7CF6105D132EC0AA002D21DB /* WorkLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6105C132EC0AA002D21DB /* WorkLocationViewController.m */; };
 		7CF61060132EC979002D21DB /* WorkTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6105F132EC979002D21DB /* WorkTableViewController.m */; };
 		7CF6DCE4133E434C001CE00F /* PieChartColorSchemeRGB.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7CF6DCE3133E434C001CE00F /* PieChartColorSchemeRGB.plist */; };
@@ -263,6 +265,8 @@
 		7CF0CC6A1327F3DB006C5693 /* UserLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLocationViewController.m; sourceTree = "<group>"; };
 		7CF0CC6C1327FEF1006C5693 /* MapAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapAnnotation.h; sourceTree = "<group>"; };
 		7CF0CC6D1327FEF2006C5693 /* MapAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAnnotation.m; sourceTree = "<group>"; };
+		7CF46A8D13E7906800D3E318 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		7CF46A8E13E7906800D3E318 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		7CF6105B132EC0AA002D21DB /* WorkLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkLocationViewController.h; sourceTree = "<group>"; };
 		7CF6105C132EC0AA002D21DB /* WorkLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkLocationViewController.m; sourceTree = "<group>"; };
 		7CF6105E132EC978002D21DB /* WorkTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkTableViewController.h; sourceTree = "<group>"; };
@@ -349,6 +353,8 @@
 				28D3F201112F7DC200FD0661 /* FriendsAnalyzer.xcdatamodeld */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				7C2B33961333112200E4AAA3 /* AppIcon.png */,
+				7CF46A8D13E7906800D3E318 /* Default.png */,
+				7CF46A8E13E7906800D3E318 /* Default@2x.png */,
 				7C4995E813428C1F00A49BBA /* GoogleLogo.png */,
 				8D1107310486CEB800E47090 /* FriendsAnalyzer-Info.plist */,
 			);
@@ -742,6 +748,8 @@
 				7C5141F4133BF35F001A0573 /* icon_table_view@2x.png in Resources */,
 				7CF6DCE4133E434C001CE00F /* PieChartColorSchemeRGB.plist in Resources */,
 				7C4995E913428C1F00A49BBA /* GoogleLogo.png in Resources */,
+				7CF46A8F13E7906800D3E318 /* Default.png in Resources */,
+				7CF46A9013E7906800D3E318 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,7 +21,6 @@ typedef enum {
 {
 	UIButton* loginButton;
 	UILabel* loadingLabel;
-	UIActivityIndicatorView* activityIndicator;
 	UIProgressView* progressView;
 
 	User* currentUser;
@@ -35,7 +34,6 @@ typedef enum {
 
 @property (nonatomic, retain) IBOutlet UIButton* loginButton;
 @property (nonatomic, retain) IBOutlet UILabel* loadingLabel;
-@property (nonatomic, retain) IBOutlet UIActivityIndicatorView* activityIndicator;
 @property (nonatomic, retain) IBOutlet UIProgressView* progressView;
 
 @property (nonatomic, retain) User* currentUser;

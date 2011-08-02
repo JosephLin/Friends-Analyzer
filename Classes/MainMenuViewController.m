@@ -27,6 +27,7 @@
     [super viewDidLoad];
 	
 	//// Set Navigation Bar ////
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
 	self.title = @"Home";
 	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Logout" 
 																			   style:UIBarButtonItemStylePlain 
@@ -51,6 +52,12 @@
 	NSDate* lastUpdated = [[NSUserDefaults standardUserDefaults] objectForKey:@"LastUpdated"];
 	self.lastUpdatedLabel.text = [NSString stringWithFormat:@"Updated: %@", [lastUpdated stringFromDate]];
 
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)viewDidUnload

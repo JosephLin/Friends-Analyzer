@@ -12,16 +12,21 @@
 @implementation MapAnnotation
 
 @synthesize coordinate;
-@synthesize title;
+@synthesize formattedAddress;
 @synthesize owners;
 
 
 
 - (void)dealloc
 {
-    [title release];
+    [formattedAddress release];
     [owners release];
     [super dealloc];
+}
+
+- (NSString*)title
+{
+    return formattedAddress;
 }
 
 - (NSString*)subtitle

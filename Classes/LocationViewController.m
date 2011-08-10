@@ -139,7 +139,7 @@
         {
             MapAnnotation* annotation = [[MapAnnotation alloc] init];
             annotation.coordinate = [geocode coordinate];
-            annotation.title = geocode.formatted_address;
+            annotation.formattedAddress = geocode.formatted_address;
             annotation.owners = [geocode valueForKeyPath:ownerKeyPath];
             
             [array addObject:annotation];

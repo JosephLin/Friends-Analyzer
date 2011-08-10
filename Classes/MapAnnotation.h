@@ -13,15 +13,12 @@
 @interface MapAnnotation : NSObject  <MKAnnotation>
 {
     CLLocationCoordinate2D coordinate;
-    NSString* title;
-    
+    NSString* formattedAddress;
     NSSet* owners;
 }
 
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;
-@property (nonatomic, retain) NSString* title;
+@property (nonatomic, retain) NSString* formattedAddress;
 @property (nonatomic, retain) NSSet* owners;
-
-- (NSString*)subtitle;
 
 @end

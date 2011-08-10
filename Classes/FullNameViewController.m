@@ -9,19 +9,17 @@
 #import "FullNameViewController.h"
 #import "UserDetailViewController.h"
 #import "User.h"
-#import "ObjectAttribute.h"
 
 
 @implementation FullNameViewController
 
-@synthesize fetchedResultController;
-@synthesize segmentedControl;
-
 
 - (void)viewDidLoad
 {    
+    [super viewDidLoad];
+
     NSArray* controlItems = [NSArray arrayWithObjects:@"Full Name", @"Last Name", nil];
-    
+
     self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:controlItems] autorelease];
     segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
@@ -30,30 +28,12 @@
     self.navigationItem.titleView = segmentedControl;
     
     segmentedControl.selectedSegmentIndex = 0;
-    
-    [super viewDidLoad];
-}
-
-- (void)segmentedControlValueChanged:(UISegmentedControl*)sender
-{
-    self.fetchedResultController = [self fetchedResultControllerOfType:sender.selectedSegmentIndex];    
-	[self.tableView reloadData];
 }
 
 
 #pragma mark -
 #pragma mark Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return [[self.fetchedResultController sections] count];
-}
-
-- (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
-{
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultController sections] objectAtIndex:section];
-    return [sectionInfo numberOfObjects];
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {    
@@ -85,17 +65,6 @@
     }
     
     return cell;
-}
-
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
-{
-    NSArray* sectionIndexTitles = [[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"];
-    return sectionIndexTitles;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
-    NSArray* sectionIndexTitles = [[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"];
-    return [sectionIndexTitles indexOfObject:title];
 }
 
 

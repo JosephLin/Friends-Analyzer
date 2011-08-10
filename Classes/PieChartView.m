@@ -7,7 +7,6 @@
 //
 
 #import "PieChartView.h"
-#import "UIColor-Expanded.h"
 
 #define kLabelSquareSize        10.0
 #define kLabelSquareSpacing     5.0

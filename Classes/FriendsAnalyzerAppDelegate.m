@@ -9,6 +9,8 @@
 #import "FriendsAnalyzerAppDelegate.h"
 #import "RootViewController.h"
 #import "FacebookClient.h"
+#import "UIColor+Utilities.h"
+
 
 @implementation FriendsAnalyzerAppDelegate
 
@@ -20,13 +22,12 @@
 #pragma mark Application lifecycle
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-    
-    // Override point for customization after application launch.
-
-    // Add the navigation controller's view to the window and display.
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions 
+{
     [self.window addSubview:navigationController.view];
     [self.window makeKeyAndVisible];
+    
+    [self customizeAppearance];
 
     return YES;
 }
@@ -243,5 +244,24 @@
 }
 
 
+
+#pragma mark -
+#pragma mark Customize Appearance
+
+//// iOS 5 & above only ////
+- (void)customizeAppearance
+{
+    if ( [UINavigationBar conformsToProtocol:@protocol(UIAppearance)] )
+    {
+        [[UINavigationBar appearance] setTintColor:[UIColor finfoBlueColor]];
+        [[UIToolbar appearance] setTintColor:[UIColor finfoBlueColor]];
+        
+        [[UIProgressView appearance] setProgressTintColor:[UIColor lightBlueColor]];
+    }
+    
+}
+
 @end
+
+
 

@@ -39,6 +39,7 @@
 		7C5141F4133BF35F001A0573 /* icon_table_view@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C5141F0133BF35F001A0573 /* icon_table_view@2x.png */; };
 		7C5141F7133BF991001A0573 /* LastNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5141F6133BF990001A0573 /* LastNameViewController.m */; };
 		7C5141FA133BF9A0001A0573 /* FullNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5141F9133BF99F001A0573 /* FullNameViewController.m */; };
+		7C5EB55D13F328720063F116 /* UIColor+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5EB55C13F328720063F116 /* UIColor+Utilities.m */; };
 		7C70C0071331574900E1B87C /* GeocodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C70C0061331574700E1B87C /* GeocodeTableViewCell.m */; };
 		7C70C00A13315F3000E1B87C /* WorkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C70C00913315F3000E1B87C /* WorkTableViewCell.m */; };
 		7C70C00D1331614C00E1B87C /* PositionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C70C00C1331614A00E1B87C /* PositionViewController.m */; };
@@ -88,7 +89,6 @@
 		7CC5B0FE131D6F6200FEA4DE /* PieChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0DB131D6F6200FEA4DE /* PieChartView.m */; };
 		7CC5B101131D6F6200FEA4DE /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0E0131D6F6200FEA4DE /* RootViewController.m */; };
 		7CC5B102131D6F6200FEA4DE /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CC5B0E1131D6F6200FEA4DE /* RootViewController.xib */; };
-		7CC5B105131D6F6200FEA4DE /* UIColor-Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0E6131D6F6200FEA4DE /* UIColor-Expanded.m */; };
 		7CC5B146131D739B00FEA4DE /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B140131D739B00FEA4DE /* User.m */; };
 		7CC5B147131D739B00FEA4DE /* Education.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B142131D739B00FEA4DE /* Education.m */; };
 		7CC5B148131D739B00FEA4DE /* Work.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B144131D739B00FEA4DE /* Work.m */; };
@@ -161,6 +161,8 @@
 		7C5141F6133BF990001A0573 /* LastNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LastNameViewController.m; sourceTree = "<group>"; };
 		7C5141F8133BF99F001A0573 /* FullNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullNameViewController.h; sourceTree = "<group>"; };
 		7C5141F9133BF99F001A0573 /* FullNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullNameViewController.m; sourceTree = "<group>"; };
+		7C5EB55B13F328720063F116 /* UIColor+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Utilities.h"; sourceTree = "<group>"; };
+		7C5EB55C13F328720063F116 /* UIColor+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Utilities.m"; sourceTree = "<group>"; };
 		7C70C0051331574700E1B87C /* GeocodeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeocodeTableViewCell.h; sourceTree = "<group>"; };
 		7C70C0061331574700E1B87C /* GeocodeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeocodeTableViewCell.m; sourceTree = "<group>"; };
 		7C70C00813315F3000E1B87C /* WorkTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkTableViewCell.h; sourceTree = "<group>"; };
@@ -234,8 +236,6 @@
 		7CC5B0DF131D6F6200FEA4DE /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		7CC5B0E0131D6F6200FEA4DE /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		7CC5B0E1131D6F6200FEA4DE /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
-		7CC5B0E5131D6F6200FEA4DE /* UIColor-Expanded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor-Expanded.h"; sourceTree = "<group>"; };
-		7CC5B0E6131D6F6200FEA4DE /* UIColor-Expanded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor-Expanded.m"; sourceTree = "<group>"; };
 		7CC5B13F131D739B00FEA4DE /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		7CC5B140131D739B00FEA4DE /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		7CC5B141131D739B00FEA4DE /* Education.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Education.h; sourceTree = "<group>"; };
@@ -626,10 +626,10 @@
 		7CC5B10D131D6F8D00FEA4DE /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				7CC5B0E5131D6F6200FEA4DE /* UIColor-Expanded.h */,
-				7CC5B0E6131D6F6200FEA4DE /* UIColor-Expanded.m */,
 				7CC5B1AF131D797D00FEA4DE /* NSDate+Utilities.h */,
 				7CC5B1B0131D797D00FEA4DE /* NSDate+Utilities.m */,
+				7C5EB55B13F328720063F116 /* UIColor+Utilities.h */,
+				7C5EB55C13F328720063F116 /* UIColor+Utilities.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -797,7 +797,6 @@
 				7CC5B0FB131D6F6200FEA4DE /* UserTableViewController.m in Sources */,
 				7CC5B0FE131D6F6200FEA4DE /* PieChartView.m in Sources */,
 				7CC5B101131D6F6200FEA4DE /* RootViewController.m in Sources */,
-				7CC5B105131D6F6200FEA4DE /* UIColor-Expanded.m in Sources */,
 				7CC5B146131D739B00FEA4DE /* User.m in Sources */,
 				7CC5B147131D739B00FEA4DE /* Education.m in Sources */,
 				7CC5B148131D739B00FEA4DE /* Work.m in Sources */,
@@ -842,6 +841,7 @@
 				7C5141F7133BF991001A0573 /* LastNameViewController.m in Sources */,
 				7C5141FA133BF9A0001A0573 /* FullNameViewController.m in Sources */,
 				7C4995E71342758500A49BBA /* PieChartObject.m in Sources */,
+				7C5EB55D13F328720063F116 /* UIColor+Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

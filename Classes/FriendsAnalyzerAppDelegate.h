@@ -31,6 +31,7 @@
 - (void)saveContext;
 - (NSURL*)storeURL;
 - (void)deleteCoreDataStorage;
+- (void)customizeAppearance;
 
 @end
 

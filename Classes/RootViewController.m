@@ -131,6 +131,7 @@
 }
 
 
+
 #pragma mark -
 #pragma mark Facebook
 
@@ -198,9 +199,11 @@
 
 - (void)showMainMenuViewController
 {
-	MainMenuViewController* childVC = [[MainMenuViewController alloc] init];
-	[self.navigationController pushViewController:childVC animated:YES];
-	[childVC release];
+//	MainMenuViewController* childVC = [[MainMenuViewController alloc] init];
+//	[self.navigationController pushViewController:childVC animated:YES];
+//	[childVC release];
+    
+    [self performSegueWithIdentifier:@"PushMainMenu" sender:self];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context

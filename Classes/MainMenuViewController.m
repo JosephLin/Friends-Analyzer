@@ -175,7 +175,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	static NSString * cellIdentifier = @"Cell";
+	static NSString * cellIdentifier = @"MainMenuCell";
 	
 	UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 	
@@ -200,18 +200,32 @@
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 	
-	NSDictionary* menuDictionary = [menuStructureArray objectAtIndex:indexPath.row];
-	NSString* viewControllerName = [menuDictionary objectForKey:@"viewController"];
-	Class aClass = [[NSBundle mainBundle] classNamed:viewControllerName];
+//	NSDictionary* menuDictionary = [menuStructureArray objectAtIndex:indexPath.row];
+//	NSString* viewControllerName = [menuDictionary objectForKey:@"viewController"];
+//	Class aClass = [[NSBundle mainBundle] classNamed:viewControllerName];
+//
+//	UIViewController* childVC = [[aClass alloc] init];
+//    childVC.title = [menuDictionary objectForKey:@"title"];
+//	if ( [childVC isKindOfClass:[ArrayBasedTableViewController class]] )
+//	{
+//		((ArrayBasedTableViewController*)childVC).property = [[menuStructureArray objectAtIndex:indexPath.row] objectForKey:@"property"];
+//	}
+//    [self.navigationController pushViewController:childVC animated:YES];
+//    [childVC release];
+    
+    [self performSegueWithIdentifier:@"ShowName" sender:self];
+}
 
-	UIViewController* childVC = [[aClass alloc] init];
-    childVC.title = [menuDictionary objectForKey:@"title"];
-	if ( [childVC isKindOfClass:[ArrayBasedTableViewController class]] )
-	{
-		((ArrayBasedTableViewController*)childVC).property = [[menuStructureArray objectAtIndex:indexPath.row] objectForKey:@"property"];
-	}
-    [self.navigationController pushViewController:childVC animated:YES];
-    [childVC release];
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ( [segue.identifier isEqualToString:@"ShowName"] )
+    {
+        UIViewController* childVC = segue.destinationViewController;
+        if ( [childVC isKindOfClass:[ArrayBasedTableViewController class]] )
+        {
+            ((ArrayBasedTableViewController*)childVC).property = @"name";
+        }
+    }
 }
 
 

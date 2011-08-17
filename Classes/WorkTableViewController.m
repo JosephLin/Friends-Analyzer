@@ -128,6 +128,15 @@
 #pragma -
 #pragma Fetched Result Controller
 
+- (NSFetchedResultsController*)fetchedResultController
+{
+    if ( !fetchedResultController)
+    {
+        fetchedResultController = [[self fetchedResultControllerOfType:segmentedControl.selectedSegmentIndex] retain];
+    }
+    return fetchedResultController;
+}
+
 - (NSFetchedResultsController*)fetchedResultControllerOfType:(NSInteger)selectedSegmentIndex
 {
     NSFetchRequest* fetchRequest = [[[NSFetchRequest alloc] init] autorelease];

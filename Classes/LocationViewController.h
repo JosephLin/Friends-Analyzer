@@ -15,7 +15,6 @@
 @interface LocationViewController : UIViewController <MKMapViewDelegate>
 {
     UILabel* loadingLabel;
-    UIActivityIndicatorView* activityIndicator;
     UIProgressView* progressView;
     UITableView* tableView;
     MKMapView* mapView;
@@ -33,7 +32,6 @@
 }
 
 @property (nonatomic, retain) IBOutlet UILabel* loadingLabel;
-@property (nonatomic, retain) IBOutlet UIActivityIndicatorView* activityIndicator;
 @property (nonatomic, retain) IBOutlet UIProgressView* progressView;
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
 @property (nonatomic, retain) IBOutlet MKMapView* mapView;

@@ -12,7 +12,7 @@
 
 @implementation LocationViewController
 
-@synthesize loadingLabel, activityIndicator, progressView;
+@synthesize loadingLabel, progressView;
 @synthesize tableView, mapView;
 @synthesize fetchedResultController;
 @synthesize ownerKeyPath;
@@ -43,7 +43,6 @@
 {
     [super viewDidUnload];
     self.loadingLabel = nil;
-    self.activityIndicator = nil;
     self.progressView = nil;
     self.tableView = nil;
     self.mapView = nil;
@@ -52,7 +51,6 @@
 - (void)dealloc
 {
     [loadingLabel release];
-    [activityIndicator release];
     [progressView release];
     [tableView release];
     [mapView release];
@@ -88,7 +86,6 @@
 - (void)showTableView
 {
     loadingLabel.hidden = YES;
-    [activityIndicator stopAnimating];
     progressView.hidden = YES;
 
     if ( ![tableView superview] )
@@ -103,7 +100,6 @@
 - (void)showMapView
 {
     loadingLabel.hidden = YES;
-    [activityIndicator stopAnimating];
     progressView.hidden = YES;
 
     if ( ![mapView superview] )
@@ -173,7 +169,6 @@
     {
         loadingLabel.hidden = NO;
         loadingLabel.text = @"Analyzing Locations...";
-        [activityIndicator startAnimating];
         progressView.progress = 0;
         progressView.hidden = NO;
         

@@ -85,12 +85,39 @@
                 [geocode setValue:long_name forKeyPath:type];
             }
         }
-        
-//        [self save];
     }
 	
 	return geocode;
 }
+
++ (Geocode*)existingOrNewGeocodeWithpPlacemark:(CLPlacemark*)placemark
+{
+	NSNumber* latitude = [NSNumber numberWithDouble:placemark.location.coordinate.latitude];
+	NSNumber* longitude = [NSNumber numberWithDouble:placemark.location.coordinate.longitude];
+    
+    Geocode* geocode = [self geocodeWithLatitude:latitude longitude:longitude];
+	
+	if ( !geocode )
+	{
+		geocode = [self insertNewObject];
+        
+        geocode.latitude = latitude;
+        geocode.longitude = longitude;
+        geocode.formatted_address = [[placemark.addressDictionary objectForKey:@"FormattedAddressLines"] objectAtIndex:0];
+        
+        
+        
+        geocode.country = placemark.country;
+        geocode.administrative_area_level_1 = placemark.administrativeArea;
+        geocode.administrative_area_level_2 = placemark.subAdministrativeArea;
+        geocode.locality = placemark.locality;
+        geocode.sublocality = placemark.subLocality;
+
+    }
+	
+	return geocode;
+}
+
 
 + (Geocode*)geocodeForName:(NSString*)locationName
 {

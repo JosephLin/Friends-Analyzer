@@ -23,7 +23,13 @@
     [super viewDidLoad];
 	
     [self.navigationController setNavigationBarHidden:YES animated:NO];
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+
     self.currentUser = [User currentUser];
     
 	if ( currentUser )
@@ -34,13 +40,6 @@
 	{
 		[self updateViewForMode:RootViewModeIdle];
 	}
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-	[self updateViewForMode:RootViewModeIdle];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)viewDidDisappear:(BOOL)animated

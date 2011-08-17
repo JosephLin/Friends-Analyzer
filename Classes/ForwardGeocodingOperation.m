@@ -22,16 +22,17 @@
 
 @implementation ForwardGeocodingOperation
 
-@synthesize delegate, query, status, geocode;
+@synthesize query, status, geocode;
 @synthesize object, keyPath;
 
 
-- (id)initWithQuery:(NSString*)theQuery delegate:(id <ForwardGeocodingOperationDelegate>)theDelegate
+- (id)initWithQuery:(NSString*)theQuery object:(id)theObject keyPath:(NSString*)theKeyPath
 {
 	if ( (self = [super init]) )
 	{
-		self.delegate = theDelegate;
 		self.query = theQuery;
+		self.object = theObject;
+		self.keyPath = theKeyPath;
 	}
 	return self;
 }
@@ -52,9 +53,6 @@
         if ( geocode )
         {
 //            NSLog(@"Geocode already exist: %@", geocode.formatted_address);
-
-            if ( [delegate respondsToSelector:@selector(operationDidFinish:)] )
-                [delegate operationDidFinish:self];
         }
         
         
@@ -73,9 +71,6 @@
             {
                 NSLog(@"urlString = %@", urlString);
                 NSLog(@"error = %@", error);
-
-                if ( [delegate respondsToSelector:@selector(operation:didFailWithError:)] )
-                    [delegate operation:self didFailWithError:error];
             }
 
             //// Connection succeeded ////
@@ -96,9 +91,6 @@
                         [geocode addLocationNamesObject:[LocationName insertLocationNameWithName:query]];
                         
                         NSLog(@"Location parsed: %@", geocode.formatted_address);
-                        
-                        if ( [delegate respondsToSelector:@selector(operationDidFinish:)] )
-                            [delegate operationDidFinish:self];
                     }
                 }
                 else if  ( [status isEqualToString:@"ZERO_RESULTS"] )
@@ -106,17 +98,11 @@
                     self.geocode = [Geocode unknownGeocode];
                     [geocode addLocationNamesObject:[LocationName insertLocationNameWithName:query]];
                     NSLog(@"ZERO RESULTS: %@", geocode.formatted_address);
-                    
-                    if ( [delegate respondsToSelector:@selector(operationDidFinish:)] )
-                        [delegate operationDidFinish:self];
                 }
                 else
                 {
                     NSLog(@"urlString: %@", urlString);
                     NSLog(@"Failed with status: %@", status);
-
-                    if ( [delegate respondsToSelector:@selector(operation:didFailWithError:)] )
-                        [delegate operation:self didFailWithError:nil];
                 }
             }
         }
@@ -136,6 +122,9 @@
 {
 	[query release];
     [status release];
+    [geocode release];
+    [object release];
+    [keyPath release];
 	
 	[super dealloc];
 }

@@ -39,5 +39,6 @@
 - (void)facebookLogout;
 - (IBAction)refreshButtonTapped:(id)sender;
 - (IBAction)logoutButtonTapped:(id)sender;
+- (IBAction)debugButtonTapped:(id)sender;
 
 @end

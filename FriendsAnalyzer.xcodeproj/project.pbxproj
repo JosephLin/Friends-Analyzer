@@ -34,6 +34,7 @@
 		7C70C00A13315F3000E1B87C /* WorkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C70C00913315F3000E1B87C /* WorkTableViewCell.m */; };
 		7C70C00D1331614C00E1B87C /* PositionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C70C00C1331614A00E1B87C /* PositionViewController.m */; };
 		7C74C55813219060003258AC /* Horoscope.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C74C55713219060003258AC /* Horoscope.plist */; };
+		7C79F60513FC565A00E86629 /* ForwardGeocodingOperationV2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C79F60413FC565A00E86629 /* ForwardGeocodingOperationV2.m */; };
 		7C83D9D313256BA10059BBF0 /* LocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C83D9D113256BA10059BBF0 /* LocationViewController.m */; };
 		7C83D9D413256BA10059BBF0 /* LocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C83D9D213256BA10059BBF0 /* LocationViewController.xib */; };
 		7C83D9D613256D4B0059BBF0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C83D9D513256D4B0059BBF0 /* MapKit.framework */; };
@@ -159,6 +160,8 @@
 		7C70C00B1331614A00E1B87C /* PositionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositionViewController.h; sourceTree = "<group>"; };
 		7C70C00C1331614A00E1B87C /* PositionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PositionViewController.m; sourceTree = "<group>"; };
 		7C74C55713219060003258AC /* Horoscope.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Horoscope.plist; sourceTree = "<group>"; };
+		7C79F60313FC565A00E86629 /* ForwardGeocodingOperationV2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardGeocodingOperationV2.h; sourceTree = "<group>"; };
+		7C79F60413FC565A00E86629 /* ForwardGeocodingOperationV2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForwardGeocodingOperationV2.m; sourceTree = "<group>"; };
 		7C83D9D013256BA10059BBF0 /* LocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationViewController.h; sourceTree = "<group>"; };
 		7C83D9D113256BA10059BBF0 /* LocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationViewController.m; sourceTree = "<group>"; };
 		7C83D9D213256BA10059BBF0 /* LocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationViewController.xib; sourceTree = "<group>"; };
@@ -485,6 +488,8 @@
 				7C37C1A3131EA0FC004EFA64 /* FBRequestOperation.m */,
 				7C83D9E3132580AD0059BBF0 /* ForwardGeocodingOperation.h */,
 				7C83D9E4132580AE0059BBF0 /* ForwardGeocodingOperation.m */,
+				7C79F60313FC565A00E86629 /* ForwardGeocodingOperationV2.h */,
+				7C79F60413FC565A00E86629 /* ForwardGeocodingOperationV2.m */,
 				7CEE3BEE13390B320004D50C /* AsyncImageOperation.h */,
 				7CEE3BEF13390B320004D50C /* AsyncImageOperation.m */,
 			);
@@ -836,6 +841,7 @@
 				7C5141FA133BF9A0001A0573 /* FullNameViewController.m in Sources */,
 				7C4995E71342758500A49BBA /* PieChartObject.m in Sources */,
 				7C5EB55D13F328720063F116 /* UIColor+Utilities.m in Sources */,
+				7C79F60513FC565A00E86629 /* ForwardGeocodingOperationV2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

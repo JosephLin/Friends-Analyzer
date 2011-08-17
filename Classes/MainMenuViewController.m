@@ -52,9 +52,9 @@
 	
 	
 	NSDate* lastUpdated = [[NSUserDefaults standardUserDefaults] objectForKey:@"LastUpdated"];
-	self.lastUpdatedLabel.text = [NSString stringWithFormat:@"Updated: %@", [lastUpdated stringFromDate]];
-
+	self.lastUpdatedLabel.text = [NSString stringWithFormat:@"Updated: %@", [lastUpdated stringFromDate]];    
 }
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -109,6 +109,15 @@
     UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:@"To protect your privacy, all stored friend information will be deleted when you logout." delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Logout" otherButtonTitles:nil];
     [sheet showInView:self.view];
     [sheet release];
+}
+
+- (IBAction)debugButtonTapped:(id)sender
+{
+    for ( id object in [Geocode allGeocodes] )
+    {
+        [[Geocode managedObjectContext] deleteObject:object];
+    }
+    [[Geocode managedObjectContext] save:nil];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex

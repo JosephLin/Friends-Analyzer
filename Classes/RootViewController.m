@@ -210,6 +210,7 @@
             
             [queue removeObserver:self forKeyPath:@"operationCount"];
 			[[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"LastUpdated"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
             
             [self performSelectorOnMainThread:@selector(showMainMenuViewController) withObject:nil waitUntilDone:NO];
 		}
@@ -225,6 +226,7 @@
 	NSLog(@"did login");
 	[[NSUserDefaults standardUserDefaults] setObject:[FacebookClient sharedFacebook].accessToken forKey:@"AccessToken"];
 	[[NSUserDefaults standardUserDefaults] setObject:[FacebookClient sharedFacebook].expirationDate forKey:@"ExpirationDate"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 
 	[self getUserInfo];
 }
@@ -249,6 +251,7 @@
 		NSLog(@"Current User: %@", currentUser);
 		
 		[[NSUserDefaults standardUserDefaults] setObject:currentUser.id forKey:@"CurrentUserID"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
 
 		[self fetchFriends];
 	}

@@ -188,6 +188,7 @@
 	[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"LastUpdated"];
 	[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"AccessToken"];
 	[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"ExpirationDate"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 	
 	[managedObjectContext_ release];
 	managedObjectContext_ = nil;

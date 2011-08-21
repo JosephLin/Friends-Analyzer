@@ -14,6 +14,9 @@
 #import "RootViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
+#define kLogoutActionSheetTag       1001
+#define kRefreshActionSheetTag      2001
+
 
 @implementation MainMenuViewController
 
@@ -98,15 +101,16 @@
 
 - (IBAction)refreshButtonTapped:(id)sender
 {
-    RootViewController* rootVC = [self.navigationController.viewControllers objectAtIndex:0];
-    [rootVC getUserInfo];
-    [self.navigationController popViewControllerAnimated:YES];
-    
+    UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:@"Depending on your connection, refresh might take up to serveral minutes." delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Refresh" otherButtonTitles:nil];
+    sheet.tag = kRefreshActionSheetTag;
+    [sheet showInView:self.view];
+    [sheet release];
 }
 
 - (IBAction)logoutButtonTapped:(id)sender
 {
     UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:@"To protect your privacy, all stored friend information will be deleted when you logout." delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Logout" otherButtonTitles:nil];
+    sheet.tag = kLogoutActionSheetTag;
     [sheet showInView:self.view];
     [sheet release];
 }
@@ -124,7 +128,18 @@
 {
     if ( buttonIndex == [actionSheet destructiveButtonIndex] )
     {
-        [self facebookLogout];
+        if ( actionSheet.tag == kLogoutActionSheetTag )
+        {
+            [self facebookLogout];
+        }
+        else
+        {
+            [[User managedObjectContext] deleteObject:[User currentUser]];
+            
+            RootViewController* rootVC = [self.navigationController.viewControllers objectAtIndex:0];
+            [rootVC getUserInfo];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     }
 }
 

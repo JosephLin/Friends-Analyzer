@@ -85,7 +85,7 @@
 {
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    Geocode* geocode = [self.fetchedResultController objectAtIndexPath:indexPath];
+    Geocode* geocode = [self.fetchedResultsController objectAtIndexPath:indexPath];
     NSSet* objects = [geocode valueForKeyPath:ownerKeyPath];
     
     NSSortDescriptor* sortdescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];

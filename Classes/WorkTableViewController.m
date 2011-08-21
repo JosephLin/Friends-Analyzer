@@ -17,7 +17,7 @@
 @implementation WorkTableViewController
 
 @synthesize keyPath, value;
-@synthesize fetchedResultController, segmentedControl;
+@synthesize fetchedResultsController, segmentedControl;
 @synthesize shouldShowSegmentedControl;
 
 
@@ -42,14 +42,14 @@
 {
     [keyPath release];
     [value release];
-    [fetchedResultController release];
+    [fetchedResultsController release];
     [segmentedControl release];
     [super dealloc];
 }
 
 - (void)segmentedControlValueChanged:(UISegmentedControl*)sender
 {
-    self.fetchedResultController = [self fetchedResultControllerOfType:sender.selectedSegmentIndex];    
+    self.fetchedResultsController = [self fetchedResultsControllerOfType:sender.selectedSegmentIndex];    
 	[self.tableView reloadData];
 }
 
@@ -64,12 +64,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[self.fetchedResultController sections] count];
+    return [[self.fetchedResultsController sections] count];
 }
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
 {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultController sections] objectAtIndex:section];
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
     return [sectionInfo numberOfObjects];
 }
 
@@ -82,7 +82,7 @@
         cell = [[[WorkTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
-	Work* work = [fetchedResultController objectAtIndexPath:indexPath];
+	Work* work = [fetchedResultsController objectAtIndexPath:indexPath];
     cell.work = work;
     
     return cell;
@@ -90,7 +90,7 @@
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-    NSArray* sectionIndexTitles = [[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"];
+    NSArray* sectionIndexTitles = [[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"];
     if ( [sectionIndexTitles count] > 10 )
     { 
         return sectionIndexTitles;
@@ -103,7 +103,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index 
 {
-    NSArray* sectionIndexTitles = [[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"];
+    NSArray* sectionIndexTitles = [[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"];
     return [sectionIndexTitles indexOfObject:title];
 }
 
@@ -116,7 +116,7 @@
 {
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-	Work* work = [fetchedResultController objectAtIndexPath:indexPath];
+	Work* work = [fetchedResultsController objectAtIndexPath:indexPath];
     
     UserDetailViewController* childVC = [[UserDetailViewController alloc] initWithNibName:@"UserDetailViewController" bundle:nil];
     childVC.user = work.user;
@@ -128,16 +128,16 @@
 #pragma -
 #pragma Fetched Result Controller
 
-- (NSFetchedResultsController*)fetchedResultController
+- (NSFetchedResultsController*)fetchedResultsController
 {
-    if ( !fetchedResultController)
+    if ( !fetchedResultsController)
     {
-        fetchedResultController = [[self fetchedResultControllerOfType:segmentedControl.selectedSegmentIndex] retain];
+        fetchedResultsController = [[self fetchedResultsControllerOfType:segmentedControl.selectedSegmentIndex] retain];
     }
-    return fetchedResultController;
+    return fetchedResultsController;
 }
 
-- (NSFetchedResultsController*)fetchedResultControllerOfType:(NSInteger)selectedSegmentIndex
+- (NSFetchedResultsController*)fetchedResultsControllerOfType:(NSInteger)selectedSegmentIndex
 {
     NSFetchRequest* fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
     [fetchRequest setEntity:[Work entity]];

@@ -12,17 +12,17 @@
 
 @interface FRCBasedTableViewController : UITableViewController
 {
-    NSFetchedResultsController* fetchedResultController;
+    NSFetchedResultsController* fetchedResultsController;
     UISegmentedControl* segmentedControl;
     
     NSString* entityName;
 }
 
-@property (nonatomic, retain) NSFetchedResultsController* fetchedResultController;
+@property (nonatomic, retain) NSFetchedResultsController* fetchedResultsController;
 @property (nonatomic, retain) UISegmentedControl* segmentedControl;
 @property (nonatomic, retain) NSString* entityName;
 
-- (NSFetchedResultsController*)fetchedResultControllerOfType:(NSInteger)selectedSegmentIndex;
+- (NSFetchedResultsController*)fetchedResultsControllerOfType:(NSInteger)selectedSegmentIndex;
 - (NSArray*)objectsForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

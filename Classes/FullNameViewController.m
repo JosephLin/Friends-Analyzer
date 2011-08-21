@@ -47,7 +47,7 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
-    User* user = [fetchedResultController objectAtIndexPath:indexPath];
+    User* user = [fetchedResultsController objectAtIndexPath:indexPath];
     if ( segmentedControl.selectedSegmentIndex == 0 )
     {
         cell.textLabel.text = user.name;
@@ -75,7 +75,7 @@
 {
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    User* user = [fetchedResultController objectAtIndexPath:indexPath];
+    User* user = [fetchedResultsController objectAtIndexPath:indexPath];
     
     UserDetailViewController* childVC = [[UserDetailViewController alloc] initWithNibName:@"UserDetailViewController" bundle:nil];
 	childVC.user = user;
@@ -88,7 +88,7 @@
 #pragma -
 #pragma Fetched Result Controller
 
-- (NSFetchedResultsController*)fetchedResultControllerOfType:(NSInteger)selectedSegmentIndex
+- (NSFetchedResultsController*)fetchedResultsControllerOfType:(NSInteger)selectedSegmentIndex
 {
     NSFetchRequest* fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
     [fetchRequest setEntity:[User entity]];

@@ -24,7 +24,7 @@
 {
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    ObjectAttribute* object = [fetchedResultController objectAtIndexPath:indexPath];
+    ObjectAttribute* object = [fetchedResultsController objectAtIndexPath:indexPath];
 
     WorkTableViewController* childVC = [[WorkTableViewController alloc] init];
     childVC.keyPath = @"employer.name";

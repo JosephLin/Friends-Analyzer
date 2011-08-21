@@ -15,17 +15,17 @@
     UITableView* tableView;
     UISegmentedControl* segmentedControl;
     PieChartView* pieChartView;
-    NSFetchedResultsController* fetchedResultController;
+    NSFetchedResultsController* fetchedResultsController;
     NSArray* monthNameArray;
 }
 
 @property (nonatomic, retain) UITableView* tableView;
 @property (nonatomic, retain) UISegmentedControl* segmentedControl;
 @property (nonatomic, retain) PieChartView* pieChartView;
-@property (nonatomic, retain) NSFetchedResultsController* fetchedResultController;
+@property (nonatomic, retain) NSFetchedResultsController* fetchedResultsController;
 @property (nonatomic, retain) NSArray* monthNameArray;
 
-- (NSFetchedResultsController*)fetchedResultControllerOfType:(NSInteger)selectedSegmentIndex;
+- (NSFetchedResultsController*)fetchedResultsControllerOfType:(NSInteger)selectedSegmentIndex;
 - (NSDictionary*)userCountDict;
 
 @end

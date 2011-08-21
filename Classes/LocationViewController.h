@@ -13,19 +13,18 @@
 #import "MapAnnotation.h"
 
 
-@interface LocationViewController : UIViewController <MKMapViewDelegate>
+@interface LocationViewController : UIViewController <MKMapViewDelegate, NSFetchedResultsControllerDelegate>
 {
+    UIView* loadingView;
     UILabel* loadingLabel;
     UIProgressView* progressView;
     UITableView* tableView;
     MKMapView* mapView;
     UISegmentedControl* segmentedControl;
     
-    NSFetchedResultsController* fetchedResultController;
+    NSFetchedResultsController* fetchedResultsController;
     NSString* ownerKeyPath;
     
-    NSArray* mapAnnotations;
-
 	NSOperationQueue* queue;
 	NSInteger total;
 	NSInteger pending;
@@ -33,21 +32,25 @@
     NSArray* pendingOperations;
 }
 
+@property (retain, nonatomic) IBOutlet UIView* loadingView;
 @property (nonatomic, retain) IBOutlet UILabel* loadingLabel;
 @property (nonatomic, retain) IBOutlet UIProgressView* progressView;
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
 @property (nonatomic, retain) IBOutlet MKMapView* mapView;
 @property (nonatomic, retain) UISegmentedControl* segmentedControl;
-@property (nonatomic, retain) NSFetchedResultsController* fetchedResultController;
+@property (nonatomic, retain) NSFetchedResultsController* fetchedResultsController;
 @property (nonatomic, retain) NSString* ownerKeyPath;
-@property (nonatomic, retain) NSArray* mapAnnotations;
 @property (nonatomic, retain) NSArray* pendingOperations;
 
 
 - (void)showTableView;
 - (void)showMapView;
+- (void)showLoadingView;
+- (void)hideLoadingView;
+- (void)pushChildViewControllerWithObjects:(NSArray*)objects title:(NSString*)title;
 - (void)parseLocations;
 - (void)zoomToFitMapAnnotations;
-- (void)pushChildViewControllerWithObjects:(NSArray*)objects title:(NSString*)title;
+- (MapAnnotation*)mapAnnotationFromGeocode:(Geocode*)geocode;
+- (NSArray*)mapAnnotationsFromArray:(NSArray*)geocodes;
 
 @end

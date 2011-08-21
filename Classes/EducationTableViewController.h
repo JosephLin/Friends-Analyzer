@@ -14,7 +14,7 @@
     NSString* keyPath;
     id value;
     
-    NSFetchedResultsController* fetchedResultController;
+    NSFetchedResultsController* fetchedResultsController;
     UISegmentedControl* segmentedControl;
     
     BOOL shouldShowSegmentedControl;
@@ -22,10 +22,10 @@
 
 @property (nonatomic, retain) NSString* keyPath;
 @property (nonatomic, retain) id value;
-@property (nonatomic, retain) NSFetchedResultsController* fetchedResultController;
+@property (nonatomic, retain) NSFetchedResultsController* fetchedResultsController;
 @property (nonatomic, retain) UISegmentedControl* segmentedControl;
 @property (nonatomic, assign) BOOL shouldShowSegmentedControl;
 
-- (NSFetchedResultsController*)fetchedResultControllerOfType:(NSInteger)selectedSegmentIndex;
+- (NSFetchedResultsController*)fetchedResultsControllerOfType:(NSInteger)selectedSegmentIndex;
 
 @end

@@ -18,7 +18,7 @@
 
 @synthesize tableView, segmentedControl;
 @synthesize pieChartView;
-@synthesize fetchedResultController;
+@synthesize fetchedResultsController;
 @synthesize monthNameArray;
 
 
@@ -67,7 +67,7 @@
     [tableView release];
     [segmentedControl release];
     [pieChartView release];
-    [fetchedResultController release];
+    [fetchedResultsController release];
     [monthNameArray release];
     [super dealloc];
 }
@@ -79,16 +79,16 @@
 
 - (void)segmentedControlValueChanged:(UISegmentedControl*)sender
 {
-    self.fetchedResultController = [self fetchedResultControllerOfType:sender.selectedSegmentIndex];    
+    self.fetchedResultsController = [self fetchedResultsControllerOfType:sender.selectedSegmentIndex];    
     [self.tableView reloadData];
     
     if ( segmentedControl.selectedSegmentIndex == 1 )
     {
-        [pieChartView setPieChartWithKeys:[[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"] values:[[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.numberOfObjects"] displayNames:monthNameArray];
+        [pieChartView setPieChartWithKeys:[[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"] values:[[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.numberOfObjects"] displayNames:monthNameArray];
     }
     else
     {
-        [pieChartView setPieChartWithKeys:[[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"] values:[[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.numberOfObjects"]];
+        [pieChartView setPieChartWithKeys:[[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"] values:[[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.numberOfObjects"]];
     }
 }
 
@@ -112,11 +112,11 @@
         self.pieChartView.frame = self.view.bounds;
         if ( segmentedControl.selectedSegmentIndex == 1 )
         {
-            [pieChartView setPieChartWithKeys:[[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"] values:[[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.numberOfObjects"] displayNames:monthNameArray];
+            [pieChartView setPieChartWithKeys:[[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"] values:[[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.numberOfObjects"] displayNames:monthNameArray];
         }
         else
         {
-            [pieChartView setPieChartWithKeys:[[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"] values:[[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.numberOfObjects"]];
+            [pieChartView setPieChartWithKeys:[[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"] values:[[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.numberOfObjects"]];
         }
         
         self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"icon_table_view"];
@@ -146,9 +146,9 @@
 {
     NSArray* sectionIndexTitles = ( segmentedControl.selectedSegmentIndex == 1 )
     ? monthNameArray
-    : [[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"];
+    : [[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"];
 
-    NSArray* counts = [[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.numberOfObjects"];
+    NSArray* counts = [[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.numberOfObjects"];
     
     NSDictionary* dict = [NSDictionary dictionaryWithObjects:counts forKeys:sectionIndexTitles];
     return dict;
@@ -160,12 +160,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[self.fetchedResultController sections] count];
+    return [[self.fetchedResultsController sections] count];
 }
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
 {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultController sections] objectAtIndex:section];
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
     return [sectionInfo numberOfObjects];
 }
 
@@ -179,7 +179,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
     
-    User* user = [fetchedResultController objectAtIndexPath:indexPath];
+    User* user = [fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = user.name;
     
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%02d/%02d",
@@ -190,7 +190,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 { 
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultController sections] objectAtIndex:section];
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
     
     switch (segmentedControl.selectedSegmentIndex)
     {
@@ -210,16 +210,16 @@
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-    NSArray* sectionIndexTitles = [[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"];
+    NSArray* sectionIndexTitles = [[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"];
     return sectionIndexTitles;
-//  return [fetchedResultController sectionIndexTitles];
+//  return [fetchedResultsController sectionIndexTitles];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
 {
-    NSArray* sectionIndexTitles = [[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"];
+    NSArray* sectionIndexTitles = [[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"];
     return [sectionIndexTitles indexOfObject:title];
-//  return [fetchedResultController sectionForSectionIndexTitle:title atIndex:index];
+//  return [fetchedResultsController sectionForSectionIndexTitle:title atIndex:index];
 }
 
 
@@ -230,7 +230,7 @@
 {
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    User* user = [fetchedResultController objectAtIndexPath:indexPath];
+    User* user = [fetchedResultsController objectAtIndexPath:indexPath];
     
     UserDetailViewController* childVC = [[UserDetailViewController alloc] initWithNibName:@"UserDetailViewController" bundle:nil];
     childVC.user = user;
@@ -242,16 +242,16 @@
 #pragma -
 #pragma Fetched Result Controller
 
-- (NSFetchedResultsController*)fetchedResultController
+- (NSFetchedResultsController*)fetchedResultsController
 {
-    if ( !fetchedResultController)
+    if ( !fetchedResultsController)
     {
-        fetchedResultController = [[self fetchedResultControllerOfType:segmentedControl.selectedSegmentIndex] retain];
+        fetchedResultsController = [[self fetchedResultsControllerOfType:segmentedControl.selectedSegmentIndex] retain];
     }
-    return fetchedResultController;
+    return fetchedResultsController;
 }
 
-- (NSFetchedResultsController*)fetchedResultControllerOfType:(NSInteger)selectedSegmentIndex
+- (NSFetchedResultsController*)fetchedResultsControllerOfType:(NSInteger)selectedSegmentIndex
 {
     NSFetchRequest* fetchRequest = [[NSFetchRequest alloc] init];
     [fetchRequest setEntity:[User entity]];

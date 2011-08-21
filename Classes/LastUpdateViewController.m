@@ -12,7 +12,7 @@
 
 @implementation LastUpdateViewController
 
-@synthesize fetchedResultController;
+@synthesize fetchedResultsController;
 @synthesize sectionIndexTitles;
 
 
@@ -25,12 +25,12 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    self.fetchedResultController = nil;
+    self.fetchedResultsController = nil;
 }
 
 - (void)dealloc
 {
-    [fetchedResultController release];
+    [fetchedResultsController release];
     [super dealloc];
 }
 
@@ -46,12 +46,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[self.fetchedResultController sections] count];
+    return [[self.fetchedResultsController sections] count];
 }
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
 {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultController sections] objectAtIndex:section];
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
     return [sectionInfo numberOfObjects];
 }
 
@@ -64,7 +64,7 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    User* user = [fetchedResultController objectAtIndexPath:indexPath];
+    User* user = [fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = user.name;
     
     cell.detailTextLabel.text = [user.updated_time stringFromDate];
@@ -74,13 +74,13 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 { 
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultController sections] objectAtIndex:section];
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
     return [sectionInfo name];
 }
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-    NSArray* sectionTitles = [[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"];
+    NSArray* sectionTitles = [[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"];
     NSMutableArray* array = [NSMutableArray arrayWithCapacity:[sectionTitles count]];
     for ( NSString* title in sectionTitles )
     {
@@ -110,9 +110,9 @@
 #pragma -
 #pragma Fetched Result Controller
 
-- (NSFetchedResultsController*)fetchedResultController
+- (NSFetchedResultsController*)fetchedResultsController
 {
-    if ( !fetchedResultController )
+    if ( !fetchedResultsController )
     {
         NSFetchRequest* fetchRequest = [[NSFetchRequest alloc] init];
         [fetchRequest setEntity:[User entity]];
@@ -123,18 +123,18 @@
         NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"updated_time" ascending:NO];
         [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
         
-        fetchedResultController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
+        fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
                                                                       managedObjectContext:[User managedObjectContext]
                                                                         sectionNameKeyPath:@"lastUpdateCategory"
                                                                                  cacheName:nil];
         [fetchRequest release];
         
         NSError* error;
-        BOOL success = [fetchedResultController performFetch:&error];
+        BOOL success = [fetchedResultsController performFetch:&error];
         NSLog(@"Fetch successed? %d", success);
     }
 
-    return fetchedResultController;
+    return fetchedResultsController;
 }
 
 

@@ -11,11 +11,11 @@
 
 @interface LastUpdateViewController : UITableViewController
 {
-    NSFetchedResultsController* fetchedResultController;
+    NSFetchedResultsController* fetchedResultsController;
     NSArray* sectionIndexTitles;
 }
 
-@property (nonatomic, retain) NSFetchedResultsController* fetchedResultController;
+@property (nonatomic, retain) NSFetchedResultsController* fetchedResultsController;
 @property (nonatomic, retain) NSArray* sectionIndexTitles;
 
 @end

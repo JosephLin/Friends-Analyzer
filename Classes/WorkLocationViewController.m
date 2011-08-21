@@ -82,7 +82,7 @@
 {
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    Geocode* geocode = [self.fetchedResultController objectAtIndexPath:indexPath];
+    Geocode* geocode = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     WorkTableViewController* childVC = [[WorkTableViewController alloc] init];
     childVC.keyPath = @"geocodeLocation.formatted_address";

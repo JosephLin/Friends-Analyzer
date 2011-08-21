@@ -13,7 +13,7 @@
 
 @implementation FRCBasedTableViewController
 
-@synthesize fetchedResultController;
+@synthesize fetchedResultsController;
 @synthesize segmentedControl;
 @synthesize entityName;
 
@@ -36,7 +36,7 @@
 
 - (void)segmentedControlValueChanged:(UISegmentedControl*)sender
 {
-    self.fetchedResultController = [self fetchedResultControllerOfType:sender.selectedSegmentIndex];    
+    self.fetchedResultsController = [self fetchedResultsControllerOfType:sender.selectedSegmentIndex];    
 	[self.tableView reloadData];
 }
 
@@ -46,12 +46,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[self.fetchedResultController sections] count];
+    return [[self.fetchedResultsController sections] count];
 }
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
 {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultController sections] objectAtIndex:section];
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
     return [sectionInfo numberOfObjects];
 }
 
@@ -66,7 +66,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
     
-    ObjectAttribute* object = [fetchedResultController objectAtIndexPath:indexPath];
+    ObjectAttribute* object = [fetchedResultsController objectAtIndexPath:indexPath];
     cell.titleLabel.text = object.name;
     cell.countLabel.text = [NSString stringWithFormat:@"%d", [object.ownerCount intValue]];
     
@@ -75,12 +75,12 @@
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-    NSArray* sectionIndexTitles = [[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"];
+    NSArray* sectionIndexTitles = [[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"];
     return sectionIndexTitles;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
-    NSArray* sectionIndexTitles = [[fetchedResultController sections] valueForKeyPath:@"@unionOfObjects.name"];
+    NSArray* sectionIndexTitles = [[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"];
     return [sectionIndexTitles indexOfObject:title];
 }
 
@@ -92,7 +92,7 @@
 {
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    ObjectAttribute* object = [fetchedResultController objectAtIndexPath:indexPath];
+    ObjectAttribute* object = [fetchedResultsController objectAtIndexPath:indexPath];
 
     UserTableViewController* childVC = [[UserTableViewController alloc] init];
 	childVC.userArray = [self objectsForRowAtIndexPath:indexPath];
@@ -111,16 +111,16 @@
 #pragma -
 #pragma Fetched Result Controller
 
-- (NSFetchedResultsController*)fetchedResultController
+- (NSFetchedResultsController*)fetchedResultsController
 {
-    if ( !fetchedResultController)
+    if ( !fetchedResultsController)
     {
-        fetchedResultController = [[self fetchedResultControllerOfType:segmentedControl.selectedSegmentIndex] retain];
+        fetchedResultsController = [[self fetchedResultsControllerOfType:segmentedControl.selectedSegmentIndex] retain];
     }
-    return fetchedResultController;
+    return fetchedResultsController;
 }
 
-- (NSFetchedResultsController*)fetchedResultControllerOfType:(NSInteger)selectedSegmentIndex
+- (NSFetchedResultsController*)fetchedResultsControllerOfType:(NSInteger)selectedSegmentIndex
 {
     NSFetchRequest* fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
     NSEntityDescription* entity = [NSEntityDescription entityForName:self.entityName inManagedObjectContext:[ObjectAttribute managedObjectContext]];

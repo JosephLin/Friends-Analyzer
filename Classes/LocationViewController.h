@@ -19,6 +19,7 @@
     UIProgressView* progressView;
     UITableView* tableView;
     MKMapView* mapView;
+    UISegmentedControl* segmentedControl;
     
     NSFetchedResultsController* fetchedResultController;
     NSString* ownerKeyPath;
@@ -36,6 +37,7 @@
 @property (nonatomic, retain) IBOutlet UIProgressView* progressView;
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
 @property (nonatomic, retain) IBOutlet MKMapView* mapView;
+@property (nonatomic, retain) UISegmentedControl* segmentedControl;
 @property (nonatomic, retain) NSFetchedResultsController* fetchedResultController;
 @property (nonatomic, retain) NSString* ownerKeyPath;
 @property (nonatomic, retain) NSArray* mapAnnotations;

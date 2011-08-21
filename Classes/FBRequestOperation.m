@@ -89,24 +89,24 @@
 {
 	[User existingOrNewUserWithDictionary:result];
     
-	[self finish];
-	
 	if ( [delegate respondsToSelector:@selector(requestOpertaion:didLoad:)] )
 	{
 		[delegate requestOpertaion:self didLoad:result];
 	}
+
+	[self finish];
 }
 
 - (void)request:(FBRequest *)request didFailWithError:(NSError *)error
 {
 	NSLog(@"FBRequest failed with error: %@", error);
     
-	[self finish];
-
 	if ( [delegate respondsToSelector:@selector(requestOpertaion:didFailWithError:)] )
 	{
 		[delegate requestOpertaion:self didFailWithError:error];
 	}
+    
+	[self finish];    
 }
 
 

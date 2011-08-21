@@ -69,11 +69,6 @@
     [super dealloc];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    return YES;
-}
-
 
 - (void)updateViewForMode:(RootViewMode)mode
 {
@@ -180,6 +175,7 @@
 		[queue release];
 	}
 	queue = [[NSOperationQueue alloc] init];
+    [queue addObserver:self forKeyPath:@"operationCount" options:NSKeyValueObservingOptionNew context:NULL];	
 
 	NSMutableArray* opArray = [NSMutableArray arrayWithCapacity:total];
 	for ( id friend in self.currentUser.friends )
@@ -191,8 +187,6 @@
 	}
 	[queue setMaxConcurrentOperationCount:5];
 	[queue addOperations:opArray waitUntilFinished:NO];
-    
-    [queue addObserver:self forKeyPath:@"operationCount" options:NSKeyValueObservingOptionNew context:NULL];	
 }
 
 - (void)showMainMenuViewController
@@ -208,7 +202,7 @@
 	{
 		pending = [queue operationCount];
 		
-		[self performSelectorOnMainThread:@selector(updateViewForProgress) withObject:nil waitUntilDone:YES];
+		[self performSelectorOnMainThread:@selector(updateViewForProgress) withObject:nil waitUntilDone:NO];
 		
 		if ( pending == 0 )
 		{
@@ -217,7 +211,7 @@
             [queue removeObserver:self forKeyPath:@"operationCount"];
 			[[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"LastUpdated"];
             
-            [self performSelectorOnMainThread:@selector(showMainMenuViewController) withObject:nil waitUntilDone:YES];
+            [self performSelectorOnMainThread:@selector(showMainMenuViewController) withObject:nil waitUntilDone:NO];
 		}
 	}
 }

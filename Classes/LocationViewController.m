@@ -14,6 +14,7 @@
 
 @synthesize loadingLabel, progressView;
 @synthesize tableView, mapView;
+@synthesize segmentedControl;
 @synthesize fetchedResultController;
 @synthesize ownerKeyPath;
 @synthesize mapAnnotations;
@@ -28,13 +29,14 @@
 
     //// Segmented Control ////
     NSArray* controlItems = [NSArray arrayWithObjects:@"Show List", @"Show Map", nil];
-    UISegmentedControl* segmentedControl = [[UISegmentedControl alloc] initWithItems:controlItems];
+    self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:controlItems] autorelease];
 	segmentedControl.selectedSegmentIndex = 0;
 	segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 	segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
 	[segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];	
 	self.navigationItem.titleView = segmentedControl;
-    [segmentedControl release];
+    
+    segmentedControl.hidden = YES;
     
     [self parseLocations];
 }
@@ -46,25 +48,43 @@
     self.progressView = nil;
     self.tableView = nil;
     self.mapView = nil;
+    self.segmentedControl = nil;
 }
 
 - (void)dealloc
 {
+    [pendingOperations release];
+    [queue removeObserver:self forKeyPath:@"operationCount"];	
+    [queue cancelAllOperations];
+    [queue release];
+
     [loadingLabel release];
     [progressView release];
     [tableView release];
     [mapView release];
+    [segmentedControl release];
     [fetchedResultController release];
     [ownerKeyPath release];
     [mapAnnotations release];
-    [queue cancelAllOperations];
-    [queue release];
+    
     [super dealloc];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
+}
+
+- (NSOperationQueue*)queue
+{
+    if ( !queue )
+    {
+//        queue = [[NSOperationQueue alloc] init];
+        queue = [[NSOperationQueue mainQueue] retain];
+        [queue addObserver:self forKeyPath:@"operationCount" options:NSKeyValueObservingOptionNew context:NULL];	
+        [queue setMaxConcurrentOperationCount:1];
+    }
+    return queue;
 }
 
 
@@ -87,6 +107,7 @@
 {
     loadingLabel.hidden = YES;
     progressView.hidden = YES;
+    segmentedControl.hidden = NO;
 
     if ( ![tableView superview] )
     {
@@ -101,6 +122,7 @@
 {
     loadingLabel.hidden = YES;
     progressView.hidden = YES;
+    segmentedControl.hidden = NO;
 
     if ( ![mapView superview] )
     {
@@ -172,16 +194,11 @@
         progressView.progress = 0;
         progressView.hidden = NO;
         
-        if ( queue )
+        if ( queue.operationCount > 0 )
         {
             [queue cancelAllOperations];
-            [queue release];
         }
-        queue = [[NSOperationQueue alloc] init];
-        [queue addObserver:self forKeyPath:@"operationCount" options:NSKeyValueObservingOptionNew context:NULL];	
-        
-        [queue setMaxConcurrentOperationCount:1];
-        [queue addOperations:self.pendingOperations waitUntilFinished:NO];
+        [self.queue addOperations:self.pendingOperations waitUntilFinished:NO];
     }
     else
     {
@@ -195,14 +212,14 @@
 	{
 		pending = [queue operationCount];
 		
-		[self performSelectorOnMainThread:@selector(updateViewForProgress) withObject:nil waitUntilDone:YES];
+		[self performSelectorOnMainThread:@selector(updateViewForProgress) withObject:nil waitUntilDone:NO];
 		
 		if ( pending == 0 )
 		{
             [[Geocode managedObjectContext] save:nil];
 
             self.fetchedResultController = nil;
-            [self performSelectorOnMainThread:@selector(showTableView) withObject:nil waitUntilDone:YES];
+            [self performSelectorOnMainThread:@selector(showTableView) withObject:nil waitUntilDone:NO];
 		}
 	}
 }

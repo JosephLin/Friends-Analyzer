@@ -90,28 +90,28 @@
 				<float key="IBUISectionHeaderHeight">22</float>
 				<float key="IBUISectionFooterHeight">22</float>
 			</object>
-			<object class="IBUIView" id="719585114">
+			<object class="IBUIView" id="924298428">
 				<reference key="NSNextResponder"/>
-				<int key="NSvFlags">292</int>
+				<int key="NSvFlags">282</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="IBUIProgressView" id="891131404">
-						<reference key="NSNextResponder" ref="719585114"/>
+					<object class="IBUIProgressView" id="47091967">
+						<reference key="NSNextResponder" ref="924298428"/>
 						<int key="NSvFlags">269</int>
 						<string key="NSFrame">{{85, 36}, {150, 9}}</string>
-						<reference key="NSSuperview" ref="719585114"/>
+						<reference key="NSSuperview" ref="924298428"/>
 						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<float key="IBUIProgress">0.5</float>
 					</object>
-					<object class="IBUILabel" id="998033482">
-						<reference key="NSNextResponder" ref="719585114"/>
+					<object class="IBUILabel" id="497362257">
+						<reference key="NSNextResponder" ref="924298428"/>
 						<int key="NSvFlags">269</int>
 						<string key="NSFrame">{{20, 7}, {280, 21}}</string>
-						<reference key="NSSuperview" ref="719585114"/>
+						<reference key="NSSuperview" ref="924298428"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="891131404"/>
+						<reference key="NSNextKeyView" ref="47091967"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -202,7 +202,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">loadingLabel</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="998033482"/>
+						<reference key="destination" ref="497362257"/>
 					</object>
 					<int key="connectionID">36</int>
 				</object>
@@ -210,7 +210,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">progressView</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="891131404"/>
+						<reference key="destination" ref="47091967"/>
 					</object>
 					<int key="connectionID">37</int>
 				</object>
@@ -218,7 +218,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">loadingView</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="719585114"/>
+						<reference key="destination" ref="924298428"/>
 					</object>
 					<int key="connectionID">38</int>
 				</object>
@@ -252,23 +252,23 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">29</int>
-						<reference key="object" ref="719585114"/>
+						<reference key="object" ref="924298428"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="891131404"/>
-							<reference ref="998033482"/>
+							<reference ref="47091967"/>
+							<reference ref="497362257"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">34</int>
-						<reference key="object" ref="891131404"/>
-						<reference key="parent" ref="719585114"/>
+						<reference key="object" ref="47091967"/>
+						<reference key="parent" ref="924298428"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">35</int>
-						<reference key="object" ref="998033482"/>
-						<reference key="parent" ref="719585114"/>
+						<reference key="object" ref="497362257"/>
+						<reference key="parent" ref="924298428"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1</int>

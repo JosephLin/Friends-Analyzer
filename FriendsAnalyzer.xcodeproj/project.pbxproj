@@ -14,7 +14,7 @@
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28D3F202112F7DC200FD0661 /* FriendsAnalyzer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28D3F201112F7DC200FD0661 /* FriendsAnalyzer.xcdatamodeld */; };
-		7C13AF8A132149E8001FD36C /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C13AF89132149E8001FD36C /* MainWindow-iPad.xib */; };
+		7C13AF8A132149E8001FD36C /* MainWindow~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C13AF89132149E8001FD36C /* MainWindow~ipad.xib */; };
 		7C13AF8F13214C8C001FD36C /* BirthdayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C13AF8D13214C8C001FD36C /* BirthdayViewController.m */; };
 		7C1FF31D132EABE300110D03 /* WorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1FF31C132EABE300110D03 /* WorkViewController.m */; };
 		7C1FF320132EAD3700110D03 /* FRCBasedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1FF31F132EAD3700110D03 /* FRCBasedTableViewController.m */; };
@@ -50,11 +50,6 @@
 		7CA36AE81320648B00B4FAF1 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA36AE21320648B00B4FAF1 /* SBJsonWriter.m */; };
 		7CB284F213FC3AFD00728417 /* button_facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284D213FC3AFD00728417 /* button_facebook.png */; };
 		7CB284F313FC3AFD00728417 /* button_facebook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284D313FC3AFD00728417 /* button_facebook@2x.png */; };
-		7CB284F413FC3AFD00728417 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284D413FC3AFD00728417 /* Default.png */; };
-		7CB284F513FC3AFD00728417 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284D513FC3AFD00728417 /* Default@2x.png */; };
-		7CB284F613FC3AFD00728417 /* GoogleLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284D613FC3AFD00728417 /* GoogleLogo.png */; };
-		7CB284F713FC3AFD00728417 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284D713FC3AFD00728417 /* icon.png */; };
-		7CB284F813FC3AFD00728417 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284D813FC3AFD00728417 /* icon@2x.png */; };
 		7CB284F913FC3AFD00728417 /* birthday.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284DA13FC3AFD00728417 /* birthday.png */; };
 		7CB284FA13FC3AFD00728417 /* birthday@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284DB13FC3AFD00728417 /* birthday@2x.png */; };
 		7CB284FB13FC3AFD00728417 /* education.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284DC13FC3AFD00728417 /* education.png */; };
@@ -96,6 +91,13 @@
 		7CC5B148131D739B00FEA4DE /* Work.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B144131D739B00FEA4DE /* Work.m */; };
 		7CC5B187131D764700FEA4DE /* EnhancedManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B186131D764700FEA4DE /* EnhancedManagedObject.m */; };
 		7CC5B1B1131D797D00FEA4DE /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B1B0131D797D00FEA4DE /* NSDate+Utilities.m */; };
+		7CC759AD1402C0E7004FE650 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC759A61402C0E7004FE650 /* Default-Portrait~ipad.png */; };
+		7CC759AE1402C0E7004FE650 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC759A71402C0E7004FE650 /* Default.png */; };
+		7CC759AF1402C0E7004FE650 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC759A81402C0E7004FE650 /* Default@2x.png */; };
+		7CC759B01402C0E7004FE650 /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC759A91402C0E7004FE650 /* icon-72.png */; };
+		7CC759B11402C0E7004FE650 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC759AA1402C0E7004FE650 /* icon.png */; };
+		7CC759B21402C0E7004FE650 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC759AB1402C0E7004FE650 /* icon@2x.png */; };
+		7CC759B41402C26D004FE650 /* RootViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CC759B31402C26D004FE650 /* RootViewController~ipad.xib */; };
 		7CC78EC4132965A700CA2B45 /* LastUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78EC2132965A700CA2B45 /* LastUpdateViewController.m */; };
 		7CC78ED613296F0900CA2B45 /* EducationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78ED413296F0900CA2B45 /* EducationViewController.m */; };
 		7CC78EDA1329732100CA2B45 /* SchoolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78ED91329732000CA2B45 /* SchoolViewController.m */; };
@@ -125,7 +127,7 @@
 		28A0AAE50D9B0CCF005BE974 /* FriendsAnalyzer_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsAnalyzer_Prefix.pch; sourceTree = "<group>"; };
 		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		7C13AF89132149E8001FD36C /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
+		7C13AF89132149E8001FD36C /* MainWindow~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow~ipad.xib"; path = "iPad/MainWindow~ipad.xib"; sourceTree = "<group>"; };
 		7C13AF8C13214C8C001FD36C /* BirthdayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BirthdayViewController.h; sourceTree = "<group>"; };
 		7C13AF8D13214C8C001FD36C /* BirthdayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BirthdayViewController.m; sourceTree = "<group>"; };
 		7C1FF31B132EABE300110D03 /* WorkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkViewController.h; sourceTree = "<group>"; };
@@ -188,11 +190,6 @@
 		7CA36AE21320648B00B4FAF1 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		7CB284D213FC3AFD00728417 /* button_facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_facebook.png; sourceTree = "<group>"; };
 		7CB284D313FC3AFD00728417 /* button_facebook@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_facebook@2x.png"; sourceTree = "<group>"; };
-		7CB284D413FC3AFD00728417 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		7CB284D513FC3AFD00728417 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		7CB284D613FC3AFD00728417 /* GoogleLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GoogleLogo.png; sourceTree = "<group>"; };
-		7CB284D713FC3AFD00728417 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
-		7CB284D813FC3AFD00728417 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		7CB284DA13FC3AFD00728417 /* birthday.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = birthday.png; sourceTree = "<group>"; };
 		7CB284DB13FC3AFD00728417 /* birthday@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "birthday@2x.png"; sourceTree = "<group>"; };
 		7CB284DC13FC3AFD00728417 /* education.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = education.png; sourceTree = "<group>"; };
@@ -249,6 +246,13 @@
 		7CC5B186131D764700FEA4DE /* EnhancedManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnhancedManagedObject.m; sourceTree = "<group>"; };
 		7CC5B1AF131D797D00FEA4DE /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
 		7CC5B1B0131D797D00FEA4DE /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
+		7CC759A61402C0E7004FE650 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		7CC759A71402C0E7004FE650 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		7CC759A81402C0E7004FE650 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		7CC759A91402C0E7004FE650 /* icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72.png"; sourceTree = "<group>"; };
+		7CC759AA1402C0E7004FE650 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		7CC759AB1402C0E7004FE650 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		7CC759B31402C26D004FE650 /* RootViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "RootViewController~ipad.xib"; path = "iPad/RootViewController~ipad.xib"; sourceTree = "<group>"; };
 		7CC78EC1132965A700CA2B45 /* LastUpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LastUpdateViewController.h; sourceTree = "<group>"; };
 		7CC78EC2132965A700CA2B45 /* LastUpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LastUpdateViewController.m; sourceTree = "<group>"; };
 		7CC78ED313296F0900CA2B45 /* EducationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EducationViewController.h; sourceTree = "<group>"; };
@@ -359,6 +363,12 @@
 			isa = PBXGroup;
 			children = (
 				7CB284D113FC3AFD00728417 /* Images */,
+				7CC759A71402C0E7004FE650 /* Default.png */,
+				7CC759A81402C0E7004FE650 /* Default@2x.png */,
+				7CC759A61402C0E7004FE650 /* Default-Portrait~ipad.png */,
+				7CC759AA1402C0E7004FE650 /* icon.png */,
+				7CC759A91402C0E7004FE650 /* icon-72.png */,
+				7CC759AB1402C0E7004FE650 /* icon@2x.png */,
 				28D3F201112F7DC200FD0661 /* FriendsAnalyzer.xcdatamodeld */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* FriendsAnalyzer-Info.plist */,
@@ -392,7 +402,8 @@
 		7C13AF88132149E6001FD36C /* iPad */ = {
 			isa = PBXGroup;
 			children = (
-				7C13AF89132149E8001FD36C /* MainWindow-iPad.xib */,
+				7C13AF89132149E8001FD36C /* MainWindow~ipad.xib */,
+				7CC759B31402C26D004FE650 /* RootViewController~ipad.xib */,
 			);
 			name = iPad;
 			sourceTree = "<group>";
@@ -521,11 +532,6 @@
 			children = (
 				7CB284D213FC3AFD00728417 /* button_facebook.png */,
 				7CB284D313FC3AFD00728417 /* button_facebook@2x.png */,
-				7CB284D413FC3AFD00728417 /* Default.png */,
-				7CB284D513FC3AFD00728417 /* Default@2x.png */,
-				7CB284D613FC3AFD00728417 /* GoogleLogo.png */,
-				7CB284D713FC3AFD00728417 /* icon.png */,
-				7CB284D813FC3AFD00728417 /* icon@2x.png */,
 				7CB284D913FC3AFD00728417 /* Icons */,
 			);
 			path = Images;
@@ -741,7 +747,7 @@
 				7CC5B102131D6F6200FEA4DE /* RootViewController.xib in Resources */,
 				7C4DD511131D8081006C69CF /* MenuStructure.plist in Resources */,
 				7C4DD51C131D852A006C69CF /* MainMenuViewController.xib in Resources */,
-				7C13AF8A132149E8001FD36C /* MainWindow-iPad.xib in Resources */,
+				7C13AF8A132149E8001FD36C /* MainWindow~ipad.xib in Resources */,
 				7C74C55813219060003258AC /* Horoscope.plist in Resources */,
 				7C83D9D413256BA10059BBF0 /* LocationViewController.xib in Resources */,
 				7C42EFDA1333DD8300BA6B5F /* UserDetailViewController.xib in Resources */,
@@ -749,11 +755,6 @@
 				7CF6DCE4133E434C001CE00F /* PieChartColorSchemeRGB.plist in Resources */,
 				7CB284F213FC3AFD00728417 /* button_facebook.png in Resources */,
 				7CB284F313FC3AFD00728417 /* button_facebook@2x.png in Resources */,
-				7CB284F413FC3AFD00728417 /* Default.png in Resources */,
-				7CB284F513FC3AFD00728417 /* Default@2x.png in Resources */,
-				7CB284F613FC3AFD00728417 /* GoogleLogo.png in Resources */,
-				7CB284F713FC3AFD00728417 /* icon.png in Resources */,
-				7CB284F813FC3AFD00728417 /* icon@2x.png in Resources */,
 				7CB284F913FC3AFD00728417 /* birthday.png in Resources */,
 				7CB284FA13FC3AFD00728417 /* birthday@2x.png in Resources */,
 				7CB284FB13FC3AFD00728417 /* education.png in Resources */,
@@ -778,6 +779,13 @@
 				7CB2850E13FC3AFD00728417 /* updated_time@2x.png in Resources */,
 				7CB2850F13FC3AFD00728417 /* work.png in Resources */,
 				7CB2851013FC3AFD00728417 /* work@2x.png in Resources */,
+				7CC759AD1402C0E7004FE650 /* Default-Portrait~ipad.png in Resources */,
+				7CC759AE1402C0E7004FE650 /* Default.png in Resources */,
+				7CC759AF1402C0E7004FE650 /* Default@2x.png in Resources */,
+				7CC759B01402C0E7004FE650 /* icon-72.png in Resources */,
+				7CC759B11402C0E7004FE650 /* icon.png in Resources */,
+				7CC759B21402C0E7004FE650 /* icon@2x.png in Resources */,
+				7CC759B41402C26D004FE650 /* RootViewController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

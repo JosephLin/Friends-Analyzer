@@ -10,6 +10,14 @@
 #import "RootViewController.h"
 #import "FacebookClient.h"
 #import "UIColor+Utilities.h"
+#import "FlurryAnalytics.h"
+
+
+
+void uncaughtExceptionHandler(NSException *exception)
+{
+    [FlurryAnalytics logError:@"Uncaught" message:@"Crash!" exception:exception];
+}
 
 
 @implementation FriendsAnalyzerAppDelegate
@@ -24,6 +32,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions 
 {
+    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
+    [FlurryAnalytics startSession:@"2A8KB89EMT16MTUQR3JI"];
+    [FlurryAnalytics logAllPageViews:navigationController];
+
     [self.window addSubview:navigationController.view];
     [self.window makeKeyAndVisible];
     

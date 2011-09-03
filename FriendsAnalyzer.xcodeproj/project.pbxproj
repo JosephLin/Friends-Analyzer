@@ -104,6 +104,7 @@
 		7CC78EE71329858200CA2B45 /* ConcentrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78EE61329858000CA2B45 /* ConcentrationViewController.m */; };
 		7CD02E611330161D0019728A /* ArrayBasedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD02E601330161D0019728A /* ArrayBasedTableViewController.m */; };
 		7CD9A8001333FD4F0004AA48 /* attributeDisplayNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7CD9A7FF1333FD4F0004AA48 /* attributeDisplayNames.plist */; };
+		7CDC0E4E1411AFD300657365 /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CDC0E4D1411AFD300657365 /* libFlurryAnalytics.a */; };
 		7CEE3BF013390B320004D50C /* AsyncImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEE3BEF13390B320004D50C /* AsyncImageOperation.m */; };
 		7CEE3BFC133946EB0004D50C /* EducationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEE3BFB133946EB0004D50C /* EducationTableViewController.m */; };
 		7CEE3BFF133946FB0004D50C /* EducationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEE3BFE133946FB0004D50C /* EducationTableViewCell.m */; };
@@ -264,6 +265,8 @@
 		7CD02E5F1330161D0019728A /* ArrayBasedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayBasedTableViewController.h; sourceTree = "<group>"; };
 		7CD02E601330161D0019728A /* ArrayBasedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayBasedTableViewController.m; sourceTree = "<group>"; };
 		7CD9A7FF1333FD4F0004AA48 /* attributeDisplayNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = attributeDisplayNames.plist; sourceTree = "<group>"; };
+		7CDC0E4C1411AFD300657365 /* FlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAnalytics.h; sourceTree = "<group>"; };
+		7CDC0E4D1411AFD300657365 /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAnalytics.a; sourceTree = "<group>"; };
 		7CEE3BEE13390B320004D50C /* AsyncImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageOperation.h; sourceTree = "<group>"; };
 		7CEE3BEF13390B320004D50C /* AsyncImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageOperation.m; sourceTree = "<group>"; };
 		7CEE3BFA133946EB0004D50C /* EducationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EducationTableViewController.h; sourceTree = "<group>"; };
@@ -299,6 +302,7 @@
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
 				28860BE50F44EE6400985440 /* CoreData.framework in Frameworks */,
+				7CDC0E4E1411AFD300657365 /* libFlurryAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,6 +498,7 @@
 		7C83D9DF13257D2F0059BBF0 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				7CDC0E4B1411AFD300657365 /* FlurryAnalytics */,
 				7CC5B10C131D6F8500FEA4DE /* Facebook */,
 				7C37C1A2131EA0FC004EFA64 /* FBRequestOperation.h */,
 				7C37C1A3131EA0FC004EFA64 /* FBRequestOperation.m */,
@@ -679,6 +684,15 @@
 				7CEE3BFE133946FB0004D50C /* EducationTableViewCell.m */,
 			);
 			name = "Education View";
+			sourceTree = "<group>";
+		};
+		7CDC0E4B1411AFD300657365 /* FlurryAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				7CDC0E4C1411AFD300657365 /* FlurryAnalytics.h */,
+				7CDC0E4D1411AFD300657365 /* libFlurryAnalytics.a */,
+			);
+			path = FlurryAnalytics;
 			sourceTree = "<group>";
 		};
 		7CEF039C132DB6B40058FD63 /* Gender View */ = {
@@ -870,6 +884,10 @@
 				GCC_PREFIX_HEADER = FriendsAnalyzer_Prefix.pch;
 				INFOPLIST_FILE = "FriendsAnalyzer-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Classes/FlurryAnalytics\"",
+				);
 				PRODUCT_NAME = FriendsAnalyzer;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -884,6 +902,10 @@
 				GCC_PREFIX_HEADER = FriendsAnalyzer_Prefix.pch;
 				INFOPLIST_FILE = "FriendsAnalyzer-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Classes/FlurryAnalytics\"",
+				);
 				PRODUCT_NAME = FriendsAnalyzer;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

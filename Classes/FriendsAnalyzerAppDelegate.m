@@ -264,15 +264,16 @@ void uncaughtExceptionHandler(NSException *exception)
 //// iOS 5 & above only ////
 - (void)customizeAppearance
 {
-    if ( [UINavigationBar conformsToProtocol:@protocol(UIAppearance)] )
+    Protocol* UIAppearanceProtocal = NSProtocolFromString(@"UIAppearance");
+    if ( [UINavigationBar conformsToProtocol:UIAppearanceProtocal] )
     {
         [[UINavigationBar appearance] setTintColor:[UIColor finfoBlueColor]];
         [[UIToolbar appearance] setTintColor:[UIColor finfoBlueColor]];
         
         [[UIProgressView appearance] setProgressTintColor:[UIColor lightBlueColor]];
     }
-    
 }
+
 
 @end
 

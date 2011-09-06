@@ -50,11 +50,11 @@
                 //// Has location name but no geocode. ////
 
                 NSOperation* op = nil;
-                if ( NSClassFromString(@"CLGeocoder") )
-                {
-                    op = [[ForwardGeocodingOperationV2 alloc] initWithQuery:locationName object:user keyPath:@"geocodeHometown"];
-                }
-                else
+//                if ( NSClassFromString(@"CLGeocoder") )
+//                {
+//                    op = [[ForwardGeocodingOperationV2 alloc] initWithQuery:locationName object:user keyPath:@"geocodeHometown"];
+//                }
+//                else
                 {
                     op = [[ForwardGeocodingOperation alloc] initWithQuery:locationName object:user keyPath:@"geocodeHometown"];
                 }

@@ -47,11 +47,11 @@
             {
                 //// Has location name but no geocode. ////
                 NSOperation* op = nil;
-                if ( NSClassFromString(@"CLGeocoder") )
-                {
-                    op = [[ForwardGeocodingOperationV2 alloc] initWithQuery:locationName object:work keyPath:@"geocodeLocation"];
-                }
-                else
+//                if ( NSClassFromString(@"CLGeocoder") )
+//                {
+//                    op = [[ForwardGeocodingOperationV2 alloc] initWithQuery:locationName object:work keyPath:@"geocodeLocation"];
+//                }
+//                else
                 {
                     op = [[ForwardGeocodingOperation alloc] initWithQuery:locationName object:work keyPath:@"geocodeLocation"];
                 }

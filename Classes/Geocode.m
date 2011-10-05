@@ -90,7 +90,7 @@
 	return geocode;
 }
 
-/*
+
 + (Geocode*)existingOrNewGeocodeWithpPlacemark:(CLPlacemark*)placemark
 {
 	NSNumber* latitude = [NSNumber numberWithDouble:placemark.location.coordinate.latitude];
@@ -118,7 +118,7 @@
 	
 	return geocode;
 }
-*/
+
 
 
 + (Geocode*)geocodeForName:(NSString*)locationName

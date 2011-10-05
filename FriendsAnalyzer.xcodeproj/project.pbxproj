@@ -14,114 +14,6 @@
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28D3F202112F7DC200FD0661 /* FriendsAnalyzer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28D3F201112F7DC200FD0661 /* FriendsAnalyzer.xcdatamodeld */; };
-		7C0689681415AAF1008EE813 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
-		7C0689691415AAF1008EE813 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7CC5B0BF131D6F6200FEA4DE /* FBDialog.bundle */; };
-		7C06896A1415AAF1008EE813 /* PieChartColorScheme.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7CC5B0D9131D6F6200FEA4DE /* PieChartColorScheme.plist */; };
-		7C06896B1415AAF1008EE813 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CC5B0E1131D6F6200FEA4DE /* RootViewController.xib */; };
-		7C06896C1415AAF1008EE813 /* MenuStructure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C4DD510131D8081006C69CF /* MenuStructure.plist */; };
-		7C06896D1415AAF1008EE813 /* MainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C4DD51A131D852A006C69CF /* MainMenuViewController.xib */; };
-		7C06896E1415AAF1008EE813 /* MainWindow~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C13AF89132149E8001FD36C /* MainWindow~ipad.xib */; };
-		7C06896F1415AAF1008EE813 /* Horoscope.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C74C55713219060003258AC /* Horoscope.plist */; };
-		7C0689701415AAF1008EE813 /* LocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C83D9D213256BA10059BBF0 /* LocationViewController.xib */; };
-		7C0689711415AAF1008EE813 /* UserDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C42EFD81333DD8300BA6B5F /* UserDetailViewController.xib */; };
-		7C0689721415AAF1008EE813 /* attributeDisplayNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7CD9A7FF1333FD4F0004AA48 /* attributeDisplayNames.plist */; };
-		7C0689731415AAF1008EE813 /* PieChartColorSchemeRGB.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7CF6DCE3133E434C001CE00F /* PieChartColorSchemeRGB.plist */; };
-		7C0689741415AAF1008EE813 /* button_facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284D213FC3AFD00728417 /* button_facebook.png */; };
-		7C0689751415AAF1008EE813 /* button_facebook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284D313FC3AFD00728417 /* button_facebook@2x.png */; };
-		7C0689761415AAF1008EE813 /* birthday.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284DA13FC3AFD00728417 /* birthday.png */; };
-		7C0689771415AAF1008EE813 /* birthday@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284DB13FC3AFD00728417 /* birthday@2x.png */; };
-		7C0689781415AAF1008EE813 /* education.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284DC13FC3AFD00728417 /* education.png */; };
-		7C0689791415AAF1008EE813 /* education@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284DD13FC3AFD00728417 /* education@2x.png */; };
-		7C06897A1415AAF1008EE813 /* gender.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284DE13FC3AFD00728417 /* gender.png */; };
-		7C06897B1415AAF1008EE813 /* gender@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284DF13FC3AFD00728417 /* gender@2x.png */; };
-		7C06897C1415AAF1008EE813 /* hometown.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284E013FC3AFD00728417 /* hometown.png */; };
-		7C06897D1415AAF1008EE813 /* hometown@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284E113FC3AFD00728417 /* hometown@2x.png */; };
-		7C06897E1415AAF1008EE813 /* icon_pie_chart.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284E213FC3AFD00728417 /* icon_pie_chart.png */; };
-		7C06897F1415AAF1008EE813 /* icon_pie_chart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284E313FC3AFD00728417 /* icon_pie_chart@2x.png */; };
-		7C0689801415AAF1008EE813 /* icon_table_view.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284E413FC3AFD00728417 /* icon_table_view.png */; };
-		7C0689811415AAF1008EE813 /* icon_table_view@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284E513FC3AFD00728417 /* icon_table_view@2x.png */; };
-		7C0689821415AAF1008EE813 /* locale.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284E613FC3AFD00728417 /* locale.png */; };
-		7C0689831415AAF1008EE813 /* locale@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284E713FC3AFD00728417 /* locale@2x.png */; };
-		7C0689841415AAF1008EE813 /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284E813FC3AFD00728417 /* location.png */; };
-		7C0689851415AAF1008EE813 /* location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284E913FC3AFD00728417 /* location@2x.png */; };
-		7C0689861415AAF1008EE813 /* name.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284EA13FC3AFD00728417 /* name.png */; };
-		7C0689871415AAF1008EE813 /* name@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284EB13FC3AFD00728417 /* name@2x.png */; };
-		7C0689881415AAF1008EE813 /* relationship_status.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284EC13FC3AFD00728417 /* relationship_status.png */; };
-		7C0689891415AAF1008EE813 /* relationship_status@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284ED13FC3AFD00728417 /* relationship_status@2x.png */; };
-		7C06898A1415AAF1008EE813 /* updated_time.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284EE13FC3AFD00728417 /* updated_time.png */; };
-		7C06898B1415AAF1008EE813 /* updated_time@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284EF13FC3AFD00728417 /* updated_time@2x.png */; };
-		7C06898C1415AAF1008EE813 /* work.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284F013FC3AFD00728417 /* work.png */; };
-		7C06898D1415AAF1008EE813 /* work@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284F113FC3AFD00728417 /* work@2x.png */; };
-		7C06898E1415AAF1008EE813 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC759A61402C0E7004FE650 /* Default-Portrait~ipad.png */; };
-		7C06898F1415AAF1008EE813 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC759A71402C0E7004FE650 /* Default.png */; };
-		7C0689901415AAF1008EE813 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC759A81402C0E7004FE650 /* Default@2x.png */; };
-		7C0689911415AAF1008EE813 /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC759A91402C0E7004FE650 /* icon-72.png */; };
-		7C0689921415AAF1008EE813 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC759AA1402C0E7004FE650 /* icon.png */; };
-		7C0689931415AAF1008EE813 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC759AB1402C0E7004FE650 /* icon@2x.png */; };
-		7C0689941415AAF1008EE813 /* RootViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CC759B31402C26D004FE650 /* RootViewController~ipad.xib */; };
-		7C0689961415AAF1008EE813 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
-		7C0689971415AAF1008EE813 /* FriendsAnalyzer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28D3F201112F7DC200FD0661 /* FriendsAnalyzer.xcdatamodeld */; };
-		7C0689981415AAF1008EE813 /* FacebookClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0B6131D6F6200FEA4DE /* FacebookClient.m */; };
-		7C0689991415AAF1008EE813 /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0BD131D6F6200FEA4DE /* Facebook.m */; };
-		7C06899A1415AAF1008EE813 /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0C1131D6F6200FEA4DE /* FBDialog.m */; };
-		7C06899B1415AAF1008EE813 /* FBLoginDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0C3131D6F6200FEA4DE /* FBLoginDialog.m */; };
-		7C06899C1415AAF1008EE813 /* FBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0C5131D6F6200FEA4DE /* FBRequest.m */; };
-		7C06899D1415AAF1008EE813 /* FriendsAnalyzerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0D5131D6F6200FEA4DE /* FriendsAnalyzerAppDelegate.m */; };
-		7C06899E1415AAF1008EE813 /* UserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0D7131D6F6200FEA4DE /* UserTableViewController.m */; };
-		7C06899F1415AAF1008EE813 /* PieChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0DB131D6F6200FEA4DE /* PieChartView.m */; };
-		7C0689A01415AAF1008EE813 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0E0131D6F6200FEA4DE /* RootViewController.m */; };
-		7C0689A11415AAF1008EE813 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B140131D739B00FEA4DE /* User.m */; };
-		7C0689A21415AAF1008EE813 /* Education.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B142131D739B00FEA4DE /* Education.m */; };
-		7C0689A31415AAF1008EE813 /* Work.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B144131D739B00FEA4DE /* Work.m */; };
-		7C0689A41415AAF1008EE813 /* EnhancedManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B186131D764700FEA4DE /* EnhancedManagedObject.m */; };
-		7C0689A51415AAF1008EE813 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B1B0131D797D00FEA4DE /* NSDate+Utilities.m */; };
-		7C0689A61415AAF1008EE813 /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4DD519131D852A006C69CF /* MainMenuViewController.m */; };
-		7C0689A71415AAF1008EE813 /* FBRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C37C1A3131EA0FC004EFA64 /* FBRequestOperation.m */; };
-		7C0689A81415AAF1008EE813 /* NameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C37C309131EEC91004EFA64 /* NameViewController.m */; };
-		7C0689A91415AAF1008EE813 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA36AD81320648B00B4FAF1 /* NSObject+SBJSON.m */; };
-		7C0689AA1415AAF1008EE813 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA36ADA1320648B00B4FAF1 /* NSString+SBJSON.m */; };
-		7C0689AB1415AAF1008EE813 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA36ADC1320648B00B4FAF1 /* SBJSON.m */; };
-		7C0689AC1415AAF1008EE813 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA36ADE1320648B00B4FAF1 /* SBJsonBase.m */; };
-		7C0689AD1415AAF1008EE813 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA36AE01320648B00B4FAF1 /* SBJsonParser.m */; };
-		7C0689AE1415AAF1008EE813 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA36AE21320648B00B4FAF1 /* SBJsonWriter.m */; };
-		7C0689AF1415AAF1008EE813 /* BirthdayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C13AF8D13214C8C001FD36C /* BirthdayViewController.m */; };
-		7C0689B01415AAF1008EE813 /* LocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C83D9D113256BA10059BBF0 /* LocationViewController.m */; };
-		7C0689B11415AAF1008EE813 /* LocationName.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C83D9D8132574290059BBF0 /* LocationName.m */; };
-		7C0689B21415AAF1008EE813 /* Geocode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C83D9DB1325742A0059BBF0 /* Geocode.m */; };
-		7C0689B31415AAF1008EE813 /* ForwardGeocodingOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C83D9E4132580AE0059BBF0 /* ForwardGeocodingOperation.m */; };
-		7C0689B41415AAF1008EE813 /* HometownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF0CC671327F0E2006C5693 /* HometownViewController.m */; };
-		7C0689B51415AAF1008EE813 /* UserLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF0CC6A1327F3DB006C5693 /* UserLocationViewController.m */; };
-		7C0689B61415AAF1008EE813 /* MapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF0CC6D1327FEF2006C5693 /* MapAnnotation.m */; };
-		7C0689B71415AAF1008EE813 /* LastUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78EC2132965A700CA2B45 /* LastUpdateViewController.m */; };
-		7C0689B81415AAF1008EE813 /* EducationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78ED413296F0900CA2B45 /* EducationViewController.m */; };
-		7C0689B91415AAF1008EE813 /* SchoolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78ED91329732000CA2B45 /* SchoolViewController.m */; };
-		7C0689BA1415AAF1008EE813 /* ConcentrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78EE61329858000CA2B45 /* ConcentrationViewController.m */; };
-		7C0689BB1415AAF1008EE813 /* ObjectAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEF039E132DBAA10058FD63 /* ObjectAttribute.m */; };
-		7C0689BC1415AAF1008EE813 /* DegreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEF03AA132DD5F10058FD63 /* DegreeViewController.m */; };
-		7C0689BD1415AAF1008EE813 /* WorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1FF31C132EABE300110D03 /* WorkViewController.m */; };
-		7C0689BE1415AAF1008EE813 /* FRCBasedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1FF31F132EAD3700110D03 /* FRCBasedTableViewController.m */; };
-		7C0689BF1415AAF1008EE813 /* EmployerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1FF322132EB29500110D03 /* EmployerViewController.m */; };
-		7C0689C01415AAF1008EE813 /* WorkLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6105C132EC0AA002D21DB /* WorkLocationViewController.m */; };
-		7C0689C11415AAF1008EE813 /* WorkTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6105F132EC979002D21DB /* WorkTableViewController.m */; };
-		7C0689C21415AAF1008EE813 /* ArrayBasedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD02E601330161D0019728A /* ArrayBasedTableViewController.m */; };
-		7C0689C31415AAF1008EE813 /* GeocodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C70C0061331574700E1B87C /* GeocodeTableViewCell.m */; };
-		7C0689C41415AAF1008EE813 /* WorkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C70C00913315F3000E1B87C /* WorkTableViewCell.m */; };
-		7C0689C51415AAF1008EE813 /* PositionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C70C00C1331614A00E1B87C /* PositionViewController.m */; };
-		7C0689C61415AAF1008EE813 /* UserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C42EFD71333DD8300BA6B5F /* UserDetailViewController.m */; };
-		7C0689C71415AAF1008EE813 /* AsyncImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEE3BEF13390B320004D50C /* AsyncImageOperation.m */; };
-		7C0689C81415AAF1008EE813 /* EducationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEE3BFB133946EB0004D50C /* EducationTableViewController.m */; };
-		7C0689C91415AAF1008EE813 /* EducationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEE3BFE133946FB0004D50C /* EducationTableViewCell.m */; };
-		7C0689CA1415AAF1008EE813 /* LastNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5141F6133BF990001A0573 /* LastNameViewController.m */; };
-		7C0689CB1415AAF1008EE813 /* FullNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5141F9133BF99F001A0573 /* FullNameViewController.m */; };
-		7C0689CC1415AAF1008EE813 /* PieChartObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4995E61342758500A49BBA /* PieChartObject.m */; };
-		7C0689CD1415AAF1008EE813 /* UIColor+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5EB55C13F328720063F116 /* UIColor+Utilities.m */; };
-		7C0689D01415AAF1008EE813 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C83D9DD1325745F0059BBF0 /* CoreLocation.framework */; };
-		7C0689D11415AAF1008EE813 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C83D9D513256D4B0059BBF0 /* MapKit.framework */; };
-		7C0689D21415AAF1008EE813 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		7C0689D31415AAF1008EE813 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		7C0689D41415AAF1008EE813 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
-		7C0689D51415AAF1008EE813 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28860BE40F44EE6400985440 /* CoreData.framework */; };
-		7C0689D61415AAF1008EE813 /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CDC0E4D1411AFD300657365 /* libFlurryAnalytics.a */; };
 		7C13AF8A132149E8001FD36C /* MainWindow~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C13AF89132149E8001FD36C /* MainWindow~ipad.xib */; };
 		7C13AF8F13214C8C001FD36C /* BirthdayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C13AF8D13214C8C001FD36C /* BirthdayViewController.m */; };
 		7C1FF31D132EABE300110D03 /* WorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1FF31C132EABE300110D03 /* WorkViewController.m */; };
@@ -236,7 +128,6 @@
 		28A0AAE50D9B0CCF005BE974 /* FriendsAnalyzer_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsAnalyzer_Prefix.pch; sourceTree = "<group>"; };
 		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		7C0689DA1415AAF1008EE813 /* FriendsAnalyzer copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FriendsAnalyzer copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C0689DC1415AAF1008EE813 /* FriendsAnalyzer copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "FriendsAnalyzer copy-Info.plist"; path = "/Users/Joseph/Documents/Programming/Finfo/FriendsAnalyzer copy-Info.plist"; sourceTree = "<absolute>"; };
 		7C13AF89132149E8001FD36C /* MainWindow~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow~ipad.xib"; path = "iPad/MainWindow~ipad.xib"; sourceTree = "<group>"; };
 		7C13AF8C13214C8C001FD36C /* BirthdayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BirthdayViewController.h; sourceTree = "<group>"; };
@@ -416,20 +307,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7C0689CF1415AAF1008EE813 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7C0689D01415AAF1008EE813 /* CoreLocation.framework in Frameworks */,
-				7C0689D11415AAF1008EE813 /* MapKit.framework in Frameworks */,
-				7C0689D21415AAF1008EE813 /* Foundation.framework in Frameworks */,
-				7C0689D31415AAF1008EE813 /* UIKit.framework in Frameworks */,
-				7C0689D41415AAF1008EE813 /* CoreGraphics.framework in Frameworks */,
-				7C0689D51415AAF1008EE813 /* CoreData.framework in Frameworks */,
-				7C0689D61415AAF1008EE813 /* libFlurryAnalytics.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -461,7 +338,6 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* FriendsAnalyzer.app */,
-				7C0689DA1415AAF1008EE813 /* FriendsAnalyzer copy.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -848,23 +724,6 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* FriendsAnalyzer.app */;
 			productType = "com.apple.product-type.application";
 		};
-		7C0689661415AAF1008EE813 /* FriendsAnalyzer 4.x */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7C0689D71415AAF1008EE813 /* Build configuration list for PBXNativeTarget "FriendsAnalyzer 4.x" */;
-			buildPhases = (
-				7C0689671415AAF1008EE813 /* Resources */,
-				7C0689951415AAF1008EE813 /* Sources */,
-				7C0689CF1415AAF1008EE813 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "FriendsAnalyzer 4.x";
-			productName = FriendsAnalyzer;
-			productReference = 7C0689DA1415AAF1008EE813 /* FriendsAnalyzer copy.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -889,7 +748,6 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* FriendsAnalyzer */,
-				7C0689661415AAF1008EE813 /* FriendsAnalyzer 4.x */,
 			);
 		};
 /* End PBXProject section */
@@ -944,58 +802,6 @@
 				7CC759B11402C0E7004FE650 /* icon.png in Resources */,
 				7CC759B21402C0E7004FE650 /* icon@2x.png in Resources */,
 				7CC759B41402C26D004FE650 /* RootViewController~ipad.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7C0689671415AAF1008EE813 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7C0689681415AAF1008EE813 /* MainWindow.xib in Resources */,
-				7C0689691415AAF1008EE813 /* FBDialog.bundle in Resources */,
-				7C06896A1415AAF1008EE813 /* PieChartColorScheme.plist in Resources */,
-				7C06896B1415AAF1008EE813 /* RootViewController.xib in Resources */,
-				7C06896C1415AAF1008EE813 /* MenuStructure.plist in Resources */,
-				7C06896D1415AAF1008EE813 /* MainMenuViewController.xib in Resources */,
-				7C06896E1415AAF1008EE813 /* MainWindow~ipad.xib in Resources */,
-				7C06896F1415AAF1008EE813 /* Horoscope.plist in Resources */,
-				7C0689701415AAF1008EE813 /* LocationViewController.xib in Resources */,
-				7C0689711415AAF1008EE813 /* UserDetailViewController.xib in Resources */,
-				7C0689721415AAF1008EE813 /* attributeDisplayNames.plist in Resources */,
-				7C0689731415AAF1008EE813 /* PieChartColorSchemeRGB.plist in Resources */,
-				7C0689741415AAF1008EE813 /* button_facebook.png in Resources */,
-				7C0689751415AAF1008EE813 /* button_facebook@2x.png in Resources */,
-				7C0689761415AAF1008EE813 /* birthday.png in Resources */,
-				7C0689771415AAF1008EE813 /* birthday@2x.png in Resources */,
-				7C0689781415AAF1008EE813 /* education.png in Resources */,
-				7C0689791415AAF1008EE813 /* education@2x.png in Resources */,
-				7C06897A1415AAF1008EE813 /* gender.png in Resources */,
-				7C06897B1415AAF1008EE813 /* gender@2x.png in Resources */,
-				7C06897C1415AAF1008EE813 /* hometown.png in Resources */,
-				7C06897D1415AAF1008EE813 /* hometown@2x.png in Resources */,
-				7C06897E1415AAF1008EE813 /* icon_pie_chart.png in Resources */,
-				7C06897F1415AAF1008EE813 /* icon_pie_chart@2x.png in Resources */,
-				7C0689801415AAF1008EE813 /* icon_table_view.png in Resources */,
-				7C0689811415AAF1008EE813 /* icon_table_view@2x.png in Resources */,
-				7C0689821415AAF1008EE813 /* locale.png in Resources */,
-				7C0689831415AAF1008EE813 /* locale@2x.png in Resources */,
-				7C0689841415AAF1008EE813 /* location.png in Resources */,
-				7C0689851415AAF1008EE813 /* location@2x.png in Resources */,
-				7C0689861415AAF1008EE813 /* name.png in Resources */,
-				7C0689871415AAF1008EE813 /* name@2x.png in Resources */,
-				7C0689881415AAF1008EE813 /* relationship_status.png in Resources */,
-				7C0689891415AAF1008EE813 /* relationship_status@2x.png in Resources */,
-				7C06898A1415AAF1008EE813 /* updated_time.png in Resources */,
-				7C06898B1415AAF1008EE813 /* updated_time@2x.png in Resources */,
-				7C06898C1415AAF1008EE813 /* work.png in Resources */,
-				7C06898D1415AAF1008EE813 /* work@2x.png in Resources */,
-				7C06898E1415AAF1008EE813 /* Default-Portrait~ipad.png in Resources */,
-				7C06898F1415AAF1008EE813 /* Default.png in Resources */,
-				7C0689901415AAF1008EE813 /* Default@2x.png in Resources */,
-				7C0689911415AAF1008EE813 /* icon-72.png in Resources */,
-				7C0689921415AAF1008EE813 /* icon.png in Resources */,
-				7C0689931415AAF1008EE813 /* icon@2x.png in Resources */,
-				7C0689941415AAF1008EE813 /* RootViewController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1066,69 +872,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7C0689951415AAF1008EE813 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7C0689961415AAF1008EE813 /* main.m in Sources */,
-				7C0689971415AAF1008EE813 /* FriendsAnalyzer.xcdatamodeld in Sources */,
-				7C0689981415AAF1008EE813 /* FacebookClient.m in Sources */,
-				7C0689991415AAF1008EE813 /* Facebook.m in Sources */,
-				7C06899A1415AAF1008EE813 /* FBDialog.m in Sources */,
-				7C06899B1415AAF1008EE813 /* FBLoginDialog.m in Sources */,
-				7C06899C1415AAF1008EE813 /* FBRequest.m in Sources */,
-				7C06899D1415AAF1008EE813 /* FriendsAnalyzerAppDelegate.m in Sources */,
-				7C06899E1415AAF1008EE813 /* UserTableViewController.m in Sources */,
-				7C06899F1415AAF1008EE813 /* PieChartView.m in Sources */,
-				7C0689A01415AAF1008EE813 /* RootViewController.m in Sources */,
-				7C0689A11415AAF1008EE813 /* User.m in Sources */,
-				7C0689A21415AAF1008EE813 /* Education.m in Sources */,
-				7C0689A31415AAF1008EE813 /* Work.m in Sources */,
-				7C0689A41415AAF1008EE813 /* EnhancedManagedObject.m in Sources */,
-				7C0689A51415AAF1008EE813 /* NSDate+Utilities.m in Sources */,
-				7C0689A61415AAF1008EE813 /* MainMenuViewController.m in Sources */,
-				7C0689A71415AAF1008EE813 /* FBRequestOperation.m in Sources */,
-				7C0689A81415AAF1008EE813 /* NameViewController.m in Sources */,
-				7C0689A91415AAF1008EE813 /* NSObject+SBJSON.m in Sources */,
-				7C0689AA1415AAF1008EE813 /* NSString+SBJSON.m in Sources */,
-				7C0689AB1415AAF1008EE813 /* SBJSON.m in Sources */,
-				7C0689AC1415AAF1008EE813 /* SBJsonBase.m in Sources */,
-				7C0689AD1415AAF1008EE813 /* SBJsonParser.m in Sources */,
-				7C0689AE1415AAF1008EE813 /* SBJsonWriter.m in Sources */,
-				7C0689AF1415AAF1008EE813 /* BirthdayViewController.m in Sources */,
-				7C0689B01415AAF1008EE813 /* LocationViewController.m in Sources */,
-				7C0689B11415AAF1008EE813 /* LocationName.m in Sources */,
-				7C0689B21415AAF1008EE813 /* Geocode.m in Sources */,
-				7C0689B31415AAF1008EE813 /* ForwardGeocodingOperation.m in Sources */,
-				7C0689B41415AAF1008EE813 /* HometownViewController.m in Sources */,
-				7C0689B51415AAF1008EE813 /* UserLocationViewController.m in Sources */,
-				7C0689B61415AAF1008EE813 /* MapAnnotation.m in Sources */,
-				7C0689B71415AAF1008EE813 /* LastUpdateViewController.m in Sources */,
-				7C0689B81415AAF1008EE813 /* EducationViewController.m in Sources */,
-				7C0689B91415AAF1008EE813 /* SchoolViewController.m in Sources */,
-				7C0689BA1415AAF1008EE813 /* ConcentrationViewController.m in Sources */,
-				7C0689BB1415AAF1008EE813 /* ObjectAttribute.m in Sources */,
-				7C0689BC1415AAF1008EE813 /* DegreeViewController.m in Sources */,
-				7C0689BD1415AAF1008EE813 /* WorkViewController.m in Sources */,
-				7C0689BE1415AAF1008EE813 /* FRCBasedTableViewController.m in Sources */,
-				7C0689BF1415AAF1008EE813 /* EmployerViewController.m in Sources */,
-				7C0689C01415AAF1008EE813 /* WorkLocationViewController.m in Sources */,
-				7C0689C11415AAF1008EE813 /* WorkTableViewController.m in Sources */,
-				7C0689C21415AAF1008EE813 /* ArrayBasedTableViewController.m in Sources */,
-				7C0689C31415AAF1008EE813 /* GeocodeTableViewCell.m in Sources */,
-				7C0689C41415AAF1008EE813 /* WorkTableViewCell.m in Sources */,
-				7C0689C51415AAF1008EE813 /* PositionViewController.m in Sources */,
-				7C0689C61415AAF1008EE813 /* UserDetailViewController.m in Sources */,
-				7C0689C71415AAF1008EE813 /* AsyncImageOperation.m in Sources */,
-				7C0689C81415AAF1008EE813 /* EducationTableViewController.m in Sources */,
-				7C0689C91415AAF1008EE813 /* EducationTableViewCell.m in Sources */,
-				7C0689CA1415AAF1008EE813 /* LastNameViewController.m in Sources */,
-				7C0689CB1415AAF1008EE813 /* FullNameViewController.m in Sources */,
-				7C0689CC1415AAF1008EE813 /* PieChartObject.m in Sources */,
-				7C0689CD1415AAF1008EE813 /* UIColor+Utilities.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
@@ -1171,49 +914,6 @@
 			};
 			name = Release;
 		};
-		7C0689D81415AAF1008EE813 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Joseph Lin (UBVJFKG9WV)";
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = FriendsAnalyzer_Prefix.pch;
-				INFOPLIST_FILE = "FriendsAnalyzer copy-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Classes/FlurryAnalytics\"",
-				);
-				PRODUCT_NAME = "FriendsAnalyzer copy";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CFA2C146-93A3-40AA-AAA0-CB18DD48D7C7";
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Debug;
-		};
-		7C0689D91415AAF1008EE813 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				COPY_PHASE_STRIP = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = FriendsAnalyzer_Prefix.pch;
-				INFOPLIST_FILE = "FriendsAnalyzer copy-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Classes/FlurryAnalytics\"",
-				);
-				PRODUCT_NAME = "FriendsAnalyzer copy";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				TARGETED_DEVICE_FAMILY = 1;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1249,15 +949,6 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		7C0689D71415AAF1008EE813 /* Build configuration list for PBXNativeTarget "FriendsAnalyzer 4.x" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7C0689D81415AAF1008EE813 /* Debug */,
-				7C0689D91415AAF1008EE813 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

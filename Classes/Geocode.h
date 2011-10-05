@@ -38,7 +38,7 @@
 
 + (Geocode*)geocodeWithLatitude:(NSNumber*)latitude longitude:(NSNumber*)longitude;
 + (Geocode*)existingOrNewGeocodeWithDictionary:(NSDictionary*)dict;
-//+ (Geocode*)existingOrNewGeocodeWithpPlacemark:(CLPlacemark*)placemark;
++ (Geocode*)existingOrNewGeocodeWithpPlacemark:(CLPlacemark*)placemark;
 + (Geocode*)geocodeForName:(NSString*)locationName;
 + (NSArray*)allGeocodes;
 + (Geocode*)unknownGeocode;

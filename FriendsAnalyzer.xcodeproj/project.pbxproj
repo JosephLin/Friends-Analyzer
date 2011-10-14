@@ -19,6 +19,7 @@
 		7C1FF31D132EABE300110D03 /* WorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1FF31C132EABE300110D03 /* WorkViewController.m */; };
 		7C1FF320132EAD3700110D03 /* FRCBasedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1FF31F132EAD3700110D03 /* FRCBasedTableViewController.m */; };
 		7C1FF323132EB29600110D03 /* EmployerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1FF322132EB29500110D03 /* EmployerViewController.m */; };
+		7C2283461447EAF9003FB215 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2283451447EAF9003FB215 /* Default-Landscape~ipad.png */; };
 		7C37C1A4131EA0FC004EFA64 /* FBRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C37C1A3131EA0FC004EFA64 /* FBRequestOperation.m */; };
 		7C37C30B131EEC91004EFA64 /* NameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C37C309131EEC91004EFA64 /* NameViewController.m */; };
 		7C42EFD91333DD8300BA6B5F /* UserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C42EFD71333DD8300BA6B5F /* UserDetailViewController.m */; };
@@ -137,6 +138,7 @@
 		7C1FF31F132EAD3700110D03 /* FRCBasedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRCBasedTableViewController.m; sourceTree = "<group>"; };
 		7C1FF321132EB29500110D03 /* EmployerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmployerViewController.h; sourceTree = "<group>"; };
 		7C1FF322132EB29500110D03 /* EmployerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmployerViewController.m; sourceTree = "<group>"; };
+		7C2283451447EAF9003FB215 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		7C37C1A2131EA0FC004EFA64 /* FBRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBRequestOperation.h; sourceTree = "<group>"; };
 		7C37C1A3131EA0FC004EFA64 /* FBRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBRequestOperation.m; sourceTree = "<group>"; };
 		7C37C308131EEC91004EFA64 /* NameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameViewController.h; sourceTree = "<group>"; };
@@ -370,6 +372,7 @@
 				7CC759A71402C0E7004FE650 /* Default.png */,
 				7CC759A81402C0E7004FE650 /* Default@2x.png */,
 				7CC759A61402C0E7004FE650 /* Default-Portrait~ipad.png */,
+				7C2283451447EAF9003FB215 /* Default-Landscape~ipad.png */,
 				7CC759AA1402C0E7004FE650 /* icon.png */,
 				7CC759A91402C0E7004FE650 /* icon-72.png */,
 				7CC759AB1402C0E7004FE650 /* icon@2x.png */,
@@ -800,6 +803,7 @@
 				7CC759B11402C0E7004FE650 /* icon.png in Resources */,
 				7CC759B21402C0E7004FE650 /* icon@2x.png in Resources */,
 				7CC759B41402C26D004FE650 /* RootViewController~ipad.xib in Resources */,
+				7C2283461447EAF9003FB215 /* Default-Landscape~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

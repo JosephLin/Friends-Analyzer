@@ -22,7 +22,7 @@
 
 - (NSArray*)objectsForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ObjectAttribute* object = [fetchedResultsController objectAtIndexPath:indexPath];
+    ObjectAttribute* object = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"user.name" ascending:YES];
     NSArray* sorted = [object.owners sortedArrayUsingDescriptors:@[sortDescriptor]];
@@ -34,7 +34,7 @@
 {
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    ObjectAttribute* object = [fetchedResultsController objectAtIndexPath:indexPath];
+    ObjectAttribute* object = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     EducationTableViewController* childVC = [[EducationTableViewController alloc] init];
     childVC.keyPath = @"concentrations.name";

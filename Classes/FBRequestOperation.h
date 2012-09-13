@@ -10,32 +10,14 @@
 #import "FacebookSDK.h"
 
 
-@protocol FBRequestOperationDelegate;
 
-@interface FBRequestOperation : NSOperation <FBRequestDelegate>
-{
-	id <FBRequestOperationDelegate> __weak delegate;
-	NSString* graphPath;
-	FBRequest* request;
-	
-    BOOL isExecuting;
-    BOOL isFinished;
-}
+@interface FBRequestOperation : NSOperation
 
-@property (nonatomic, weak) id <FBRequestOperationDelegate> delegate;
 @property (nonatomic, strong) NSString* graphPath;
-@property (nonatomic, strong) FBRequest* request;
-@property (readonly) BOOL isExecuting;
-@property (readonly) BOOL isFinished;
+@property (nonatomic, readonly) BOOL isExecuting;
+@property (nonatomic, readonly) BOOL isFinished;
 
-- (id)initWithGraphPath:(NSString*)thePath delegate:(id <FBRequestOperationDelegate>)theDelegate;
+- (id)initWithGraphPath:(NSString*)thePath;
 
 @end
 
-
-
-@protocol FBRequestOperationDelegate <NSObject>
-@optional
-- (void)requestOpertaion:(FBRequestOperation *)op didLoad:(id)result;
-- (void)requestOpertaion:(FBRequestOperation *)op didFailWithError:(NSError *)error;
-@end

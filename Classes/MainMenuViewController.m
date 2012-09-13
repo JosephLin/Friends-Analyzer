@@ -13,16 +13,32 @@
 #import "LocationViewController.h"
 #import "RootViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "FacebookSDK.h"
+#import "User.h"
+#import "UIImageView+WebCache.h"
 
 #define kLogoutActionSheetTag       1001
 #define kRefreshActionSheetTag      2001
 
 
-@implementation MainMenuViewController
 
-@synthesize headerView, profileImageView, nameLabel, friendsCountLabel, tableView, lastUpdatedLabel;
-@synthesize menuStructureArray;
-@synthesize currentUser;
+@interface MainMenuViewController () <UIActionSheetDelegate>
+
+@property (nonatomic, strong) IBOutlet UIView* headerView;
+@property (nonatomic, strong) IBOutlet UIImageView* profileImageView;
+@property (nonatomic, strong) IBOutlet UILabel* nameLabel;
+@property (nonatomic, strong) IBOutlet UILabel* friendsCountLabel;
+@property (nonatomic, strong) IBOutlet UITableView* tableView;
+@property (nonatomic, strong) IBOutlet UILabel* lastUpdatedLabel;
+
+@property (nonatomic, strong) NSArray* menuStructureArray;
+@property (nonatomic, strong) User* currentUser;
+
+@end
+
+
+
+@implementation MainMenuViewController
 
 
 - (void)viewDidLoad
@@ -41,23 +57,44 @@
 
 	//// Display Current User Info ////
 	self.currentUser = [User currentUser];
-	self.nameLabel.text = currentUser.name;
-	self.friendsCountLabel.text = [NSString stringWithFormat:@"%d Friends", [currentUser.friends count]];
     
-    [self loadProfileImage];
-	
+    NSMutableAttributedString* attrString = [[NSMutableAttributedString alloc] initWithString:self.currentUser.name attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:17.0f]}];
+    
+    [attrString appendAttributedString:[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"\n%d Friends", [self.currentUser.friends count]] attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14.0f]}]];
+    
+	self.nameLabel.attributedText = attrString;
+    
+    NSString* avatar = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=large", self.currentUser.id];
+    [self.profileImageView setImageWithURL:[NSURL URLWithString:avatar]
+                          placeholderImage:nil
+                                   success:^(UIImage *image, BOOL cached) {
+                                       
+                                       CGFloat width = self.profileImageView.bounds.size.width;
+                                       CGFloat ratio = width / image.size.width;
+                                       CGFloat height = image.size.height * ratio;
+                                       self.profileImageView.bounds = CGRectMake(0, 0, width, height);
+                                       
+                                       CALayer* layer = self.profileImageView.layer;
+                                       layer.masksToBounds = YES;
+                                       layer.cornerRadius = 10.0;
+                                       layer.borderWidth = 1.0;
+                                       layer.borderColor = [UIColor darkGrayColor].CGColor;
+                                       
+                                   } failure:^(NSError *error) {
+                                       
+                                       NSLog(@"Failed to load image: %@", error);
+                                   }];
 	
 	//// Load Property List ////
 	NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"MenuStructure" ofType:@"plist"];
 	self.menuStructureArray = [NSArray arrayWithContentsOfFile:plistPath];
 	
-	[tableView reloadData];
+	[self.tableView reloadData];
 	
 	
 	NSDate* lastUpdated = [[NSUserDefaults standardUserDefaults] objectForKey:@"LastUpdated"];
 	self.lastUpdatedLabel.text = [NSString stringWithFormat:@"Updated: %@", [lastUpdated stringFromDate]];    
 }
-
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -65,29 +102,8 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
 
-    self.headerView = nil;
-	self.profileImageView = nil;
-	self.nameLabel = nil;
-	self.friendsCountLabel = nil;
-	self.tableView = nil;
-	self.lastUpdatedLabel = nil;
-}
-
-- (void)dealloc
-{
-	[queue cancelAllOperations];
-
-
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    return YES;
-}
+#pragma mark - IBAction
 
 - (IBAction)refreshButtonTapped:(id)sender
 {
@@ -96,14 +112,14 @@
     [sheet showInView:self.view];
 }
 
-- (IBAction)logoutButtonTapped:(id)sender
+- (void)logoutButtonTapped:(id)sender
 {
     UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:@"To protect your privacy, all stored friend information will be deleted when you logout." delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Logout" otherButtonTitles:nil];
     sheet.tag = kLogoutActionSheetTag;
     [sheet showInView:self.view];
 }
 
-- (IBAction)debugButtonTapped:(id)sender
+- (void)debugButtonTapped:(id)sender
 {
     for ( id object in [Geocode allGeocodes] )
     {
@@ -132,60 +148,16 @@
 }
 
 
-#pragma mark -
-#pragma mark Profile Image
-
-- (void)loadProfileImage
-{
-    if ( queue )
-    {
-        [queue cancelAllOperations];
-    }
-    queue = [[NSOperationQueue alloc] init];
-    
-    self.currentUser = [User currentUser];
-	NSString* avatarURL = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=normal", currentUser.id];
-	
-    AsyncImageOperation* op = [[AsyncImageOperation alloc] initWithURL:avatarURL delegate:self];
-    [queue addOperation:op];
-}
-
-- (void)operation:(AsyncImageOperation*)op didLoadData:(NSData*)data
-{
-    [self performSelectorOnMainThread:@selector(setImageViewWithData:) withObject:data waitUntilDone:NO];
-}
-
-- (void)setImageViewWithData:(NSData*)data
-{
-    UIImage* image = [UIImage imageWithData:data];
-    headerView.frame = CGRectMake(0, 0, headerView.frame.size.width, image.size.height + 20.0 );
-    self.tableView.tableHeaderView = headerView;
-    profileImageView.image = image;
-    
-    CALayer* layer = [profileImageView layer];
-    [layer setMasksToBounds:YES];
-    [layer setCornerRadius:10.0];
-    [layer setBorderWidth:1.0];
-    [layer setBorderColor:[[UIColor darkGrayColor] CGColor]];
-}
-
-
-#pragma mark -
-#pragma mark Table View
+#pragma mark - Table View
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [menuStructureArray count];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	return 44;
+    return [self.menuStructureArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	static NSString * cellIdentifier = @"Cell";
+	static NSString * cellIdentifier = @"BasicCell";
 	
 	UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 	
@@ -196,12 +168,11 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
 	
-	NSDictionary* menuDictionary = menuStructureArray[indexPath.row];
+	NSDictionary* menuDictionary = self.menuStructureArray[indexPath.row];
     cell.textLabel.text = menuDictionary[@"title"];
     
     UIImage* iconImage = [UIImage imageNamed:menuDictionary[@"property"]];
     cell.imageView.image = iconImage;
-    
     
     return cell;
 }
@@ -210,7 +181,7 @@
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 	
-	NSDictionary* menuDictionary = menuStructureArray[indexPath.row];
+	NSDictionary* menuDictionary = self.menuStructureArray[indexPath.row];
 	NSString* viewControllerName = menuDictionary[@"viewController"];
 	Class aClass = [[NSBundle mainBundle] classNamed:viewControllerName];
 
@@ -218,34 +189,20 @@
     childVC.title = menuDictionary[@"title"];
 	if ( [childVC isKindOfClass:[ArrayBasedTableViewController class]] )
 	{
-		((ArrayBasedTableViewController*)childVC).property = menuStructureArray[indexPath.row][@"property"];
+		((ArrayBasedTableViewController*)childVC).property = self.menuStructureArray[indexPath.row][@"property"];
 	}
     [self.navigationController pushViewController:childVC animated:YES];
 }
 
 
-#pragma mark -
-#pragma mark Facebook
+#pragma mark - Facebook
 
 - (void)facebookLogout
 {
-//	[[FacebookClient sharedFacebook] logout:self];
-}
-
-
-#pragma mark -
-#pragma mark FBSessionDelegate
-
-- (void)fbDidLogout
-{
-	NSLog(@"did logout");
-
+    [FBSession.activeSession closeAndClearTokenInformation];
 	[(AppDelegate*)[[UIApplication sharedApplication] delegate] deleteCoreDataStorage];
-	
 	[self.navigationController popViewControllerAnimated:YES];
 }
-
-
 
 
 

@@ -10,37 +10,36 @@
 #import "FacebookSDK.h"
 #import "User.h"
 
+
+
 @interface FBRequestOperation ()
-- (void)finish;
+
+@property (nonatomic) BOOL isExecuting;
+@property (nonatomic) BOOL isFinished;
+
 @end
+
 
 
 @implementation FBRequestOperation
 
-@synthesize delegate;
-@synthesize graphPath, request;
-@synthesize isExecuting, isFinished;
 
-
-- (id)initWithGraphPath:(NSString*)thePath delegate:(id <FBRequestOperationDelegate>)theDelegate
+- (id)initWithGraphPath:(NSString*)thePath
 {
 	if ( (self = [super init]) )
 	{
-		self.delegate = theDelegate;
 		self.graphPath = thePath;
 		
-		isExecuting = NO;
-		isFinished = NO;
+		self.isExecuting = NO;
+		self.isFinished = NO;
 	}
 	return self;
 }
-
 
 - (BOOL)isConcurrent
 {
     return YES;
 }
-
 
 - (void)start
 {
@@ -51,56 +50,37 @@
     }
     
     [self willChangeValueForKey:@"isExecuting"];
-	isExecuting = YES;
+	self.isExecuting = YES;
     [self didChangeValueForKey:@"isExecuting"];
 	
-//	self.request = [[FacebookClient sharedFacebook] requestWithGraphPath:graphPath andDelegate:self];
-
-    if (request == nil)
-        [self finish];
+    [FBRequestConnection startWithGraphPath:self.graphPath completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+        
+        if (!error)
+        {
+            [User existingOrNewUserWithDictionary:result];            
+            [self finish];
+        }
+        else
+        {
+            NSLog(@"FBRequest failed with error: %@", error);
+            [self finish];
+        }
+    }];
 }
 
 - (void)finish
 {
-    request = nil;
-    
     [self willChangeValueForKey:@"isExecuting"];
     [self willChangeValueForKey:@"isFinished"];
 	
-    isExecuting = NO;
-    isFinished = YES;
+    self.isExecuting = NO;
+    self.isFinished = YES;
 	
     [self didChangeValueForKey:@"isExecuting"];
     [self didChangeValueForKey:@"isFinished"];
 }
 
 
-#pragma mark -
-#pragma mark FBRequestDelegate
-
-- (void)request:(FBRequest *)request didLoad:(id)result
-{
-	[User existingOrNewUserWithDictionary:result];
-    
-	if ( [delegate respondsToSelector:@selector(requestOpertaion:didLoad:)] )
-	{
-		[delegate requestOpertaion:self didLoad:result];
-	}
-
-	[self finish];
-}
-
-- (void)request:(FBRequest *)request didFailWithError:(NSError *)error
-{
-	NSLog(@"FBRequest failed with error: %@", error);
-    
-	if ( [delegate respondsToSelector:@selector(requestOpertaion:didFailWithError:)] )
-	{
-		[delegate requestOpertaion:self didFailWithError:error];
-	}
-    
-	[self finish];    
-}
 
 
 

@@ -21,7 +21,7 @@
 
 - (NSArray*)objectsForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ObjectAttribute* object = [fetchedResultsController objectAtIndexPath:indexPath];
+    ObjectAttribute* object = [self.fetchedResultsController objectAtIndexPath:indexPath];
     NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
     NSArray* array = [object.owners sortedArrayUsingDescriptors:@[sortDescriptor]];
     

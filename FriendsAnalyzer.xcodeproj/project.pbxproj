@@ -26,7 +26,6 @@
 		7C4995E71342758500A49BBA /* PieChartObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4995E61342758500A49BBA /* PieChartObject.m */; };
 		7C4DD511131D8081006C69CF /* MenuStructure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C4DD510131D8081006C69CF /* MenuStructure.plist */; };
 		7C4DD51B131D852A006C69CF /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4DD519131D852A006C69CF /* MainMenuViewController.m */; };
-		7C4DD51C131D852A006C69CF /* MainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C4DD51A131D852A006C69CF /* MainMenuViewController.xib */; };
 		7C5141F7133BF991001A0573 /* LastNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5141F6133BF990001A0573 /* LastNameViewController.m */; };
 		7C5141FA133BF9A0001A0573 /* FullNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5141F9133BF99F001A0573 /* FullNameViewController.m */; };
 		7C5EB55D13F328720063F116 /* UIColor+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5EB55C13F328720063F116 /* UIColor+Utilities.m */; };
@@ -42,6 +41,10 @@
 		7C83D9D9132574290059BBF0 /* LocationName.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C83D9D8132574290059BBF0 /* LocationName.m */; };
 		7C83D9DC1325742A0059BBF0 /* Geocode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C83D9DB1325742A0059BBF0 /* Geocode.m */; };
 		7C83D9DE1325745F0059BBF0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C83D9DD1325745F0059BBF0 /* CoreLocation.framework */; };
+		7C92D6351602865C00161D93 /* libSDWebImageARC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CB3CAA11602774B00AE6707 /* libSDWebImageARC.a */; };
+		7C92D6471602876B00161D93 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C92D6461602876B00161D93 /* ImageIO.framework */; };
+		7C92D64E16028E8400161D93 /* CounterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C92D64D16028E8400161D93 /* CounterCell.m */; };
+		7C92D65016028E9200161D93 /* CounterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C92D64F16028E9200161D93 /* CounterCell.xib */; };
 		7CB284F213FC3AFD00728417 /* button_facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284D213FC3AFD00728417 /* button_facebook.png */; };
 		7CB284F313FC3AFD00728417 /* button_facebook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284D313FC3AFD00728417 /* button_facebook@2x.png */; };
 		7CB284F913FC3AFD00728417 /* birthday.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB284DA13FC3AFD00728417 /* birthday.png */; };
@@ -96,7 +99,6 @@
 		7CE46EE0160183A0009D3A5A /* icon-tile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CE46EDC160183A0009D3A5A /* icon-tile@2x.png */; };
 		7CE46EE1160187EF009D3A5A /* corporate-rounded-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7CE46ED816017ED8009D3A5A /* corporate-rounded-bold.ttf */; };
 		7CE46EEA16018A06009D3A5A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CE46ED4160177BC009D3A5A /* Default-568h@2x.png */; };
-		7CEE3BF013390B320004D50C /* AsyncImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEE3BEF13390B320004D50C /* AsyncImageOperation.m */; };
 		7CEE3BFC133946EB0004D50C /* EducationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEE3BFB133946EB0004D50C /* EducationTableViewController.m */; };
 		7CEE3BFF133946FB0004D50C /* EducationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEE3BFE133946FB0004D50C /* EducationTableViewCell.m */; };
 		7CEF039F132DBAA10058FD63 /* ObjectAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEF039E132DBAA10058FD63 /* ObjectAttribute.m */; };
@@ -131,6 +133,34 @@
 			remoteGlobalIDString = D2AAC07D0554694100DB518D;
 			remoteInfo = "facebook-ios-sdk";
 		};
+		7C92D6331602865800161D93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7CB3CA951602774B00AE6707 /* SDWebImage.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 53761307155AD0D5005750A4;
+			remoteInfo = "SDWebImage ARC";
+		};
+		7CB3CA9E1602774B00AE6707 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7CB3CA951602774B00AE6707 /* SDWebImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 53922D6F148C55820056699D;
+			remoteInfo = SDWebImage;
+		};
+		7CB3CAA01602774B00AE6707 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7CB3CA951602774B00AE6707 /* SDWebImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 53761325155AD0D5005750A4;
+			remoteInfo = "SDWebImage ARC";
+		};
+		7CB3CAA21602774B00AE6707 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7CB3CA951602774B00AE6707 /* SDWebImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 531041E0157EAFA400BBABC3;
+			remoteInfo = "SDWebImage ARC+MKAnnotation";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -164,7 +194,6 @@
 		7C4DD510131D8081006C69CF /* MenuStructure.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MenuStructure.plist; sourceTree = "<group>"; };
 		7C4DD518131D852A006C69CF /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
 		7C4DD519131D852A006C69CF /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
-		7C4DD51A131D852A006C69CF /* MainMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenuViewController.xib; sourceTree = "<group>"; };
 		7C5141F5133BF990001A0573 /* LastNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LastNameViewController.h; sourceTree = "<group>"; };
 		7C5141F6133BF990001A0573 /* LastNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LastNameViewController.m; sourceTree = "<group>"; };
 		7C5141F8133BF99F001A0573 /* FullNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullNameViewController.h; sourceTree = "<group>"; };
@@ -190,6 +219,10 @@
 		7C83D9DA1325742A0059BBF0 /* Geocode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Geocode.h; sourceTree = "<group>"; };
 		7C83D9DB1325742A0059BBF0 /* Geocode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Geocode.m; sourceTree = "<group>"; };
 		7C83D9DD1325745F0059BBF0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		7C92D6461602876B00161D93 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		7C92D64C16028E8400161D93 /* CounterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CounterCell.h; sourceTree = "<group>"; };
+		7C92D64D16028E8400161D93 /* CounterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CounterCell.m; sourceTree = "<group>"; };
+		7C92D64F16028E9200161D93 /* CounterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CounterCell.xib; sourceTree = "<group>"; };
 		7CB284D213FC3AFD00728417 /* button_facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_facebook.png; sourceTree = "<group>"; };
 		7CB284D313FC3AFD00728417 /* button_facebook@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_facebook@2x.png"; sourceTree = "<group>"; };
 		7CB284DA13FC3AFD00728417 /* birthday.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = birthday.png; sourceTree = "<group>"; };
@@ -216,6 +249,7 @@
 		7CB284EF13FC3AFD00728417 /* updated_time@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "updated_time@2x.png"; sourceTree = "<group>"; };
 		7CB284F013FC3AFD00728417 /* work.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = work.png; sourceTree = "<group>"; };
 		7CB284F113FC3AFD00728417 /* work@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "work@2x.png"; sourceTree = "<group>"; };
+		7CB3CA951602774B00AE6707 /* SDWebImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDWebImage.xcodeproj; path = SDWebImage/SDWebImage.xcodeproj; sourceTree = "<group>"; };
 		7CC5B0D4131D6F6200FEA4DE /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7CC5B0D5131D6F6200FEA4DE /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		7CC5B0D6131D6F6200FEA4DE /* UserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTableViewController.h; sourceTree = "<group>"; };
@@ -259,8 +293,6 @@
 		7CE46EDA160183A0009D3A5A /* finfo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "finfo@2x.png"; sourceTree = "<group>"; };
 		7CE46EDB160183A0009D3A5A /* icon-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-tile.png"; sourceTree = "<group>"; };
 		7CE46EDC160183A0009D3A5A /* icon-tile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-tile@2x.png"; sourceTree = "<group>"; };
-		7CEE3BEE13390B320004D50C /* AsyncImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageOperation.h; sourceTree = "<group>"; };
-		7CEE3BEF13390B320004D50C /* AsyncImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageOperation.m; sourceTree = "<group>"; };
 		7CEE3BFA133946EB0004D50C /* EducationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EducationTableViewController.h; sourceTree = "<group>"; };
 		7CEE3BFB133946EB0004D50C /* EducationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EducationTableViewController.m; sourceTree = "<group>"; };
 		7CEE3BFD133946FA0004D50C /* EducationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EducationTableViewCell.h; sourceTree = "<group>"; };
@@ -288,6 +320,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C92D6471602876B00161D93 /* ImageIO.framework in Frameworks */,
+				7C92D6351602865C00161D93 /* libSDWebImageARC.a in Frameworks */,
 				7C60BD171601979A00520A1D /* libfacebook_ios_sdk.a in Frameworks */,
 				7C83D9DE1325745F0059BBF0 /* CoreLocation.framework in Frameworks */,
 				7C83D9D613256D4B0059BBF0 /* MapKit.framework in Frameworks */,
@@ -311,7 +345,6 @@
 				7CC5B10A131D6F6B00FEA4DE /* Root View */,
 				7C4DD517131D8514006C69CF /* Main Menu View */,
 				7C37C307131EEC7E004EFA64 /* Name View */,
-				7CEF039C132DB6B40058FD63 /* Gender View */,
 				7C13AF851321487F001FD36C /* Birthday View */,
 				7C83D9CF13256B710059BBF0 /* Location View */,
 				7C1FF31A132EA9D000110D03 /* Work View */,
@@ -320,6 +353,7 @@
 				7C4DD677131DA42F006C69CF /* Table View */,
 				7C42EFD51333DD6100BA6B5F /* User Detail View */,
 				7CC5B10E131D6FAB00FEA4DE /* Pie Chart */,
+				7C92D64816028E2000161D93 /* UI Elements */,
 				7C83D9DF13257D2F0059BBF0 /* Utilities */,
 				7CC5B10D131D6F8D00FEA4DE /* Categories */,
 				7CC5B10B131D6F7700FEA4DE /* Data Models */,
@@ -338,6 +372,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				7C92D6461602876B00161D93 /* ImageIO.framework */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -366,7 +401,6 @@
 				7CC759AA1402C0E7004FE650 /* icon.png */,
 				7CC759A91402C0E7004FE650 /* icon-72.png */,
 				7CC759AB1402C0E7004FE650 /* icon@2x.png */,
-				28D3F201112F7DC200FD0661 /* FriendsAnalyzer.xcdatamodeld */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				7CE46ED816017ED8009D3A5A /* corporate-rounded-bold.ttf */,
 				8D1107310486CEB800E47090 /* FriendsAnalyzer-Info.plist */,
@@ -454,7 +488,6 @@
 			children = (
 				7C4DD518131D852A006C69CF /* MainMenuViewController.h */,
 				7C4DD519131D852A006C69CF /* MainMenuViewController.m */,
-				7C4DD51A131D852A006C69CF /* MainMenuViewController.xib */,
 				7C4DD510131D8081006C69CF /* MenuStructure.plist */,
 			);
 			name = "Main Menu View";
@@ -476,6 +509,7 @@
 		7C60BD081601977600520A1D /* External */ = {
 			isa = PBXGroup;
 			children = (
+				7CB3CA951602774B00AE6707 /* SDWebImage.xcodeproj */,
 				7C60BD091601978B00520A1D /* facebook-ios-sdk.xcodeproj */,
 			);
 			name = External;
@@ -514,10 +548,18 @@
 				7C37C1A3131EA0FC004EFA64 /* FBRequestOperation.m */,
 				7C79F60313FC565A00E86629 /* ForwardGeocodingOperationV2.h */,
 				7C79F60413FC565A00E86629 /* ForwardGeocodingOperationV2.m */,
-				7CEE3BEE13390B320004D50C /* AsyncImageOperation.h */,
-				7CEE3BEF13390B320004D50C /* AsyncImageOperation.m */,
 			);
 			name = Utilities;
+			sourceTree = "<group>";
+		};
+		7C92D64816028E2000161D93 /* UI Elements */ = {
+			isa = PBXGroup;
+			children = (
+				7C92D64C16028E8400161D93 /* CounterCell.h */,
+				7C92D64D16028E8400161D93 /* CounterCell.m */,
+				7C92D64F16028E9200161D93 /* CounterCell.xib */,
+			);
+			name = "UI Elements";
 			sourceTree = "<group>";
 		};
 		7CB284D113FC3AFD00728417 /* Images */ = {
@@ -565,6 +607,16 @@
 			path = Icons;
 			sourceTree = "<group>";
 		};
+		7CB3CA961602774B00AE6707 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7CB3CA9F1602774B00AE6707 /* libSDWebImage.a */,
+				7CB3CAA11602774B00AE6707 /* libSDWebImageARC.a */,
+				7CB3CAA31602774B00AE6707 /* libSDWebImageARC+MKAnnotation.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		7CC5B10A131D6F6B00FEA4DE /* Root View */ = {
 			isa = PBXGroup;
 			children = (
@@ -577,6 +629,7 @@
 		7CC5B10B131D6F7700FEA4DE /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
+				28D3F201112F7DC200FD0661 /* FriendsAnalyzer.xcdatamodeld */,
 				7CC5B185131D764700FEA4DE /* EnhancedManagedObject.h */,
 				7CC5B186131D764700FEA4DE /* EnhancedManagedObject.m */,
 				7CEF039D132DBAA10058FD63 /* ObjectAttribute.h */,
@@ -658,13 +711,6 @@
 			path = FlurryAnalytics;
 			sourceTree = "<group>";
 		};
-		7CEF039C132DB6B40058FD63 /* Gender View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Gender View";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -679,6 +725,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				7C92D6341602865800161D93 /* PBXTargetDependency */,
 				7C60BD161601979700520A1D /* PBXTargetDependency */,
 			);
 			name = FriendsAnalyzer;
@@ -712,6 +759,10 @@
 					ProductGroup = 7C60BD0A1601978B00520A1D /* Products */;
 					ProjectRef = 7C60BD091601978B00520A1D /* facebook-ios-sdk.xcodeproj */;
 				},
+				{
+					ProductGroup = 7CB3CA961602774B00AE6707 /* Products */;
+					ProjectRef = 7CB3CA951602774B00AE6707 /* SDWebImage.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -735,6 +786,27 @@
 			remoteRef = 7C60BD131601978B00520A1D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		7CB3CA9F1602774B00AE6707 /* libSDWebImage.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSDWebImage.a;
+			remoteRef = 7CB3CA9E1602774B00AE6707 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7CB3CAA11602774B00AE6707 /* libSDWebImageARC.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSDWebImageARC.a;
+			remoteRef = 7CB3CAA01602774B00AE6707 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7CB3CAA31602774B00AE6707 /* libSDWebImageARC+MKAnnotation.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libSDWebImageARC+MKAnnotation.a";
+			remoteRef = 7CB3CAA21602774B00AE6707 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -745,7 +817,6 @@
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				7CC5B0FD131D6F6200FEA4DE /* PieChartColorScheme.plist in Resources */,
 				7C4DD511131D8081006C69CF /* MenuStructure.plist in Resources */,
-				7C4DD51C131D852A006C69CF /* MainMenuViewController.xib in Resources */,
 				7C13AF8A132149E8001FD36C /* MainWindow~ipad.xib in Resources */,
 				7C74C55813219060003258AC /* Horoscope.plist in Resources */,
 				7C83D9D413256BA10059BBF0 /* LocationViewController.xib in Resources */,
@@ -789,6 +860,7 @@
 				7CE46EE0160183A0009D3A5A /* icon-tile@2x.png in Resources */,
 				7CE46EE1160187EF009D3A5A /* corporate-rounded-bold.ttf in Resources */,
 				7CE46EEA16018A06009D3A5A /* Default-568h@2x.png in Resources */,
+				7C92D65016028E9200161D93 /* CounterCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -836,7 +908,6 @@
 				7C70C00A13315F3000E1B87C /* WorkTableViewCell.m in Sources */,
 				7C70C00D1331614C00E1B87C /* PositionViewController.m in Sources */,
 				7C42EFD91333DD8300BA6B5F /* UserDetailViewController.m in Sources */,
-				7CEE3BF013390B320004D50C /* AsyncImageOperation.m in Sources */,
 				7CEE3BFC133946EB0004D50C /* EducationTableViewController.m in Sources */,
 				7CEE3BFF133946FB0004D50C /* EducationTableViewCell.m in Sources */,
 				7C5141F7133BF991001A0573 /* LastNameViewController.m in Sources */,
@@ -844,6 +915,7 @@
 				7C4995E71342758500A49BBA /* PieChartObject.m in Sources */,
 				7C5EB55D13F328720063F116 /* UIColor+Utilities.m in Sources */,
 				7C79F60513FC565A00E86629 /* ForwardGeocodingOperationV2.m in Sources */,
+				7C92D64E16028E8400161D93 /* CounterCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -854,6 +926,11 @@
 			isa = PBXTargetDependency;
 			name = "facebook-ios-sdk";
 			targetProxy = 7C60BD151601979700520A1D /* PBXContainerItemProxy */;
+		};
+		7C92D6341602865800161D93 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "SDWebImage ARC";
+			targetProxy = 7C92D6331602865800161D93 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -868,7 +945,10 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = FriendsAnalyzer_Prefix.pch;
-				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/facebook-ios-sdk/src\"";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SOURCE_ROOT)/facebook-ios-sdk/src\"",
+					"\"$(SOURCE_ROOT)/SDWebImage/**",
+				);
 				INFOPLIST_FILE = "FriendsAnalyzer-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -892,7 +972,10 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = FriendsAnalyzer_Prefix.pch;
-				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/facebook-ios-sdk/src\"";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SOURCE_ROOT)/facebook-ios-sdk/src\"",
+					"\"$(SOURCE_ROOT)/SDWebImage/**",
+				);
 				INFOPLIST_FILE = "FriendsAnalyzer-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -971,7 +1054,8 @@
 				28860B760F44E54D00985440 /* FriendsAnalyzer.xcdatamodel */,
 			);
 			currentVersion = 28860B760F44E54D00985440 /* FriendsAnalyzer.xcdatamodel */;
-			path = FriendsAnalyzer.xcdatamodeld;
+			name = FriendsAnalyzer.xcdatamodeld;
+			path = ../FriendsAnalyzer.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

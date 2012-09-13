@@ -10,16 +10,8 @@
 #import "PieChartView.h"
 
 
-@interface BirthdayViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
-{
-    UITableView* tableView;
-    UISegmentedControl* segmentedControl;
-    PieChartView* pieChartView;
-    NSFetchedResultsController* fetchedResultsController;
-    NSArray* monthNameArray;
-}
+@interface BirthdayViewController : UITableViewController
 
-@property (nonatomic, strong) UITableView* tableView;
 @property (nonatomic, strong) UISegmentedControl* segmentedControl;
 @property (nonatomic, strong) PieChartView* pieChartView;
 @property (nonatomic, strong) NSFetchedResultsController* fetchedResultsController;

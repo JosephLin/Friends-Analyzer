@@ -103,14 +103,14 @@
     
     NSString* urlString = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=normal", user.id];
     
-    AsyncImageOperation* op = [[AsyncImageOperation alloc] initWithURL:urlString delegate:self];
-    [queue addOperation:op];
+//    AsyncImageOperation* op = [[AsyncImageOperation alloc] initWithURL:urlString delegate:self];
+//    [queue addOperation:op];
 }
 
-- (void)operation:(AsyncImageOperation*)op didLoadData:(NSData*)data
-{
-    [self performSelectorOnMainThread:@selector(setImageViewWithData:) withObject:data waitUntilDone:NO];
-}
+//- (void)operation:(AsyncImageOperation*)op didLoadData:(NSData*)data
+//{
+//    [self performSelectorOnMainThread:@selector(setImageViewWithData:) withObject:data waitUntilDone:NO];
+//}
 
 - (void)setImageViewWithData:(NSData*)data
 {

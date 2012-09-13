@@ -10,10 +10,9 @@
 #import "User.h"
 #import "Work.h"
 #import "Education.h"
-#import "AsyncImageOperation.h"
 
 
-@interface UserDetailViewController : UITableViewController <AsyncImageOperationDelegate>
+@interface UserDetailViewController : UITableViewController
 {
     User* user;
     

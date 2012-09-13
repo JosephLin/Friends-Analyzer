@@ -125,13 +125,18 @@ typedef enum {
 
 - (IBAction)loginButtonTapped:(id)sender
 {
-	[self openFacebookSession];
+	[self openSessionWithAllowLoginUI:YES];
+}
+
+- (void)showMainMenuViewController
+{
+    [self performSegueWithIdentifier:@"MainMenuSegue" sender:self];
 }
 
 
 #pragma mark - Facebook
 
-- (void)openFacebookSession
+- (BOOL)openSessionWithAllowLoginUI:(BOOL)allowLoginUI
 {
     NSArray* permissions = @[@"user_about_me", @"friends_about_me",
     @"user_birthday", @"friends_birthday",
@@ -142,8 +147,9 @@ typedef enum {
     @"user_work_history", @"friends_work_history",
     @"user_education_history", @"friends_education_history"];
 	
-
-    [FBSession sessionOpenWithPermissions:permissions completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
+    return [FBSession openActiveSessionWithPermissions:permissions
+                                          allowLoginUI:allowLoginUI
+                                     completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
         
         switch (state)
         {
@@ -204,7 +210,7 @@ typedef enum {
     }
     else
     {
-        [self openFacebookSession];
+        [self openSessionWithAllowLoginUI:NO];
     }
 }
 
@@ -247,17 +253,11 @@ typedef enum {
 	for ( id friend in self.currentUser.friends )
 	{
 		NSString* friendID = friend[@"id"];
-		FBRequestOperation* op = [[FBRequestOperation alloc] initWithGraphPath:friendID delegate:nil];
+		FBRequestOperation* op = [[FBRequestOperation alloc] initWithGraphPath:friendID];
 		[opArray addObject:op];
 	}
 	[self.queue setMaxConcurrentOperationCount:5];
 	[self.queue addOperations:opArray waitUntilFinished:NO];
-}
-
-- (void)showMainMenuViewController
-{
-	MainMenuViewController* childVC = [[MainMenuViewController alloc] init];
-	[self.navigationController pushViewController:childVC animated:YES];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context

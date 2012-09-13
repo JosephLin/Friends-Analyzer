@@ -16,35 +16,22 @@
 
 @implementation BirthdayViewController
 
-@synthesize tableView, segmentedControl;
-@synthesize pieChartView;
-@synthesize fetchedResultsController;
-@synthesize monthNameArray;
-
-
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
-    tableView.delegate = self;
-    tableView.dataSource = self;
-    tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [self.view addSubview:tableView];
-    
     
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
     self.monthNameArray = [dateFormatter monthSymbols];
     
     NSArray* controlItems = @[@"Age", @"Date", @"Zodiac"];
     self.segmentedControl = [[UISegmentedControl alloc] initWithItems:controlItems];
-	segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-	segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-	[segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];	
-	self.navigationItem.titleView = segmentedControl;
+	self.segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+	self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+    self.segmentedControl.selectedSegmentIndex = 0;
+	[self.segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
+	self.navigationItem.titleView = self.segmentedControl;
     
-    segmentedControl.selectedSegmentIndex = 0;
     
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_pie_chart"]
@@ -53,38 +40,27 @@
 																			  action:@selector(toggleChartView)];
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    self.tableView = nil;
-    self.segmentedControl = nil;
-    self.pieChartView = nil;
-}
-
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return YES;
-}
-
 - (void)segmentedControlValueChanged:(UISegmentedControl*)sender
 {
     self.fetchedResultsController = [self fetchedResultsControllerOfType:sender.selectedSegmentIndex];    
     [self.tableView reloadData];
     
-    if ( segmentedControl.selectedSegmentIndex == 1 )
+    if ( self.segmentedControl.selectedSegmentIndex == 1 )
     {
-        [pieChartView setPieChartWithKeys:[[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"] values:[[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.numberOfObjects"] displayNames:monthNameArray];
+        [self.pieChartView setPieChartWithKeys:[self.fetchedResultsController.sections valueForKeyPath:@"@unionOfObjects.name"]
+                                        values:[self.fetchedResultsController.sections valueForKeyPath:@"@unionOfObjects.numberOfObjects"]
+                                  displayNames:self.monthNameArray];
     }
     else
     {
-        [pieChartView setPieChartWithKeys:[[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"] values:[[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.numberOfObjects"]];
+        [self.pieChartView setPieChartWithKeys:[self.fetchedResultsController.sections valueForKeyPath:@"@unionOfObjects.name"]
+                                        values:[self.fetchedResultsController.sections valueForKeyPath:@"@unionOfObjects.numberOfObjects"]];
     }
 }
 
 - (void)toggleChartView
 {
-    if ( [pieChartView superview] )
+    if ( [self.pieChartView superview] )
     {
         self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"icon_pie_chart"];
         
@@ -93,20 +69,23 @@
         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
         [UIView setAnimationDuration:kAnimationDuration];
         
-        [pieChartView removeFromSuperview]; 
+        [self.pieChartView removeFromSuperview]; 
         
         [UIView commitAnimations];
     }
     else
     {
         self.pieChartView.frame = self.view.bounds;
-        if ( segmentedControl.selectedSegmentIndex == 1 )
+        if ( self.segmentedControl.selectedSegmentIndex == 1 )
         {
-            [pieChartView setPieChartWithKeys:[[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"] values:[[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.numberOfObjects"] displayNames:monthNameArray];
+            [self.pieChartView setPieChartWithKeys:[[self.fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"]
+                                            values:[[self.fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.numberOfObjects"]
+                                      displayNames:self.monthNameArray];
         }
         else
         {
-            [pieChartView setPieChartWithKeys:[[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"] values:[[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.numberOfObjects"]];
+            [self.pieChartView setPieChartWithKeys:[[self.fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"]
+                                            values:[[self.fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.numberOfObjects"]];
         }
         
         self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"icon_table_view"];
@@ -124,21 +103,21 @@
 
 - (PieChartView*)pieChartView
 {
-    if ( !pieChartView )
+    if ( !_pieChartView )
     {
-        pieChartView = [[PieChartView alloc] initWithFrame:self.view.bounds];
-        pieChartView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        _pieChartView = [[PieChartView alloc] initWithFrame:self.view.bounds];
+        _pieChartView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
-    return pieChartView;
+    return _pieChartView;
 }
 
 - (NSDictionary*)userCountDict
 {
-    NSArray* sectionIndexTitles = ( segmentedControl.selectedSegmentIndex == 1 )
-    ? monthNameArray
-    : [[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"];
+    NSArray* sectionIndexTitles = ( self.segmentedControl.selectedSegmentIndex == 1 )
+    ? self.monthNameArray
+    : [[self.fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"];
 
-    NSArray* counts = [[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.numberOfObjects"];
+    NSArray* counts = [[self.fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.numberOfObjects"];
     
     NSDictionary* dict = [NSDictionary dictionaryWithObjects:counts forKeys:sectionIndexTitles];
     return dict;
@@ -169,7 +148,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
     
-    User* user = [fetchedResultsController objectAtIndexPath:indexPath];
+    User* user = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = user.name;
     
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%02d/%02d",
@@ -180,16 +159,16 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 { 
-    id <NSFetchedResultsSectionInfo> sectionInfo = [fetchedResultsController sections][section];
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
     
-    switch (segmentedControl.selectedSegmentIndex)
+    switch (self.segmentedControl.selectedSegmentIndex)
     {
         case 0:    // Age
             return [NSString stringWithFormat:@"%@ years old", [sectionInfo name]];
 
         case 1:     // Date
         {
-            NSString* monthName = monthNameArray[[[sectionInfo name] integerValue] - 1];
+            NSString* monthName = self.monthNameArray[[[sectionInfo name] integerValue] - 1];
             return monthName;
         }
             
@@ -200,14 +179,14 @@
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-    NSArray* sectionIndexTitles = [[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"];
+    NSArray* sectionIndexTitles = [[self.fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"];
     return sectionIndexTitles;
 //  return [fetchedResultsController sectionIndexTitles];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
 {
-    NSArray* sectionIndexTitles = [[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"];
+    NSArray* sectionIndexTitles = [[self.fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"];
     return [sectionIndexTitles indexOfObject:title];
 //  return [fetchedResultsController sectionForSectionIndexTitle:title atIndex:index];
 }
@@ -220,7 +199,7 @@
 {
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    User* user = [fetchedResultsController objectAtIndexPath:indexPath];
+    User* user = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     UserDetailViewController* childVC = [[UserDetailViewController alloc] initWithNibName:@"UserDetailViewController" bundle:nil];
     childVC.user = user;
@@ -233,11 +212,11 @@
 
 - (NSFetchedResultsController*)fetchedResultsController
 {
-    if ( !fetchedResultsController)
+    if ( !_fetchedResultsController)
     {
-        fetchedResultsController = [self fetchedResultsControllerOfType:segmentedControl.selectedSegmentIndex];
+        _fetchedResultsController = [self fetchedResultsControllerOfType:self.segmentedControl.selectedSegmentIndex];
     }
-    return fetchedResultsController;
+    return _fetchedResultsController;
 }
 
 - (NSFetchedResultsController*)fetchedResultsControllerOfType:(NSInteger)selectedSegmentIndex
@@ -249,7 +228,7 @@
     NSPredicate* predicate = nil;
     NSString* sectionNameKeyPath = nil;
     
-    switch ( segmentedControl.selectedSegmentIndex )
+    switch ( self.segmentedControl.selectedSegmentIndex )
     {
         case 1:
         {

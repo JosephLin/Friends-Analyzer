@@ -49,15 +49,15 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
+//    // this means the user switched back to this app without completing
+//    // a login in Safari/Facebook App
+//    if (FBSession.activeSession.state == FBSessionStateCreatedOpening) {
+//        [FBSession.activeSession close]; // so we close our session and start over
+//    }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    // this means the user switched back to this app without completing
-    // a login in Safari/Facebook App
-    if (FBSession.activeSession.state == FBSessionStateCreatedOpening) {
-        [FBSession.activeSession close]; // so we close our session and start over
-    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

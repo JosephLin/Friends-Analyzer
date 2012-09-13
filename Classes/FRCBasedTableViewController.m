@@ -8,30 +8,27 @@
 
 #import "FRCBasedTableViewController.h"
 #import "UserTableViewController.h"
-#import "GeocodeTableViewCell.h"
+#import "CounterCell.h"
 
 
 @implementation FRCBasedTableViewController
 
-@synthesize fetchedResultsController;
-@synthesize segmentedControl;
-@synthesize entityName;
-
 
 - (void)viewDidLoad
 {    
+    [super viewDidLoad];
+
     NSArray* controlItems = @[@"Sort By Name", @"Sort By Number"];
     
     self.segmentedControl = [[UISegmentedControl alloc] initWithItems:controlItems];
-    segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-    [segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];    
+    self.segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+    self.segmentedControl.selectedSegmentIndex = 0;
+    [self.segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
     
-    self.navigationItem.titleView = segmentedControl;
+    self.navigationItem.titleView = self.segmentedControl;
     
-    segmentedControl.selectedSegmentIndex = 0;
-    
-    [super viewDidLoad];
+    [self.tableView registerNib:[UINib nibWithNibName:@"CounterCell" bundle:nil] forCellReuseIdentifier:@"CounterCell"];
 }
 
 - (void)segmentedControlValueChanged:(UISegmentedControl*)sender
@@ -57,16 +54,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {    
-    static NSString *CellIdentifier = @"Cell";
+    CounterCell *cell = (CounterCell*)[self.tableView dequeueReusableCellWithIdentifier:@"CounterCell"];
     
-    GeocodeTableViewCell *cell = (GeocodeTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil)
-    {
-        cell = [[GeocodeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleGray;
-    }
-    
-    ObjectAttribute* object = [fetchedResultsController objectAtIndexPath:indexPath];
+    ObjectAttribute* object = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.titleLabel.text = object.name;
     cell.countLabel.text = [NSString stringWithFormat:@"%d", [object.ownerCount intValue]];
     
@@ -75,12 +65,12 @@
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-    NSArray* sectionIndexTitles = [[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"];
+    NSArray* sectionIndexTitles = [[self.fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"];
     return sectionIndexTitles;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
-    NSArray* sectionIndexTitles = [[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"];
+    NSArray* sectionIndexTitles = [[self.fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"];
     return [sectionIndexTitles indexOfObject:title];
 }
 
@@ -92,7 +82,7 @@
 {
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    ObjectAttribute* object = [fetchedResultsController objectAtIndexPath:indexPath];
+    ObjectAttribute* object = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
     UserTableViewController* childVC = [[UserTableViewController alloc] init];
 	childVC.userArray = [self objectsForRowAtIndexPath:indexPath];
@@ -112,11 +102,11 @@
 
 - (NSFetchedResultsController*)fetchedResultsController
 {
-    if ( !fetchedResultsController)
+    if ( !_fetchedResultsController)
     {
-        fetchedResultsController = [self fetchedResultsControllerOfType:segmentedControl.selectedSegmentIndex];
+        _fetchedResultsController = [self fetchedResultsControllerOfType:self.segmentedControl.selectedSegmentIndex];
     }
-    return fetchedResultsController;
+    return _fetchedResultsController;
 }
 
 - (NSFetchedResultsController*)fetchedResultsControllerOfType:(NSInteger)selectedSegmentIndex

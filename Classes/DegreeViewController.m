@@ -24,7 +24,7 @@
 {
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    ObjectAttribute* object = [fetchedResultsController objectAtIndexPath:indexPath];
+    ObjectAttribute* object = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     EducationTableViewController* childVC = [[EducationTableViewController alloc] init];
     childVC.keyPath = @"degree.name";

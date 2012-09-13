@@ -10,9 +10,6 @@
 
 
 @interface NameViewController : UITableViewController
-{
-    NSArray* menuItemArray;
-}
 
 @property (nonatomic, strong) NSArray* menuItemArray;
 

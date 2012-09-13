@@ -11,7 +11,5 @@
 
 
 @interface FullNameViewController : FRCBasedTableViewController
-{
-}
 
 @end

@@ -21,13 +21,13 @@
     NSArray* controlItems = @[@"Full Name", @"Last Name"];
 
     self.segmentedControl = [[UISegmentedControl alloc] initWithItems:controlItems];
-    segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-    [segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];    
+    self.segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+    [self.segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];    
     
-    self.navigationItem.titleView = segmentedControl;
+    self.navigationItem.titleView = self.segmentedControl;
     
-    segmentedControl.selectedSegmentIndex = 0;
+    self.segmentedControl.selectedSegmentIndex = 0;
 }
 
 
@@ -47,8 +47,8 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
-    User* user = [fetchedResultsController objectAtIndexPath:indexPath];
-    if ( segmentedControl.selectedSegmentIndex == 0 )
+    User* user = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    if ( self.segmentedControl.selectedSegmentIndex == 0 )
     {
         cell.textLabel.text = user.name;
     }
@@ -75,7 +75,7 @@
 {
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    User* user = [fetchedResultsController objectAtIndexPath:indexPath];
+    User* user = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     UserDetailViewController* childVC = [[UserDetailViewController alloc] initWithNibName:@"UserDetailViewController" bundle:nil];
 	childVC.user = user;

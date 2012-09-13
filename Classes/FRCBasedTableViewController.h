@@ -11,12 +11,6 @@
 
 
 @interface FRCBasedTableViewController : UITableViewController
-{
-    NSFetchedResultsController* fetchedResultsController;
-    UISegmentedControl* segmentedControl;
-    
-    NSString* entityName;
-}
 
 @property (nonatomic, strong) NSFetchedResultsController* fetchedResultsController;
 @property (nonatomic, strong) UISegmentedControl* segmentedControl;

@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FacebookClient.h"
 #import "User.h"
 
 
-@interface RootViewController : UIViewController <FBSessionDelegate, FBRequestDelegate>
+
+@interface RootViewController : UIViewController
 
 - (void)getUserInfo;
 

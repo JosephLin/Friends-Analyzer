@@ -56,7 +56,7 @@
 //                }
 //                else
                 {
-                    op = [[ForwardGeocodingOperation alloc] initWithQuery:locationName object:user keyPath:@"geocodeHometown"];
+                    op = [[ForwardGeocodingOperationV2 alloc] initWithQuery:locationName object:user keyPath:@"geocodeHometown"];
                 }
                 [opArray addObject:op];
             }

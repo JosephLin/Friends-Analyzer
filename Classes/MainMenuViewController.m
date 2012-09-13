@@ -229,7 +229,7 @@
 
 - (void)facebookLogout
 {
-	[[FacebookClient sharedFacebook] logout:self];
+//	[[FacebookClient sharedFacebook] logout:self];
 }
 
 

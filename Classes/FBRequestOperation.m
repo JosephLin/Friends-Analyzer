@@ -7,7 +7,7 @@
 //
 
 #import "FBRequestOperation.h"
-#import "FacebookClient.h"
+#import "FacebookSDK.h"
 #import "User.h"
 
 @interface FBRequestOperation ()
@@ -54,7 +54,7 @@
 	isExecuting = YES;
     [self didChangeValueForKey:@"isExecuting"];
 	
-	self.request = [[FacebookClient sharedFacebook] requestWithGraphPath:graphPath andDelegate:self];
+//	self.request = [[FacebookClient sharedFacebook] requestWithGraphPath:graphPath andDelegate:self];
 
     if (request == nil)
         [self finish];

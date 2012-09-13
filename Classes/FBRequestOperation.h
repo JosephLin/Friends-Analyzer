@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FacebookClient.h"
+#import "FacebookSDK.h"
 
 
 @protocol FBRequestOperationDelegate;

@@ -53,7 +53,7 @@
 //                }
 //                else
                 {
-                    op = [[ForwardGeocodingOperation alloc] initWithQuery:locationName object:work keyPath:@"geocodeLocation"];
+                    op = [[ForwardGeocodingOperationV2 alloc] initWithQuery:locationName object:work keyPath:@"geocodeLocation"];
                 }
                 [opArray addObject:op];
             }

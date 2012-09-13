@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 #import "MainMenuViewController.h"
 #import "FBRequestOperation.h"
+#import "FacebookSDK.h"
 
 typedef enum {
 	RootViewModeIdle = 0,
@@ -124,38 +125,86 @@ typedef enum {
 
 - (IBAction)loginButtonTapped:(id)sender
 {
-	[self facebookLogin];
+	[self openFacebookSession];
 }
 
 
-#pragma mark -
-#pragma mark Facebook
+#pragma mark - Facebook
 
-- (void)facebookLogin
+- (void)openFacebookSession
 {
-	NSArray* permissions = @[@"user_about_me", @"friends_about_me", 
-							@"user_birthday", @"friends_birthday", 
-							@"user_education_history", @"friends_education_history",
-							@"user_hometown", @"friends_hometown", 
-							@"user_location", @"friends_location", 
-							@"user_relationships", @"friends_relationships", 
-							@"user_work_history", @"friends_work_history",
-							@"user_education_history", @"friends_education_history"];
+    NSArray* permissions = @[@"user_about_me", @"friends_about_me",
+    @"user_birthday", @"friends_birthday",
+    @"user_education_history", @"friends_education_history",
+    @"user_hometown", @"friends_hometown",
+    @"user_location", @"friends_location",
+    @"user_relationships", @"friends_relationships",
+    @"user_work_history", @"friends_work_history",
+    @"user_education_history", @"friends_education_history"];
 	
-	[[FacebookClient sharedFacebook] authorize:permissions delegate:self];
+
+    [FBSession sessionOpenWithPermissions:permissions completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
+        
+        switch (state)
+        {
+            case FBSessionStateOpen:
+                if (!error) {
+                    [self getUserInfo];
+                }
+                break;
+            case FBSessionStateClosed:
+            case FBSessionStateClosedLoginFailed:
+                [FBSession.activeSession closeAndClearTokenInformation];
+                break;
+            default:
+                break;
+        }
+        
+        
+        if (error)
+        {
+            [[[UIAlertView alloc] initWithTitle:@"Error"
+                                        message:error.localizedDescription
+                                       delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil] show];
+        }
+    }];
 }
 
 - (void)getUserInfo
 {
 	[self updateViewForMode:RootViewModeLoadingUserInfo];
 
-    if ( [[FacebookClient sharedFacebook] isSessionValid] )
+    if ( [[FBSession activeSession] isOpen] )
     {
-        self.userInfoRequest = [[FacebookClient sharedFacebook] requestWithGraphPath:@"me" andDelegate:self];
+        [FBRequestConnection startWithGraphPath:@"me" completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+            
+            if (!error)
+            {
+                self.currentUser = [User existingOrNewUserWithDictionary:result];
+                NSLog(@"Current User: %@", self.currentUser);
+                
+                [[NSUserDefaults standardUserDefaults] setObject:self.currentUser.id forKey:@"CurrentUserID"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                
+                [self fetchFriends];
+            }
+            else
+            {
+                [[[UIAlertView alloc] initWithTitle:@"Can't Access User Info"
+                                            message:error.localizedDescription
+                                           delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil] show];
+                
+                [self updateViewForMode:RootViewModeIdle];
+            }
+        }];
     }
     else
     {
-        [self facebookLogin];
+        [self openFacebookSession];
     }
 }
 
@@ -163,7 +212,24 @@ typedef enum {
 {
 	[self updateViewForMode:RootViewModeLoadingUserFriends];
 	
-	self.userFriendsRequest = [[FacebookClient sharedFacebook] requestWithGraphPath:@"me/friends" andDelegate:self];
+    [FBRequestConnection startWithGraphPath:@"me/friends" completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+        
+        if (!error)
+        {
+            self.currentUser.friends = result[@"data"];
+            [self parseFriends];
+        }
+        else
+        {
+            [[[UIAlertView alloc] initWithTitle:@"Can't Access Friend List"
+                                        message:error.localizedDescription
+                                       delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil] show];
+            
+            [self updateViewForMode:RootViewModeIdle];
+        }
+    }];
 }
 
 - (void)parseFriends
@@ -215,81 +281,6 @@ typedef enum {
 	}
 }
 
-
-#pragma mark -
-#pragma mark FBSessionDelegate
-
-- (void)fbDidLogin
-{
-	NSLog(@"did login");
-	[[NSUserDefaults standardUserDefaults] setObject:[FacebookClient sharedFacebook].accessToken forKey:@"AccessToken"];
-	[[NSUserDefaults standardUserDefaults] setObject:[FacebookClient sharedFacebook].expirationDate forKey:@"ExpirationDate"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-
-	[self getUserInfo];
-}
-
--(void)fbDidNotLogin:(BOOL)cancelled
-{
-	NSLog(@"did not login");
-	[self updateViewForMode:RootViewModeIdle];
-}
-
-
-#pragma mark -
-#pragma mark FBRequestDelegate
-
-- (void)request:(FBRequest *)request didLoad:(id)result
-{
-	if ( request == self.userInfoRequest )
-	{
-		self.userInfoRequest = nil;
-
-		self.currentUser = [User existingOrNewUserWithDictionary:result];
-		NSLog(@"Current User: %@", self.currentUser);
-		
-		[[NSUserDefaults standardUserDefaults] setObject:self.currentUser.id forKey:@"CurrentUserID"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-
-		[self fetchFriends];
-	}
-	
-	else if ( request == self.userFriendsRequest )
-	{
-		self.userFriendsRequest = nil;
-		
-		self.currentUser.friends = result[@"data"];
-		
-		[self parseFriends];
-	}
-}
-
-- (void)request:(FBRequest *)request didFailWithError:(NSError *)error
-{
-    if ( request == self.userInfoRequest )
-	{
-		self.userInfoRequest = nil;
-
-		NSLog(@"userInfoRequest failed with error: %@", error);
-        
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Can't Access User Info" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-        
-        [self updateViewForMode:RootViewModeIdle];		
-	}
-	
-	else if ( request == self.userFriendsRequest )
-	{
-		self.userFriendsRequest = nil;
-		
-        NSLog(@"userFriendsRequest failed with error: %@", error);
-        
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Can't Access Friend List" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-		
-        [self updateViewForMode:RootViewModeIdle];		
-	}
-}
 
 
 @end

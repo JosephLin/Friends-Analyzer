@@ -8,11 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "User.h"
-#import "FacebookClient.h"
 #import "AsyncImageOperation.h"
 
 
-@interface MainMenuViewController : UIViewController <FBSessionDelegate, AsyncImageOperationDelegate, UIActionSheetDelegate>
+@interface MainMenuViewController : UIViewController <AsyncImageOperationDelegate, UIActionSheetDelegate>
 {
     UIView* headerView;
 	UIImageView* profileImageView;

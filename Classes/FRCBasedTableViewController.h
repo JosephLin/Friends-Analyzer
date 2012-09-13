@@ -18,9 +18,9 @@
     NSString* entityName;
 }
 
-@property (nonatomic, retain) NSFetchedResultsController* fetchedResultsController;
-@property (nonatomic, retain) UISegmentedControl* segmentedControl;
-@property (nonatomic, retain) NSString* entityName;
+@property (nonatomic, strong) NSFetchedResultsController* fetchedResultsController;
+@property (nonatomic, strong) UISegmentedControl* segmentedControl;
+@property (nonatomic, strong) NSString* entityName;
 
 - (NSFetchedResultsController*)fetchedResultsControllerOfType:(NSInteger)selectedSegmentIndex;
 - (NSArray*)objectsForRowAtIndexPath:(NSIndexPath *)indexPath;

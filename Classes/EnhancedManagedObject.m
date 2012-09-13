@@ -7,14 +7,14 @@
 //
 
 #import "EnhancedManagedObject.h"
-#import "FriendsAnalyzerAppDelegate.h"
+#import "AppDelegate.h"
 
 @implementation EnhancedManagedObject
 
 
 + (NSManagedObjectContext*)managedObjectContext
 {
-	return [(FriendsAnalyzerAppDelegate*)[[UIApplication sharedApplication] delegate] managedObjectContext];
+	return [(AppDelegate*)[[UIApplication sharedApplication] delegate] managedObjectContext];
 }
 
 + (NSEntityDescription*)entity

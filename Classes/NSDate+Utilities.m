@@ -13,7 +13,7 @@
 
 + (NSDate*)dateFromString:(NSString*)dateString format:(NSString*)dateFormat
 {
-	NSDateFormatter* dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+	NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateFormat:dateFormat];
 	
 	NSDate* date = [dateFormatter dateFromString:dateString];
@@ -41,7 +41,7 @@
 
 - (NSString*)stringFromDate
 {
-	NSDateFormatter* dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+	NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateFormat:@"MM/dd/yy hh:mm a"];
 	
 	NSString* dateString = [dateFormatter stringFromDate:self];

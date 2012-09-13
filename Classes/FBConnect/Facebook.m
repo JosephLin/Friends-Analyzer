@@ -47,7 +47,6 @@ static NSString* kSDKVersion = @"2";
 - (id)initWithAppId:(NSString *)app_id {
   self = [super init];
   if (self) {
-    [_appId release];
     _appId = [app_id copy];
   }
   return self;
@@ -56,16 +55,6 @@ static NSString* kSDKVersion = @"2";
 /**
  * Override NSObject : free the space
  */
-- (void)dealloc {
-  [_accessToken release];
-  [_expirationDate release];
-  [_request release];
-  [_loginDialog release];
-  [_fbDialog release];
-  [_appId release];
-  [_permissions release];
-  [super dealloc];
-}
 
 /**
  * A private helper function for sending HTTP requests.
@@ -92,11 +81,10 @@ static NSString* kSDKVersion = @"2";
     [params setValue:self.accessToken forKey:@"access_token"];
   }
 
-  [_request release];
-  _request = [[FBRequest getRequestWithParams:params
+  _request = [FBRequest getRequestWithParams:params
                                    httpMethod:httpMethod
                                      delegate:delegate
-                                   requestURL:url] retain];
+                                   requestURL:url];
   [_request connect];
   return _request;
 }
@@ -148,7 +136,6 @@ static NSString* kSDKVersion = @"2";
   // If single sign-on failed, open an inline login dialog. This will require the user to
   // enter his or her credentials.
   if (!didOpenOtherApp) {
-    [_loginDialog release];
     _loginDialog = [[FBLoginDialog alloc] initWithURL:loginDialogURL
                                           loginParams:params
                                              delegate:self];
@@ -161,14 +148,14 @@ static NSString* kSDKVersion = @"2";
  */
 - (NSDictionary*)parseURLParams:(NSString *)query {
 	NSArray *pairs = [query componentsSeparatedByString:@"&"];
-	NSMutableDictionary *params = [[[NSMutableDictionary alloc] init] autorelease];
+	NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
 	for (NSString *pair in pairs) {
 		NSArray *kv = [pair componentsSeparatedByString:@"="];
 		NSString *val =
-    [[kv objectAtIndex:1]
+    [kv[1]
      stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
-		[params setObject:val forKey:[kv objectAtIndex:0]];
+		params[kv[0]] = val;
 	}
   return params;
 }
@@ -213,8 +200,7 @@ static NSString* kSDKVersion = @"2";
 - (void)authorize:(NSArray *)permissions
          delegate:(id<FBSessionDelegate>)delegate {
 
-  [_permissions release];
-  _permissions = [permissions retain];
+  _permissions = permissions;
 
   _sessionDelegate = delegate;
 
@@ -323,10 +309,7 @@ static NSString* kSDKVersion = @"2";
                     andParams:params andHttpMethod:@"GET"
                   andDelegate:nil];
 
-  [params release];
-  [_accessToken release];
   _accessToken = nil;
-  [_expirationDate release];
   _expirationDate = nil;
 
   NSHTTPCookieStorage* cookies = [NSHTTPCookieStorage sharedHTTPCookieStorage];
@@ -360,12 +343,12 @@ static NSString* kSDKVersion = @"2";
  */
 - (FBRequest*)requestWithParams:(NSMutableDictionary *)params
                     andDelegate:(id <FBRequestDelegate>)delegate {
-  if ([params objectForKey:@"method"] == nil) {
+  if (params[@"method"] == nil) {
     NSLog(@"API Method must be specified");
     return nil;
   }
 
-  NSString * methodName = [params objectForKey:@"method"];
+  NSString * methodName = params[@"method"];
   [params removeObjectForKey:@"method"];
 
   return [self requestWithMethodName:methodName
@@ -536,18 +519,17 @@ static NSString* kSDKVersion = @"2";
      andParams:(NSMutableDictionary *)params
    andDelegate:(id <FBDialogDelegate>)delegate {
 
-  [_fbDialog release];
 
   NSString *dialogURL = [kDialogBaseURL stringByAppendingString:action];
-  [params setObject:@"touch" forKey:@"display"];
-  [params setObject:kSDKVersion forKey:@"sdk"];
-  [params setObject:kRedirectURL forKey:@"redirect_uri"];
+  params[@"display"] = @"touch";
+  params[@"sdk"] = kSDKVersion;
+  params[@"redirect_uri"] = kRedirectURL;
 
   if (action == kLogin) {
-    [params setObject:@"user_agent" forKey:@"type"];
+    params[@"type"] = @"user_agent";
     _fbDialog = [[FBLoginDialog alloc] initWithURL:dialogURL loginParams:params delegate:self];
   } else {
-    [params setObject:_appId forKey:@"app_id"];
+    params[@"app_id"] = _appId;
     if ([self isSessionValid]) {
       [params setValue:[self.accessToken stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
                 forKey:@"access_token"];

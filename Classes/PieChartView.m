@@ -43,17 +43,16 @@
     self.pieChartObjects = [NSMutableArray arrayWithCapacity:keyCount];
     for ( int i = 0; i < keyCount; i++ )
     {
-        id key = [keys objectAtIndex:i];
-        id value = [values objectAtIndex:i];
-        id displayName = [displayNames objectAtIndex:i];
+        id key = keys[i];
+        id value = values[i];
+        id displayName = displayNames[i];
         PieChartObject* object = [[PieChartObject alloc] initWithKey:key value:value displayName:displayName];
         [pieChartObjects addObject:object];
-        [object release];
     }
     
 
 //    NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"key" ascending:YES];
-    [pieChartObjects sortUsingComparator:(NSComparator)^(PieChartObject* obj1, PieChartObject* obj2){
+    [pieChartObjects sortUsingComparator:^NSComparisonResult(PieChartObject* obj1, PieChartObject* obj2) {
         if ( [obj1.key intValue] )
         {
             return [obj1.key intValue] > [obj2.key intValue];
@@ -62,6 +61,7 @@
         {
             return [obj1.key caseInsensitiveCompare:obj2.key];
         }
+
     }];
     
     [self setNeedsDisplay];
@@ -72,12 +72,6 @@
     [self setPieChartWithKeys:keys values:values displayNames:keys];
 }
 
-- (void)dealloc
-{
-	[pieChartObjects release];
-	[colorScheme release];
-    [super dealloc];
-}
 
 - (void)setFrame:(CGRect)frame
 {
@@ -90,7 +84,7 @@
 	if ( !colorScheme )
 	{
 		NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"PieChartColorSchemeRGB" ofType:@"plist"];
-		NSArray* plistArray = [[NSDictionary dictionaryWithContentsOfFile:plistPath] objectForKey:@"Root"];
+		NSArray* plistArray = [NSDictionary dictionaryWithContentsOfFile:plistPath][@"Root"];
 		colorScheme = [[NSArray alloc] initWithArray:plistArray];
 	}
 	return colorScheme;
@@ -101,10 +95,10 @@
     NSInteger colorIndex = index % [self.colorScheme count];
     CGFloat colorFactor = 1 + 0.1 * index / [self.colorScheme count];
     
-    NSDictionary* colorDict = [self.colorScheme objectAtIndex:colorIndex];
-    CGFloat red = [[colorDict objectForKey:@"red"] floatValue] * colorFactor;
-    CGFloat green = [[colorDict objectForKey:@"green"] floatValue] * colorFactor;
-    CGFloat blue = [[colorDict objectForKey:@"blue"] floatValue] * colorFactor;
+    NSDictionary* colorDict = (self.colorScheme)[colorIndex];
+    CGFloat red = [colorDict[@"red"] floatValue] * colorFactor;
+    CGFloat green = [colorDict[@"green"] floatValue] * colorFactor;
+    CGFloat blue = [colorDict[@"blue"] floatValue] * colorFactor;
     
     return [UIColor colorWithRed:red green:green blue:blue alpha:1.0];
 }

@@ -16,8 +16,8 @@
 
 }
 
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSManagedObject * geoCode;
+@property (nonatomic, strong) NSString * name;
+@property (nonatomic, strong) NSManagedObject * geoCode;
 
 + (LocationName*)insertLocationNameWithName:(NSString*)theName;
 + (LocationName*)locationNameForName:(NSString*)theName;

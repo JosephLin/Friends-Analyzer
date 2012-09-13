@@ -26,19 +26,19 @@
 {
 	Work* work = [self insertNewObject];
 	
-    work.employer = [ObjectAttribute entity:@"Employer" withName:[[dict objectForKey:@"employer"] objectForKey:@"name"]];
-    work.position = [ObjectAttribute entity:@"Position" withName:[[dict objectForKey:@"position"] objectForKey:@"name"]];
+    work.employer = [ObjectAttribute entity:@"Employer" withName:dict[@"employer"][@"name"]];
+    work.position = [ObjectAttribute entity:@"Position" withName:dict[@"position"][@"name"]];
 
-	work.location = [[dict objectForKey:@"location"] objectForKey:@"name"];
-	work.start_date = [NSDate dateFromYearMonth:[dict objectForKey:@"start_date"]];
-	work.end_date = [NSDate dateFromYearMonth:[dict objectForKey:@"end_date"]];
+	work.location = dict[@"location"][@"name"];
+	work.start_date = [NSDate dateFromYearMonth:dict[@"start_date"]];
+	work.end_date = [NSDate dateFromYearMonth:dict[@"end_date"]];
 	
 	return work;
 }
 
 + (NSArray*)allWorks
 {
-	NSFetchRequest* request = [[[NSFetchRequest alloc] init] autorelease];
+	NSFetchRequest* request = [[NSFetchRequest alloc] init];
 	[request setEntity:[self entity]];
 	
 	NSError* error;
@@ -59,7 +59,6 @@
         NSString* endDateString = ( self.end_date ) ? [dateFormatter stringFromDate:self.end_date] : @"Present";
         NSString* dateString = [NSString stringWithFormat:@"%@ to %@", startDateString, endDateString];
         
-        [dateFormatter release];
         
         return dateString;
     }

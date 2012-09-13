@@ -19,9 +19,9 @@
     UILabel* descriptionLabel;
 }
 
-@property (nonatomic, retain) Work* work;
-@property (nonatomic, retain) UILabel* nameLabel;
-@property (nonatomic, retain) UILabel* employerLabel;
-@property (nonatomic, retain) UILabel* descriptionLabel;
+@property (nonatomic, strong) Work* work;
+@property (nonatomic, strong) UILabel* nameLabel;
+@property (nonatomic, strong) UILabel* employerLabel;
+@property (nonatomic, strong) UILabel* descriptionLabel;
 
 @end

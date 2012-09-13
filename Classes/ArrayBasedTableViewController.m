@@ -27,16 +27,16 @@
 
 - (void)viewDidLoad
 {    
-    self.tableView = [[[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain] autorelease];
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:tableView];
     
     
-    NSArray* controlItems = [NSArray arrayWithObjects:@"Sort By Name", @"Sort By Number", nil];
+    NSArray* controlItems = @[@"Sort By Name", @"Sort By Number"];
     
-    self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:controlItems] autorelease];
+    self.segmentedControl = [[UISegmentedControl alloc] initWithItems:controlItems];
     segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
     [segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
@@ -44,10 +44,10 @@
     
     segmentedControl.selectedSegmentIndex = 0;
     
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_pie_chart"]
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_pie_chart"]
                                                                                style:UIBarButtonItemStyleBordered
                                                                               target:self 
-                                                                              action:@selector(toggleChartView)] autorelease];
+                                                                              action:@selector(toggleChartView)];
     
     [super viewDidLoad];
 }
@@ -61,16 +61,6 @@
     self.pieChartView = nil;
 }
 
-- (void)dealloc
-{
-    [property release];
-	[sortedKeys release];
-	[userCountsDict release];
-	[segmentedControl release];
-    [tableView release];
-    [pieChartView release];
-    [super dealloc];
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
@@ -146,15 +136,15 @@
     
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
-	NSString* key = [self.sortedKeys objectAtIndex:indexPath.row];
+	NSString* key = (self.sortedKeys)[indexPath.row];
     cell.textLabel.text = key;
     
-	NSNumber* count = [self.userCountsDict objectForKey:key];
+	NSNumber* count = (self.userCountsDict)[key];
 	cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [count intValue]];
     
     return cell;
@@ -168,16 +158,15 @@
 {
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    NSString* key = [self.sortedKeys objectAtIndex:indexPath.row];
+    NSString* key = (self.sortedKeys)[indexPath.row];
 	NSArray* users = [User usersForKey:property value:key];
     NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
-	NSArray* sorted = [users sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+	NSArray* sorted = [users sortedArrayUsingDescriptors:@[sortDescriptor]];
 	
 	UserTableViewController* childVC = [[UserTableViewController alloc] init];
 	childVC.userArray = sorted;
     childVC.title = key;
 	[self.navigationController pushViewController:childVC animated:YES];
-	[childVC release];
 }
 
 
@@ -195,13 +184,13 @@
         
         if ( self.segmentedControl.selectedSegmentIndex == 0 )
         {
-            sortedKeys = [keys retain];
+            sortedKeys = keys;
         }
         else
         {
-            sortedKeys = [[keys sortedArrayUsingComparator:(NSComparator)^(id obj1, id obj2){
-                return [[userCountsDict objectForKey:obj1] intValue] < [[userCountsDict objectForKey:obj2] intValue];
-            }] retain];
+            sortedKeys = [keys sortedArrayUsingComparator:(NSComparator)^(id obj1, id obj2){
+                return [userCountsDict[obj1] intValue] < [userCountsDict[obj2] intValue];
+            }];
         }
     }
     return sortedKeys;
@@ -216,7 +205,7 @@
         for ( id key in sortedKeys )
         {
             NSNumber* count = [NSNumber numberWithInteger:[User userCountsForKey:property value:key]];
-            [tempDict setObject:count forKey:key];
+            tempDict[key] = count;
         }
         
         userCountsDict = [[NSDictionary alloc] initWithDictionary:tempDict];

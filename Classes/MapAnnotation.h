@@ -18,7 +18,7 @@
 }
 
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;
-@property (nonatomic, retain) NSString* formattedAddress;
-@property (nonatomic, retain) NSSet* owners;
+@property (nonatomic, strong) NSString* formattedAddress;
+@property (nonatomic, strong) NSSet* owners;
 
 @end

@@ -24,10 +24,10 @@
     BOOL isFinished;
 }
 
-@property (nonatomic, retain) NSString* query;
-@property (nonatomic, retain) Geocode* geocode;
-@property (nonatomic, retain) id object;
-@property (nonatomic, retain) NSString* keyPath;
+@property (nonatomic, strong) NSString* query;
+@property (nonatomic, strong) Geocode* geocode;
+@property (nonatomic, strong) id object;
+@property (nonatomic, strong) NSString* keyPath;
 @property (readonly) BOOL isExecuting;
 @property (readonly) BOOL isFinished;
 

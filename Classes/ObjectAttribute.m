@@ -22,7 +22,7 @@
     if ( !theName )
         return nil;
     
-	NSFetchRequest* request = [[[NSFetchRequest alloc] init] autorelease];
+	NSFetchRequest* request = [[NSFetchRequest alloc] init];
     NSEntityDescription* e = [NSEntityDescription entityForName:entity inManagedObjectContext:[self managedObjectContext]];
 	[request setEntity:e];
 	
@@ -34,7 +34,7 @@
     
     if ([results count])
     {
-        return [results objectAtIndex:0];
+        return results[0];
     }
     else
     {
@@ -55,9 +55,8 @@
     [self willChangeValueForKey:@"owners" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
     [[self primitiveValueForKey:@"owners"] addObject:value];
     [self didChangeValueForKey:@"owners" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
-    [changedObjects release];
     
-    self.ownerCount = [NSNumber numberWithInteger:[self.owners count]];
+    self.ownerCount = @([self.owners count]);
 }
 
 - (void)removeOwnersObject:(NSManagedObject *)value {
@@ -65,9 +64,8 @@
     [self willChangeValueForKey:@"owners" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
     [[self primitiveValueForKey:@"owners"] removeObject:value];
     [self didChangeValueForKey:@"owners" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
-    [changedObjects release];
     
-    self.ownerCount = [NSNumber numberWithInteger:[self.owners count]];
+    self.ownerCount = @([self.owners count]);
 }
 
 - (void)addOwners:(NSSet *)value {    
@@ -75,7 +73,7 @@
     [[self primitiveValueForKey:@"owners"] unionSet:value];
     [self didChangeValueForKey:@"owners" withSetMutation:NSKeyValueUnionSetMutation usingObjects:value];
     
-    self.ownerCount = [NSNumber numberWithInteger:[self.owners count]];
+    self.ownerCount = @([self.owners count]);
 }
 
 - (void)removeOwners:(NSSet *)value {
@@ -83,7 +81,7 @@
     [[self primitiveValueForKey:@"owners"] minusSet:value];
     [self didChangeValueForKey:@"owners" withSetMutation:NSKeyValueMinusSetMutation usingObjects:value];
     
-    self.ownerCount = [NSNumber numberWithInteger:[self.owners count]];
+    self.ownerCount = @([self.owners count]);
 }
 
 @end

@@ -19,9 +19,9 @@
     UILabel* descriptionLabel;
 }
 
-@property (nonatomic, retain) Education* education;
-@property (nonatomic, retain) UILabel* nameLabel;
-@property (nonatomic, retain) UILabel* schoolLabel;
-@property (nonatomic, retain) UILabel* descriptionLabel;
+@property (nonatomic, strong) Education* education;
+@property (nonatomic, strong) UILabel* nameLabel;
+@property (nonatomic, strong) UILabel* schoolLabel;
+@property (nonatomic, strong) UILabel* descriptionLabel;
 
 @end

@@ -56,7 +56,6 @@
                     op = [[ForwardGeocodingOperation alloc] initWithQuery:locationName object:work keyPath:@"geocodeLocation"];
                 }
                 [opArray addObject:op];
-                [op release];
             }
         }
         
@@ -89,7 +88,6 @@
     childVC.value = geocode.formatted_address;
     childVC.title = geocode.formatted_address;
 	[self.navigationController pushViewController:childVC animated:YES];
-	[childVC release];
 
 }
 
@@ -102,7 +100,6 @@
     childVC.value = annotation.title;
     childVC.title = annotation.title;
 	[self.navigationController pushViewController:childVC animated:YES];
-	[childVC release];
 }
 
 

@@ -28,8 +28,8 @@
     [super viewDidLoad];
 
     //// Segmented Control ////
-    NSArray* controlItems = [NSArray arrayWithObjects:@"Show Map", @"Show List", nil];
-    self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:controlItems] autorelease];
+    NSArray* controlItems = @[@"Show Map", @"Show List"];
+    self.segmentedControl = [[UISegmentedControl alloc] initWithItems:controlItems];
 	segmentedControl.selectedSegmentIndex = 0;
 	segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 	segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
@@ -55,21 +55,10 @@
 
 - (void)dealloc
 {
-    [pendingOperations release];
     [queue removeObserver:self forKeyPath:@"operationCount"];	
     [queue cancelAllOperations];
-    [queue release];
 
-    [loadingView release];
-    [loadingLabel release];
-    [progressView release];
-    [tableView release];
-    [mapView release];
-    [segmentedControl release];
-    [fetchedResultsController release];
-    [ownerKeyPath release];
     
-    [super dealloc];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -159,7 +148,7 @@
 {
     if ( !queue )
     {
-        queue = [[NSOperationQueue mainQueue] retain];
+        queue = [NSOperationQueue mainQueue];
         [queue addObserver:self forKeyPath:@"operationCount" options:NSKeyValueObservingOptionNew context:NULL];	
         [queue setMaxConcurrentOperationCount:1];
     }
@@ -218,7 +207,7 @@
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
 {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
     return [sectionInfo numberOfObjects];
 }
 
@@ -228,7 +217,7 @@
     
     GeocodeTableViewCell *cell = (GeocodeTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[GeocodeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[GeocodeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.textLabel.adjustsFontSizeToFitWidth = YES;
         cell.textLabel.minimumFontSize = 7.0;
     }
@@ -246,7 +235,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 { 
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
     
     return [sectionInfo name];
 }
@@ -268,7 +257,7 @@
 {
     if ( !fetchedResultsController )
     {
-        NSFetchRequest* fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
+        NSFetchRequest* fetchRequest = [[NSFetchRequest alloc] init];
         [fetchRequest setEntity:[Geocode entity]];
         
         NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%K.@count != 0", ownerKeyPath];
@@ -281,7 +270,7 @@
         NSSortDescriptor* sortDescriptor5 = [NSSortDescriptor sortDescriptorWithKey:@"locality" ascending:YES];
         NSSortDescriptor* sortDescriptor6 = [NSSortDescriptor sortDescriptorWithKey:@"sublocality" ascending:YES];
         
-        NSArray* sortDescriptors = [NSArray arrayWithObjects:sortDescriptor1, sortDescriptor2, sortDescriptor3, sortDescriptor4, sortDescriptor5, sortDescriptor6, nil];                
+        NSArray* sortDescriptors = @[sortDescriptor1, sortDescriptor2, sortDescriptor3, sortDescriptor4, sortDescriptor5, sortDescriptor6];                
         [fetchRequest setSortDescriptors:sortDescriptors];
         
         fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
@@ -338,7 +327,7 @@
             
         case NSFetchedResultsChangeInsert:
         {
-            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+            [self.tableView insertRowsAtIndexPaths:@[newIndexPath]
                                   withRowAnimation:UITableViewRowAnimationFade];
             
             //// Add annotations to map view. ////
@@ -350,7 +339,7 @@
             
         case NSFetchedResultsChangeDelete:
         {
-            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath]
                                   withRowAnimation:UITableViewRowAnimationFade];
             
             //// Add annotations to map view. ////
@@ -361,13 +350,13 @@
             break;
             
         case NSFetchedResultsChangeUpdate:
-            [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
             
         case NSFetchedResultsChangeMove:
-            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath]
                                   withRowAnimation:UITableViewRowAnimationFade];
-            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+            [self.tableView insertRowsAtIndexPaths:@[newIndexPath]
                                   withRowAnimation:UITableViewRowAnimationFade];
             break;
     }
@@ -390,7 +379,7 @@
     MKPinAnnotationView* pin = (MKPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:AnnotationViewID];
     if (pin == nil)
     {
-        pin = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID] autorelease];
+        pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
         pin.animatesDrop = YES;
         pin.canShowCallout = YES;
         pin.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
@@ -408,7 +397,7 @@
     annotation.formattedAddress = geocode.formatted_address;
     annotation.owners = [geocode valueForKeyPath:ownerKeyPath];
     
-    return [annotation autorelease];
+    return annotation;
 }
 
 - (NSArray*)mapAnnotationsFromArray:(NSArray*)geocodes

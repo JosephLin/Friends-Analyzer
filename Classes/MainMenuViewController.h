@@ -25,15 +25,15 @@
     NSOperationQueue* queue;
 }
 
-@property (nonatomic, retain) IBOutlet UIView* headerView;
-@property (nonatomic, retain) IBOutlet UIImageView* profileImageView;
-@property (nonatomic, retain) IBOutlet UILabel* nameLabel;
-@property (nonatomic, retain) IBOutlet UILabel* friendsCountLabel;
-@property (nonatomic, retain) IBOutlet UITableView* tableView;
-@property (nonatomic, retain) IBOutlet UILabel* lastUpdatedLabel;
+@property (nonatomic, strong) IBOutlet UIView* headerView;
+@property (nonatomic, strong) IBOutlet UIImageView* profileImageView;
+@property (nonatomic, strong) IBOutlet UILabel* nameLabel;
+@property (nonatomic, strong) IBOutlet UILabel* friendsCountLabel;
+@property (nonatomic, strong) IBOutlet UITableView* tableView;
+@property (nonatomic, strong) IBOutlet UILabel* lastUpdatedLabel;
 
-@property (nonatomic, retain) NSArray* menuStructureArray;
-@property (nonatomic, retain) User* currentUser;
+@property (nonatomic, strong) NSArray* menuStructureArray;
+@property (nonatomic, strong) User* currentUser;
 
 - (void)loadProfileImage;
 - (void)facebookLogout;

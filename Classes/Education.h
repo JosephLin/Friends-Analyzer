@@ -17,12 +17,12 @@
 {
 }
 
-@property (nonatomic, retain) ObjectAttribute * school;
-@property (nonatomic, retain) ObjectAttribute * degree;
-@property (nonatomic, retain) NSString * year;
-@property (nonatomic, retain) NSSet* concentrations;
-@property (nonatomic, retain) NSString * type;
-@property (nonatomic, retain) User * user;
+@property (nonatomic, strong) ObjectAttribute * school;
+@property (nonatomic, strong) ObjectAttribute * degree;
+@property (nonatomic, strong) NSString * year;
+@property (nonatomic, strong) NSSet* concentrations;
+@property (nonatomic, strong) NSString * type;
+@property (nonatomic, strong) User * user;
 
 + (Education*)insertEducationWithDictionary:(NSDictionary*)dict;
 + (NSArray*)educationsForKey:(NSString*)key value:(NSString*)value;

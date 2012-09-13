@@ -27,7 +27,7 @@
 
 + (LocationName*)locationNameForName:(NSString*)theName
 {
-    NSFetchRequest* request = [[[NSFetchRequest alloc] init] autorelease];
+    NSFetchRequest* request = [[NSFetchRequest alloc] init];
 	[request setEntity:[self entity]];
 	
 	NSPredicate* predicate = [NSPredicate predicateWithFormat:@"name like[c] %@", theName];
@@ -36,7 +36,7 @@
 	NSError* error = nil;
 	NSArray* results = [[self managedObjectContext] executeFetchRequest:request error:&error];
 	
-    LocationName* locationName = ([results count]) ? [results objectAtIndex:0] : nil;
+    LocationName* locationName = ([results count]) ? results[0] : nil;
 	return locationName;
 }
 

@@ -28,11 +28,6 @@
     self.fetchedResultsController = nil;
 }
 
-- (void)dealloc
-{
-    [fetchedResultsController release];
-    [super dealloc];
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -51,7 +46,7 @@
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
 {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
     return [sectionInfo numberOfObjects];
 }
 
@@ -61,7 +56,7 @@
     
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
     User* user = [fetchedResultsController objectAtIndexPath:indexPath];
@@ -74,7 +69,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 { 
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
+    id <NSFetchedResultsSectionInfo> sectionInfo = [fetchedResultsController sections][section];
     return [sectionInfo name];
 }
 
@@ -121,13 +116,12 @@
         //    [fetchRequest setPredicate:predicate];
         
         NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"updated_time" ascending:NO];
-        [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+        [fetchRequest setSortDescriptors:@[sortDescriptor]];
         
         fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
                                                                       managedObjectContext:[User managedObjectContext]
                                                                         sectionNameKeyPath:@"lastUpdateCategory"
                                                                                  cacheName:nil];
-        [fetchRequest release];
         
         NSError* error;
         BOOL success = [fetchedResultsController performFetch:&error];

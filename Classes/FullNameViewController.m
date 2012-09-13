@@ -18,9 +18,9 @@
 {    
     [super viewDidLoad];
 
-    NSArray* controlItems = [NSArray arrayWithObjects:@"Full Name", @"Last Name", nil];
+    NSArray* controlItems = @[@"Full Name", @"Last Name"];
 
-    self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:controlItems] autorelease];
+    self.segmentedControl = [[UISegmentedControl alloc] initWithItems:controlItems];
     segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
     [segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];    
@@ -42,7 +42,7 @@
     UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil)
     {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
@@ -81,7 +81,6 @@
 	childVC.user = user;
     childVC.title = user.name;
 	[self.navigationController pushViewController:childVC animated:YES];
-	[childVC release];
 }
 
 
@@ -90,7 +89,7 @@
 
 - (NSFetchedResultsController*)fetchedResultsControllerOfType:(NSInteger)selectedSegmentIndex
 {
-    NSFetchRequest* fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
+    NSFetchRequest* fetchRequest = [[NSFetchRequest alloc] init];
     [fetchRequest setEntity:[User entity]];
     
     NSSortDescriptor* sortDescriptor = nil;
@@ -107,7 +106,7 @@
         sectionNameKeyPath = @"lastName.indexTitle";
     }
     
-    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+    [fetchRequest setSortDescriptors:@[sortDescriptor]];
     
     NSFetchedResultsController* controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
                                                                                  managedObjectContext:[User managedObjectContext]
@@ -118,7 +117,7 @@
     BOOL success = [controller performFetch:&error];
     NSLog(@"Fetch successed? %d", success);
     
-    return [controller autorelease];
+    return controller;
 }
 
 

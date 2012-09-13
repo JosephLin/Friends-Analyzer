@@ -66,8 +66,7 @@
 
 - (void)setEducation:(Education *)theEducation
 {
-    [education autorelease];
-    education = [theEducation retain];
+    education = theEducation;
     
     self.nameLabel.text = education.user.name;
     self.schoolLabel.text = education.school.name;
@@ -85,14 +84,6 @@
     self.descriptionLabel.text = [array componentsJoinedByString:@" - "];
 }
 
-- (void)dealloc
-{
-    [education release];
-    [nameLabel release];
-    [schoolLabel release];
-    [descriptionLabel release];
-    [super dealloc];
-}
 
 @end
 

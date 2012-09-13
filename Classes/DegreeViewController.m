@@ -31,7 +31,6 @@
     childVC.value = object.name;
     childVC.title = object.name;
 	[self.navigationController pushViewController:childVC animated:YES];
-	[childVC release];
 }
 
 

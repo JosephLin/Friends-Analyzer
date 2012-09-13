@@ -31,12 +31,12 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
-	User* user = [userArray objectAtIndex:indexPath.row];
+	User* user = userArray[indexPath.row];
 	cell.textLabel.text = user.name;
     
     return cell;
@@ -50,12 +50,11 @@
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    User* user = [userArray objectAtIndex:indexPath.row];
+    User* user = userArray[indexPath.row];
 
     UserDetailViewController* childVC = [[UserDetailViewController alloc] initWithNibName:@"UserDetailViewController" bundle:nil];
     childVC.user = user;
     [self.navigationController pushViewController:childVC animated:YES];
-    [childVC release];
 }
 
 
@@ -63,11 +62,6 @@
 #pragma mark Memory management
 
 
-- (void)dealloc
-{
-    [userArray release];
-    [super dealloc];
-}
 
 
 @end

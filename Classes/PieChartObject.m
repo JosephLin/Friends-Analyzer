@@ -25,12 +25,5 @@
     return self;
 }
 
-- (void)dealloc
-{
-    [key release];
-    [value release];
-    [displayName release];
-    [super dealloc];
-}
 
 @end

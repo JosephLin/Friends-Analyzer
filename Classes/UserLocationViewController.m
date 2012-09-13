@@ -56,7 +56,6 @@
                     op = [[ForwardGeocodingOperation alloc] initWithQuery:locationName object:user keyPath:@"geocodeLocation"];
                 }
                 [opArray addObject:op];
-                [op release];
             }
         }
         
@@ -75,7 +74,6 @@
     childVC.userArray = objects;
     childVC.title = title;
 	[self.navigationController pushViewController:childVC animated:YES];
-	[childVC release];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -86,7 +84,7 @@
     NSSet* objects = [geocode valueForKeyPath:ownerKeyPath];
     
     NSSortDescriptor* sortdescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
-    NSArray* sortedObjects = [objects sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortdescriptor]];
+    NSArray* sortedObjects = [objects sortedArrayUsingDescriptors:@[sortdescriptor]];
     
     [self pushChildViewControllerWithObjects:sortedObjects title:geocode.formatted_address];
 }
@@ -95,7 +93,7 @@
 {
     NSSortDescriptor* sortdescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
     MapAnnotation* annotation = view.annotation;
-    NSArray* sortedObjects = [annotation.owners sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortdescriptor]];
+    NSArray* sortedObjects = [annotation.owners sortedArrayUsingDescriptors:@[sortdescriptor]];
     
     [self pushChildViewControllerWithObjects:sortedObjects title:annotation.title];
 }

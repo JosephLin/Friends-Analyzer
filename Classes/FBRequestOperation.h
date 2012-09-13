@@ -14,7 +14,7 @@
 
 @interface FBRequestOperation : NSOperation <FBRequestDelegate>
 {
-	id <FBRequestOperationDelegate> delegate;
+	id <FBRequestOperationDelegate> __weak delegate;
 	NSString* graphPath;
 	FBRequest* request;
 	
@@ -22,9 +22,9 @@
     BOOL isFinished;
 }
 
-@property (nonatomic, assign) id <FBRequestOperationDelegate> delegate;
-@property (nonatomic, retain) NSString* graphPath;
-@property (nonatomic, retain) FBRequest* request;
+@property (nonatomic, weak) id <FBRequestOperationDelegate> delegate;
+@property (nonatomic, strong) NSString* graphPath;
+@property (nonatomic, strong) FBRequest* request;
 @property (readonly) BOOL isExecuting;
 @property (readonly) BOOL isFinished;
 

@@ -20,11 +20,11 @@
     NSString* keyPath;
 }
 
-@property (nonatomic, retain) NSString* query;
-@property (nonatomic, retain) NSString* status;
-@property (nonatomic, retain) Geocode* geocode;
-@property (nonatomic, retain) id object;
-@property (nonatomic, retain) NSString* keyPath;
+@property (nonatomic, strong) NSString* query;
+@property (nonatomic, strong) NSString* status;
+@property (nonatomic, strong) Geocode* geocode;
+@property (nonatomic, strong) id object;
+@property (nonatomic, strong) NSString* keyPath;
 
 - (id)initWithQuery:(NSString*)theQuery object:(id)theObject keyPath:(NSString*)theKeyPath;
 

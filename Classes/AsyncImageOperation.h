@@ -13,14 +13,14 @@
 
 @interface AsyncImageOperation : NSOperation
 {
-  	id <AsyncImageOperationDelegate> delegate;
+  	id <AsyncImageOperationDelegate> __weak delegate;
 	NSString* URL;
     NSData* data;
 }
 
-@property (nonatomic, assign) id <AsyncImageOperationDelegate> delegate;
-@property (nonatomic, retain) NSString* URL;
-@property (nonatomic, retain) NSData* data;
+@property (nonatomic, weak) id <AsyncImageOperationDelegate> delegate;
+@property (nonatomic, strong) NSString* URL;
+@property (nonatomic, strong) NSData* data;
 
 - (id)initWithURL:(NSString*)theURL delegate:(id <AsyncImageOperationDelegate>)theDelegate;
 

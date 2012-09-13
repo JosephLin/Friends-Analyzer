@@ -39,95 +39,85 @@
 
 - (void)main
 {
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	@autoreleasepool {
 	
-    if ( !query )
-    {
-        NSLog(@"Empty Query!");
-    }
-    else if (![self isCancelled])
-    {
-        self.geocode = [Geocode geocodeForName:query];
-        
-        //// Geocode already exist. ////
-        if ( geocode )
+        if ( !query )
         {
-//            NSLog(@"Geocode already exist: %@", geocode.formatted_address);
+            NSLog(@"Empty Query!");
         }
-        
-        
-        //// Geocode not exist. Send request to Google. ////
         else if (![self isCancelled])
         {
-            NSString* urlString = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/geocode/json?address=%@&sensor=true", self.query];
-            NSString* escapedString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            self.geocode = [Geocode geocodeForName:query];
             
-            NSError* error = nil;
-            NSString* responseString = [NSString stringWithContentsOfURL:[NSURL URLWithString:escapedString] encoding:NSUTF8StringEncoding error:&error];
-            
-            
-            //// Connection failed ////
-            if ( error )
+            //// Geocode already exist. ////
+            if ( geocode )
             {
-                NSLog(@"urlString = %@", urlString);
-                NSLog(@"error = %@", error);
+//            NSLog(@"Geocode already exist: %@", geocode.formatted_address);
             }
-
-            //// Connection succeeded ////
+            
+            
+            //// Geocode not exist. Send request to Google. ////
             else if (![self isCancelled])
             {
-                SBJSON *jsonParser = [[SBJSON new] autorelease];
-                NSDictionary* responseDict = [jsonParser objectWithString:responseString];
+                NSString* urlString = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/geocode/json?address=%@&sensor=true", self.query];
+                NSString* escapedString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
                 
-                self.status = [responseDict objectForKey:@"status"];
-                if ( [status isEqualToString:@"OK"] )
+                NSError* error = nil;
+                NSString* responseString = [NSString stringWithContentsOfURL:[NSURL URLWithString:escapedString] encoding:NSUTF8StringEncoding error:&error];
+                
+                
+                //// Connection failed ////
+                if ( error )
                 {
-                    NSArray* results = [responseDict objectForKey:@"results"];
+                    NSLog(@"urlString = %@", urlString);
+                    NSLog(@"error = %@", error);
+                }
+
+                //// Connection succeeded ////
+                else if (![self isCancelled])
+                {
+                    SBJSON *jsonParser = [SBJSON new];
+                    NSDictionary* responseDict = [jsonParser objectWithString:responseString];
                     
-                    //// Just to be safe. Google should return "ZERO_RESULTS" if there's none. //
-                    if ( [results count] )  
+                    self.status = responseDict[@"status"];
+                    if ( [status isEqualToString:@"OK"] )
                     {
-                        self.geocode = [Geocode existingOrNewGeocodeWithDictionary:[results objectAtIndex:0]];
-                        [geocode addLocationNamesObject:[LocationName insertLocationNameWithName:query]];
+                        NSArray* results = responseDict[@"results"];
                         
-                        NSLog(@"Location parsed: %@", geocode.formatted_address);
+                        //// Just to be safe. Google should return "ZERO_RESULTS" if there's none. //
+                        if ( [results count] )  
+                        {
+                            self.geocode = [Geocode existingOrNewGeocodeWithDictionary:results[0]];
+                            [geocode addLocationNamesObject:[LocationName insertLocationNameWithName:query]];
+                            
+                            NSLog(@"Location parsed: %@", geocode.formatted_address);
+                        }
+                    }
+                    else if  ( [status isEqualToString:@"ZERO_RESULTS"] )
+                    {
+                        self.geocode = [Geocode unknownGeocode];
+                        [geocode addLocationNamesObject:[LocationName insertLocationNameWithName:query]];
+                        NSLog(@"ZERO RESULTS: %@", geocode.formatted_address);
+                    }
+                    else
+                    {
+                        NSLog(@"urlString: %@", urlString);
+                        NSLog(@"Failed with status: %@", status);
                     }
                 }
-                else if  ( [status isEqualToString:@"ZERO_RESULTS"] )
-                {
-                    self.geocode = [Geocode unknownGeocode];
-                    [geocode addLocationNamesObject:[LocationName insertLocationNameWithName:query]];
-                    NSLog(@"ZERO RESULTS: %@", geocode.formatted_address);
-                }
-                else
-                {
-                    NSLog(@"urlString: %@", urlString);
-                    NSLog(@"Failed with status: %@", status);
-                }
+            }
+            
+            if ( object && keyPath )
+            {
+                [object setValue:geocode forKeyPath:keyPath];
             }
         }
-        
-        if ( object && keyPath )
-        {
-            [object setValue:geocode forKeyPath:keyPath];
-        }
-    }
 
-	[pool release];
+	}
 }
 
 
 
-- (void)dealloc
-{
-	[query release];
-    [status release];
-    [geocode release];
-    [object release];
-    [keyPath release];
-	
-	[super dealloc];
-}
 
 
 @end

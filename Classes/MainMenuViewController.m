@@ -7,7 +7,7 @@
 //
 
 #import "MainMenuViewController.h"
-#import "FriendsAnalyzerAppDelegate.h"
+#import "AppDelegate.h"
 #import "NSDate+Utilities.h"
 #import "ArrayBasedTableViewController.h"
 #import "LocationViewController.h"
@@ -34,10 +34,10 @@
 	//// Set Navigation Bar ////
     [self.navigationController setNavigationBarHidden:NO animated:NO];
 	self.title = @"Home";
-	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Logout" 
+	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" 
 																			   style:UIBarButtonItemStylePlain 
 																			  target:self 
-																			  action:@selector(logoutButtonTapped:)] autorelease];
+																			  action:@selector(logoutButtonTapped:)];
 
 	//// Display Current User Info ////
 	self.currentUser = [User currentUser];
@@ -80,18 +80,8 @@
 - (void)dealloc
 {
 	[queue cancelAllOperations];
-    [queue release];
 
-    [headerView release];
-    [profileImageView release];
-	[nameLabel release];
-	[friendsCountLabel release];
-	[tableView release];
-	[lastUpdatedLabel release];
-	[menuStructureArray release];
-	[currentUser release];
 
-    [super dealloc];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
@@ -104,7 +94,6 @@
     UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:@"Depending on your connection, refresh might take up to serveral minutes." delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Refresh" otherButtonTitles:nil];
     sheet.tag = kRefreshActionSheetTag;
     [sheet showInView:self.view];
-    [sheet release];
 }
 
 - (IBAction)logoutButtonTapped:(id)sender
@@ -112,7 +101,6 @@
     UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:@"To protect your privacy, all stored friend information will be deleted when you logout." delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Logout" otherButtonTitles:nil];
     sheet.tag = kLogoutActionSheetTag;
     [sheet showInView:self.view];
-    [sheet release];
 }
 
 - (IBAction)debugButtonTapped:(id)sender
@@ -136,7 +124,7 @@
         {
             [[User managedObjectContext] deleteObject:[User currentUser]];
             
-            RootViewController* rootVC = [self.navigationController.viewControllers objectAtIndex:0];
+            RootViewController* rootVC = (self.navigationController.viewControllers)[0];
             [rootVC getUserInfo];
             [self.navigationController popViewControllerAnimated:YES];
         }
@@ -152,7 +140,6 @@
     if ( queue )
     {
         [queue cancelAllOperations];
-        [queue release];
     }
     queue = [[NSOperationQueue alloc] init];
     
@@ -161,7 +148,6 @@
 	
     AsyncImageOperation* op = [[AsyncImageOperation alloc] initWithURL:avatarURL delegate:self];
     [queue addOperation:op];
-    [op release];
 }
 
 - (void)operation:(AsyncImageOperation*)op didLoadData:(NSData*)data
@@ -205,15 +191,15 @@
 	
 	if (cell == nil)
 	{
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
 		cell.selectionStyle = UITableViewCellSelectionStyleGray;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
 	
-	NSDictionary* menuDictionary = [menuStructureArray objectAtIndex:indexPath.row];
-    cell.textLabel.text = [menuDictionary objectForKey:@"title"];
+	NSDictionary* menuDictionary = menuStructureArray[indexPath.row];
+    cell.textLabel.text = menuDictionary[@"title"];
     
-    UIImage* iconImage = [UIImage imageNamed:[menuDictionary objectForKey:@"property"]];
+    UIImage* iconImage = [UIImage imageNamed:menuDictionary[@"property"]];
     cell.imageView.image = iconImage;
     
     
@@ -224,18 +210,17 @@
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 	
-	NSDictionary* menuDictionary = [menuStructureArray objectAtIndex:indexPath.row];
-	NSString* viewControllerName = [menuDictionary objectForKey:@"viewController"];
+	NSDictionary* menuDictionary = menuStructureArray[indexPath.row];
+	NSString* viewControllerName = menuDictionary[@"viewController"];
 	Class aClass = [[NSBundle mainBundle] classNamed:viewControllerName];
 
 	UIViewController* childVC = [[aClass alloc] init];
-    childVC.title = [menuDictionary objectForKey:@"title"];
+    childVC.title = menuDictionary[@"title"];
 	if ( [childVC isKindOfClass:[ArrayBasedTableViewController class]] )
 	{
-		((ArrayBasedTableViewController*)childVC).property = [[menuStructureArray objectAtIndex:indexPath.row] objectForKey:@"property"];
+		((ArrayBasedTableViewController*)childVC).property = menuStructureArray[indexPath.row][@"property"];
 	}
     [self.navigationController pushViewController:childVC animated:YES];
-    [childVC release];
 }
 
 
@@ -255,7 +240,7 @@
 {
 	NSLog(@"did logout");
 
-	[(FriendsAnalyzerAppDelegate*)[[UIApplication sharedApplication] delegate] deleteCoreDataStorage];
+	[(AppDelegate*)[[UIApplication sharedApplication] delegate] deleteCoreDataStorage];
 	
 	[self.navigationController popViewControllerAnimated:YES];
 }

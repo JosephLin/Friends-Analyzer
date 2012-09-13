@@ -20,10 +20,10 @@
     BOOL shouldShowSegmentedControl;
 }
 
-@property (nonatomic, retain) NSString* keyPath;
-@property (nonatomic, retain) id value;
-@property (nonatomic, retain) NSFetchedResultsController* fetchedResultsController;
-@property (nonatomic, retain) UISegmentedControl* segmentedControl;
+@property (nonatomic, strong) NSString* keyPath;
+@property (nonatomic, strong) id value;
+@property (nonatomic, strong) NSFetchedResultsController* fetchedResultsController;
+@property (nonatomic, strong) UISegmentedControl* segmentedControl;
 @property (nonatomic, assign) BOOL shouldShowSegmentedControl;
 
 - (NSFetchedResultsController*)fetchedResultsControllerOfType:(NSInteger)selectedSegmentIndex;

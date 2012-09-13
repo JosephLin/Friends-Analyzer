@@ -14,6 +14,6 @@
 	NSArray* menuItemArray;
 }
 
-@property (nonatomic, retain) NSArray* menuItemArray;
+@property (nonatomic, strong) NSArray* menuItemArray;
 
 @end

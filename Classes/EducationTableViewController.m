@@ -23,9 +23,9 @@
 
 - (void)viewDidLoad
 {    
-    NSArray* controlItems = [NSArray arrayWithObjects:@"Name", @"School", nil];
+    NSArray* controlItems = @[@"Name", @"School"];
     
-    self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:controlItems] autorelease];
+    self.segmentedControl = [[UISegmentedControl alloc] initWithItems:controlItems];
     segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
     [segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
@@ -38,14 +38,6 @@
     [super viewDidLoad];
 }
 
-- (void)dealloc
-{
-    [keyPath release];
-    [value release];
-    [fetchedResultsController release];
-    [segmentedControl release];
-    [super dealloc];
-}
 
 - (void)segmentedControlValueChanged:(UISegmentedControl*)sender
 {
@@ -69,7 +61,7 @@
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
 {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
     return [sectionInfo numberOfObjects];
 }
 
@@ -79,7 +71,7 @@
     
     EducationTableViewCell *cell = (EducationTableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[EducationTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[EducationTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
     
@@ -122,7 +114,6 @@
     UserDetailViewController* childVC = [[UserDetailViewController alloc] initWithNibName:@"UserDetailViewController" bundle:nil];
     childVC.user = education.user;
     [self.navigationController pushViewController:childVC animated:YES];
-    [childVC release];
 }
 
 
@@ -133,14 +124,14 @@
 {
     if ( !fetchedResultsController)
     {
-        fetchedResultsController = [[self fetchedResultsControllerOfType:segmentedControl.selectedSegmentIndex] retain];
+        fetchedResultsController = [self fetchedResultsControllerOfType:segmentedControl.selectedSegmentIndex];
     }
     return fetchedResultsController;
 }
 
 - (NSFetchedResultsController*)fetchedResultsControllerOfType:(NSInteger)selectedSegmentIndex
 {
-    NSFetchRequest* fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
+    NSFetchRequest* fetchRequest = [[NSFetchRequest alloc] init];
     [fetchRequest setEntity:[Education entity]];
     
     if ( keyPath && value )
@@ -168,12 +159,12 @@
     
     if ( selectedSegmentIndex == 0 )
     {
-        sortDescriptors = [NSArray arrayWithObjects:nameSortDescriptor, schoolSortDescriptor, dateSortDescriptor, nil];
+        sortDescriptors = @[nameSortDescriptor, schoolSortDescriptor, dateSortDescriptor];
         sectionNameKeyPath = @"user.indexTitle";
     }
     else
     {
-        sortDescriptors = [NSArray arrayWithObjects:schoolSortDescriptor, nameSortDescriptor, dateSortDescriptor, nil];
+        sortDescriptors = @[schoolSortDescriptor, nameSortDescriptor, dateSortDescriptor];
         sectionNameKeyPath = @"school.indexTitle";
     }
     [fetchRequest setSortDescriptors:sortDescriptors];    
@@ -187,7 +178,7 @@
     BOOL success = [controller performFetch:&error];
     NSLog(@"Fetch successed? %d", success);
     
-    return [controller autorelease];
+    return controller;
 }
 
 

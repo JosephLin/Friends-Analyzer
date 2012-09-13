@@ -17,12 +17,6 @@
 
 
 
-- (void)dealloc
-{
-    [formattedAddress release];
-    [owners release];
-    [super dealloc];
-}
 
 - (NSString*)title
 {

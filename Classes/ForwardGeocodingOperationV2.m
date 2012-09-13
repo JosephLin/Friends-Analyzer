@@ -41,13 +41,7 @@
 {
     [geocoder cancelGeocode];
     
-	[query release];
-    [geocode release];
-    [object release];
-    [keyPath release];
-    [geocoder release];
 	
-	[super dealloc];
 }
 
 
@@ -97,7 +91,7 @@
                              
                              if ( [placemarks count] )
                              {
-                                 CLPlacemark* aPlacemark = [placemarks objectAtIndex:0];
+                                 CLPlacemark* aPlacemark = placemarks[0];
                                  
                                  self.geocode = [Geocode existingOrNewGeocodeWithpPlacemark:aPlacemark];
                                  [geocode addLocationNamesObject:[LocationName insertLocationNameWithName:query]];

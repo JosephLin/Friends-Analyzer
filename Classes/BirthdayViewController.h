@@ -19,11 +19,11 @@
     NSArray* monthNameArray;
 }
 
-@property (nonatomic, retain) UITableView* tableView;
-@property (nonatomic, retain) UISegmentedControl* segmentedControl;
-@property (nonatomic, retain) PieChartView* pieChartView;
-@property (nonatomic, retain) NSFetchedResultsController* fetchedResultsController;
-@property (nonatomic, retain) NSArray* monthNameArray;
+@property (nonatomic, strong) UITableView* tableView;
+@property (nonatomic, strong) UISegmentedControl* segmentedControl;
+@property (nonatomic, strong) PieChartView* pieChartView;
+@property (nonatomic, strong) NSFetchedResultsController* fetchedResultsController;
+@property (nonatomic, strong) NSArray* monthNameArray;
 
 - (NSFetchedResultsController*)fetchedResultsControllerOfType:(NSInteger)selectedSegmentIndex;
 - (NSDictionary*)userCountDict;

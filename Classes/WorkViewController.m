@@ -27,17 +27,11 @@
 {
     [super viewDidLoad];
     
-	self.menuItemArray = [NSArray arrayWithObjects:@"By Employer", @"By Position", @"By Location", @"List All", nil];
+	self.menuItemArray = @[@"By Employer", @"By Position", @"By Location", @"List All"];
 	
     [self.tableView reloadData];
 }
 
-- (void)dealloc
-{
-	[menuItemArray release];
-	
-    [super dealloc];
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
@@ -60,12 +54,12 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
-    cell.textLabel.text = [menuItemArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = menuItemArray[indexPath.row];
     
     return cell;
 }
@@ -101,7 +95,6 @@
     }
     
 	[self.navigationController pushViewController:childVC animated:YES];
-	[childVC release];
 }
 
 

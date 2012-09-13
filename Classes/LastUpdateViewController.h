@@ -15,7 +15,7 @@
     NSArray* sectionIndexTitles;
 }
 
-@property (nonatomic, retain) NSFetchedResultsController* fetchedResultsController;
-@property (nonatomic, retain) NSArray* sectionIndexTitles;
+@property (nonatomic, strong) NSFetchedResultsController* fetchedResultsController;
+@property (nonatomic, strong) NSArray* sectionIndexTitles;
 
 @end

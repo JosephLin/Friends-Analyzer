@@ -25,7 +25,7 @@
     ObjectAttribute* object = [fetchedResultsController objectAtIndexPath:indexPath];
     
     NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"user.name" ascending:YES];
-    NSArray* sorted = [object.owners sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    NSArray* sorted = [object.owners sortedArrayUsingDescriptors:@[sortDescriptor]];
     NSArray* array = [sorted valueForKeyPath:@"@unionOfObjects.user"];
     
     return array;
@@ -41,7 +41,6 @@
     childVC.value = object;
     childVC.title = object.name;
 	[self.navigationController pushViewController:childVC animated:YES];
-	[childVC release];
 }
 
 

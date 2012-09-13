@@ -59,7 +59,7 @@ static NSArray* monthArray = nil;
     NSDate* startDate = self.birthday;
     NSDateComponents* components = [[NSCalendar currentCalendar] components:NSYearCalendarUnit fromDate:startDate  toDate:[NSDate date] options:0];
     NSInteger years = [components year];
-    return [NSNumber numberWithInteger:years];
+    return @(years);
 }
 
 - (NSNumber*)ageGroup
@@ -67,7 +67,7 @@ static NSArray* monthArray = nil;
     NSDate* startDate = self.birthday;
     NSDateComponents* components = [[NSCalendar currentCalendar] components:NSYearCalendarUnit fromDate:startDate  toDate:[NSDate date] options:0];
     NSInteger years = [components year];
-    return [NSNumber numberWithInteger:years/10];
+    return @(years/10);
 }
 
 - (NSString*)lastUpdateCategory
@@ -143,7 +143,7 @@ static NSArray* monthArray = nil;
 
 + (NSArray*)allUsers
 {
-	NSFetchRequest* request = [[[NSFetchRequest alloc] init] autorelease];
+	NSFetchRequest* request = [[NSFetchRequest alloc] init];
 	[request setEntity:[self entity]];
 	
 	NSError* error;
@@ -160,7 +160,7 @@ static NSArray* monthArray = nil;
 
 + (User*)userWithID:(NSString*)theID
 {
-	NSFetchRequest* request = [[[NSFetchRequest alloc] init] autorelease];
+	NSFetchRequest* request = [[NSFetchRequest alloc] init];
 	[request setEntity:[self entity]];
 	
 	NSPredicate* predicate = [NSPredicate predicateWithFormat:@"id == %@", theID];
@@ -169,49 +169,49 @@ static NSArray* monthArray = nil;
 	NSError* error;
 	NSArray* results = [[self managedObjectContext] executeFetchRequest:request error:&error];
 
-	User* user = ( [results count] ) ? [results objectAtIndex:0] : nil;
+	User* user = ( [results count] ) ? results[0] : nil;
 	
 	return user;
 }
 
 + (User*)existingOrNewUserWithDictionary:(NSDictionary*)dict
 {
-	User* user = [self userWithID:[dict objectForKey:@"id"]];
+	User* user = [self userWithID:dict[@"id"]];
 	
 	if ( !user )
 	{
 		user = [self insertNewObject];
 	}
 	
-	user.id = [dict objectForKey:@"id"];
-	user.name = [dict objectForKey:@"name"];
-	user.first_name = [dict objectForKey:@"first_name"];
-	user.middle_name = [dict objectForKey:@"middle_name"];
+	user.id = dict[@"id"];
+	user.name = dict[@"name"];
+	user.first_name = dict[@"first_name"];
+	user.middle_name = dict[@"middle_name"];
 
-	user.lastName = [ObjectAttribute entity:@"LastName" withName:[dict objectForKey:@"last_name"]];
+	user.lastName = [ObjectAttribute entity:@"LastName" withName:dict[@"last_name"]];
 	
-    user.link = [dict objectForKey:@"link"];
-	user.birthday = [NSDate dateFromFacebookBirthday:[dict objectForKey:@"birthday"]];
-    [user setBirhtdayWithString:[dict objectForKey:@"birthday"]];
+    user.link = dict[@"link"];
+	user.birthday = [NSDate dateFromFacebookBirthday:dict[@"birthday"]];
+    [user setBirhtdayWithString:dict[@"birthday"]];
     if ([user.birthdayMonth integerValue] && [user.birthdayDay integerValue])
     {
         [user setZodiac];
     }
     
-	id hometown = [[dict objectForKey:@"hometown"] objectForKey:@"name"];
+	id hometown = dict[@"hometown"][@"name"];
 	user.hometown = ( hometown != [NSNull null] ) ? hometown : nil;
 
-	id location = [[dict objectForKey:@"location"] objectForKey:@"name"];
+	id location = dict[@"location"][@"name"];
 	user.location = ( location != [NSNull null] ) ? location : nil;
 
-	user.gender = [dict objectForKey:@"gender"];
-	user.relationship_status = [dict objectForKey:@"relationship_status"];
-	user.locale = [dict objectForKey:@"locale"];
-	user.updated_time = [NSDate dateFromFacebookFullFormat:[dict objectForKey:@"updated_time"]];
+	user.gender = dict[@"gender"];
+	user.relationship_status = dict[@"relationship_status"];
+	user.locale = dict[@"locale"];
+	user.updated_time = [NSDate dateFromFacebookFullFormat:dict[@"updated_time"]];
 	
-	[user updateEducations:[dict objectForKey:@"education"]];
+	[user updateEducations:dict[@"education"]];
 
-	[user updateWorks:[dict objectForKey:@"work"]];
+	[user updateWorks:dict[@"work"]];
 
 	
 //	[self save];
@@ -224,7 +224,7 @@ static NSArray* monthArray = nil;
     NSString* path = [[NSBundle mainBundle] pathForResource:@"Horoscope" ofType:@"plist"];
     if ( !monthArray )
     {
-        monthArray = [[[NSDictionary dictionaryWithContentsOfFile:path] objectForKey:@"Root"] retain];
+        monthArray = [NSDictionary dictionaryWithContentsOfFile:path][@"Root"];
     }
     
     NSArray* dayArray = [monthArray valueForKeyPath:@"@unionOfObjects.startDay"];
@@ -232,7 +232,7 @@ static NSArray* monthArray = nil;
     NSArray* nameArray = [monthArray valueForKeyPath:@"@unionOfObjects.name"];
 
     NSInteger index = [self.birthdayMonth integerValue] - 1;
-    NSInteger startDay = [[dayArray objectAtIndex:index] integerValue];
+    NSInteger startDay = [dayArray[index] integerValue];
 
     if ( [self.birthdayDay integerValue] < startDay )
     {
@@ -244,8 +244,8 @@ static NSArray* monthArray = nil;
         index = 11;
     }
     
-    self.zodiacSymbol = [symbolArray objectAtIndex:index];
-    self.zodiacName = [nameArray objectAtIndex:index];
+    self.zodiacSymbol = symbolArray[index];
+    self.zodiacName = nameArray[index];
 }
 
 
@@ -254,12 +254,12 @@ static NSArray* monthArray = nil;
     NSArray* components = [birthdayString componentsSeparatedByString:@"/"];
     if ( [components count] >= 3 )
     {
-        self.birthdayYear = [NSNumber numberWithInteger:[[components objectAtIndex:2] integerValue]];
+        self.birthdayYear = @([components[2] integerValue]);
     }
     if ( [components count] >= 2 )
     {
-        self.birthdayMonth = [NSNumber numberWithInteger:[[components objectAtIndex:0] integerValue]];
-        self.birthdayDay = [NSNumber numberWithInteger:[[components objectAtIndex:1] integerValue]];
+        self.birthdayMonth = @([components[0] integerValue]);
+        self.birthdayDay = @([components[1] integerValue]);
     }
 }
 
@@ -299,7 +299,7 @@ static NSArray* monthArray = nil;
 
 + (NSArray*)usersForKey:(NSString*)key value:(NSString*)value
 {
-	NSFetchRequest* request = [[[NSFetchRequest alloc] init] autorelease];
+	NSFetchRequest* request = [[NSFetchRequest alloc] init];
 	[request setEntity:[self entity]];
 	
 	NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%K like %@", key, value];
@@ -313,7 +313,7 @@ static NSArray* monthArray = nil;
 
 + (NSUInteger)userCountsForKey:(NSString*)key value:(NSString*)value
 {
-	NSFetchRequest* request = [[[NSFetchRequest alloc] init] autorelease];
+	NSFetchRequest* request = [[NSFetchRequest alloc] init];
 	[request setEntity:[self entity]];
 	
 	NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%K like %@", key, value];
@@ -327,12 +327,12 @@ static NSArray* monthArray = nil;
 
 + (NSArray*)possibleValuesForCategory:(NSString*)category
 {
-	NSFetchRequest* request = [[[NSFetchRequest alloc] init] autorelease];
+	NSFetchRequest* request = [[NSFetchRequest alloc] init];
 	[request setEntity:[self entity]];
 	
 	[request setResultType:NSDictionaryResultType];
 	[request setReturnsDistinctResults:YES];
-	[request setPropertiesToFetch:[NSArray arrayWithObject:category]];
+	[request setPropertiesToFetch:@[category]];
 	
 	// Execute the fetch
 	NSError* error;
@@ -350,14 +350,14 @@ static NSArray* monthArray = nil;
 - (NSArray*)sortedWorks
 {
     NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"start_date" ascending:YES];
-    NSArray* array = [self.works sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    NSArray* array = [self.works sortedArrayUsingDescriptors:@[sortDescriptor]];
     return array;
 }
 
 - (NSArray*)sortedEducations
 {
     NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"year" ascending:NO];
-    NSArray* array = [self.educations sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    NSArray* array = [self.educations sortedArrayUsingDescriptors:@[sortDescriptor]];
     return array;
 }
 

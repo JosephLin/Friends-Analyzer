@@ -20,9 +20,9 @@
 
 - (void)viewDidLoad
 {    
-    NSArray* controlItems = [NSArray arrayWithObjects:@"Sort By Name", @"Sort By Number", nil];
+    NSArray* controlItems = @[@"Sort By Name", @"Sort By Number"];
     
-    self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:controlItems] autorelease];
+    self.segmentedControl = [[UISegmentedControl alloc] initWithItems:controlItems];
     segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
     [segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];    
@@ -51,7 +51,7 @@
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
 {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
     return [sectionInfo numberOfObjects];
 }
 
@@ -62,7 +62,7 @@
     GeocodeTableViewCell *cell = (GeocodeTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil)
     {
-        cell = [[[GeocodeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[GeocodeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
     
@@ -98,7 +98,6 @@
 	childVC.userArray = [self objectsForRowAtIndexPath:indexPath];
     childVC.title = object.name;
 	[self.navigationController pushViewController:childVC animated:YES];
-	[childVC release];
 }
 
 - (NSArray*)objectsForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -115,14 +114,14 @@
 {
     if ( !fetchedResultsController)
     {
-        fetchedResultsController = [[self fetchedResultsControllerOfType:segmentedControl.selectedSegmentIndex] retain];
+        fetchedResultsController = [self fetchedResultsControllerOfType:segmentedControl.selectedSegmentIndex];
     }
     return fetchedResultsController;
 }
 
 - (NSFetchedResultsController*)fetchedResultsControllerOfType:(NSInteger)selectedSegmentIndex
 {
-    NSFetchRequest* fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
+    NSFetchRequest* fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription* entity = [NSEntityDescription entityForName:self.entityName inManagedObjectContext:[ObjectAttribute managedObjectContext]];
     [fetchRequest setEntity:entity];
     
@@ -140,7 +139,7 @@
         sectionNameKeyPath = nil;
     }
     
-    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+    [fetchRequest setSortDescriptors:@[sortDescriptor]];
     
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"ownerCount != 0"];
     [fetchRequest setPredicate:predicate];
@@ -154,7 +153,7 @@
     BOOL success = [controller performFetch:&error];
     NSLog(@"Fetch successed? %d", success);
     
-    return [controller autorelease];
+    return controller;
 }
 
 

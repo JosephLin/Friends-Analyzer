@@ -30,35 +30,35 @@ typedef enum {
 {
 }
 
-@property (nonatomic, retain) NSString * id;
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * first_name;
-@property (nonatomic, retain) NSString * middle_name;
-@property (nonatomic, retain) ObjectAttribute * lastName;
-@property (nonatomic, retain) NSString * link;
-@property (nonatomic, retain) NSDate * birthday;
-@property (nonatomic, retain) NSNumber * birthdayYear;
-@property (nonatomic, retain) NSNumber * birthdayMonth;
-@property (nonatomic, retain) NSNumber * birthdayDay;
-@property (nonatomic, retain) NSString * zodiacSymbol;
-@property (nonatomic, retain) NSString * zodiacName;
-@property (nonatomic, retain) NSString * hometown;
-@property (nonatomic, retain) NSString * location;
-@property (nonatomic, retain) NSSet * works;
-@property (nonatomic, retain) NSSet* educations;
-@property (nonatomic, retain) NSString * gender;
-@property (nonatomic, retain) NSString * relationship_status;
-@property (nonatomic, retain) NSManagedObject * significant_other;
-@property (nonatomic, retain) NSString * locale;
-@property (nonatomic, retain) NSDate * updated_time;
-@property (nonatomic, retain) NSArray * friends;
-@property (nonatomic, retain) Geocode * geocodeHometown;
-@property (nonatomic, retain) Geocode * geocodeLocation;
+@property (nonatomic, strong) NSString * id;
+@property (nonatomic, strong) NSString * name;
+@property (nonatomic, strong) NSString * first_name;
+@property (nonatomic, strong) NSString * middle_name;
+@property (nonatomic, strong) ObjectAttribute * lastName;
+@property (nonatomic, strong) NSString * link;
+@property (nonatomic, strong) NSDate * birthday;
+@property (nonatomic, strong) NSNumber * birthdayYear;
+@property (nonatomic, strong) NSNumber * birthdayMonth;
+@property (nonatomic, strong) NSNumber * birthdayDay;
+@property (nonatomic, strong) NSString * zodiacSymbol;
+@property (nonatomic, strong) NSString * zodiacName;
+@property (nonatomic, strong) NSString * hometown;
+@property (nonatomic, strong) NSString * location;
+@property (nonatomic, strong) NSSet * works;
+@property (nonatomic, strong) NSSet* educations;
+@property (nonatomic, strong) NSString * gender;
+@property (nonatomic, strong) NSString * relationship_status;
+@property (nonatomic, strong) NSManagedObject * significant_other;
+@property (nonatomic, strong) NSString * locale;
+@property (nonatomic, strong) NSDate * updated_time;
+@property (nonatomic, strong) NSArray * friends;
+@property (nonatomic, strong) Geocode * geocodeHometown;
+@property (nonatomic, strong) Geocode * geocodeLocation;
 
-@property (nonatomic, retain) NSNumber * age;
-@property (nonatomic, retain) NSNumber * ageGroup;
-@property (nonatomic, retain, readonly) NSString* lastUpdateCategory;
-@property (nonatomic, retain, readonly) NSString* indexTitle;
+@property (nonatomic, strong) NSNumber * age;
+@property (nonatomic, strong) NSNumber * ageGroup;
+@property (nonatomic, strong, readonly) NSString* lastUpdateCategory;
+@property (nonatomic, strong, readonly) NSString* indexTitle;
 
 
 + (User*)userWithID:(NSString*)theID;

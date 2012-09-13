@@ -14,10 +14,10 @@
     
 }
 
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * indexTitle;
-@property (nonatomic, retain) NSNumber * ownerCount;
-@property (nonatomic, retain) NSSet* owners;
+@property (nonatomic, strong) NSString * name;
+@property (nonatomic, strong) NSString * indexTitle;
+@property (nonatomic, strong) NSNumber * ownerCount;
+@property (nonatomic, strong) NSSet* owners;
 
 + (id)entity:(NSString*)entity withName:(NSString*)theName;
 

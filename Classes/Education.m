@@ -24,15 +24,15 @@
 {
 	Education* education = [self insertNewObject];
 	
-	education.school = [ObjectAttribute entity:@"School" withName:[[dict objectForKey:@"school"] objectForKey:@"name"]];
-	education.degree = [ObjectAttribute entity:@"Degree" withName:[[dict objectForKey:@"degree"] objectForKey:@"name"]];
-	education.year = [[dict objectForKey:@"year"] objectForKey:@"name"];
-	education.type = [dict objectForKey:@"type"];
+	education.school = [ObjectAttribute entity:@"School" withName:dict[@"school"][@"name"]];
+	education.degree = [ObjectAttribute entity:@"Degree" withName:dict[@"degree"][@"name"]];
+	education.year = dict[@"year"][@"name"];
+	education.type = dict[@"type"];
 	
-	NSArray* concentrationArray = [dict objectForKey:@"concentration"];
+	NSArray* concentrationArray = dict[@"concentration"];
 	for ( id dict in concentrationArray )
 	{
-        Concentration* concentration = [ObjectAttribute entity:@"Concentration" withName:[dict objectForKey:@"name"]];
+        Concentration* concentration = [ObjectAttribute entity:@"Concentration" withName:dict[@"name"]];
         [education addConcentrationsObject:concentration];
 	}
 	
@@ -46,7 +46,7 @@
 
 + (NSArray*)educationsForKey:(NSString*)key value:(NSString*)value
 {
-	NSFetchRequest* request = [[[NSFetchRequest alloc] init] autorelease];
+	NSFetchRequest* request = [[NSFetchRequest alloc] init];
 	[request setEntity:[self entity]];
 	
 	NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%K like[c] %@", key, value];
@@ -60,7 +60,7 @@
 
 + (NSUInteger)educationCountsForKey:(NSString*)key value:(NSString*)value
 {
-	NSFetchRequest* request = [[[NSFetchRequest alloc] init] autorelease];
+	NSFetchRequest* request = [[NSFetchRequest alloc] init];
 	[request setEntity:[self entity]];
 	
 	NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%K like[c] %@", key, value];
@@ -74,12 +74,12 @@
 
 + (NSArray*)possibleValuesForCategory:(NSString*)category
 {
-	NSFetchRequest* request = [[[NSFetchRequest alloc] init] autorelease];
+	NSFetchRequest* request = [[NSFetchRequest alloc] init];
 	[request setEntity:[self entity]];
 	
 	[request setResultType:NSDictionaryResultType];
 	[request setReturnsDistinctResults:YES];
-	[request setPropertiesToFetch:[NSArray arrayWithObject:category]];
+	[request setPropertiesToFetch:@[category]];
 	
 	// Execute the fetch
 	NSError* error;

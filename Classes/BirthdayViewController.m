@@ -27,7 +27,7 @@
 {
     [super viewDidLoad];
     
-    self.tableView = [[[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain] autorelease];
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -36,10 +36,9 @@
     
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
     self.monthNameArray = [dateFormatter monthSymbols];
-    [dateFormatter release];
     
-    NSArray* controlItems = [NSArray arrayWithObjects:@"Age", @"Date", @"Zodiac", nil];
-    self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:controlItems] autorelease];
+    NSArray* controlItems = @[@"Age", @"Date", @"Zodiac"];
+    self.segmentedControl = [[UISegmentedControl alloc] initWithItems:controlItems];
 	segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 	segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
 	[segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];	
@@ -48,10 +47,10 @@
     segmentedControl.selectedSegmentIndex = 0;
     
     
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_pie_chart"]
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_pie_chart"]
                                                                                style:UIBarButtonItemStyleBordered
 																			  target:self 
-																			  action:@selector(toggleChartView)] autorelease];
+																			  action:@selector(toggleChartView)];
 }
 
 - (void)viewDidUnload
@@ -62,15 +61,6 @@
     self.pieChartView = nil;
 }
 
-- (void)dealloc
-{
-    [tableView release];
-    [segmentedControl release];
-    [pieChartView release];
-    [fetchedResultsController release];
-    [monthNameArray release];
-    [super dealloc];
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -165,7 +155,7 @@
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
 {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
     return [sectionInfo numberOfObjects];
 }
 
@@ -175,7 +165,7 @@
     
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
     
@@ -190,7 +180,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 { 
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
+    id <NSFetchedResultsSectionInfo> sectionInfo = [fetchedResultsController sections][section];
     
     switch (segmentedControl.selectedSegmentIndex)
     {
@@ -199,7 +189,7 @@
 
         case 1:     // Date
         {
-            NSString* monthName = [monthNameArray objectAtIndex:[[sectionInfo name] integerValue] - 1];
+            NSString* monthName = monthNameArray[[[sectionInfo name] integerValue] - 1];
             return monthName;
         }
             
@@ -235,7 +225,6 @@
     UserDetailViewController* childVC = [[UserDetailViewController alloc] initWithNibName:@"UserDetailViewController" bundle:nil];
     childVC.user = user;
     [self.navigationController pushViewController:childVC animated:YES];
-    [childVC release];
 }
 
 
@@ -246,7 +235,7 @@
 {
     if ( !fetchedResultsController)
     {
-        fetchedResultsController = [[self fetchedResultsControllerOfType:segmentedControl.selectedSegmentIndex] retain];
+        fetchedResultsController = [self fetchedResultsControllerOfType:segmentedControl.selectedSegmentIndex];
     }
     return fetchedResultsController;
 }
@@ -268,7 +257,7 @@
             
             NSSortDescriptor* monthSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"birthdayMonth" ascending:YES];
             NSSortDescriptor* daySortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"birthdayDay" ascending:YES];
-            sortDescriptors = [NSArray arrayWithObjects:monthSortDescriptor, daySortDescriptor, nil];
+            sortDescriptors = @[monthSortDescriptor, daySortDescriptor];
             
             sectionNameKeyPath = @"birthdayMonth";
         }
@@ -281,7 +270,7 @@
             NSSortDescriptor* signSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"zodiacSymbol" ascending:YES];
             NSSortDescriptor* monthSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"birthdayMonth" ascending:YES];
             NSSortDescriptor* daySortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"birthdayDay" ascending:YES];
-            sortDescriptors = [NSArray arrayWithObjects:signSortDescriptor, monthSortDescriptor, daySortDescriptor, nil];
+            sortDescriptors = @[signSortDescriptor, monthSortDescriptor, daySortDescriptor];
         
             sectionNameKeyPath = @"zodiacSymbol";
         }
@@ -292,7 +281,7 @@
             predicate = [NSPredicate predicateWithFormat:@"birthdayYear != 0"];
             
             NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"birthday" ascending:YES];
-            sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
+            sortDescriptors = @[sortDescriptor];
 
             sectionNameKeyPath = @"age";
         }
@@ -311,13 +300,12 @@
                                                                   managedObjectContext:[User managedObjectContext]
                                                                     sectionNameKeyPath:sectionNameKeyPath
                                                                              cacheName:nil];
-    [fetchRequest release];
     
     NSError* error;
     BOOL success = [controller performFetch:&error];
     NSLog(@"Fetch successed? %d", success);
     
-    return [controller autorelease];
+    return controller;
 }
 
 

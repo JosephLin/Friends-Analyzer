@@ -16,9 +16,9 @@
     NSString* displayName;
 }
 
-@property (nonatomic, retain) NSString* key;
-@property (nonatomic, retain) NSString* value;
-@property (nonatomic, retain) NSString* displayName;
+@property (nonatomic, strong) NSString* key;
+@property (nonatomic, strong) NSString* value;
+@property (nonatomic, strong) NSString* displayName;
 
 - (id)initWithKey:(NSString*)theKey value:(NSString*)theValue displayName:(NSString*)theName;
 

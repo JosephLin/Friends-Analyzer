@@ -16,8 +16,8 @@
 	NSArray* colorScheme;
 }
 
-@property (nonatomic, retain) NSMutableArray* pieChartObjects;
-@property (nonatomic, retain, readonly) NSArray* colorScheme;
+@property (nonatomic, strong) NSMutableArray* pieChartObjects;
+@property (nonatomic, strong, readonly) NSArray* colorScheme;
 
 - (void)setPieChartWithKeys:(NSArray*)keys values:(NSArray*)values displayNames:(NSArray*)displayNames;
 - (void)setPieChartWithKeys:(NSArray*)keys values:(NSArray*)values;

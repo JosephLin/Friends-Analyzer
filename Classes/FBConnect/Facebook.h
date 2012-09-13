@@ -28,7 +28,7 @@
 @interface Facebook : NSObject<FBLoginDialogDelegate>{
   NSString* _accessToken;
   NSDate* _expirationDate;
-  id<FBSessionDelegate> _sessionDelegate;
+  id<FBSessionDelegate> __weak _sessionDelegate;
   FBRequest* _request;
   FBDialog* _loginDialog;
   FBDialog* _fbDialog;
@@ -40,7 +40,7 @@
 
 @property(nonatomic, copy) NSDate* expirationDate;
 
-@property(nonatomic, assign) id<FBSessionDelegate> sessionDelegate;
+@property(nonatomic, weak) id<FBSessionDelegate> sessionDelegate;
 
 - (id)initWithAppId:(NSString *)app_id;
 

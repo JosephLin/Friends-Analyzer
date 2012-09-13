@@ -29,50 +29,43 @@
 
 - (void)main
 {
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	@autoreleasepool {
 	
-    if ( !URL )
-    {
-        NSLog(@"Empty Query!");
-    }
-    else if (![self isCancelled])
-    {
-        NSString* escapedString = [URL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:escapedString]];
-
-        NSError* error = nil;
-        NSURLResponse* response = nil;
-        self.data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];            
-        
-        //// Connection failed ////
-        if ( error )
+        if ( !URL )
         {
-            NSLog(@"error = %@", error);
-            
-            if ( [delegate respondsToSelector:@selector(operation:didFailWithError:)] )
-                [delegate operation:self didFailWithError:error];
+            NSLog(@"Empty Query!");
         }
-        
-        //// Connection succeeded ////
         else if (![self isCancelled])
         {
-            if ( [delegate respondsToSelector:@selector(operation:didLoadData:)] )
-                [delegate operation:self didLoadData:self.data];
+            NSString* escapedString = [URL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:escapedString]];
+
+            NSError* error = nil;
+            NSURLResponse* response = nil;
+            self.data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];            
+            
+            //// Connection failed ////
+            if ( error )
+            {
+                NSLog(@"error = %@", error);
+                
+                if ( [delegate respondsToSelector:@selector(operation:didFailWithError:)] )
+                    [delegate operation:self didFailWithError:error];
+            }
+            
+            //// Connection succeeded ////
+            else if (![self isCancelled])
+            {
+                if ( [delegate respondsToSelector:@selector(operation:didLoadData:)] )
+                    [delegate operation:self didLoadData:self.data];
+            }
         }
-    }
     
-	[pool release];
+	}
 }
 
 
 
-- (void)dealloc
-{
-	[URL release];
-    [data release];
-	
-	[super dealloc];
-}
 
 
 @end

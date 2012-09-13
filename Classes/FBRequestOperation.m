@@ -35,12 +35,6 @@
 	return self;
 }
 
-- (void)dealloc
-{
-	[graphPath release];
-	[request release];
-	[super dealloc];
-}
 
 - (BOOL)isConcurrent
 {
@@ -68,7 +62,6 @@
 
 - (void)finish
 {
-    [request release];
     request = nil;
     
     [self willChangeValueForKey:@"isExecuting"];

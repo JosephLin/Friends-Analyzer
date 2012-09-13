@@ -10,19 +10,46 @@
 #import "MainMenuViewController.h"
 #import "FBRequestOperation.h"
 
+typedef enum {
+	RootViewModeIdle = 0,
+	RootViewModeLoadingUserInfo,
+	RootViewModeLoadingUserFriends,
+	RootViewModeLoadingFriendsInfo
+} RootViewMode;
+
+
+
+@interface RootViewController ()
+
+@property (nonatomic, strong) IBOutlet UIImageView *backgroundImageView;
+@property (nonatomic, strong) IBOutlet UILabel *introLabel;
+@property (nonatomic, strong) IBOutlet UIButton* loginButton;
+@property (nonatomic, strong) IBOutlet UILabel* loadingLabel;
+@property (nonatomic, strong) IBOutlet UIProgressView* progressView;
+
+@property (nonatomic, strong) User* currentUser;
+@property (nonatomic, strong) FBRequest* userInfoRequest;
+@property (nonatomic, strong) FBRequest* userFriendsRequest;
+@property (nonatomic, strong) NSOperationQueue* queue;
+@property (nonatomic) NSInteger total;
+@property (nonatomic) NSInteger pending;
+
+@end
+
+
 
 @implementation RootViewController
-
-@synthesize loginButton, loadingLabel, progressView;
-@synthesize currentUser;
-@synthesize userInfoRequest, userFriendsRequest;
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
     [self.navigationController setNavigationBarHidden:YES animated:NO];
+
+    UIImage* image = [[UIImage imageNamed:@"icon-tile"] resizableImageWithCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeTile];
+    self.backgroundImageView.image = image;
+    
+    self.introLabel.font = [UIFont fontWithName:@"CorporateRoundedBoldSWFTE" size:self.introLabel.font.pointSize];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -32,7 +59,7 @@
 
     self.currentUser = [User currentUser];
     
-	if ( currentUser )
+	if ( self.currentUser )
 	{
 		[self showMainMenuViewController];
 	}
@@ -48,76 +75,52 @@
 	[super viewDidDisappear:animated];
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-
-	self.loginButton = nil;
-	self.loadingLabel = nil;
-	self.progressView = nil;
-}
-
-- (void)dealloc
-{
-	[loginButton release];
-	[loadingLabel release];
-	[progressView release];
-	[currentUser release];
-	[userInfoRequest release];
-	[userFriendsRequest release];
-	[queue release];
-    [super dealloc];
-}
-
-
 - (void)updateViewForMode:(RootViewMode)mode
 {
 	switch (mode)
 	{
 		case RootViewModeLoadingUserInfo:
-			loginButton.hidden = YES;
-			loadingLabel.hidden = NO;
-			loadingLabel.text = @"Loading User Info...";
+			self.loginButton.hidden = YES;
+			self.loadingLabel.hidden = NO;
+			self.loadingLabel.text = @"Loading User Info...";
 			[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-			progressView.hidden = YES;
+			self.progressView.hidden = YES;
 			break;
 			
 		case RootViewModeLoadingUserFriends:
-			loginButton.hidden = YES;
-			loadingLabel.hidden = NO;
-			loadingLabel.text = @"Loading Friends...";
+			self.loginButton.hidden = YES;
+			self.loadingLabel.hidden = NO;
+			self.loadingLabel.text = @"Loading Friends...";
 			[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-			progressView.hidden = NO;			
-			progressView.progress = 0;
+			self.progressView.hidden = NO;			
+			self.progressView.progress = 0;
 			break;
 			
 		case RootViewModeLoadingFriendsInfo:
-			loginButton.hidden = YES;
-			loadingLabel.hidden = NO;
+			self.loginButton.hidden = YES;
+			self.loadingLabel.hidden = NO;
 			[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-			progressView.hidden = NO;			
+			self.progressView.hidden = NO;			
 			break;
 			
-		default:
-			loginButton.hidden = NO;
-			loadingLabel.hidden = YES;
+        case RootViewModeIdle:
+        default:
+			self.loginButton.hidden = NO;
+			self.loadingLabel.hidden = YES;
 			[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-			progressView.hidden = YES;
+			self.progressView.hidden = YES;
 			break;
 	}
 }
 
 - (void)updateViewForProgress
 {
-	loadingLabel.text = [NSString stringWithFormat:@"Loading %d of %d Friends...", total - pending, total];
-	progressView.progress = (float)(total - pending) / total;
-	
-	NSLog(@"pending = %d", pending);
+	self.loadingLabel.text = [NSString stringWithFormat:@"Loading %d of %d Friends...", self.total - self.pending, self.total];
+	self.progressView.progress = (float)(self.total - self.pending) / self.total;
 }
 
 
-#pragma mark -
-#pragma mark IBAction
+#pragma mark - IBAction
 
 - (IBAction)loginButtonTapped:(id)sender
 {
@@ -130,16 +133,14 @@
 
 - (void)facebookLogin
 {
-	NSArray* permissions = [NSArray arrayWithObjects:
-							@"user_about_me", @"friends_about_me", 
+	NSArray* permissions = @[@"user_about_me", @"friends_about_me", 
 							@"user_birthday", @"friends_birthday", 
 							@"user_education_history", @"friends_education_history",
 							@"user_hometown", @"friends_hometown", 
 							@"user_location", @"friends_location", 
 							@"user_relationships", @"friends_relationships", 
 							@"user_work_history", @"friends_work_history",
-							@"user_education_history", @"friends_education_history",
-							nil];
+							@"user_education_history", @"friends_education_history"];
 	
 	[[FacebookClient sharedFacebook] authorize:permissions delegate:self];
 }
@@ -167,48 +168,45 @@
 
 - (void)parseFriends
 {
-	total = [self.currentUser.friends count];
+	self.total = [self.currentUser.friends count];
 	
-	if ( queue )
+	if ( self.queue )
 	{
-		[queue cancelAllOperations];
-		[queue release];
+		[self.queue cancelAllOperations];
 	}
-	queue = [[NSOperationQueue alloc] init];
-    [queue addObserver:self forKeyPath:@"operationCount" options:NSKeyValueObservingOptionNew context:NULL];	
+	self.queue = [[NSOperationQueue alloc] init];
+    [self.queue addObserver:self forKeyPath:@"operationCount" options:NSKeyValueObservingOptionNew context:NULL];	
 
-	NSMutableArray* opArray = [NSMutableArray arrayWithCapacity:total];
+	NSMutableArray* opArray = [NSMutableArray arrayWithCapacity:self.total];
 	for ( id friend in self.currentUser.friends )
 	{
-		NSString* friendID = [friend objectForKey:@"id"];
+		NSString* friendID = friend[@"id"];
 		FBRequestOperation* op = [[FBRequestOperation alloc] initWithGraphPath:friendID delegate:nil];
 		[opArray addObject:op];
-		[op release];
 	}
-	[queue setMaxConcurrentOperationCount:5];
-	[queue addOperations:opArray waitUntilFinished:NO];
+	[self.queue setMaxConcurrentOperationCount:5];
+	[self.queue addOperations:opArray waitUntilFinished:NO];
 }
 
 - (void)showMainMenuViewController
 {
 	MainMenuViewController* childVC = [[MainMenuViewController alloc] init];
 	[self.navigationController pushViewController:childVC animated:YES];
-	[childVC release];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
 	if ( [keyPath isEqualToString:@"operationCount"] )
 	{
-		pending = [queue operationCount];
+		self.pending = [self.queue operationCount];
 		
 		[self performSelectorOnMainThread:@selector(updateViewForProgress) withObject:nil waitUntilDone:NO];
 		
-		if ( pending == 0 )
+		if ( self.pending == 0 )
 		{
             [[User managedObjectContext] save:nil];
             
-            [queue removeObserver:self forKeyPath:@"operationCount"];
+            [self.queue removeObserver:self forKeyPath:@"operationCount"];
 			[[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"LastUpdated"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             
@@ -248,9 +246,9 @@
 		self.userInfoRequest = nil;
 
 		self.currentUser = [User existingOrNewUserWithDictionary:result];
-		NSLog(@"Current User: %@", currentUser);
+		NSLog(@"Current User: %@", self.currentUser);
 		
-		[[NSUserDefaults standardUserDefaults] setObject:currentUser.id forKey:@"CurrentUserID"];
+		[[NSUserDefaults standardUserDefaults] setObject:self.currentUser.id forKey:@"CurrentUserID"];
         [[NSUserDefaults standardUserDefaults] synchronize];
 
 		[self fetchFriends];
@@ -260,7 +258,7 @@
 	{
 		self.userFriendsRequest = nil;
 		
-		self.currentUser.friends = [result objectForKey:@"data"];
+		self.currentUser.friends = result[@"data"];
 		
 		[self parseFriends];
 	}
@@ -276,7 +274,6 @@
         
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Can't Access User Info" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
-        [alert release];
         
         [self updateViewForMode:RootViewModeIdle];		
 	}
@@ -289,7 +286,6 @@
         
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Can't Access Friend List" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
-        [alert release];
 		
         [self updateViewForMode:RootViewModeIdle];		
 	}

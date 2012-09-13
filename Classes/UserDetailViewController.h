@@ -29,14 +29,14 @@
     NSOperationQueue* queue;
 }
 
-@property (nonatomic, retain) User* user;   
-@property (nonatomic, retain) NSMutableArray* keyPaths;
-@property (nonatomic, retain) NSArray* works;
-@property (nonatomic, retain) NSArray* educations;
-@property (nonatomic, retain) NSDictionary* displayNameDict;
-@property (nonatomic, retain) IBOutlet UIView* headerView;
-@property (nonatomic, retain) IBOutlet UIImageView* profileImageView;
-@property (nonatomic, retain) IBOutlet UILabel* nameLabel;
+@property (nonatomic, strong) User* user;   
+@property (nonatomic, strong) NSMutableArray* keyPaths;
+@property (nonatomic, strong) NSArray* works;
+@property (nonatomic, strong) NSArray* educations;
+@property (nonatomic, strong) NSDictionary* displayNameDict;
+@property (nonatomic, strong) IBOutlet UIView* headerView;
+@property (nonatomic, strong) IBOutlet UIImageView* profileImageView;
+@property (nonatomic, strong) IBOutlet UILabel* nameLabel;
 
 - (void)loadProfileImage;
 - (void)setImageViewWithData:(NSData*)data;

@@ -34,7 +34,7 @@
 
 + (NSArray*)allGeocodes
 {
-	NSFetchRequest* request = [[[NSFetchRequest alloc] init] autorelease];
+	NSFetchRequest* request = [[NSFetchRequest alloc] init];
 	[request setEntity:[self entity]];
 	
 	NSError* error;
@@ -45,7 +45,7 @@
 
 + (Geocode*)geocodeWithLatitude:(NSNumber*)latitude longitude:(NSNumber*)longitude
 {
-    NSFetchRequest* request = [[[NSFetchRequest alloc] init] autorelease];
+    NSFetchRequest* request = [[NSFetchRequest alloc] init];
 	[request setEntity:[self entity]];
 	
 	NSPredicate* predicate = [NSPredicate predicateWithFormat:@"latitude == %@ AND longitude == %@", latitude, longitude];
@@ -54,15 +54,15 @@
 	NSError* error = nil;
 	NSArray* results = [[self managedObjectContext] executeFetchRequest:request error:&error];
 	
-    Geocode* geocode = ([results count]) ? [results objectAtIndex:0] : nil;
+    Geocode* geocode = ([results count]) ? results[0] : nil;
 	return geocode;
 }
 
 + (Geocode*)existingOrNewGeocodeWithDictionary:(NSDictionary*)dict
 {
-    NSDictionary* location = [[dict objectForKey:@"geometry"] objectForKey:@"location"];
-	NSNumber* latitude = [location objectForKey:@"lat"];
-	NSNumber* longitude = [location objectForKey:@"lng"];
+    NSDictionary* location = dict[@"geometry"][@"location"];
+	NSNumber* latitude = location[@"lat"];
+	NSNumber* longitude = location[@"lng"];
 
     Geocode* geocode = [self geocodeWithLatitude:latitude longitude:longitude];
 	
@@ -72,13 +72,13 @@
         
         geocode.latitude = latitude;
         geocode.longitude = longitude;
-        geocode.formatted_address = [dict objectForKey:@"formatted_address"];
+        geocode.formatted_address = dict[@"formatted_address"];
 
-        NSArray* address_components = [dict objectForKey:@"address_components"];
+        NSArray* address_components = dict[@"address_components"];
         for ( NSDictionary* address_component in address_components )
         {
-            NSString* long_name = [address_component objectForKey:@"long_name"];
-            NSArray* types = [address_component objectForKey:@"types"];
+            NSString* long_name = address_component[@"long_name"];
+            NSArray* types = address_component[@"types"];
             for ( NSString* type in types )
             {
                 //// "setValue:forUndefinedKey:" will catch invalid keys and ignores them. ////
@@ -93,8 +93,8 @@
 
 + (Geocode*)existingOrNewGeocodeWithpPlacemark:(CLPlacemark*)placemark
 {
-	NSNumber* latitude = [NSNumber numberWithDouble:placemark.location.coordinate.latitude];
-	NSNumber* longitude = [NSNumber numberWithDouble:placemark.location.coordinate.longitude];
+	NSNumber* latitude = @(placemark.location.coordinate.latitude);
+	NSNumber* longitude = @(placemark.location.coordinate.longitude);
     
     Geocode* geocode = [self geocodeWithLatitude:latitude longitude:longitude];
 	
@@ -104,7 +104,7 @@
         
         geocode.latitude = latitude;
         geocode.longitude = longitude;
-        geocode.formatted_address = [[placemark.addressDictionary objectForKey:@"FormattedAddressLines"] objectAtIndex:0];
+        geocode.formatted_address = (placemark.addressDictionary)[@"FormattedAddressLines"][0];
         
         
         
@@ -123,7 +123,7 @@
 
 + (Geocode*)geocodeForName:(NSString*)locationName
 {
-    NSFetchRequest* request = [[[NSFetchRequest alloc] init] autorelease];
+    NSFetchRequest* request = [[NSFetchRequest alloc] init];
 	[request setEntity:[self entity]];
 	
 	NSPredicate* predicate = [NSPredicate predicateWithFormat:@"ANY locationNames.name == %@", locationName];
@@ -132,7 +132,7 @@
 	NSError* error = nil;
 	NSArray* results = [[self managedObjectContext] executeFetchRequest:request error:&error];
 	
-    Geocode* geocode = ([results count]) ? [results objectAtIndex:0] : nil;
+    Geocode* geocode = ([results count]) ? results[0] : nil;
 	return geocode;
 }
 
@@ -143,7 +143,7 @@
 
 + (Geocode*)unknownGeocode
 {
-    NSNumber* unknownCoordinate = [NSNumber numberWithInt:kUnknownGeocodeCoordinate];
+    NSNumber* unknownCoordinate = @kUnknownGeocodeCoordinate;
     Geocode* geocode = [self geocodeWithLatitude:unknownCoordinate longitude:unknownCoordinate];
 	
 	if ( !geocode )

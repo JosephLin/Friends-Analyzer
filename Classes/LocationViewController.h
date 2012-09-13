@@ -32,15 +32,15 @@
     NSArray* pendingOperations;
 }
 
-@property (retain, nonatomic) IBOutlet UIView* loadingView;
-@property (nonatomic, retain) IBOutlet UILabel* loadingLabel;
-@property (nonatomic, retain) IBOutlet UIProgressView* progressView;
-@property (nonatomic, retain) IBOutlet UITableView* tableView;
-@property (nonatomic, retain) IBOutlet MKMapView* mapView;
-@property (nonatomic, retain) UISegmentedControl* segmentedControl;
-@property (nonatomic, retain) NSFetchedResultsController* fetchedResultsController;
-@property (nonatomic, retain) NSString* ownerKeyPath;
-@property (nonatomic, retain) NSArray* pendingOperations;
+@property (strong, nonatomic) IBOutlet UIView* loadingView;
+@property (nonatomic, strong) IBOutlet UILabel* loadingLabel;
+@property (nonatomic, strong) IBOutlet UIProgressView* progressView;
+@property (nonatomic, strong) IBOutlet UITableView* tableView;
+@property (nonatomic, strong) IBOutlet MKMapView* mapView;
+@property (nonatomic, strong) UISegmentedControl* segmentedControl;
+@property (nonatomic, strong) NSFetchedResultsController* fetchedResultsController;
+@property (nonatomic, strong) NSString* ownerKeyPath;
+@property (nonatomic, strong) NSArray* pendingOperations;
 
 
 - (void)showTableView;

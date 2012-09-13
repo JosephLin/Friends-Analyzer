@@ -29,7 +29,7 @@
     self.title = @"Profile";
     nameLabel.text = user.name;
     
-    NSArray* possibleKeys = [NSArray arrayWithObjects:@"gender", @"birthday", @"relationship_status", @"hometown", @"location", @"updated_time", @"locale", nil];
+    NSArray* possibleKeys = @[@"gender", @"birthday", @"relationship_status", @"hometown", @"location", @"updated_time", @"locale"];
 
     NSMutableArray* existKeys = [NSMutableArray arrayWithCapacity:[possibleKeys count]];
     for ( id keyPath in possibleKeys )
@@ -65,17 +65,7 @@
 - (void)dealloc
 {
     [queue cancelAllOperations];
-    [queue release];
 
-    [user release];
-    [keyPaths release];
-    [works release];
-    [educations release];
-    [displayNameDict release];
-    [headerView release];
-    [profileImageView release];
-    [nameLabel release];
-    [super dealloc];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -88,7 +78,7 @@
     if ( !displayNameDict )
     {
         NSString* path = [[NSBundle mainBundle] pathForResource:@"attributeDisplayNames" ofType:@"plist"];
-        displayNameDict = [[[NSDictionary dictionaryWithContentsOfFile:path] objectForKey:@"Root"] retain];
+        displayNameDict = [NSDictionary dictionaryWithContentsOfFile:path][@"Root"];
     }
     return displayNameDict;
 }
@@ -108,7 +98,6 @@
     if ( queue )
     {
         [queue cancelAllOperations];
-        [queue release];
     }
     queue = [[NSOperationQueue alloc] init];
     
@@ -116,7 +105,6 @@
     
     AsyncImageOperation* op = [[AsyncImageOperation alloc] initWithURL:urlString delegate:self];
     [queue addOperation:op];
-    [op release];
 }
 
 - (void)operation:(AsyncImageOperation*)op didLoadData:(NSData*)data
@@ -149,16 +137,16 @@
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
 {
-    return [[keyPaths objectAtIndex:section] count];
+    return [keyPaths[section] count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray* section = [keyPaths objectAtIndex:indexPath.section];
+    NSArray* section = keyPaths[indexPath.section];
 
     if ( section == self.works )
     {
-        Work* work = [works objectAtIndex:indexPath.row];
+        Work* work = works[indexPath.row];
         NSString* text = [self descriptionForWork:work];
         CGFloat height = kCellMargin + [text sizeWithFont:[UIFont boldSystemFontOfSize:kDetailLabelFontSize] 
                                         constrainedToSize:CGSizeMake(kDetailLabelWidth, 200)
@@ -167,7 +155,7 @@
     }
     else if ( section == self.educations )
     {
-        Education* education = [educations objectAtIndex:indexPath.row];
+        Education* education = educations[indexPath.row];
         NSString* text = [self descriptionForEducation:education];
         CGFloat height = kCellMargin + [text sizeWithFont:[UIFont boldSystemFontOfSize:kDetailLabelFontSize] 
                                         constrainedToSize:CGSizeMake(kDetailLabelWidth, 200)
@@ -186,32 +174,32 @@
     
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.textLabel.adjustsFontSizeToFitWidth = YES;
         cell.detailTextLabel.numberOfLines = 0;
     }
     
-    NSArray* section = [keyPaths objectAtIndex:indexPath.section];
+    NSArray* section = keyPaths[indexPath.section];
     
     if ( section == self.works )
     {
-        Work* work = [works objectAtIndex:indexPath.row];
+        Work* work = works[indexPath.row];
         cell.textLabel.text = @"Work";
         cell.detailTextLabel.text = [self descriptionForWork:work];
     }
     else if ( section == self.educations )
     {
-        Education* education = [educations objectAtIndex:indexPath.row];
+        Education* education = educations[indexPath.row];
         cell.textLabel.text = @"Education";
         cell.detailTextLabel.text = [self descriptionForEducation:education];
     }
     else
     {
-        NSString* keyPath = [section objectAtIndex:indexPath.row];
+        NSString* keyPath = section[indexPath.row];
         id value = [user valueForKey:keyPath];
         
-        cell.textLabel.text = [self.displayNameDict objectForKey:keyPath];
+        cell.textLabel.text = (self.displayNameDict)[keyPath];
         
         if ( [value isKindOfClass:[NSString class]] )
         {

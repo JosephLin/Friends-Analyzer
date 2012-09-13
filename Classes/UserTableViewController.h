@@ -14,6 +14,6 @@
 	NSArray* userArray;
 }
 
-@property (nonatomic, retain) NSArray* userArray;
+@property (nonatomic, strong) NSArray* userArray;
 
 @end

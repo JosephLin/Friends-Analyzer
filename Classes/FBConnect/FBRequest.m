@@ -45,7 +45,7 @@ static const NSTimeInterval kTimeoutInterval = 180.0;
                            delegate:(id<FBRequestDelegate>) delegate
                          requestURL:(NSString *) url {
 
-  FBRequest* request = [[[FBRequest alloc] init] autorelease];
+  FBRequest* request = [[FBRequest alloc] init];
   request.delegate = delegate;
   request.url = url;
   request.httpMethod = httpMethod;
@@ -84,15 +84,14 @@ static const NSTimeInterval kTimeoutInterval = 180.0;
       continue;
     }
 
-    NSString* escaped_value = (NSString *)CFURLCreateStringByAddingPercentEscapes(
+    NSString* escaped_value = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
                                 NULL, /* allocator */
-                                (CFStringRef)[params objectForKey:key],
+                                (CFStringRef)params[key],
                                 NULL, /* charactersToLeaveUnescaped */
                                 (CFStringRef)@"!*'();:@&=+$,/?%#[]",
-                                kCFStringEncodingUTF8);
+                                kCFStringEncodingUTF8));
 
     [pairs addObject:[NSString stringWithFormat:@"%@=%@", key, escaped_value]];
-    [escaped_value release];
   }
   NSString* query = [pairs componentsJoinedByString:@"&"];
 
@@ -121,7 +120,7 @@ static const NSTimeInterval kTimeoutInterval = 180.0;
     if (([[_params valueForKey:key] isKindOfClass:[UIImage class]])
       ||([[_params valueForKey:key] isKindOfClass:[NSData class]])) {
 
-      [dataDictionary setObject:[_params valueForKey:key] forKey:key];
+      dataDictionary[key] = [_params valueForKey:key];
       continue;
 
     }
@@ -144,7 +143,7 @@ static const NSTimeInterval kTimeoutInterval = 180.0;
                        data:[NSString stringWithFormat:
                              @"Content-Disposition: form-data; filename=\"%@\"\r\n", key]];
         [self utfAppendBody:body
-                       data:[NSString stringWithString:@"Content-Type: image/png\r\n\r\n"]];
+                       data:@"Content-Type: image/png\r\n\r\n"];
         [body appendData:imageData];
       } else {
         NSAssert([dataParam isKindOfClass:[NSData class]],
@@ -153,7 +152,7 @@ static const NSTimeInterval kTimeoutInterval = 180.0;
                        data:[NSString stringWithFormat:
                              @"Content-Disposition: form-data; filename=\"%@\"\r\n", key]];
         [self utfAppendBody:body
-                       data:[NSString stringWithString:@"Content-Type: content/unknown\r\n\r\n"]];
+                       data:@"Content-Type: content/unknown\r\n\r\n"];
         [body appendData:(NSData*)dataParam];
       }
       [self utfAppendBody:body data:endLine];
@@ -177,18 +176,15 @@ static const NSTimeInterval kTimeoutInterval = 180.0;
  */
 - (id)parseJsonResponse:(NSData *)data error:(NSError **)error {
 
-  NSString* responseString = [[[NSString alloc] initWithData:data
-                                                    encoding:NSUTF8StringEncoding]
-                              autorelease];
-  SBJSON *jsonParser = [[SBJSON new] autorelease];
+  NSString* responseString = [[NSString alloc] initWithData:data
+                                                    encoding:NSUTF8StringEncoding];
+  SBJSON *jsonParser = [SBJSON new];
   if ([responseString isEqualToString:@"true"]) {
-    return [NSDictionary dictionaryWithObject:@"true" forKey:@"result"];
+    return @{@"result": @"true"};
   } else if ([responseString isEqualToString:@"false"]) {
     if (error != nil) {
       *error = [self formError:kGeneralErrorCode
-                      userInfo:[NSDictionary
-                                dictionaryWithObject:@"This operation can not be completed"
-                                forKey:@"error_msg"]];
+                      userInfo:@{@"error_msg": @"This operation can not be completed"}];
     }
     return nil;
   }
@@ -197,7 +193,7 @@ static const NSTimeInterval kTimeoutInterval = 180.0;
   id result = [jsonParser objectWithString:responseString];
 
   if (![result isKindOfClass:[NSArray class]]) {
-    if ([result objectForKey:@"error"] != nil) {
+    if (result[@"error"] != nil) {
       if (error != nil) {
         *error = [self formError:kGeneralErrorCode
                         userInfo:result];
@@ -205,20 +201,20 @@ static const NSTimeInterval kTimeoutInterval = 180.0;
       return nil;
     }
 
-    if ([result objectForKey:@"error_code"] != nil) {
+    if (result[@"error_code"] != nil) {
       if (error != nil) {
-        *error = [self formError:[[result objectForKey:@"error_code"] intValue] userInfo:result];
+        *error = [self formError:[result[@"error_code"] intValue] userInfo:result];
       }
       return nil;
     }
 
-    if ([result objectForKey:@"error_msg"] != nil) {
+    if (result[@"error_msg"] != nil) {
       if (error != nil) {
         *error = [self formError:kGeneralErrorCode userInfo:result];
       }
     }
 
-    if ([result objectForKey:@"error_reason"] != nil) {
+    if (result[@"error_reason"] != nil) {
       if (error != nil) {
         *error = [self formError:kGeneralErrorCode userInfo:result];
       }
@@ -312,12 +308,6 @@ static const NSTimeInterval kTimeoutInterval = 180.0;
  */
 - (void)dealloc {
   [_connection cancel];
-  [_connection release];
-  [_responseText release];
-  [_url release];
-  [_httpMethod release];
-  [_params release];
-  [super dealloc];
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -345,18 +335,14 @@ static const NSTimeInterval kTimeoutInterval = 180.0;
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
   [self handleResponseData:_responseText];
 
-  [_responseText release];
   _responseText = nil;
-  [_connection release];
   _connection = nil;
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
   [self failWithError:error];
 
-  [_responseText release];
   _responseText = nil;
-  [_connection release];
   _connection = nil;
 }
 

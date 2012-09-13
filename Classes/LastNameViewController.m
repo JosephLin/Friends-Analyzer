@@ -23,7 +23,7 @@
 {
     ObjectAttribute* object = [fetchedResultsController objectAtIndexPath:indexPath];
     NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
-    NSArray* array = [object.owners sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    NSArray* array = [object.owners sortedArrayUsingDescriptors:@[sortDescriptor]];
     
     return array;
 }

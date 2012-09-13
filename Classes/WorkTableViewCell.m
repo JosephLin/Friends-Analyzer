@@ -73,8 +73,7 @@
 
 - (void)setWork:(Work *)theWork
 {
-    [work autorelease];
-    work = [theWork retain];
+    work = theWork;
     
     self.nameLabel.text = work.user.name;
     self.employerLabel.text = work.employer.name;
@@ -87,13 +86,5 @@
     self.descriptionLabel.text = [array componentsJoinedByString:@" - "];
 }
 
-- (void)dealloc
-{
-    [work release];
-    [nameLabel release];
-    [employerLabel release];
-    [descriptionLabel release];
-    [super dealloc];
-}
 
 @end

@@ -21,11 +21,11 @@
     PieChartView* pieChartView;
 }
 
-@property (nonatomic, retain) NSString* property;
-@property (nonatomic, retain) NSArray* sortedKeys;
-@property (nonatomic, retain) NSDictionary* userCountsDict;
-@property (nonatomic, retain) UISegmentedControl* segmentedControl;
-@property (nonatomic, retain) UITableView* tableView;
-@property (nonatomic, retain) PieChartView* pieChartView;
+@property (nonatomic, strong) NSString* property;
+@property (nonatomic, strong) NSArray* sortedKeys;
+@property (nonatomic, strong) NSDictionary* userCountsDict;
+@property (nonatomic, strong) UISegmentedControl* segmentedControl;
+@property (nonatomic, strong) UITableView* tableView;
+@property (nonatomic, strong) PieChartView* pieChartView;
 
 @end

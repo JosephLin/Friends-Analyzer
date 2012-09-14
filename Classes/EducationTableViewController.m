@@ -9,16 +9,12 @@
 #import "EducationTableViewController.h"
 #import "Education.h"
 #import "User.h"
-#import "EducationTableViewCell.h"
+#import "EducationCell.h"
 #import "UserDetailViewController.h"
 
 
 
 @implementation EducationTableViewController
-
-@synthesize keyPath, value;
-@synthesize fetchedResultsController, segmentedControl;
-@synthesize shouldShowSegmentedControl;
 
 
 - (void)viewDidLoad
@@ -26,15 +22,17 @@
     NSArray* controlItems = @[@"Name", @"School"];
     
     self.segmentedControl = [[UISegmentedControl alloc] initWithItems:controlItems];
-    segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-    [segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
+    self.segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+    [self.segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
     
-    if ( shouldShowSegmentedControl )
-        self.navigationItem.titleView = segmentedControl;
+    if ( self.shouldShowSegmentedControl )
+        self.navigationItem.titleView = self.segmentedControl;
     
-    segmentedControl.selectedSegmentIndex = 0;
+    self.segmentedControl.selectedSegmentIndex = 0;
     
+    [self.tableView registerNib:[UINib nibWithNibName:@"EducationCell" bundle:nil] forCellReuseIdentifier:@"EducationCell"];
+
     [super viewDidLoad];
 }
 
@@ -67,15 +65,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {    
-    static NSString *CellIdentifier = @"Cell";
-    
-    EducationTableViewCell *cell = (EducationTableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[EducationTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleGray;
-    }
-    
-	Education* education = [fetchedResultsController objectAtIndexPath:indexPath];
+    EducationCell *cell = (EducationCell*)[tableView dequeueReusableCellWithIdentifier:@"EducationCell"];
+	Education* education = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.education = education;
     
     return cell;
@@ -83,7 +74,7 @@
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-    NSArray* sectionIndexTitles = [[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"];
+    NSArray* sectionIndexTitles = [[self.fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"];
     if ( [sectionIndexTitles count] > 10 )
     { 
         return sectionIndexTitles;
@@ -96,7 +87,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index 
 {
-    NSArray* sectionIndexTitles = [[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"];
+    NSArray* sectionIndexTitles = [[self.fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"];
     return [sectionIndexTitles indexOfObject:title];
 }
 
@@ -109,7 +100,7 @@
 {
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-	Education* education = [fetchedResultsController objectAtIndexPath:indexPath];
+	Education* education = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     UserDetailViewController* childVC = [[UserDetailViewController alloc] initWithNibName:@"UserDetailViewController" bundle:nil];
     childVC.user = education.user;
@@ -122,11 +113,11 @@
 
 - (NSFetchedResultsController*)fetchedResultsController
 {
-    if ( !fetchedResultsController)
+    if ( !_fetchedResultsController)
     {
-        fetchedResultsController = [self fetchedResultsControllerOfType:segmentedControl.selectedSegmentIndex];
+        _fetchedResultsController = [self fetchedResultsControllerOfType:self.segmentedControl.selectedSegmentIndex];
     }
-    return fetchedResultsController;
+    return _fetchedResultsController;
 }
 
 - (NSFetchedResultsController*)fetchedResultsControllerOfType:(NSInteger)selectedSegmentIndex
@@ -134,16 +125,16 @@
     NSFetchRequest* fetchRequest = [[NSFetchRequest alloc] init];
     [fetchRequest setEntity:[Education entity]];
     
-    if ( keyPath && value )
+    if ( self.keyPath && self.value )
     {
-        if ( [value isKindOfClass:[NSString class]] )
+        if ( [self.value isKindOfClass:[NSString class]] )
         {        
-            NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%K like[c] %@", keyPath, value];
+            NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%K like[c] %@", self.keyPath, self.value];
             [fetchRequest setPredicate:predicate];
         }
-        else if ( [value isKindOfClass:[ObjectAttribute class]] )
+        else if ( [self.value isKindOfClass:[ObjectAttribute class]] )
         {
-            NSPredicate* predicate = [NSPredicate predicateWithFormat:@"ANY %K == %@", keyPath, ((ObjectAttribute*)value).name];
+            NSPredicate* predicate = [NSPredicate predicateWithFormat:@"ANY %K == %@", self.keyPath, ((ObjectAttribute*)self.value).name];
             [fetchRequest setPredicate:predicate];
         }
     }

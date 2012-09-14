@@ -11,7 +11,5 @@
 
 
 @interface SchoolViewController : FRCBasedTableViewController
-{
-}
 
 @end

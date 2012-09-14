@@ -16,6 +16,7 @@
 		28D3F202112F7DC200FD0661 /* FriendsAnalyzer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28D3F201112F7DC200FD0661 /* FriendsAnalyzer.xcdatamodeld */; };
 		7C0C06F81603D0560026CF44 /* LocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C0C06F71603D0560026CF44 /* LocationViewController.xib */; };
 		7C0C07181603DA030026CF44 /* WorkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C0C07171603DA030026CF44 /* WorkCell.xib */; };
+		7C0C071A1603DF7F0026CF44 /* EducationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C0C07191603DF7F0026CF44 /* EducationCell.xib */; };
 		7C13AF8A132149E8001FD36C /* MainWindow~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C13AF89132149E8001FD36C /* MainWindow~ipad.xib */; };
 		7C13AF8F13214C8C001FD36C /* BirthdayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C13AF8D13214C8C001FD36C /* BirthdayViewController.m */; };
 		7C1FF31D132EABE300110D03 /* WorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1FF31C132EABE300110D03 /* WorkViewController.m */; };
@@ -100,7 +101,7 @@
 		7CE46EE1160187EF009D3A5A /* corporate-rounded-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7CE46ED816017ED8009D3A5A /* corporate-rounded-bold.ttf */; };
 		7CE46EEA16018A06009D3A5A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CE46ED4160177BC009D3A5A /* Default-568h@2x.png */; };
 		7CEE3BFC133946EB0004D50C /* EducationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEE3BFB133946EB0004D50C /* EducationTableViewController.m */; };
-		7CEE3BFF133946FB0004D50C /* EducationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEE3BFE133946FB0004D50C /* EducationTableViewCell.m */; };
+		7CEE3BFF133946FB0004D50C /* EducationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEE3BFE133946FB0004D50C /* EducationCell.m */; };
 		7CEF039F132DBAA10058FD63 /* ObjectAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEF039E132DBAA10058FD63 /* ObjectAttribute.m */; };
 		7CEF03AB132DD5F20058FD63 /* DegreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEF03AA132DD5F10058FD63 /* DegreeViewController.m */; };
 		7CF0CC681327F0E3006C5693 /* HometownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF0CC671327F0E2006C5693 /* HometownViewController.m */; };
@@ -175,6 +176,7 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7C0C06F71603D0560026CF44 /* LocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationViewController.xib; sourceTree = "<group>"; };
 		7C0C07171603DA030026CF44 /* WorkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorkCell.xib; sourceTree = "<group>"; };
+		7C0C07191603DF7F0026CF44 /* EducationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EducationCell.xib; sourceTree = "<group>"; };
 		7C13AF89132149E8001FD36C /* MainWindow~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow~ipad.xib"; path = "iPad/MainWindow~ipad.xib"; sourceTree = "<group>"; };
 		7C13AF8C13214C8C001FD36C /* BirthdayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BirthdayViewController.h; sourceTree = "<group>"; };
 		7C13AF8D13214C8C001FD36C /* BirthdayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BirthdayViewController.m; sourceTree = "<group>"; };
@@ -294,8 +296,8 @@
 		7CE46EDC160183A0009D3A5A /* icon-tile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-tile@2x.png"; sourceTree = "<group>"; };
 		7CEE3BFA133946EB0004D50C /* EducationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EducationTableViewController.h; sourceTree = "<group>"; };
 		7CEE3BFB133946EB0004D50C /* EducationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EducationTableViewController.m; sourceTree = "<group>"; };
-		7CEE3BFD133946FA0004D50C /* EducationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EducationTableViewCell.h; sourceTree = "<group>"; };
-		7CEE3BFE133946FB0004D50C /* EducationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EducationTableViewCell.m; sourceTree = "<group>"; };
+		7CEE3BFD133946FA0004D50C /* EducationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EducationCell.h; sourceTree = "<group>"; };
+		7CEE3BFE133946FB0004D50C /* EducationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EducationCell.m; sourceTree = "<group>"; };
 		7CEF039D132DBAA10058FD63 /* ObjectAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectAttribute.h; sourceTree = "<group>"; };
 		7CEF039E132DBAA10058FD63 /* ObjectAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectAttribute.m; sourceTree = "<group>"; };
 		7CEF03A9132DD5F10058FD63 /* DegreeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DegreeViewController.h; sourceTree = "<group>"; };
@@ -371,7 +373,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				7C92D6461602876B00161D93 /* ImageIO.framework */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -410,6 +411,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7C92D6461602876B00161D93 /* ImageIO.framework */,
 				7C83D9DD1325745F0059BBF0 /* CoreLocation.framework */,
 				7C83D9D513256D4B0059BBF0 /* MapKit.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
@@ -694,8 +696,9 @@
 				7CC78EE61329858000CA2B45 /* ConcentrationViewController.m */,
 				7CEE3BFA133946EB0004D50C /* EducationTableViewController.h */,
 				7CEE3BFB133946EB0004D50C /* EducationTableViewController.m */,
-				7CEE3BFD133946FA0004D50C /* EducationTableViewCell.h */,
-				7CEE3BFE133946FB0004D50C /* EducationTableViewCell.m */,
+				7CEE3BFD133946FA0004D50C /* EducationCell.h */,
+				7CEE3BFE133946FB0004D50C /* EducationCell.m */,
+				7C0C07191603DF7F0026CF44 /* EducationCell.xib */,
 			);
 			name = "Education View";
 			sourceTree = "<group>";
@@ -860,6 +863,7 @@
 				7C92D65016028E9200161D93 /* CounterCell.xib in Resources */,
 				7C0C06F81603D0560026CF44 /* LocationViewController.xib in Resources */,
 				7C0C07181603DA030026CF44 /* WorkCell.xib in Resources */,
+				7C0C071A1603DF7F0026CF44 /* EducationCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -907,7 +911,7 @@
 				7C70C00D1331614C00E1B87C /* PositionViewController.m in Sources */,
 				7C42EFD91333DD8300BA6B5F /* UserDetailViewController.m in Sources */,
 				7CEE3BFC133946EB0004D50C /* EducationTableViewController.m in Sources */,
-				7CEE3BFF133946FB0004D50C /* EducationTableViewCell.m in Sources */,
+				7CEE3BFF133946FB0004D50C /* EducationCell.m in Sources */,
 				7C5141F7133BF991001A0573 /* LastNameViewController.m in Sources */,
 				7C5141FA133BF9A0001A0573 /* FullNameViewController.m in Sources */,
 				7C4995E71342758500A49BBA /* PieChartObject.m in Sources */,

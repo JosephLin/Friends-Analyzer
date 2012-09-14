@@ -10,14 +10,7 @@
 #import "Education.h"
 
 
-@interface EducationTableViewCell : UITableViewCell
-{
-    Education* education;
-    
-    UILabel* nameLabel;
-    UILabel* schoolLabel;
-    UILabel* descriptionLabel;
-}
+@interface EducationCell : UITableViewCell
 
 @property (nonatomic, strong) Education* education;
 @property (nonatomic, strong) UILabel* nameLabel;

@@ -11,7 +11,5 @@
 
 
 @interface ConcentrationViewController : FRCBasedTableViewController
-{
-}
 
 @end

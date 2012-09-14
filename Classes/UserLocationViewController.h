@@ -10,8 +10,6 @@
 #import "LocationViewController.h"
 
 
-@interface UserLocationViewController : LocationViewController {
-    
-}
+@interface UserLocationViewController : LocationViewController
 
 @end

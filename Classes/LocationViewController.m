@@ -7,8 +7,7 @@
 //
 
 #import "LocationViewController.h"
-#import "GeocodeTableViewCell.h"
-
+#import "CounterCell.h"
 
 
 @interface LocationViewController ()
@@ -198,7 +197,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {    
-    GeocodeTableViewCell *cell = (GeocodeTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:@"CounterCell"];
+    CounterCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"CounterCell"];
     
     Geocode* geocode = [self.fetchedResultsController objectAtIndexPath:indexPath];    
     cell.titleLabel.text = geocode.formatted_address;

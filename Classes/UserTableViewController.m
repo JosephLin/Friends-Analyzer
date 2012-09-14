@@ -3,7 +3,7 @@
 //  FacebookSearch
 //
 //  Created by Joseph Lin on 2/28/11.
-//  Copyright 2011 R/GA. All rights reserved.
+//  Copyright 2011 Joseph Lin. All rights reserved.
 //
 
 #import "UserTableViewController.h"

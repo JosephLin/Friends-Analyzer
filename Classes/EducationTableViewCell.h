@@ -3,7 +3,7 @@
 //  FriendsAnalyzer
 //
 //  Created by Joseph Lin on 3/22/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 Joseph Lin. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

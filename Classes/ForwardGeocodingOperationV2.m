@@ -9,16 +9,19 @@
 #import "ForwardGeocodingOperationV2.h"
 #import "LocationName.h"
 
+
+
 @interface ForwardGeocodingOperationV2 ()
-- (void)finish;
+
+@property (nonatomic, strong) CLGeocoder* geocoder;
+@property (nonatomic) BOOL isExecuting;
+@property (nonatomic) BOOL isFinished;
+
 @end
 
 
 
 @implementation ForwardGeocodingOperationV2
-@synthesize query, geocode;
-@synthesize object, keyPath;
-@synthesize isExecuting, isFinished;
 
 
 - (id)initWithQuery:(NSString*)theQuery object:(id)theObject keyPath:(NSString*)theKeyPath
@@ -29,19 +32,17 @@
 		self.object = theObject;
 		self.keyPath = theKeyPath;
 
-        geocoder = [[CLGeocoder alloc] init];
+        self.geocoder = [[CLGeocoder alloc] init];
 
-        isExecuting = NO;
-		isFinished = NO;
+        self.isExecuting = NO;
+		self.isFinished = NO;
 	}
 	return self;
 }
 
 - (void)dealloc
 {
-    [geocoder cancelGeocode];
-    
-	
+    [self.geocoder cancelGeocode];
 }
 
 
@@ -55,29 +56,29 @@
 - (void)start
 {
     [self willChangeValueForKey:@"isExecuting"];
-	isExecuting = YES;
+	self.isExecuting = YES;
     [self didChangeValueForKey:@"isExecuting"];
     
     
-    if ( !query )
+    if ( !self.query )
     {
         NSLog(@"Empty Query!");
         [self finish];
     }
     else if (![self isCancelled])
     {
-        NSLog(@"Paring Location: %@", query);
+        NSLog(@"Paring Location: %@", self.query);
         
-        self.geocode = [Geocode geocodeForName:query];
+        self.geocode = [Geocode geocodeForName:self.query];
         
         //// Geocode already exist. ////
-        if ( geocode )
+        if ( self.geocode )
         {            
-            NSLog(@"Geocode already exist: %@", geocode.formatted_address);
+            NSLog(@"Geocode already exist: %@", self.geocode.formatted_address);
 
-            if ( object && keyPath )
+            if ( self.object && self.keyPath )
             {
-                [object setValue:geocode forKeyPath:keyPath];
+                [self.object setValue:self.geocode forKeyPath:self.keyPath];
             }
             [self finish];
         }
@@ -86,21 +87,21 @@
         //// Geocode not exist. Send request to Google. ////
         else if (![self isCancelled])
         {
-            [geocoder geocodeAddressString:query
-                         completionHandler:^(NSArray* placemarks, NSError* error){
-                             
-                             if ( [placemarks count] )
-                             {
-                                 CLPlacemark* aPlacemark = placemarks[0];
-                                 
-                                 self.geocode = [Geocode existingOrNewGeocodeWithpPlacemark:aPlacemark];
-                                 [geocode addLocationNamesObject:[LocationName insertLocationNameWithName:query]];
-                                 
-                                 NSLog(@"Location parsed: %@", geocode.formatted_address);
-                                 
-                                 [object setValue:geocode forKeyPath:keyPath];
-                             }
-                             [self finish];
+            [self.geocoder geocodeAddressString:self.query
+                              completionHandler:^(NSArray* placemarks, NSError* error){
+                                  
+                                  if ( [placemarks count] )
+                                  {
+                                      CLPlacemark* aPlacemark = placemarks[0];
+                                      
+                                      self.geocode = [Geocode existingOrNewGeocodeWithpPlacemark:aPlacemark];
+                                      [self.geocode addLocationNamesObject:[LocationName insertLocationNameWithName:self.query]];
+                                      
+                                      NSLog(@"Location parsed: %@", self.geocode.formatted_address);
+                                      
+                                      [self.object setValue:self.geocode forKeyPath:self.keyPath];
+                                  }
+                                  [self finish];
                          }];
         }
         else
@@ -119,8 +120,8 @@
     [self willChangeValueForKey:@"isExecuting"];
     [self willChangeValueForKey:@"isFinished"];
 	
-    isExecuting = NO;
-    isFinished = YES;
+    self.isExecuting = NO;
+    self.isFinished = YES;
 	
     [self didChangeValueForKey:@"isExecuting"];
     [self didChangeValueForKey:@"isFinished"];

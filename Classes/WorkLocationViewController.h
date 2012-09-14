@@ -11,8 +11,5 @@
 
 
 @interface WorkLocationViewController : LocationViewController
-{
-    
-}
 
 @end

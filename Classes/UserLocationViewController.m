@@ -30,38 +30,26 @@
     [super viewDidLoad];
 }
 
-- (NSArray*)pendingOperations
+- (void)createPendingOperations
 {
-    if ( !pendingOperations )
+    NSArray* allUsers = [User allUsers];
+    self.total = [allUsers count];
+    
+    NSMutableArray* opArray = [NSMutableArray arrayWithCapacity:self.total];
+    for ( User* user in allUsers )
     {
-        NSArray* allUsers = [User allUsers];
-        total = [allUsers count];
+        NSString* locationName = user.location;
+        id locationGeocode = user.geocodeLocation;
         
-        NSMutableArray* opArray = [NSMutableArray arrayWithCapacity:total];
-        for ( User* user in allUsers )
+        if ( !locationGeocode && locationName )
         {
-            NSString* locationName = user.location;
-            id locationGeocode = user.geocodeLocation;
-            
-            if ( !locationGeocode && locationName )
-            {
-                //// Has location name but no geocode. ////
-                NSOperation* op = nil;
-//                if ( NSClassFromString(@"CLGeocoder") )
-//                {
-//                    op = [[ForwardGeocodingOperationV2 alloc] initWithQuery:locationName object:user keyPath:@"geocodeLocation"];
-//                }
-//                else
-                {
-                    op = [[ForwardGeocodingOperationV2 alloc] initWithQuery:locationName object:user keyPath:@"geocodeLocation"];
-                }
-                [opArray addObject:op];
-            }
+            //// Has location name but no geocode. ////
+            NSOperation* op = [[ForwardGeocodingOperationV2 alloc] initWithQuery:locationName object:user keyPath:@"geocodeLocation"];
+            [opArray addObject:op];
         }
-        
-        pendingOperations = [[NSArray alloc] initWithArray:opArray];
     }
-    return pendingOperations;
+    
+    self.pendingOperations = [[NSArray alloc] initWithArray:opArray];
 }
 
 
@@ -81,7 +69,7 @@
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     Geocode* geocode = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    NSSet* objects = [geocode valueForKeyPath:ownerKeyPath];
+    NSSet* objects = [geocode valueForKeyPath:self.ownerKeyPath];
     
     NSSortDescriptor* sortdescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
     NSArray* sortedObjects = [objects sortedArrayUsingDescriptors:@[sortdescriptor]];

@@ -13,25 +13,8 @@
 
 
 @interface LocationViewController : UIViewController <MKMapViewDelegate, NSFetchedResultsControllerDelegate>
-{
-    UIView* loadingView;
-    UILabel* loadingLabel;
-    UIProgressView* progressView;
-    UITableView* tableView;
-    MKMapView* mapView;
-    UISegmentedControl* segmentedControl;
-    
-    NSFetchedResultsController* fetchedResultsController;
-    NSString* ownerKeyPath;
-    
-	NSOperationQueue* queue;
-	NSInteger total;
-	NSInteger pending;
-    
-    NSArray* pendingOperations;
-}
 
-@property (strong, nonatomic) IBOutlet UIView* loadingView;
+@property (nonatomic, strong) IBOutlet UIView* loadingView;
 @property (nonatomic, strong) IBOutlet UILabel* loadingLabel;
 @property (nonatomic, strong) IBOutlet UIProgressView* progressView;
 @property (nonatomic, strong) IBOutlet UITableView* tableView;
@@ -40,16 +23,10 @@
 @property (nonatomic, strong) NSFetchedResultsController* fetchedResultsController;
 @property (nonatomic, strong) NSString* ownerKeyPath;
 @property (nonatomic, strong) NSArray* pendingOperations;
+@property (nonatomic) NSInteger total;
+@property (nonatomic) NSInteger pending;
 
-
-- (void)showTableView;
-- (void)showMapView;
-- (void)showLoadingView;
-- (void)hideLoadingView;
+- (void)createPendingOperations;
 - (void)pushChildViewControllerWithObjects:(NSArray*)objects title:(NSString*)title;
-- (void)parseLocations;
-- (void)zoomToFitMapAnnotations;
-- (MapAnnotation*)mapAnnotationFromGeocode:(Geocode*)geocode;
-- (NSArray*)mapAnnotationsFromArray:(NSArray*)geocodes;
 
 @end

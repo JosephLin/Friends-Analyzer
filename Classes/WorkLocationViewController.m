@@ -30,38 +30,26 @@
     [super viewDidLoad];
 }
 
-- (NSArray*)pendingOperations
+- (void)createPendingOperations
 {
-    if ( !pendingOperations )
+    NSArray* allWorks = [Work allWorks];
+    self.total = [allWorks count];
+    
+    NSMutableArray* opArray = [NSMutableArray arrayWithCapacity:self.total];
+    for ( Work* work in allWorks )
     {
-        NSArray* allWorks = [Work allWorks];
-        total = [allWorks count];
+        NSString* locationName = work.location;
+        id locationGeocode = work.geocodeLocation;
         
-        NSMutableArray* opArray = [NSMutableArray arrayWithCapacity:total];
-        for ( Work* work in allWorks )
+        if ( !locationGeocode && locationName )
         {
-            NSString* locationName = work.location;
-            id locationGeocode = work.geocodeLocation;
-            
-            if ( !locationGeocode && locationName )
-            {
-                //// Has location name but no geocode. ////
-                NSOperation* op = nil;
-//                if ( NSClassFromString(@"CLGeocoder") )
-//                {
-//                    op = [[ForwardGeocodingOperationV2 alloc] initWithQuery:locationName object:work keyPath:@"geocodeLocation"];
-//                }
-//                else
-                {
-                    op = [[ForwardGeocodingOperationV2 alloc] initWithQuery:locationName object:work keyPath:@"geocodeLocation"];
-                }
-                [opArray addObject:op];
-            }
+            //// Has location name but no geocode. ////
+            NSOperation* op = [[ForwardGeocodingOperationV2 alloc] initWithQuery:locationName object:work keyPath:@"geocodeLocation"];
+            [opArray addObject:op];
         }
-        
-        pendingOperations = [[NSArray alloc] initWithArray:opArray];
     }
-    return pendingOperations;
+    
+    self.pendingOperations = [[NSArray alloc] initWithArray:opArray];
 }
 
 

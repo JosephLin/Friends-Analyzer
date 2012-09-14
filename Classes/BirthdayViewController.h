@@ -17,7 +17,4 @@
 @property (nonatomic, strong) NSFetchedResultsController* fetchedResultsController;
 @property (nonatomic, strong) NSArray* monthNameArray;
 
-- (NSFetchedResultsController*)fetchedResultsControllerOfType:(NSInteger)selectedSegmentIndex;
-- (NSDictionary*)userCountDict;
-
 @end

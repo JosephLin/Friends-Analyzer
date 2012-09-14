@@ -10,15 +10,16 @@
 #import "GeocodeTableViewCell.h"
 
 
-@implementation LocationViewController
-@synthesize loadingView;
 
-@synthesize loadingLabel, progressView;
-@synthesize tableView, mapView;
-@synthesize segmentedControl;
-@synthesize fetchedResultsController;
-@synthesize ownerKeyPath;
-@synthesize pendingOperations;
+@interface LocationViewController ()
+
+@property (nonatomic, strong) NSOperationQueue* queue;
+
+@end
+
+
+
+@implementation LocationViewController
 
 
 #pragma mark - View lifecycle
@@ -30,40 +31,24 @@
     //// Segmented Control ////
     NSArray* controlItems = @[@"Show Map", @"Show List"];
     self.segmentedControl = [[UISegmentedControl alloc] initWithItems:controlItems];
-	segmentedControl.selectedSegmentIndex = 0;
-	segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-	segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-	[segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];	
-	self.navigationItem.titleView = segmentedControl;
+	self.segmentedControl.selectedSegmentIndex = 0;
+	self.segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+	self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+	[self.segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];	
+	self.navigationItem.titleView = self.segmentedControl;
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"CounterCell" bundle:nil] forCellReuseIdentifier:@"CounterCell"];
     
     //// Init fetchedResultsController ////
     [self fetchedResultsController];
-    
-    [self parseLocations];
-}
 
-- (void)viewDidUnload
-{
-    self.loadingView = nil;
-    self.loadingLabel = nil;
-    self.progressView = nil;
-    self.tableView = nil;
-    self.mapView = nil;
-    self.segmentedControl = nil;
-    [super viewDidUnload];
+    [self parseLocations];
 }
 
 - (void)dealloc
 {
-    [queue removeObserver:self forKeyPath:@"operationCount"];	
-    [queue cancelAllOperations];
-
-    
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return YES;
+    [self.queue removeObserver:self forKeyPath:@"operationCount"];	
+    [self.queue cancelAllOperations];
 }
 
 
@@ -84,55 +69,55 @@
 
 - (void)showTableView
 {
-    if ( ![tableView superview] )
+    if ( ![self.tableView superview] )
     {
-        tableView.frame = self.view.bounds;
-        [self.view addSubview:tableView];
+        self.tableView.frame = self.view.bounds;
+        [self.view addSubview:self.tableView];
     }
-    [mapView removeFromSuperview];
+    [self.mapView removeFromSuperview];
 }
 
 - (void)showMapView
 {
-    if ( ![mapView superview] )
+    if ( ![self.mapView superview] )
     {
-        mapView.frame = self.view.bounds;
-        [self.view addSubview:mapView];
+        self.mapView.frame = self.view.bounds;
+        [self.view addSubview:self.mapView];
     }
-    [tableView removeFromSuperview];
+    [self.tableView removeFromSuperview];
 }
 
 - (void)showLoadingView
 {
-    if ( ![loadingView superview] )
+    if ( ![self.loadingView superview] )
     {
-        loadingView.frame = CGRectMake(0, self.view.bounds.size.height, loadingView.bounds.size.width, loadingView.bounds.size.height);
-        [self.view addSubview:loadingView];
+        self.loadingView.frame = CGRectMake(0, self.view.bounds.size.height, self.loadingView.bounds.size.width, self.loadingView.bounds.size.height);
+        [self.view addSubview:self.loadingView];
         
         [UIView animateWithDuration:0.3 animations:^{
-           loadingView.frame = CGRectMake(0, self.view.bounds.size.height - loadingView.bounds.size.height, loadingView.bounds.size.width, loadingView.bounds.size.height);
+           self.loadingView.frame = CGRectMake(0, self.view.bounds.size.height - self.loadingView.bounds.size.height, self.loadingView.bounds.size.width, self.loadingView.bounds.size.height);
         }];
     }
 }
 
 - (void)hideLoadingView
 {
-    if ( [loadingView superview] )
+    if ( [self.loadingView superview] )
     {
         [UIView animateWithDuration:0.3 
                          animations:^{
-                             loadingView.frame = CGRectMake(0, self.view.bounds.size.height, loadingView.bounds.size.width, loadingView.bounds.size.height);
+                             self.loadingView.frame = CGRectMake(0, self.view.bounds.size.height, self.loadingView.bounds.size.width, self.loadingView.bounds.size.height);
                          }
                          completion:^(BOOL finished){
-                             [loadingView removeFromSuperview];
+                             [self.loadingView removeFromSuperview];
                          }];
     }
 }
 
 - (void)updateViewForProgress
 {
-    loadingLabel.text = [NSString stringWithFormat:@"Analyzing %d of %d Locations...", total - pending, total];
-	progressView.progress = (float)(total - pending) / total;
+    self.loadingLabel.text = [NSString stringWithFormat:@"Analyzing %d of %d Locations...", self.total - self.pending, self.total];
+	self.progressView.progress = (float)(self.total - self.pending) / self.total;
 }
 
 - (void)pushChildViewControllerWithObjects:(NSArray*)objects title:(NSString*)title
@@ -146,32 +131,32 @@
 
 - (NSOperationQueue*)queue
 {
-    if ( !queue )
+    if ( !_queue )
     {
-        queue = [NSOperationQueue mainQueue];
-        [queue addObserver:self forKeyPath:@"operationCount" options:NSKeyValueObservingOptionNew context:NULL];	
-        [queue setMaxConcurrentOperationCount:1];
+        _queue = [NSOperationQueue mainQueue];
+        [_queue addObserver:self forKeyPath:@"operationCount" options:NSKeyValueObservingOptionNew context:NULL];	
+        [_queue setMaxConcurrentOperationCount:1];
     }
-    return queue;
+    return _queue;
 }
 
-- (NSArray*)pendingOperations
+- (void)createPendingOperations
 {
     //// Sub-class should override this. ////
-    return nil;
 }
 
 - (void)parseLocations
 {
+    [self createPendingOperations];
     if ( [self.pendingOperations count] )
     {
-        loadingLabel.text = @"Analyzing Locations...";
-        progressView.progress = 0;
+        self.loadingLabel.text = @"Analyzing Locations...";
+        self.progressView.progress = 0;
         [self showLoadingView];
         
-        if ( queue.operationCount > 0 )
+        if ( self.queue.operationCount > 0 )
         {
-            [queue cancelAllOperations];
+            [self.queue cancelAllOperations];
         }
         [self.queue addOperations:self.pendingOperations waitUntilFinished:NO];
     }
@@ -181,11 +166,11 @@
 {
 	if ( [keyPath isEqualToString:@"operationCount"] )
 	{
-		pending = [queue operationCount];
+		self.pending = [self.queue operationCount];
 		
 		[self performSelectorOnMainThread:@selector(updateViewForProgress) withObject:nil waitUntilDone:NO];
 		
-		if ( pending == 0 )
+		if ( self.pending == 0 )
 		{
             [[Geocode managedObjectContext] save:nil];
             
@@ -213,21 +198,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {    
-    static NSString *CellIdentifier = @"Cell";
+    GeocodeTableViewCell *cell = (GeocodeTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:@"CounterCell"];
     
-    GeocodeTableViewCell *cell = (GeocodeTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[GeocodeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.textLabel.adjustsFontSizeToFitWidth = YES;
-        cell.textLabel.minimumFontSize = 7.0;
-    }
-    
-    Geocode* geocode = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    
-    
+    Geocode* geocode = [self.fetchedResultsController objectAtIndexPath:indexPath];    
     cell.titleLabel.text = geocode.formatted_address;
     
-    NSSet* objects = [geocode valueForKeyPath:ownerKeyPath];
+    NSSet* objects = [geocode valueForKeyPath:self.ownerKeyPath];
     cell.countLabel.text = [NSString stringWithFormat:@"%d", [objects count]];
     
     return cell;
@@ -255,12 +231,12 @@
 
 - (NSFetchedResultsController*)fetchedResultsController
 {
-    if ( !fetchedResultsController )
+    if ( !_fetchedResultsController )
     {
         NSFetchRequest* fetchRequest = [[NSFetchRequest alloc] init];
         [fetchRequest setEntity:[Geocode entity]];
         
-        NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%K.@count != 0", ownerKeyPath];
+        NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%K.@count != 0", self.ownerKeyPath];
         [fetchRequest setPredicate:predicate];
         
         NSSortDescriptor* sortDescriptor1 = [NSSortDescriptor sortDescriptorWithKey:@"country" ascending:YES];
@@ -273,27 +249,27 @@
         NSArray* sortDescriptors = @[sortDescriptor1, sortDescriptor2, sortDescriptor3, sortDescriptor4, sortDescriptor5, sortDescriptor6];                
         [fetchRequest setSortDescriptors:sortDescriptors];
         
-        fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
+        _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
                                                                       managedObjectContext:[Geocode managedObjectContext]
                                                                         sectionNameKeyPath:@"country"
                                                                                  cacheName:nil];
-        fetchedResultsController.delegate = self;
+        _fetchedResultsController.delegate = self;
 
         
         NSError* error;
-        BOOL success = [fetchedResultsController performFetch:&error];
+        BOOL success = [_fetchedResultsController performFetch:&error];
         NSLog(@"Fetch successed? %d", success);
         
         
         //// Add annotations to map view. ////
-        [mapView removeAnnotations:mapView.annotations];
-        NSArray* annotations = [self mapAnnotationsFromArray:[fetchedResultsController fetchedObjects]];
-        [mapView addAnnotations:annotations];
+        [self.mapView removeAnnotations:self.mapView.annotations];
+        NSArray* annotations = [self mapAnnotationsFromArray:[_fetchedResultsController fetchedObjects]];
+        [self.mapView addAnnotations:annotations];
         
         [self zoomToFitMapAnnotations];
     }
     
-    return fetchedResultsController;
+    return _fetchedResultsController;
 }
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
@@ -331,9 +307,9 @@
                                   withRowAnimation:UITableViewRowAnimationFade];
             
             //// Add annotations to map view. ////
-            Geocode* geocode = [fetchedResultsController objectAtIndexPath:newIndexPath];
+            Geocode* geocode = [self.fetchedResultsController objectAtIndexPath:newIndexPath];
             MapAnnotation* annotation = [self mapAnnotationFromGeocode:geocode];
-            [mapView addAnnotation:annotation];
+            [self.mapView addAnnotation:annotation];
         }
             break;
             
@@ -343,9 +319,9 @@
                                   withRowAnimation:UITableViewRowAnimationFade];
             
             //// Add annotations to map view. ////
-            Geocode* geocode = [fetchedResultsController objectAtIndexPath:indexPath];
+            Geocode* geocode = [self.fetchedResultsController objectAtIndexPath:indexPath];
             MapAnnotation* annotation = [self mapAnnotationFromGeocode:geocode];
-            [mapView addAnnotation:annotation];
+            [self.mapView addAnnotation:annotation];
         }
             break;
             
@@ -376,7 +352,7 @@
 {
     static NSString *AnnotationViewID = @"annotationViewID";
 	
-    MKPinAnnotationView* pin = (MKPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:AnnotationViewID];
+    MKPinAnnotationView* pin = (MKPinAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:AnnotationViewID];
     if (pin == nil)
     {
         pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
@@ -395,7 +371,7 @@
     MapAnnotation* annotation = [[MapAnnotation alloc] init];
     annotation.coordinate = [geocode coordinate];
     annotation.formattedAddress = geocode.formatted_address;
-    annotation.owners = [geocode valueForKeyPath:ownerKeyPath];
+    annotation.owners = [geocode valueForKeyPath:self.ownerKeyPath];
     
     return annotation;
 }
@@ -426,7 +402,7 @@
 		bottomRightCoordinate.latitude = 90;
 		bottomRightCoordinate.longitude = -180;
 		
-		for ( id <MKAnnotation> annotation in mapView.annotations )
+		for ( id <MKAnnotation> annotation in self.mapView.annotations )
 		{
 			topLeftCoordinate.longitude = fmin(topLeftCoordinate.longitude, annotation.coordinate.longitude);
 			topLeftCoordinate.latitude = fmax(topLeftCoordinate.latitude, annotation.coordinate.latitude);
@@ -443,8 +419,18 @@
 		region.span.latitudeDelta = fabs(topLeftCoordinate.latitude - bottomRightCoordinate.latitude) * 1.1;
 		region.span.longitudeDelta = fabs(topLeftCoordinate.longitude - bottomRightCoordinate.longitude) * 1.1;
         
-		region = [mapView regionThatFits:region];
-		[mapView setRegion:region animated:YES];
+        // Apple map doesn't support region larger than 'one' map. This might be an iOS 6 bug.
+//		region = [self.mapView regionThatFits:region];
+        
+        // check for sane span values
+        if (region.span.latitudeDelta > 180.0)
+            region.span.latitudeDelta = 180.0;
+        
+        if (region.span.longitudeDelta > 360.0)
+            region.span.longitudeDelta = 360.0;
+        
+        
+		[self.mapView setRegion:region animated:YES];
 	}
 }
 

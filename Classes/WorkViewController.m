@@ -16,12 +16,9 @@
 
 @implementation WorkViewController
 
-@synthesize menuItemArray;
-
 
 #pragma mark -
 #pragma mark View lifecycle
-
 
 - (void)viewDidLoad
 {
@@ -33,18 +30,12 @@
 }
 
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    return YES;
-}
-
-
 #pragma mark -
 #pragma mark Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [menuItemArray count];
+    return [self.menuItemArray count];
 }
 
 
@@ -59,7 +50,7 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
-    cell.textLabel.text = menuItemArray[indexPath.row];
+    cell.textLabel.text = self.menuItemArray[indexPath.row];
     
     return cell;
 }

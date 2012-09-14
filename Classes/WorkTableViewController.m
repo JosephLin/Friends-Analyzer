@@ -9,16 +9,12 @@
 #import "WorkTableViewController.h"
 #import "Work.h"
 #import "User.h"
-#import "WorkTableViewCell.h"
+#import "WorkCell.h"
 #import "UserDetailViewController.h"
 
 
 
 @implementation WorkTableViewController
-
-@synthesize keyPath, value;
-@synthesize fetchedResultsController, segmentedControl;
-@synthesize shouldShowSegmentedControl;
 
 
 - (void)viewDidLoad
@@ -26,15 +22,17 @@
     NSArray* controlItems = @[@"Name", @"Employer"];
     
     self.segmentedControl = [[UISegmentedControl alloc] initWithItems:controlItems];
-    segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-    [segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
+    self.segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+    [self.segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
     
-    if ( shouldShowSegmentedControl )
-        self.navigationItem.titleView = segmentedControl;
+    if ( self.shouldShowSegmentedControl )
+        self.navigationItem.titleView = self.segmentedControl;
     
-    segmentedControl.selectedSegmentIndex = 0;
+    self.segmentedControl.selectedSegmentIndex = 0;
     
+    [self.tableView registerNib:[UINib nibWithNibName:@"WorkCell" bundle:nil] forCellReuseIdentifier:@"WorkCell"];
+
     [super viewDidLoad];
 }
 
@@ -67,22 +65,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {    
-    static NSString *CellIdentifier = @"Cell";
-    
-    WorkTableViewCell *cell = (WorkTableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[WorkTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-    }
-    
-	Work* work = [fetchedResultsController objectAtIndexPath:indexPath];
-    cell.work = work;
-    
+    WorkCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WorkCell"];
+    cell.work = [self.fetchedResultsController objectAtIndexPath:indexPath];
     return cell;
 }
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-    NSArray* sectionIndexTitles = [[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"];
+    NSArray* sectionIndexTitles = [[self.fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"];
     if ( [sectionIndexTitles count] > 10 )
     { 
         return sectionIndexTitles;
@@ -95,7 +85,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index 
 {
-    NSArray* sectionIndexTitles = [[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"];
+    NSArray* sectionIndexTitles = [[self.fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"];
     return [sectionIndexTitles indexOfObject:title];
 }
 
@@ -108,7 +98,7 @@
 {
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-	Work* work = [fetchedResultsController objectAtIndexPath:indexPath];
+	Work* work = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     UserDetailViewController* childVC = [[UserDetailViewController alloc] initWithNibName:@"UserDetailViewController" bundle:nil];
     childVC.user = work.user;
@@ -121,11 +111,11 @@
 
 - (NSFetchedResultsController*)fetchedResultsController
 {
-    if ( !fetchedResultsController)
+    if ( !_fetchedResultsController)
     {
-        fetchedResultsController = [self fetchedResultsControllerOfType:segmentedControl.selectedSegmentIndex];
+        _fetchedResultsController = [self fetchedResultsControllerOfType:self.segmentedControl.selectedSegmentIndex];
     }
-    return fetchedResultsController;
+    return _fetchedResultsController;
 }
 
 - (NSFetchedResultsController*)fetchedResultsControllerOfType:(NSInteger)selectedSegmentIndex
@@ -133,9 +123,9 @@
     NSFetchRequest* fetchRequest = [[NSFetchRequest alloc] init];
     [fetchRequest setEntity:[Work entity]];
     
-    if ( keyPath && value )
+    if ( self.keyPath && self.value )
     {
-        NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%K like[c] %@", keyPath, value];
+        NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%K like[c] %@", self.keyPath, self.value];
         [fetchRequest setPredicate:predicate];
     }
                               

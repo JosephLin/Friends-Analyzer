@@ -10,11 +10,7 @@
 
 
 @interface WorkViewController : UITableViewController
-{
-	NSArray* menuItemArray;
-}
 
 @property (nonatomic, strong) NSArray* menuItemArray;
-
 
 @end

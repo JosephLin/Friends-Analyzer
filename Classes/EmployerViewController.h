@@ -11,8 +11,5 @@
 
 
 @interface EmployerViewController : FRCBasedTableViewController
-{
-    
-}
 
 @end

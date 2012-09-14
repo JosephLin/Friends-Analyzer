@@ -1,5 +1,5 @@
 //
-//  PositionViewController.h
+//  WorkTableViewCell.h
 //  FriendsAnalyzer
 //
 //  Created by Joseph Lin on 3/16/11.
@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FRCBasedTableViewController.h"
+#import "Work.h"
 
 
-@interface PositionViewController : FRCBasedTableViewController
+@interface WorkCell : UITableViewCell
+
+@property (nonatomic, strong) Work* work;
 
 @end

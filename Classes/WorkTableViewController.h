@@ -10,15 +10,6 @@
 
 
 @interface WorkTableViewController : UITableViewController
-{
-    NSString* keyPath;
-    id value;
-    
-    NSFetchedResultsController* fetchedResultsController;
-    UISegmentedControl* segmentedControl;
-    
-    BOOL shouldShowSegmentedControl;
-}
 
 @property (nonatomic, strong) NSString* keyPath;
 @property (nonatomic, strong) id value;

@@ -15,6 +15,7 @@
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28D3F202112F7DC200FD0661 /* FriendsAnalyzer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28D3F201112F7DC200FD0661 /* FriendsAnalyzer.xcdatamodeld */; };
 		7C0C06F81603D0560026CF44 /* LocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C0C06F71603D0560026CF44 /* LocationViewController.xib */; };
+		7C0C07181603DA030026CF44 /* WorkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C0C07171603DA030026CF44 /* WorkCell.xib */; };
 		7C13AF8A132149E8001FD36C /* MainWindow~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C13AF89132149E8001FD36C /* MainWindow~ipad.xib */; };
 		7C13AF8F13214C8C001FD36C /* BirthdayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C13AF8D13214C8C001FD36C /* BirthdayViewController.m */; };
 		7C1FF31D132EABE300110D03 /* WorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1FF31C132EABE300110D03 /* WorkViewController.m */; };
@@ -31,7 +32,7 @@
 		7C5141FA133BF9A0001A0573 /* FullNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5141F9133BF99F001A0573 /* FullNameViewController.m */; };
 		7C5EB55D13F328720063F116 /* UIColor+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5EB55C13F328720063F116 /* UIColor+Utilities.m */; };
 		7C60BD171601979A00520A1D /* libfacebook_ios_sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C60BD121601978B00520A1D /* libfacebook_ios_sdk.a */; };
-		7C70C00A13315F3000E1B87C /* WorkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C70C00913315F3000E1B87C /* WorkTableViewCell.m */; };
+		7C70C00A13315F3000E1B87C /* WorkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C70C00913315F3000E1B87C /* WorkCell.m */; };
 		7C70C00D1331614C00E1B87C /* PositionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C70C00C1331614A00E1B87C /* PositionViewController.m */; };
 		7C74C55813219060003258AC /* Horoscope.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C74C55713219060003258AC /* Horoscope.plist */; };
 		7C79F60513FC565A00E86629 /* ForwardGeocodingOperationV2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C79F60413FC565A00E86629 /* ForwardGeocodingOperationV2.m */; };
@@ -173,6 +174,7 @@
 		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7C0C06F71603D0560026CF44 /* LocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationViewController.xib; sourceTree = "<group>"; };
+		7C0C07171603DA030026CF44 /* WorkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorkCell.xib; sourceTree = "<group>"; };
 		7C13AF89132149E8001FD36C /* MainWindow~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow~ipad.xib"; path = "iPad/MainWindow~ipad.xib"; sourceTree = "<group>"; };
 		7C13AF8C13214C8C001FD36C /* BirthdayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BirthdayViewController.h; sourceTree = "<group>"; };
 		7C13AF8D13214C8C001FD36C /* BirthdayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BirthdayViewController.m; sourceTree = "<group>"; };
@@ -201,8 +203,8 @@
 		7C5EB55B13F328720063F116 /* UIColor+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Utilities.h"; sourceTree = "<group>"; };
 		7C5EB55C13F328720063F116 /* UIColor+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Utilities.m"; sourceTree = "<group>"; };
 		7C60BD091601978B00520A1D /* facebook-ios-sdk.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "facebook-ios-sdk.xcodeproj"; path = "facebook-ios-sdk/src/facebook-ios-sdk.xcodeproj"; sourceTree = "<group>"; };
-		7C70C00813315F3000E1B87C /* WorkTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkTableViewCell.h; sourceTree = "<group>"; };
-		7C70C00913315F3000E1B87C /* WorkTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkTableViewCell.m; sourceTree = "<group>"; };
+		7C70C00813315F3000E1B87C /* WorkCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkCell.h; sourceTree = "<group>"; };
+		7C70C00913315F3000E1B87C /* WorkCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkCell.m; sourceTree = "<group>"; };
 		7C70C00B1331614A00E1B87C /* PositionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositionViewController.h; sourceTree = "<group>"; };
 		7C70C00C1331614A00E1B87C /* PositionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PositionViewController.m; sourceTree = "<group>"; };
 		7C74C55713219060003258AC /* Horoscope.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Horoscope.plist; sourceTree = "<group>"; };
@@ -450,8 +452,9 @@
 				7CF6105C132EC0AA002D21DB /* WorkLocationViewController.m */,
 				7CF6105E132EC978002D21DB /* WorkTableViewController.h */,
 				7CF6105F132EC979002D21DB /* WorkTableViewController.m */,
-				7C70C00813315F3000E1B87C /* WorkTableViewCell.h */,
-				7C70C00913315F3000E1B87C /* WorkTableViewCell.m */,
+				7C70C00813315F3000E1B87C /* WorkCell.h */,
+				7C70C00913315F3000E1B87C /* WorkCell.m */,
+				7C0C07171603DA030026CF44 /* WorkCell.xib */,
 			);
 			name = "Work View";
 			sourceTree = "<group>";
@@ -856,6 +859,7 @@
 				7CE46EEA16018A06009D3A5A /* Default-568h@2x.png in Resources */,
 				7C92D65016028E9200161D93 /* CounterCell.xib in Resources */,
 				7C0C06F81603D0560026CF44 /* LocationViewController.xib in Resources */,
+				7C0C07181603DA030026CF44 /* WorkCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -899,7 +903,7 @@
 				7CF6105D132EC0AA002D21DB /* WorkLocationViewController.m in Sources */,
 				7CF61060132EC979002D21DB /* WorkTableViewController.m in Sources */,
 				7CD02E611330161D0019728A /* ArrayBasedTableViewController.m in Sources */,
-				7C70C00A13315F3000E1B87C /* WorkTableViewCell.m in Sources */,
+				7C70C00A13315F3000E1B87C /* WorkCell.m in Sources */,
 				7C70C00D1331614C00E1B87C /* PositionViewController.m in Sources */,
 				7C42EFD91333DD8300BA6B5F /* UserDetailViewController.m in Sources */,
 				7CEE3BFC133946EB0004D50C /* EducationTableViewController.m in Sources */,

@@ -17,7 +17,6 @@
 		7C0C06F81603D0560026CF44 /* LocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C0C06F71603D0560026CF44 /* LocationViewController.xib */; };
 		7C0C07181603DA030026CF44 /* WorkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C0C07171603DA030026CF44 /* WorkCell.xib */; };
 		7C0C071A1603DF7F0026CF44 /* EducationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C0C07191603DF7F0026CF44 /* EducationCell.xib */; };
-		7C13AF8A132149E8001FD36C /* MainWindow~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C13AF89132149E8001FD36C /* MainWindow~ipad.xib */; };
 		7C13AF8F13214C8C001FD36C /* BirthdayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C13AF8D13214C8C001FD36C /* BirthdayViewController.m */; };
 		7C1FF31D132EABE300110D03 /* WorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1FF31C132EABE300110D03 /* WorkViewController.m */; };
 		7C1FF320132EAD3700110D03 /* FRCBasedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1FF31F132EAD3700110D03 /* FRCBasedTableViewController.m */; };
@@ -31,6 +30,12 @@
 		7C4DD51B131D852A006C69CF /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4DD519131D852A006C69CF /* MainMenuViewController.m */; };
 		7C5141F7133BF991001A0573 /* LastNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5141F6133BF990001A0573 /* LastNameViewController.m */; };
 		7C5141FA133BF9A0001A0573 /* FullNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5141F9133BF99F001A0573 /* FullNameViewController.m */; };
+		7C5C6FDE16095EBD00A7C615 /* ObjectAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5C6FDD16095EBD00A7C615 /* ObjectAttribute.m */; };
+		7C5C6FE116095EBF00A7C615 /* Work.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5C6FE016095EBE00A7C615 /* Work.m */; };
+		7C5C6FE416095EBF00A7C615 /* Geocode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5C6FE316095EBF00A7C615 /* Geocode.m */; };
+		7C5C6FE716095EC100A7C615 /* Education.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5C6FE616095EC100A7C615 /* Education.m */; };
+		7C5C6FEA16095EC100A7C615 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5C6FE916095EC100A7C615 /* User.m */; };
+		7C5C6FED16095EC100A7C615 /* LocationName.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5C6FEC16095EC100A7C615 /* LocationName.m */; };
 		7C5EB55D13F328720063F116 /* UIColor+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5EB55C13F328720063F116 /* UIColor+Utilities.m */; };
 		7C60BD171601979A00520A1D /* libfacebook_ios_sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C60BD121601978B00520A1D /* libfacebook_ios_sdk.a */; };
 		7C70C00A13315F3000E1B87C /* WorkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C70C00913315F3000E1B87C /* WorkCell.m */; };
@@ -39,8 +44,6 @@
 		7C79F60513FC565A00E86629 /* ForwardGeocodingOperationV2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C79F60413FC565A00E86629 /* ForwardGeocodingOperationV2.m */; };
 		7C83D9D313256BA10059BBF0 /* LocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C83D9D113256BA10059BBF0 /* LocationViewController.m */; };
 		7C83D9D613256D4B0059BBF0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C83D9D513256D4B0059BBF0 /* MapKit.framework */; };
-		7C83D9D9132574290059BBF0 /* LocationName.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C83D9D8132574290059BBF0 /* LocationName.m */; };
-		7C83D9DC1325742A0059BBF0 /* Geocode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C83D9DB1325742A0059BBF0 /* Geocode.m */; };
 		7C83D9DE1325745F0059BBF0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C83D9DD1325745F0059BBF0 /* CoreLocation.framework */; };
 		7C92D6351602865C00161D93 /* libSDWebImageARC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CB3CAA11602774B00AE6707 /* libSDWebImageARC.a */; };
 		7C92D6471602876B00161D93 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C92D6461602876B00161D93 /* ImageIO.framework */; };
@@ -77,15 +80,11 @@
 		7CC5B0FD131D6F6200FEA4DE /* PieChartColorScheme.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7CC5B0D9131D6F6200FEA4DE /* PieChartColorScheme.plist */; };
 		7CC5B0FE131D6F6200FEA4DE /* PieChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0DB131D6F6200FEA4DE /* PieChartView.m */; };
 		7CC5B101131D6F6200FEA4DE /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B0E0131D6F6200FEA4DE /* RootViewController.m */; };
-		7CC5B146131D739B00FEA4DE /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B140131D739B00FEA4DE /* User.m */; };
-		7CC5B147131D739B00FEA4DE /* Education.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B142131D739B00FEA4DE /* Education.m */; };
-		7CC5B148131D739B00FEA4DE /* Work.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B144131D739B00FEA4DE /* Work.m */; };
 		7CC5B187131D764700FEA4DE /* EnhancedManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B186131D764700FEA4DE /* EnhancedManagedObject.m */; };
 		7CC5B1B1131D797D00FEA4DE /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC5B1B0131D797D00FEA4DE /* NSDate+Utilities.m */; };
 		7CC759B01402C0E7004FE650 /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC759A91402C0E7004FE650 /* icon-72.png */; };
 		7CC759B11402C0E7004FE650 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC759AA1402C0E7004FE650 /* icon.png */; };
 		7CC759B21402C0E7004FE650 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CC759AB1402C0E7004FE650 /* icon@2x.png */; };
-		7CC759B41402C26D004FE650 /* RootViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CC759B31402C26D004FE650 /* RootViewController~ipad.xib */; };
 		7CC78EC4132965A700CA2B45 /* LastUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78EC2132965A700CA2B45 /* LastUpdateViewController.m */; };
 		7CC78ED613296F0900CA2B45 /* EducationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78ED413296F0900CA2B45 /* EducationViewController.m */; };
 		7CC78EDA1329732100CA2B45 /* SchoolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC78ED91329732000CA2B45 /* SchoolViewController.m */; };
@@ -102,7 +101,6 @@
 		7CE46EEA16018A06009D3A5A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CE46ED4160177BC009D3A5A /* Default-568h@2x.png */; };
 		7CEE3BFC133946EB0004D50C /* EducationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEE3BFB133946EB0004D50C /* EducationTableViewController.m */; };
 		7CEE3BFF133946FB0004D50C /* EducationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEE3BFE133946FB0004D50C /* EducationCell.m */; };
-		7CEF039F132DBAA10058FD63 /* ObjectAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEF039E132DBAA10058FD63 /* ObjectAttribute.m */; };
 		7CEF03AB132DD5F20058FD63 /* DegreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEF03AA132DD5F10058FD63 /* DegreeViewController.m */; };
 		7CF0CC681327F0E3006C5693 /* HometownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF0CC671327F0E2006C5693 /* HometownViewController.m */; };
 		7CF0CC6B1327F3DC006C5693 /* UserLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF0CC6A1327F3DB006C5693 /* UserLocationViewController.m */; };
@@ -177,7 +175,6 @@
 		7C0C06F71603D0560026CF44 /* LocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationViewController.xib; sourceTree = "<group>"; };
 		7C0C07171603DA030026CF44 /* WorkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorkCell.xib; sourceTree = "<group>"; };
 		7C0C07191603DF7F0026CF44 /* EducationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EducationCell.xib; sourceTree = "<group>"; };
-		7C13AF89132149E8001FD36C /* MainWindow~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow~ipad.xib"; path = "iPad/MainWindow~ipad.xib"; sourceTree = "<group>"; };
 		7C13AF8C13214C8C001FD36C /* BirthdayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BirthdayViewController.h; sourceTree = "<group>"; };
 		7C13AF8D13214C8C001FD36C /* BirthdayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BirthdayViewController.m; sourceTree = "<group>"; };
 		7C1FF31B132EABE300110D03 /* WorkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkViewController.h; sourceTree = "<group>"; };
@@ -202,6 +199,18 @@
 		7C5141F6133BF990001A0573 /* LastNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LastNameViewController.m; sourceTree = "<group>"; };
 		7C5141F8133BF99F001A0573 /* FullNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullNameViewController.h; sourceTree = "<group>"; };
 		7C5141F9133BF99F001A0573 /* FullNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullNameViewController.m; sourceTree = "<group>"; };
+		7C5C6FDC16095EBC00A7C615 /* ObjectAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectAttribute.h; sourceTree = "<group>"; };
+		7C5C6FDD16095EBD00A7C615 /* ObjectAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectAttribute.m; sourceTree = "<group>"; };
+		7C5C6FDF16095EBE00A7C615 /* Work.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Work.h; sourceTree = "<group>"; };
+		7C5C6FE016095EBE00A7C615 /* Work.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Work.m; sourceTree = "<group>"; };
+		7C5C6FE216095EBF00A7C615 /* Geocode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Geocode.h; sourceTree = "<group>"; };
+		7C5C6FE316095EBF00A7C615 /* Geocode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Geocode.m; sourceTree = "<group>"; };
+		7C5C6FE516095EC000A7C615 /* Education.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Education.h; sourceTree = "<group>"; };
+		7C5C6FE616095EC100A7C615 /* Education.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Education.m; sourceTree = "<group>"; };
+		7C5C6FE816095EC100A7C615 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		7C5C6FE916095EC100A7C615 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		7C5C6FEB16095EC100A7C615 /* LocationName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationName.h; sourceTree = "<group>"; };
+		7C5C6FEC16095EC100A7C615 /* LocationName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationName.m; sourceTree = "<group>"; };
 		7C5EB55B13F328720063F116 /* UIColor+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Utilities.h"; sourceTree = "<group>"; };
 		7C5EB55C13F328720063F116 /* UIColor+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Utilities.m"; sourceTree = "<group>"; };
 		7C60BD091601978B00520A1D /* facebook-ios-sdk.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "facebook-ios-sdk.xcodeproj"; path = "facebook-ios-sdk/src/facebook-ios-sdk.xcodeproj"; sourceTree = "<group>"; };
@@ -215,10 +224,6 @@
 		7C83D9D013256BA10059BBF0 /* LocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationViewController.h; sourceTree = "<group>"; };
 		7C83D9D113256BA10059BBF0 /* LocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationViewController.m; sourceTree = "<group>"; };
 		7C83D9D513256D4B0059BBF0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		7C83D9D7132574290059BBF0 /* LocationName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationName.h; sourceTree = "<group>"; };
-		7C83D9D8132574290059BBF0 /* LocationName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationName.m; sourceTree = "<group>"; };
-		7C83D9DA1325742A0059BBF0 /* Geocode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Geocode.h; sourceTree = "<group>"; };
-		7C83D9DB1325742A0059BBF0 /* Geocode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Geocode.m; sourceTree = "<group>"; };
 		7C83D9DD1325745F0059BBF0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		7C92D6461602876B00161D93 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		7C92D64C16028E8400161D93 /* CounterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CounterCell.h; sourceTree = "<group>"; };
@@ -260,12 +265,6 @@
 		7CC5B0DB131D6F6200FEA4DE /* PieChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieChartView.m; sourceTree = "<group>"; };
 		7CC5B0DF131D6F6200FEA4DE /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		7CC5B0E0131D6F6200FEA4DE /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		7CC5B13F131D739B00FEA4DE /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		7CC5B140131D739B00FEA4DE /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		7CC5B141131D739B00FEA4DE /* Education.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Education.h; sourceTree = "<group>"; };
-		7CC5B142131D739B00FEA4DE /* Education.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Education.m; sourceTree = "<group>"; };
-		7CC5B143131D739B00FEA4DE /* Work.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Work.h; sourceTree = "<group>"; };
-		7CC5B144131D739B00FEA4DE /* Work.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Work.m; sourceTree = "<group>"; };
 		7CC5B185131D764700FEA4DE /* EnhancedManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnhancedManagedObject.h; sourceTree = "<group>"; };
 		7CC5B186131D764700FEA4DE /* EnhancedManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnhancedManagedObject.m; sourceTree = "<group>"; };
 		7CC5B1AF131D797D00FEA4DE /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
@@ -273,7 +272,6 @@
 		7CC759A91402C0E7004FE650 /* icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72.png"; sourceTree = "<group>"; };
 		7CC759AA1402C0E7004FE650 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		7CC759AB1402C0E7004FE650 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
-		7CC759B31402C26D004FE650 /* RootViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "RootViewController~ipad.xib"; path = "iPad/RootViewController~ipad.xib"; sourceTree = "<group>"; };
 		7CC78EC1132965A700CA2B45 /* LastUpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LastUpdateViewController.h; sourceTree = "<group>"; };
 		7CC78EC2132965A700CA2B45 /* LastUpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LastUpdateViewController.m; sourceTree = "<group>"; };
 		7CC78ED313296F0900CA2B45 /* EducationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EducationViewController.h; sourceTree = "<group>"; };
@@ -298,8 +296,6 @@
 		7CEE3BFB133946EB0004D50C /* EducationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EducationTableViewController.m; sourceTree = "<group>"; };
 		7CEE3BFD133946FA0004D50C /* EducationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EducationCell.h; sourceTree = "<group>"; };
 		7CEE3BFE133946FB0004D50C /* EducationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EducationCell.m; sourceTree = "<group>"; };
-		7CEF039D132DBAA10058FD63 /* ObjectAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectAttribute.h; sourceTree = "<group>"; };
-		7CEF039E132DBAA10058FD63 /* ObjectAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectAttribute.m; sourceTree = "<group>"; };
 		7CEF03A9132DD5F10058FD63 /* DegreeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DegreeViewController.h; sourceTree = "<group>"; };
 		7CEF03AA132DD5F10058FD63 /* DegreeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DegreeViewController.m; sourceTree = "<group>"; };
 		7CF0CC661327F0E2006C5693 /* HometownViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HometownViewController.h; sourceTree = "<group>"; };
@@ -354,7 +350,6 @@
 				7C4DD677131DA42F006C69CF /* Table View */,
 				7C42EFD51333DD6100BA6B5F /* User Detail View */,
 				7CC5B10E131D6FAB00FEA4DE /* Pie Chart */,
-				7C92D64816028E2000161D93 /* UI Elements */,
 				7C83D9DF13257D2F0059BBF0 /* Utilities */,
 				7CC5B10D131D6F8D00FEA4DE /* Categories */,
 				7CC5B10B131D6F7700FEA4DE /* Data Models */,
@@ -376,7 +371,6 @@
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
-				7C13AF88132149E6001FD36C /* iPad */,
 				7C60BD081601977600520A1D /* External */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -430,15 +424,6 @@
 				7C74C55713219060003258AC /* Horoscope.plist */,
 			);
 			name = "Birthday View";
-			sourceTree = "<group>";
-		};
-		7C13AF88132149E6001FD36C /* iPad */ = {
-			isa = PBXGroup;
-			children = (
-				7C13AF89132149E8001FD36C /* MainWindow~ipad.xib */,
-				7CC759B31402C26D004FE650 /* RootViewController~ipad.xib */,
-			);
-			name = iPad;
 			sourceTree = "<group>";
 		};
 		7C1FF31A132EA9D000110D03 /* Work View */ = {
@@ -504,6 +489,9 @@
 				7C1FF31F132EAD3700110D03 /* FRCBasedTableViewController.m */,
 				7CD02E5F1330161D0019728A /* ArrayBasedTableViewController.h */,
 				7CD02E601330161D0019728A /* ArrayBasedTableViewController.m */,
+				7C92D64C16028E8400161D93 /* CounterCell.h */,
+				7C92D64D16028E8400161D93 /* CounterCell.m */,
+				7C92D64F16028E9200161D93 /* CounterCell.xib */,
 			);
 			name = "Table View";
 			sourceTree = "<group>";
@@ -550,16 +538,6 @@
 				7C79F60413FC565A00E86629 /* ForwardGeocodingOperationV2.m */,
 			);
 			name = Utilities;
-			sourceTree = "<group>";
-		};
-		7C92D64816028E2000161D93 /* UI Elements */ = {
-			isa = PBXGroup;
-			children = (
-				7C92D64C16028E8400161D93 /* CounterCell.h */,
-				7C92D64D16028E8400161D93 /* CounterCell.m */,
-				7C92D64F16028E9200161D93 /* CounterCell.xib */,
-			);
-			name = "UI Elements";
 			sourceTree = "<group>";
 		};
 		7CB284D113FC3AFD00728417 /* Images */ = {
@@ -632,18 +610,18 @@
 				28D3F201112F7DC200FD0661 /* FriendsAnalyzer.xcdatamodeld */,
 				7CC5B185131D764700FEA4DE /* EnhancedManagedObject.h */,
 				7CC5B186131D764700FEA4DE /* EnhancedManagedObject.m */,
-				7CEF039D132DBAA10058FD63 /* ObjectAttribute.h */,
-				7CEF039E132DBAA10058FD63 /* ObjectAttribute.m */,
-				7CC5B13F131D739B00FEA4DE /* User.h */,
-				7CC5B140131D739B00FEA4DE /* User.m */,
-				7CC5B141131D739B00FEA4DE /* Education.h */,
-				7CC5B142131D739B00FEA4DE /* Education.m */,
-				7CC5B143131D739B00FEA4DE /* Work.h */,
-				7CC5B144131D739B00FEA4DE /* Work.m */,
-				7C83D9DA1325742A0059BBF0 /* Geocode.h */,
-				7C83D9DB1325742A0059BBF0 /* Geocode.m */,
-				7C83D9D7132574290059BBF0 /* LocationName.h */,
-				7C83D9D8132574290059BBF0 /* LocationName.m */,
+				7C5C6FDC16095EBC00A7C615 /* ObjectAttribute.h */,
+				7C5C6FDD16095EBD00A7C615 /* ObjectAttribute.m */,
+				7C5C6FE816095EC100A7C615 /* User.h */,
+				7C5C6FE916095EC100A7C615 /* User.m */,
+				7C5C6FE516095EC000A7C615 /* Education.h */,
+				7C5C6FE616095EC100A7C615 /* Education.m */,
+				7C5C6FDF16095EBE00A7C615 /* Work.h */,
+				7C5C6FE016095EBE00A7C615 /* Work.m */,
+				7C5C6FE216095EBF00A7C615 /* Geocode.h */,
+				7C5C6FE316095EBF00A7C615 /* Geocode.m */,
+				7C5C6FEB16095EC100A7C615 /* LocationName.h */,
+				7C5C6FEC16095EC100A7C615 /* LocationName.m */,
 				7CF0CC6C1327FEF1006C5693 /* MapAnnotation.h */,
 				7CF0CC6D1327FEF2006C5693 /* MapAnnotation.m */,
 			);
@@ -818,7 +796,6 @@
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				7CC5B0FD131D6F6200FEA4DE /* PieChartColorScheme.plist in Resources */,
 				7C4DD511131D8081006C69CF /* MenuStructure.plist in Resources */,
-				7C13AF8A132149E8001FD36C /* MainWindow~ipad.xib in Resources */,
 				7C74C55813219060003258AC /* Horoscope.plist in Resources */,
 				7C42EFDA1333DD8300BA6B5F /* UserDetailViewController.xib in Resources */,
 				7CD9A8001333FD4F0004AA48 /* attributeDisplayNames.plist in Resources */,
@@ -852,7 +829,6 @@
 				7CC759B01402C0E7004FE650 /* icon-72.png in Resources */,
 				7CC759B11402C0E7004FE650 /* icon.png in Resources */,
 				7CC759B21402C0E7004FE650 /* icon@2x.png in Resources */,
-				7CC759B41402C26D004FE650 /* RootViewController~ipad.xib in Resources */,
 				7CE46ED71601793B009D3A5A /* MainStoryboard.storyboard in Resources */,
 				7CE46EDD160183A0009D3A5A /* finfo.png in Resources */,
 				7CE46EDE160183A0009D3A5A /* finfo@2x.png in Resources */,
@@ -880,9 +856,6 @@
 				7CC5B0FB131D6F6200FEA4DE /* UserTableViewController.m in Sources */,
 				7CC5B0FE131D6F6200FEA4DE /* PieChartView.m in Sources */,
 				7CC5B101131D6F6200FEA4DE /* RootViewController.m in Sources */,
-				7CC5B146131D739B00FEA4DE /* User.m in Sources */,
-				7CC5B147131D739B00FEA4DE /* Education.m in Sources */,
-				7CC5B148131D739B00FEA4DE /* Work.m in Sources */,
 				7CC5B187131D764700FEA4DE /* EnhancedManagedObject.m in Sources */,
 				7CC5B1B1131D797D00FEA4DE /* NSDate+Utilities.m in Sources */,
 				7C4DD51B131D852A006C69CF /* MainMenuViewController.m in Sources */,
@@ -890,8 +863,6 @@
 				7C37C30B131EEC91004EFA64 /* NameViewController.m in Sources */,
 				7C13AF8F13214C8C001FD36C /* BirthdayViewController.m in Sources */,
 				7C83D9D313256BA10059BBF0 /* LocationViewController.m in Sources */,
-				7C83D9D9132574290059BBF0 /* LocationName.m in Sources */,
-				7C83D9DC1325742A0059BBF0 /* Geocode.m in Sources */,
 				7CF0CC681327F0E3006C5693 /* HometownViewController.m in Sources */,
 				7CF0CC6B1327F3DC006C5693 /* UserLocationViewController.m in Sources */,
 				7CF0CC6E1327FEF6006C5693 /* MapAnnotation.m in Sources */,
@@ -899,7 +870,6 @@
 				7CC78ED613296F0900CA2B45 /* EducationViewController.m in Sources */,
 				7CC78EDA1329732100CA2B45 /* SchoolViewController.m in Sources */,
 				7CC78EE71329858200CA2B45 /* ConcentrationViewController.m in Sources */,
-				7CEF039F132DBAA10058FD63 /* ObjectAttribute.m in Sources */,
 				7CEF03AB132DD5F20058FD63 /* DegreeViewController.m in Sources */,
 				7C1FF31D132EABE300110D03 /* WorkViewController.m in Sources */,
 				7C1FF320132EAD3700110D03 /* FRCBasedTableViewController.m in Sources */,
@@ -918,6 +888,12 @@
 				7C5EB55D13F328720063F116 /* UIColor+Utilities.m in Sources */,
 				7C79F60513FC565A00E86629 /* ForwardGeocodingOperationV2.m in Sources */,
 				7C92D64E16028E8400161D93 /* CounterCell.m in Sources */,
+				7C5C6FDE16095EBD00A7C615 /* ObjectAttribute.m in Sources */,
+				7C5C6FE116095EBF00A7C615 /* Work.m in Sources */,
+				7C5C6FE416095EBF00A7C615 /* Geocode.m in Sources */,
+				7C5C6FE716095EC100A7C615 /* Education.m in Sources */,
+				7C5C6FEA16095EC100A7C615 /* User.m in Sources */,
+				7C5C6FED16095EC100A7C615 /* LocationName.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

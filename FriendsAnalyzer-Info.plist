@@ -53,10 +53,10 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>2.0</string>
+	<key>FacebookAppID</key>
+	<string>202399393103982</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSMainNibFile~ipad</key>
-	<string>MainWindow~ipad</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>corporate-rounded-bold.ttf</string>
@@ -79,7 +79,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>FacebookAppID</key>
-	<string>202399393103982</string>
 </dict>
 </plist>

@@ -10,11 +10,6 @@
 
 
 @interface PieChartObject : NSObject
-{
-    NSString* key;
-    NSString* value;
-    NSString* displayName;
-}
 
 @property (nonatomic, strong) NSString* key;
 @property (nonatomic, strong) NSString* value;

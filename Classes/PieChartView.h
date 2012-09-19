@@ -11,10 +11,6 @@
 
 
 @interface PieChartView : UIView
-{
-    NSMutableArray* pieChartObjects;
-	NSArray* colorScheme;
-}
 
 @property (nonatomic, strong) NSMutableArray* pieChartObjects;
 @property (nonatomic, strong, readonly) NSArray* colorScheme;

@@ -11,7 +11,7 @@
 
 @implementation PieChartObject
 
-@synthesize key, value, displayName;
+
 
 - (id)initWithKey:(NSString*)theKey value:(NSString*)theValue displayName:(NSString*)theName
 {

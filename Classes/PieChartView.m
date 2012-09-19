@@ -15,9 +15,13 @@
 
 
 
-@implementation PieChartView
+@interface PieChartView ()
+@property (nonatomic, strong) NSArray* colorScheme;
+@end
 
-@synthesize pieChartObjects, colorScheme;
+
+
+@implementation PieChartView
 
 
 - (id)initWithFrame:(CGRect)frame
@@ -47,12 +51,12 @@
         id value = values[i];
         id displayName = displayNames[i];
         PieChartObject* object = [[PieChartObject alloc] initWithKey:key value:value displayName:displayName];
-        [pieChartObjects addObject:object];
+        [self.pieChartObjects addObject:object];
     }
     
 
 //    NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"key" ascending:YES];
-    [pieChartObjects sortUsingComparator:^NSComparisonResult(PieChartObject* obj1, PieChartObject* obj2) {
+    [self.pieChartObjects sortUsingComparator:^NSComparisonResult(PieChartObject* obj1, PieChartObject* obj2) {
         if ( [obj1.key intValue] )
         {
             return [obj1.key intValue] > [obj2.key intValue];
@@ -81,13 +85,13 @@
 
 - (NSArray*)colorScheme
 {
-	if ( !colorScheme )
+	if ( !_colorScheme )
 	{
 		NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"PieChartColorSchemeRGB" ofType:@"plist"];
 		NSArray* plistArray = [NSDictionary dictionaryWithContentsOfFile:plistPath][@"Root"];
-		colorScheme = [[NSArray alloc] initWithArray:plistArray];
+		_colorScheme = [[NSArray alloc] initWithArray:plistArray];
 	}
-	return colorScheme;
+	return _colorScheme;
 }
 
 - (UIColor*)colorAtIndex:(NSInteger)index
@@ -144,20 +148,20 @@
     
     
     //// Set Data ////
-    NSNumber* valueSum = [pieChartObjects valueForKeyPath:@"@sum.value"];
+    NSNumber* valueSum = [self.pieChartObjects valueForKeyPath:@"@sum.value"];
     NSInteger total = [valueSum intValue];
     CGFloat startValue = 0;
     int index = 0;
     
     CGFloat labelWidth = (self.bounds.size.width - 20) / 6;
-    for ( PieChartObject* object in pieChartObjects )
+    for ( PieChartObject* object in self.pieChartObjects )
     {
         CGSize size = [object.displayName sizeWithFont:[UIFont systemFontOfSize:kLabelFontSize]];
         if ( size.width + kLabelSquareSize + 4 * kLabelSquareSpacing > labelWidth )
             labelWidth = size.width + kLabelSquareSize + 4 * kLabelSquareSpacing;
     }
     
-    for ( PieChartObject* object in pieChartObjects )
+    for ( PieChartObject* object in self.pieChartObjects )
     {
         //// Select Color ////
         UIColor* color = [self colorAtIndex:index];

@@ -13,8 +13,6 @@
 
 @implementation UserTableViewController
 
-@synthesize userArray;
-
 
 
 #pragma mark -
@@ -22,7 +20,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [userArray count];
+    return [self.userArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -36,7 +34,7 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
-	User* user = userArray[indexPath.row];
+	User* user = self.userArray[indexPath.row];
 	cell.textLabel.text = user.name;
     
     return cell;
@@ -50,18 +48,12 @@
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    User* user = userArray[indexPath.row];
+    User* user = self.userArray[indexPath.row];
 
     UserDetailViewController* childVC = [[UserDetailViewController alloc] initWithNibName:@"UserDetailViewController" bundle:nil];
     childVC.user = user;
     [self.navigationController pushViewController:childVC animated:YES];
 }
-
-
-#pragma mark -
-#pragma mark Memory management
-
-
 
 
 @end

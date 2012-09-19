@@ -8,6 +8,7 @@
 
 #import "UserDetailViewController.h"
 #import "NSDate+Utilities.h"
+#import "UIImageView+WebCache.h"
 #import <QuartzCore/QuartzCore.h>
 
 
@@ -16,114 +17,87 @@
 #define kDetailLabelFontSize    15.0
 
 
+
+@interface UserDetailViewController ()
+@property (nonatomic, strong) NSOperationQueue* queue;
+@end
+
+
+
 @implementation UserDetailViewController
 
-@synthesize user;
-@synthesize keyPaths, works, educations;
-@synthesize displayNameDict;
-@synthesize headerView, profileImageView, nameLabel;
 
 
 - (void)viewDidLoad
 {
     self.title = @"Profile";
-    nameLabel.text = user.name;
+    self.nameLabel.text = self.user.name;
     
     NSArray* possibleKeys = @[@"gender", @"birthday", @"relationship_status", @"hometown", @"location", @"updated_time", @"locale"];
 
     NSMutableArray* existKeys = [NSMutableArray arrayWithCapacity:[possibleKeys count]];
     for ( id keyPath in possibleKeys )
     {
-        if ( [user valueForKey:keyPath] )
+        if ( [self.user valueForKey:keyPath] )
         {
             [existKeys addObject:keyPath];
         }
     }
     
     self.keyPaths = [NSMutableArray arrayWithCapacity:3];
-    self.works = [user sortedWorks];
-    self.educations = [user sortedEducations];
+    self.works = [self.user sortedWorks];
+    self.educations = [self.user sortedEducations];
     
-    if ( [existKeys count] ) [keyPaths addObject:existKeys];    
-    if ( [self.works count] ) [keyPaths addObject:self.works];    
-    if ( [self.educations count] ) [keyPaths addObject:self.educations];    
+    if ( [existKeys count] ) [self.keyPaths addObject:existKeys];    
+    if ( [self.works count] ) [self.keyPaths addObject:self.works];    
+    if ( [self.educations count] ) [self.keyPaths addObject:self.educations];    
 
     
-    [self loadProfileImage];
+    NSString* avatar = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=large", self.user.id];
+    [self.profileImageView setImageWithURL:[NSURL URLWithString:avatar]
+                          placeholderImage:nil
+                                   success:^(UIImage *image, BOOL cached) {
+                                       
+                                       CGFloat width = self.profileImageView.bounds.size.width;
+                                       CGFloat ratio = width / image.size.width;
+                                       CGFloat height = image.size.height * ratio;
+                                       self.profileImageView.bounds = CGRectMake(0, 0, width, height);
+                                       
+                                       CALayer* layer = self.profileImageView.layer;
+                                       layer.masksToBounds = YES;
+                                       layer.cornerRadius = 10.0;
+                                       layer.borderWidth = 1.0;
+                                       layer.borderColor = [UIColor darkGrayColor].CGColor;
+                                       
+                                   } failure:^(NSError *error) {
+                                       
+                                       NSLog(@"Failed to load image: %@", error);
+                                   }];
+
     
     [super viewDidLoad];
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    self.headerView = nil;
-    self.profileImageView = nil;
-    self.nameLabel = nil;    
-}
-
 - (void)dealloc
 {
-    [queue cancelAllOperations];
+    [self.queue cancelAllOperations];
 
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return YES;
 }
 
 - (NSDictionary*)displayNameDict
 {
-    if ( !displayNameDict )
+    if ( !_displayNameDict )
     {
         NSString* path = [[NSBundle mainBundle] pathForResource:@"attributeDisplayNames" ofType:@"plist"];
-        displayNameDict = [NSDictionary dictionaryWithContentsOfFile:path][@"Root"];
+        _displayNameDict = [NSDictionary dictionaryWithContentsOfFile:path][@"Root"];
     }
-    return displayNameDict;
+    return _displayNameDict;
 }
 
 - (IBAction)openProfilePageLink
 {
-    NSURL* url = [NSURL URLWithString:user.link];
+    NSURL* url = [NSURL URLWithString:self.user.link];
     [[UIApplication sharedApplication] openURL:url];
-}
-
-
-#pragma mark -
-#pragma mark Profile Image
-
-- (void)loadProfileImage
-{
-    if ( queue )
-    {
-        [queue cancelAllOperations];
-    }
-    queue = [[NSOperationQueue alloc] init];
-    
-    NSString* urlString = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=normal", user.id];
-    
-//    AsyncImageOperation* op = [[AsyncImageOperation alloc] initWithURL:urlString delegate:self];
-//    [queue addOperation:op];
-}
-
-//- (void)operation:(AsyncImageOperation*)op didLoadData:(NSData*)data
-//{
-//    [self performSelectorOnMainThread:@selector(setImageViewWithData:) withObject:data waitUntilDone:NO];
-//}
-
-- (void)setImageViewWithData:(NSData*)data
-{
-    UIImage* image = [UIImage imageWithData:data];
-    headerView.frame = CGRectMake(0, 0, headerView.frame.size.width, image.size.height + 20.0 );
-    self.tableView.tableHeaderView = headerView;
-    profileImageView.image = image;
-    
-    CALayer* layer = [profileImageView layer];
-    [layer setMasksToBounds:YES];
-    [layer setCornerRadius:10.0];
-    [layer setBorderWidth:1.0];
-    [layer setBorderColor:[[UIColor darkGrayColor] CGColor]];
 }
 
 
@@ -132,34 +106,34 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [keyPaths count];
+    return [self.keyPaths count];
 }
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
 {
-    return [keyPaths[section] count];
+    return [self.keyPaths[section] count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray* section = keyPaths[indexPath.section];
+    NSArray* section = self.keyPaths[indexPath.section];
 
     if ( section == self.works )
     {
-        Work* work = works[indexPath.row];
+        Work* work = self.works[indexPath.row];
         NSString* text = [self descriptionForWork:work];
         CGFloat height = kCellMargin + [text sizeWithFont:[UIFont boldSystemFontOfSize:kDetailLabelFontSize] 
                                         constrainedToSize:CGSizeMake(kDetailLabelWidth, 200)
-                                            lineBreakMode:UILineBreakModeWordWrap].height;
+                                            lineBreakMode:NSLineBreakByWordWrapping].height;
         return height;
     }
     else if ( section == self.educations )
     {
-        Education* education = educations[indexPath.row];
+        Education* education = self.educations[indexPath.row];
         NSString* text = [self descriptionForEducation:education];
         CGFloat height = kCellMargin + [text sizeWithFont:[UIFont boldSystemFontOfSize:kDetailLabelFontSize] 
                                         constrainedToSize:CGSizeMake(kDetailLabelWidth, 200)
-                                            lineBreakMode:UILineBreakModeWordWrap].height;
+                                            lineBreakMode:NSLineBreakByWordWrapping].height;
         return height;
     }
     else
@@ -180,24 +154,24 @@
         cell.detailTextLabel.numberOfLines = 0;
     }
     
-    NSArray* section = keyPaths[indexPath.section];
+    NSArray* section = self.keyPaths[indexPath.section];
     
     if ( section == self.works )
     {
-        Work* work = works[indexPath.row];
+        Work* work = self.works[indexPath.row];
         cell.textLabel.text = @"Work";
         cell.detailTextLabel.text = [self descriptionForWork:work];
     }
     else if ( section == self.educations )
     {
-        Education* education = educations[indexPath.row];
+        Education* education = self.educations[indexPath.row];
         cell.textLabel.text = @"Education";
         cell.detailTextLabel.text = [self descriptionForEducation:education];
     }
     else
     {
         NSString* keyPath = section[indexPath.row];
-        id value = [user valueForKey:keyPath];
+        id value = [self.user valueForKey:keyPath];
         
         cell.textLabel.text = (self.displayNameDict)[keyPath];
         
@@ -208,19 +182,19 @@
         
         else if ( [keyPath isEqualToString:@"birthday"] )
         {
-            if ( user.birthdayYear )
+            if ( self.user.birthdayYear )
             {
-                cell.detailTextLabel.text = [NSString stringWithFormat:@"%@/%@/%@", user.birthdayYear, user.birthdayMonth, user.birthdayDay];
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"%@/%@/%@", self.user.birthdayYear, self.user.birthdayMonth, self.user.birthdayDay];
             }
             else
             {
-                cell.detailTextLabel.text = [NSString stringWithFormat:@"%@/%@", user.birthdayMonth, user.birthdayDay];                
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"%@/%@", self.user.birthdayMonth, self.user.birthdayDay];                
             }
         }
         
         else if ( [keyPath isEqualToString:@"updated_time"] )
         {
-            cell.detailTextLabel.text = [user.updated_time stringFromDate]; 
+            cell.detailTextLabel.text = [self.user.updated_time stringFromDate]; 
         }
         
         else

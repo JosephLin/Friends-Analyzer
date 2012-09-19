@@ -10,9 +10,6 @@
 
 
 @interface UserTableViewController : UITableViewController
-{
-	NSArray* userArray;
-}
 
 @property (nonatomic, strong) NSArray* userArray;
 

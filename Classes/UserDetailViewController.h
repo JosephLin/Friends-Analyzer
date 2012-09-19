@@ -13,20 +13,6 @@
 
 
 @interface UserDetailViewController : UITableViewController
-{
-    User* user;
-    
-    NSMutableArray* keyPaths;
-    NSArray* works;
-    NSArray* educations;
-    NSDictionary* displayNameDict;
-    
-    UIView* headerView;
-    UIImageView* profileImageView;
-    UILabel* nameLabel;
-    
-    NSOperationQueue* queue;
-}
 
 @property (nonatomic, strong) User* user;   
 @property (nonatomic, strong) NSMutableArray* keyPaths;
@@ -36,11 +22,5 @@
 @property (nonatomic, strong) IBOutlet UIView* headerView;
 @property (nonatomic, strong) IBOutlet UIImageView* profileImageView;
 @property (nonatomic, strong) IBOutlet UILabel* nameLabel;
-
-- (void)loadProfileImage;
-- (void)setImageViewWithData:(NSData*)data;
-- (NSString*)descriptionForWork:(Work*)work;
-- (NSString*)descriptionForEducation:(Education*)education;
-- (IBAction)openProfilePageLink;
 
 @end

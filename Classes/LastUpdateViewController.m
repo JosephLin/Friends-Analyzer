@@ -10,10 +10,8 @@
 #import "User.h"
 #import "NSDate+Utilities.h"
 
-@implementation LastUpdateViewController
 
-@synthesize fetchedResultsController;
-@synthesize sectionIndexTitles;
+@implementation LastUpdateViewController
 
 
 - (void)viewDidLoad
@@ -21,19 +19,6 @@
     self.title = @"Last Updated";
     [super viewDidLoad];
 }
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    self.fetchedResultsController = nil;
-}
-
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return YES;
-}
-
 
 
 #pragma mark -
@@ -51,7 +36,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{    
+{
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -59,7 +44,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-    User* user = [fetchedResultsController objectAtIndexPath:indexPath];
+    User* user = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = user.name;
     
     cell.detailTextLabel.text = [user.updated_time stringFromDate];
@@ -68,14 +53,14 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{ 
-    id <NSFetchedResultsSectionInfo> sectionInfo = [fetchedResultsController sections][section];
+{
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
     return [sectionInfo name];
 }
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-    NSArray* sectionTitles = [[fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"];
+    NSArray* sectionTitles = [[self.fetchedResultsController sections] valueForKeyPath:@"@unionOfObjects.name"];
     NSMutableArray* array = [NSMutableArray arrayWithCapacity:[sectionTitles count]];
     for ( NSString* title in sectionTitles )
     {
@@ -83,12 +68,12 @@
         [array addObject:indexTitle];
     }
     self.sectionIndexTitles = [NSArray arrayWithArray:array];
-    return sectionIndexTitles;
+    return self.sectionIndexTitles;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index 
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
 {
-    return [sectionIndexTitles indexOfObject:title];
+    return [self.sectionIndexTitles indexOfObject:title];
 }
 
 
@@ -107,7 +92,7 @@
 
 - (NSFetchedResultsController*)fetchedResultsController
 {
-    if ( !fetchedResultsController )
+    if ( !_fetchedResultsController )
     {
         NSFetchRequest* fetchRequest = [[NSFetchRequest alloc] init];
         [fetchRequest setEntity:[User entity]];
@@ -118,17 +103,17 @@
         NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"updated_time" ascending:NO];
         [fetchRequest setSortDescriptors:@[sortDescriptor]];
         
-        fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
-                                                                      managedObjectContext:[User managedObjectContext]
-                                                                        sectionNameKeyPath:@"lastUpdateCategory"
-                                                                                 cacheName:nil];
+        _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                                                        managedObjectContext:[User managedObjectContext]
+                                                                          sectionNameKeyPath:@"lastUpdateCategory"
+                                                                                   cacheName:nil];
         
         NSError* error;
-        BOOL success = [fetchedResultsController performFetch:&error];
+        BOOL success = [_fetchedResultsController performFetch:&error];
         NSLog(@"Fetch successed? %d", success);
     }
-
-    return fetchedResultsController;
+    
+    return _fetchedResultsController;
 }
 
 

@@ -10,10 +10,6 @@
 
 
 @interface LastUpdateViewController : UITableViewController
-{
-    NSFetchedResultsController* fetchedResultsController;
-    NSArray* sectionIndexTitles;
-}
 
 @property (nonatomic, strong) NSFetchedResultsController* fetchedResultsController;
 @property (nonatomic, strong) NSArray* sectionIndexTitles;

@@ -15,11 +15,6 @@
 
 @implementation ArrayBasedTableViewController
 
-@synthesize property;
-@synthesize sortedKeys, userCountsDict;
-@synthesize segmentedControl;
-@synthesize tableView, pieChartView;
-
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -28,21 +23,21 @@
 - (void)viewDidLoad
 {    
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
-    tableView.delegate = self;
-    tableView.dataSource = self;
-    tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [self.view addSubview:tableView];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.view addSubview:self.tableView];
     
     
     NSArray* controlItems = @[@"Sort By Name", @"Sort By Number"];
     
     self.segmentedControl = [[UISegmentedControl alloc] initWithItems:controlItems];
-    segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-    [segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
-    self.navigationItem.titleView = segmentedControl;
+    self.segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+    [self.segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
+    self.navigationItem.titleView = self.segmentedControl;
     
-    segmentedControl.selectedSegmentIndex = 0;
+    self.segmentedControl.selectedSegmentIndex = 0;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_pie_chart"]
                                                                                style:UIBarButtonItemStyleBordered
@@ -52,22 +47,6 @@
     [super viewDidLoad];
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    
-    self.segmentedControl = nil;
-    self.tableView = nil;
-    self.pieChartView = nil;
-}
-
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    return YES;
-}
-
-
 - (void)segmentedControlValueChanged:(UISegmentedControl*)sender
 {
     self.sortedKeys = nil;
@@ -76,7 +55,7 @@
 
 - (void)toggleChartView
 {
-    if ( [pieChartView superview] )
+    if ( [self.pieChartView superview] )
     {
         self.navigationItem.titleView = self.segmentedControl;
         self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"icon_pie_chart"];
@@ -86,7 +65,7 @@
         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
         [UIView setAnimationDuration:kAnimationDuration];
         
-        [pieChartView removeFromSuperview]; 
+        [self.pieChartView removeFromSuperview]; 
         
         [UIView commitAnimations];
     }
@@ -111,13 +90,13 @@
 
 - (PieChartView*)pieChartView
 {
-    if ( !pieChartView )
+    if ( !_pieChartView )
     {
-        pieChartView = [[PieChartView alloc] initWithFrame:self.view.bounds];
-        pieChartView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        [pieChartView setPieChartWithKeys:[userCountsDict allKeys] values:[userCountsDict allValues]];
+        _pieChartView = [[PieChartView alloc] initWithFrame:self.view.bounds];
+        _pieChartView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        [_pieChartView setPieChartWithKeys:[self.userCountsDict allKeys] values:[self.userCountsDict allValues]];
     }
-    return pieChartView;
+    return _pieChartView;
 }
 
 
@@ -159,7 +138,7 @@
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     NSString* key = (self.sortedKeys)[indexPath.row];
-	NSArray* users = [User usersForKey:property value:key];
+	NSArray* users = [User usersForKey:self.property value:key];
     NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
 	NSArray* sorted = [users sortedArrayUsingDescriptors:@[sortDescriptor]];
 	
@@ -176,41 +155,41 @@
 
 - (NSArray*)sortedKeys
 {
-    if ( !sortedKeys )
+    if ( !_sortedKeys )
     {
-        NSArray* possibleKeys = [User possibleValuesForCategory:property];
-        NSString* keyPath = [NSString stringWithFormat:@"@unionOfObjects.%@", property];
+        NSArray* possibleKeys = [User possibleValuesForCategory:self.property];
+        NSString* keyPath = [NSString stringWithFormat:@"@unionOfObjects.%@", self.property];
         NSArray* keys = [possibleKeys valueForKeyPath:keyPath];
         
         if ( self.segmentedControl.selectedSegmentIndex == 0 )
         {
-            sortedKeys = keys;
+            _sortedKeys = keys;
         }
         else
         {
-            sortedKeys = [keys sortedArrayUsingComparator:(NSComparator)^(id obj1, id obj2){
-                return [userCountsDict[obj1] intValue] < [userCountsDict[obj2] intValue];
+            _sortedKeys = [keys sortedArrayUsingComparator:(NSComparator)^(id obj1, id obj2){
+                return [self.userCountsDict[obj1] intValue] < [self.userCountsDict[obj2] intValue];
             }];
         }
     }
-    return sortedKeys;
+    return _sortedKeys;
 }
 
 - (NSDictionary*)userCountsDict
 {
-    if ( !userCountsDict )
+    if ( !_userCountsDict )
     {
         NSMutableDictionary* tempDict = [NSMutableDictionary dictionaryWithCapacity:[self.sortedKeys count]];
         
-        for ( id key in sortedKeys )
+        for ( id key in self.sortedKeys )
         {
-            NSNumber* count = [NSNumber numberWithInteger:[User userCountsForKey:property value:key]];
+            NSNumber* count = [NSNumber numberWithInteger:[User userCountsForKey:self.property value:key]];
             tempDict[key] = count;
         }
         
-        userCountsDict = [[NSDictionary alloc] initWithDictionary:tempDict];
+        _userCountsDict = [[NSDictionary alloc] initWithDictionary:tempDict];
     }
-    return userCountsDict;
+    return _userCountsDict;
 }
 
 

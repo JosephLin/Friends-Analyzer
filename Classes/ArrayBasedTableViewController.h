@@ -11,15 +11,6 @@
 
 
 @interface ArrayBasedTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
-{
-    NSString* property;
-	NSArray* sortedKeys;
-	NSDictionary* userCountsDict;
-    
-    UISegmentedControl* segmentedControl;
-    UITableView* tableView;
-    PieChartView* pieChartView;
-}
 
 @property (nonatomic, strong) NSString* property;
 @property (nonatomic, strong) NSArray* sortedKeys;

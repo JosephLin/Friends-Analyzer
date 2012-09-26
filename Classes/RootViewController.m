@@ -147,35 +147,35 @@ typedef enum {
     @"user_work_history", @"friends_work_history",
     @"user_education_history", @"friends_education_history"];
 	
-    return [FBSession openActiveSessionWithPermissions:permissions
-                                          allowLoginUI:allowLoginUI
-                                     completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
-        
-        switch (state)
-        {
-            case FBSessionStateOpen:
-                if (!error) {
-                    [self getUserInfo];
-                }
-                break;
-            case FBSessionStateClosed:
-            case FBSessionStateClosedLoginFailed:
-                [FBSession.activeSession closeAndClearTokenInformation];
-                break;
-            default:
-                break;
-        }
-        
-        
-        if (error)
-        {
-            [[[UIAlertView alloc] initWithTitle:@"Error"
-                                        message:error.localizedDescription
-                                       delegate:nil
-                              cancelButtonTitle:@"OK"
-                              otherButtonTitles:nil] show];
-        }
-    }];
+    return [FBSession openActiveSessionWithReadPermissions:permissions
+                                              allowLoginUI:allowLoginUI
+                                         completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
+                                             
+                                             switch (state)
+                                             {
+                                                 case FBSessionStateOpen:
+                                                     if (!error) {
+                                                         [self getUserInfo];
+                                                     }
+                                                     break;
+                                                 case FBSessionStateClosed:
+                                                 case FBSessionStateClosedLoginFailed:
+                                                     [FBSession.activeSession closeAndClearTokenInformation];
+                                                     break;
+                                                 default:
+                                                     break;
+                                             }
+                                             
+                                             
+                                             if (error)
+                                             {
+                                                 [[[UIAlertView alloc] initWithTitle:@"Error"
+                                                                             message:error.localizedDescription
+                                                                            delegate:nil
+                                                                   cancelButtonTitle:@"OK"
+                                                                   otherButtonTitles:nil] show];
+                                             }
+                                         }];
 }
 
 - (void)getUserInfo

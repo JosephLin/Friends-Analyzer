@@ -40,6 +40,9 @@
 		7C70C00A13315F3000E1B87C /* WorkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C70C00913315F3000E1B87C /* WorkCell.m */; };
 		7C70C00D1331614C00E1B87C /* PositionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C70C00C1331614A00E1B87C /* PositionViewController.m */; };
 		7C74C55813219060003258AC /* Horoscope.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C74C55713219060003258AC /* Horoscope.plist */; };
+		7C7583721612A3D500075271 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7583711612A3D500075271 /* Accounts.framework */; };
+		7C7583741612A3DA00075271 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7583731612A3DA00075271 /* AdSupport.framework */; };
+		7C7583761612A3FD00075271 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7583751612A3FD00075271 /* Social.framework */; };
 		7C79F60513FC565A00E86629 /* ForwardGeocodingOperationV2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C79F60413FC565A00E86629 /* ForwardGeocodingOperationV2.m */; };
 		7C83D9D313256BA10059BBF0 /* LocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C83D9D113256BA10059BBF0 /* LocationViewController.m */; };
 		7C83D9D613256D4B0059BBF0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C83D9D513256D4B0059BBF0 /* MapKit.framework */; };
@@ -217,6 +220,9 @@
 		7C70C00B1331614A00E1B87C /* PositionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositionViewController.h; sourceTree = "<group>"; };
 		7C70C00C1331614A00E1B87C /* PositionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PositionViewController.m; sourceTree = "<group>"; };
 		7C74C55713219060003258AC /* Horoscope.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Horoscope.plist; sourceTree = "<group>"; };
+		7C7583711612A3D500075271 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		7C7583731612A3DA00075271 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		7C7583751612A3FD00075271 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		7C79F60313FC565A00E86629 /* ForwardGeocodingOperationV2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardGeocodingOperationV2.h; sourceTree = "<group>"; };
 		7C79F60413FC565A00E86629 /* ForwardGeocodingOperationV2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForwardGeocodingOperationV2.m; sourceTree = "<group>"; };
 		7C83D9D013256BA10059BBF0 /* LocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationViewController.h; sourceTree = "<group>"; };
@@ -315,6 +321,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C7583761612A3FD00075271 /* Social.framework in Frameworks */,
+				7C7583741612A3DA00075271 /* AdSupport.framework in Frameworks */,
+				7C7583721612A3D500075271 /* Accounts.framework in Frameworks */,
 				7C92D6471602876B00161D93 /* ImageIO.framework in Frameworks */,
 				7C92D6351602865C00161D93 /* libSDWebImageARC.a in Frameworks */,
 				7C60BD171601979A00520A1D /* libfacebook_ios_sdk.a in Frameworks */,
@@ -402,6 +411,9 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7C7583751612A3FD00075271 /* Social.framework */,
+				7C7583731612A3DA00075271 /* AdSupport.framework */,
+				7C7583711612A3D500075271 /* Accounts.framework */,
 				7C92D6461602876B00161D93 /* ImageIO.framework */,
 				7C83D9DD1325745F0059BBF0 /* CoreLocation.framework */,
 				7C83D9D513256D4B0059BBF0 /* MapKit.framework */,

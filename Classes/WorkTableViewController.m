@@ -125,7 +125,7 @@
     
     if ( self.keyPath && self.value )
     {
-        NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%K like[c] %@", self.keyPath, self.value];
+        NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%K == %@", self.keyPath, self.value];
         [fetchRequest setPredicate:predicate];
     }
                               

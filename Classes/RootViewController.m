@@ -45,18 +45,13 @@ typedef enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
 
-    UIImage* image = [[UIImage imageNamed:@"icon-tile"] resizableImageWithCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeTile];
-    self.backgroundImageView.image = image;
-    
-    self.introLabel.font = [UIFont fontWithName:@"CorporateRoundedBoldSWFTE" size:self.introLabel.font.pointSize];
+    self.introLabel.font = [UIFont appFontOfSize:14];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
 
     self.currentUser = [User currentUser];
     

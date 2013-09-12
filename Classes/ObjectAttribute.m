@@ -26,7 +26,7 @@
     NSEntityDescription* e = [NSEntityDescription entityForName:entity inManagedObjectContext:[self managedObjectContext]];
 	[request setEntity:e];
 	
-    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"name like[c] %@", theName];
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"name == %@", theName];
     [request setPredicate:predicate];
     
     NSError* error = nil;

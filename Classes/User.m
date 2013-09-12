@@ -302,7 +302,7 @@ static NSArray* monthArray = nil;
 	NSFetchRequest* request = [[NSFetchRequest alloc] init];
 	[request setEntity:[self entity]];
 	
-	NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%K like %@", key, value];
+	NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%K == %@", key, value];
 	[request setPredicate:predicate];
 	
 	NSError* error = nil;
@@ -316,7 +316,7 @@ static NSArray* monthArray = nil;
 	NSFetchRequest* request = [[NSFetchRequest alloc] init];
 	[request setEntity:[self entity]];
 	
-	NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%K like %@", key, value];
+	NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%K == %@", key, value];
 	[request setPredicate:predicate];
 	
 	NSError* error = nil;

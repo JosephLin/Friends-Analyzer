@@ -129,7 +129,7 @@
     {
         if ( [self.value isKindOfClass:[NSString class]] )
         {        
-            NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%K like[c] %@", self.keyPath, self.value];
+            NSPredicate* predicate = [NSPredicate predicateWithFormat:@"%K == %@", self.keyPath, self.value];
             [fetchRequest setPredicate:predicate];
         }
         else if ( [self.value isKindOfClass:[ObjectAttribute class]] )

@@ -40,6 +40,8 @@
 		7C70C00A13315F3000E1B87C /* WorkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C70C00913315F3000E1B87C /* WorkCell.m */; };
 		7C70C00D1331614C00E1B87C /* PositionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C70C00C1331614A00E1B87C /* PositionViewController.m */; };
 		7C73063F17E165370067A1DA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C73063E17E165370067A1DA /* Images.xcassets */; };
+		7C73064217E16A330067A1DA /* corporate-rounded-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7C73064117E16A330067A1DA /* corporate-rounded-bold.ttf */; };
+		7C73064517E16AB50067A1DA /* UIFont+App.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C73064417E16AB50067A1DA /* UIFont+App.m */; };
 		7C74C55813219060003258AC /* Horoscope.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C74C55713219060003258AC /* Horoscope.plist */; };
 		7C7583721612A3D500075271 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7583711612A3D500075271 /* Accounts.framework */; };
 		7C7583741612A3DA00075271 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C7583731612A3DA00075271 /* AdSupport.framework */; };
@@ -131,6 +133,9 @@
 		7C70C00B1331614A00E1B87C /* PositionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositionViewController.h; sourceTree = "<group>"; };
 		7C70C00C1331614A00E1B87C /* PositionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PositionViewController.m; sourceTree = "<group>"; };
 		7C73063E17E165370067A1DA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = FriendsAnalyzer/Images.xcassets; sourceTree = "<group>"; };
+		7C73064117E16A330067A1DA /* corporate-rounded-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "corporate-rounded-bold.ttf"; sourceTree = "<group>"; };
+		7C73064317E16AB50067A1DA /* UIFont+App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+App.h"; sourceTree = "<group>"; };
+		7C73064417E16AB50067A1DA /* UIFont+App.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+App.m"; sourceTree = "<group>"; };
 		7C74C55713219060003258AC /* Horoscope.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Horoscope.plist; sourceTree = "<group>"; };
 		7C7583711612A3D500075271 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		7C7583731612A3DA00075271 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
@@ -252,6 +257,7 @@
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				7C73063E17E165370067A1DA /* Images.xcassets */,
+				7C73064017E16A330067A1DA /* Fonts */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				A01B68A0599B46F293D58176 /* Pods.xcconfig */,
@@ -367,6 +373,14 @@
 			name = "Table View";
 			sourceTree = "<group>";
 		};
+		7C73064017E16A330067A1DA /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				7C73064117E16A330067A1DA /* corporate-rounded-bold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		7C83D9CF13256B710059BBF0 /* Location View */ = {
 			isa = PBXGroup;
 			children = (
@@ -432,6 +446,8 @@
 				7CC5B1B0131D797D00FEA4DE /* NSDate+Utilities.m */,
 				7C5EB55B13F328720063F116 /* UIColor+Utilities.h */,
 				7C5EB55C13F328720063F116 /* UIColor+Utilities.m */,
+				7C73064317E16AB50067A1DA /* UIFont+App.h */,
+				7C73064417E16AB50067A1DA /* UIFont+App.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -551,6 +567,7 @@
 				7C73063F17E165370067A1DA /* Images.xcassets in Resources */,
 				7CE46ED71601793B009D3A5A /* MainStoryboard.storyboard in Resources */,
 				7C92D65016028E9200161D93 /* CounterCell.xib in Resources */,
+				7C73064217E16A330067A1DA /* corporate-rounded-bold.ttf in Resources */,
 				7C0C06F81603D0560026CF44 /* LocationViewController.xib in Resources */,
 				7C0C07181603DA030026CF44 /* WorkCell.xib in Resources */,
 				7C0C071A1603DF7F0026CF44 /* EducationCell.xib in Resources */,
@@ -611,6 +628,7 @@
 				7C13AF8F13214C8C001FD36C /* BirthdayViewController.m in Sources */,
 				7C83D9D313256BA10059BBF0 /* LocationViewController.m in Sources */,
 				7CF0CC681327F0E3006C5693 /* HometownViewController.m in Sources */,
+				7C73064517E16AB50067A1DA /* UIFont+App.m in Sources */,
 				7CF0CC6B1327F3DC006C5693 /* UserLocationViewController.m in Sources */,
 				7CF0CC6E1327FEF6006C5693 /* MapAnnotation.m in Sources */,
 				7CC78EC4132965A700CA2B45 /* LastUpdateViewController.m in Sources */,

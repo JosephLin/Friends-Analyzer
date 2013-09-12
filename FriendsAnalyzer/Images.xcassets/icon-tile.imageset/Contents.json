@@ -1,14 +1,42 @@
 {
   "images" : [
     {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "fill",
+          "width" : 98,
+          "height" : 98
+        },
+        "capInsets" : {
+          "bottom" : 1,
+          "top" : 1,
+          "right" : 1,
+          "left" : 1
+        }
+      },
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "icon-tile.png"
+      "filename" : "icon-tile.png",
+      "scale" : "1x"
     },
     {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "fill",
+          "width" : 198,
+          "height" : 198
+        },
+        "capInsets" : {
+          "bottom" : 1,
+          "top" : 1,
+          "right" : 1,
+          "left" : 1
+        }
+      },
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "icon-tile@2x.png"
+      "filename" : "icon-tile@2x.png",
+      "scale" : "2x"
     }
   ],
   "info" : {

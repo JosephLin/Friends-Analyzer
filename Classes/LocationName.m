@@ -30,7 +30,7 @@
     NSFetchRequest* request = [[NSFetchRequest alloc] init];
 	[request setEntity:[self entity]];
 	
-	NSPredicate* predicate = [NSPredicate predicateWithFormat:@"name like[c] %@", theName];
+	NSPredicate* predicate = [NSPredicate predicateWithFormat:@"name == %@", theName];
 	[request setPredicate:predicate];
 	
 	NSError* error = nil;

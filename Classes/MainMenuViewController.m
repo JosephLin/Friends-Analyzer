@@ -15,7 +15,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "FacebookSDK.h"
 #import "User.h"
-#import "UIImageView+WebCache.h"
+#import "UIImageView+AFNetworking.h"
 
 #define kLogoutActionSheetTag       1001
 #define kRefreshActionSheetTag      2001
@@ -65,25 +65,27 @@
 	self.nameLabel.attributedText = attrString;
     
     NSString* avatar = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=large", self.currentUser.id];
-    [self.profileImageView setImageWithURL:[NSURL URLWithString:avatar]
-                          placeholderImage:nil
-                                   success:^(UIImage *image, BOOL cached) {
-                                       
-                                       CGFloat width = self.profileImageView.bounds.size.width;
-                                       CGFloat ratio = width / image.size.width;
-                                       CGFloat height = image.size.height * ratio;
-                                       self.profileImageView.bounds = CGRectMake(0, 0, width, height);
-                                       
-                                       CALayer* layer = self.profileImageView.layer;
-                                       layer.masksToBounds = YES;
-                                       layer.cornerRadius = 10.0;
-                                       layer.borderWidth = 1.0;
-                                       layer.borderColor = [UIColor darkGrayColor].CGColor;
-                                       
-                                   } failure:^(NSError *error) {
-                                       
-                                       NSLog(@"Failed to load image: %@", error);
-                                   }];
+    [self.profileImageView setImageWithURL:[NSURL URLWithString:avatar] placeholderImage:nil];
+
+//    [self.profileImageView setImageWithURL:[NSURL URLWithString:avatar]
+//                          placeholderImage:nil
+//                                   success:^(UIImage *image, BOOL cached) {
+//                                       
+//                                       CGFloat width = self.profileImageView.bounds.size.width;
+//                                       CGFloat ratio = width / image.size.width;
+//                                       CGFloat height = image.size.height * ratio;
+//                                       self.profileImageView.bounds = CGRectMake(0, 0, width, height);
+//                                       
+//                                       CALayer* layer = self.profileImageView.layer;
+//                                       layer.masksToBounds = YES;
+//                                       layer.cornerRadius = 10.0;
+//                                       layer.borderWidth = 1.0;
+//                                       layer.borderColor = [UIColor darkGrayColor].CGColor;
+//                                       
+//                                   } failure:^(NSError *error) {
+//                                       
+//                                       NSLog(@"Failed to load image: %@", error);
+//                                   }];
 	
 	//// Load Property List ////
 	NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"MenuStructure" ofType:@"plist"];

@@ -9,8 +9,8 @@
 #import "AppDelegate.h"
 #import "RootViewController.h"
 #import "UIColor+Utilities.h"
-#import "FlurryAnalytics.h"
-#import "FacebookSDK.h"
+#import "Flurry.h"
+#import "Facebook.h"
 
 
 
@@ -29,17 +29,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions 
 {
-    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
-    [FlurryAnalytics startSession:@"2A8KB89EMT16MTUQR3JI"];
-    [FlurryAnalytics logAllPageViews:self.navigationController];
+    [Flurry setCrashReportingEnabled:YES];
+    [Flurry startSession:@"2A8KB89EMT16MTUQR3JI"];
 
     [self customizeAppearance];
 
     return YES;
-}
-
-- (void)applicationWillResignActive:(UIApplication *)application
-{
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
@@ -47,25 +42,11 @@
     [self saveContext];
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-//    // this means the user switched back to this app without completing
-//    // a login in Safari/Facebook App
-//    if (FBSession.activeSession.state == FBSessionStateCreatedOpening) {
-//        [FBSession.activeSession close]; // so we close our session and start over
-//    }
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-}
-
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     [self saveContext];
     [FBSession.activeSession close];
 }
-
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
@@ -170,13 +151,6 @@
 }
 
 
-#pragma mark - Memory management
-
-- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
-{
-}
-
-
 #pragma mark - Customize Appearance
 
 - (void)customizeAppearance
@@ -185,15 +159,6 @@
     [[UIToolbar appearance] setTintColor:[UIColor finfoBlueColor]];    
     [[UIProgressView appearance] setProgressTintColor:[UIColor lightBlueColor]];
 }
-
-
-#pragma mark - Flurry
-
-void uncaughtExceptionHandler(NSException *exception)
-{
-    [FlurryAnalytics logError:@"Uncaught" message:@"Crash!" exception:exception];
-}
-
 
 
 @end
